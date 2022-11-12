@@ -13,7 +13,7 @@ class TextFieldCustom extends StatelessWidget {
         Text('Password',
             // textAlign: TextAlign.center,
             // maxLines: 3,
-            style: TextStylesProductSans.textStyles_14.apply(
+            style: TextStyle(
               color: ColorStyle.black,
             )),
         SizedBox(
@@ -46,7 +46,7 @@ class TextFieldCustom extends StatelessWidget {
         Text('Confirm Password',
             // textAlign: TextAlign.center,
             // maxLines: 3,
-            style: TextStylesProductSans.textStyles_14.apply(
+            style: TextStyle(
               color: ColorStyle.black,
             )),
         SizedBox(
@@ -89,7 +89,7 @@ class TextFieldEmailCustom extends StatelessWidget {
         Text('Please enter your email so we can send you acode to verify it.',
             // textAlign: TextAlign.center,
             // maxLines: 3,
-            style: TextStylesProductSans.textStyles_14.apply(
+            style: TextStyle(
               color: ColorStyle.black,
             )),
         SizedBox(
@@ -98,7 +98,7 @@ class TextFieldEmailCustom extends StatelessWidget {
         Text('Email',
             textAlign: TextAlign.center,
             // maxLines: 3,
-            style: TextStylesProductSans.textStyles_14.apply(
+            style: TextStyle(
               color: ColorStyle.black,
             )),
         SizedBox(
@@ -133,7 +133,7 @@ class TextFieldEmailLoginCustom extends StatelessWidget {
         Text('Email',
             textAlign: TextAlign.center,
             // maxLines: 3,
-            style: TextStylesProductSans.textStyles_14.apply(
+            style: TextStyle(
               color: ColorStyle.black,
             )),
         SizedBox(
@@ -158,7 +158,7 @@ class TextFieldEmailLoginCustom extends StatelessWidget {
         Text('Password',
             // textAlign: TextAlign.center,
             // maxLines: 3,
-            style: TextStylesProductSans.textStyles_14.apply(
+            style: TextStyle(
               color: ColorStyle.black,
             )),
         SizedBox(
@@ -306,9 +306,7 @@ class TextFieldEditAccount extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('First Name',
-                style: TextStylesProductSans.textStyles_16
-                    .apply(color: ColorStyle.black, fontWeightDelta: 0)),
+            Text('First Name', style: TextStyle(color: ColorStyle.black)),
             Expanded(
               child: TextField(
                 textAlign: TextAlign.right,
@@ -330,9 +328,7 @@ class TextFieldEditAccount extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Last Name',
-                style: TextStylesProductSans.textStyles_16
-                    .apply(color: ColorStyle.black, fontWeightDelta: 0)),
+            Text('Last Name', style: TextStyle(color: ColorStyle.black)),
             Expanded(
               child: TextField(
                 textAlign: TextAlign.right,
@@ -354,9 +350,7 @@ class TextFieldEditAccount extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Email',
-                style: TextStylesProductSans.textStyles_16
-                    .apply(color: ColorStyle.black, fontWeightDelta: 0)),
+            Text('Email', style: TextStyle(color: ColorStyle.black)),
             Expanded(
               child: TextField(
                 textAlign: TextAlign.right,
@@ -544,18 +538,18 @@ class TextFieldUnderlinePrefixText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: colorBoder!, width: 0.6)
-        )
-      ),
+          border: Border(bottom: BorderSide(color: colorBoder!, width: 0.6))),
       child: Row(
         children: [
           Text(
             prefixText!,
             style: textStyle!,
           ),
-          SizedBox(width: 10,),
-          Expanded(child: TextField(
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+              child: TextField(
             controller: controller,
             keyboardType: keyboardType,
             maxLines: maxLines,
@@ -650,8 +644,7 @@ class TextFieldPWDOutline extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TextFieldPWDOutlineState createState() =>
-      _TextFieldPWDOutlineState();
+  _TextFieldPWDOutlineState createState() => _TextFieldPWDOutlineState();
 }
 
 class _TextFieldPWDOutlineState extends State<TextFieldPWDOutline> {
@@ -681,9 +674,7 @@ class _TextFieldPWDOutlineState extends State<TextFieldPWDOutline> {
             ),
             onPressed: () {
               isObscureText = !isObscureText;
-              setState(() {
-
-              });
+              setState(() {});
             },
           )),
     );

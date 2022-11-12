@@ -7,8 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
 
-
-
 class PickerCustom {
   static datePicker(String dateFormat) async {
     DateTime selectedDate = DateTime.now();
@@ -26,110 +24,97 @@ class PickerCustom {
   }
 
   static imagePicker(Function(File) onSelected) {
-    Get.bottomSheet(
-      InkWell(
-        child: Material(
-          color: Colors.transparent,
-          child: Container(
-            margin: EdgeInsets.only(
-                left: 30, right: 30
-            ),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                )
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListTile(
-                  leading: new Icon(Icons.camera_alt),
-                  title: Text(
-                    'From Camera',
-                    style: TextStylesProductSans.textStyles_16.apply(
-                      color: ColorStyle.black,
-                    ),
+    Get.bottomSheet(InkWell(
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          margin: EdgeInsets.only(left: 30, right: 30),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              )),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: new Icon(Icons.camera_alt),
+                title: Text(
+                  'From Camera',
+                  style: TextStyle(
+                    color: ColorStyle.black,
                   ),
-                  onTap: () async {
-                    Get.back();
-
-                    final ImagePicker _picker = ImagePicker();
-                    final imageFile = await _picker.pickImage(
-                        source: ImageSource.camera,
-                        // maxHeight:  200 ,
-                        maxWidth: 500
-                    );
-
-                    onSelected(File(imageFile!.path));
-                  },
                 ),
-                ListTile(
-                  leading: new Icon(Icons.photo),
-                  title: Text(
-                    'From Photo',
-                    style: TextStylesProductSans.textStyles_16.apply(
-                  color: ColorStyle.black,
+                onTap: () async {
+                  Get.back();
+
+                  final ImagePicker _picker = ImagePicker();
+                  final imageFile = await _picker.pickImage(
+                      source: ImageSource.camera,
+                      // maxHeight:  200 ,
+                      maxWidth: 500);
+
+                  onSelected(File(imageFile!.path));
+                },
+              ),
+              ListTile(
+                leading: new Icon(Icons.photo),
+                title: Text(
+                  'From Photo',
+                  style: TextStyle(
+                    color: ColorStyle.black,
                   ),
-                  ),
-                  onTap: () async {
-                    Get.back();
-
-                    final ImagePicker _picker = ImagePicker();
-                    final imageFile = await _picker.pickImage(
-                        source: ImageSource.gallery,
-                        // maxHeight:  200 ,
-                        maxWidth: 500
-                    );
-
-                    onSelected(File(imageFile!.path));
-
-                    // Image.file(File(imageFile.path));
-                    // File(imageFile.path);
-                  },
                 ),
-                Container(
-                  margin: EdgeInsets.only(
-                      top: 16, bottom: 16
-                  ),
+                onTap: () async {
+                  Get.back();
+
+                  final ImagePicker _picker = ImagePicker();
+                  final imageFile = await _picker.pickImage(
+                      source: ImageSource.gallery,
+                      // maxHeight:  200 ,
+                      maxWidth: 500);
+
+                  onSelected(File(imageFile!.path));
+
+                  // Image.file(File(imageFile.path));
+                  // File(imageFile.path);
+                },
+              ),
+              Container(
+                  margin: EdgeInsets.only(top: 16, bottom: 16),
                   height: 1,
-                  color: ColorStyle.secondryColor
-                ),
-                InkWell(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        left: 20, right: 20
-                    ),
-                    height: 44,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: ColorStyle.secondryColor,
-                        borderRadius: BorderRadius.circular(25)
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Cancel',
-                      style: TextStylesProductSans.textStyles_16.apply(
-                        color: ColorStyle.white,
-                      ),
+                  color: ColorStyle.secondryColor),
+              InkWell(
+                child: Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  height: 44,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: ColorStyle.secondryColor,
+                      borderRadius: BorderRadius.circular(25)),
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: ColorStyle.white,
                     ),
                   ),
-                  onTap: () {
-                    Get.back();
-                  },
                 ),
-                SizedBox(
-                  height: 16,
-                )
-              ],
-            ),
+                onTap: () {
+                  Get.back();
+                },
+              ),
+              SizedBox(
+                height: 16,
+              )
+            ],
           ),
         ),
-        onTap: () {
-          Get.back();
-        },
-      )
-    );
+      ),
+      onTap: () {
+        Get.back();
+      },
+    ));
   }
 }

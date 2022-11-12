@@ -11,7 +11,6 @@ class ElevatedButtonCustom extends StatelessWidget {
   final double? width;
   final double? height;
 
-
   const ElevatedButtonCustom({
     Key? key,
     this.onTap,
@@ -25,7 +24,7 @@ class ElevatedButtonCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: colorBG,
+        backgroundColor: colorBG,
         elevation: 0,
         padding: EdgeInsets.only(
           left: 20,
@@ -33,15 +32,12 @@ class ElevatedButtonCustom extends StatelessWidget {
         ),
         fixedSize: Size(width!, height!),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(SizeStyle.size_18),
-
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
       child: Text(
         text!,
-        style: TextStylesProductSans.textStyles_16.apply(
-          color: colorText,
-        ),
+        style: TextStyle(color: colorText, fontWeight: FontWeight.bold),
       ),
       onPressed: onTap,
     );
@@ -56,12 +52,11 @@ class ElevatedButtonCustoms extends StatelessWidget {
   final double? width;
   final double? height;
 
-
   const ElevatedButtonCustoms({
     Key? key,
     this.onTap,
     this.text = "Elevated Button",
-    this.colorBG = Colors.transparent,
+    this.colorBG = Colors.blue,
     this.colorText = Colors.white,
     this.width = 50,
     this.height = 50,
@@ -70,7 +65,7 @@ class ElevatedButtonCustoms extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: colorBG,
+        backgroundColor: colorBG,
         elevation: 0,
         padding: EdgeInsets.only(
           left: 20,
@@ -83,7 +78,7 @@ class ElevatedButtonCustoms extends StatelessWidget {
       ),
       child: Text(
         text!,
-        style: TextStylesProductSans.textStyles_16.apply(
+        style: TextStyle(
           color: ColorStyle.secondryColor,
         ),
       ),

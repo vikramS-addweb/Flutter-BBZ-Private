@@ -13,7 +13,8 @@ showLoaderGetX() {
           height: 60,
           margin: EdgeInsets.only(left: 40, right: 40),
           decoration: BoxDecoration(
-              color: ColorStyle.secondryColor, borderRadius: BorderRadius.circular(4)),
+              color: ColorStyle.secondryColor,
+              borderRadius: BorderRadius.circular(4)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -22,19 +23,15 @@ showLoaderGetX() {
                 width: 30,
                 child: CircularProgressIndicator(
                   strokeWidth: 3,
-                  valueColor: AlwaysStoppedAnimation<Color>(ColorStyle.primaryColor),
+                  valueColor:
+                      AlwaysStoppedAnimation<Color>(ColorStyle.primaryColor),
                 ),
               ),
               Container(
                 width: 16,
               ),
-              Text(
-                  "Loading ...",
-                  style: TextStylesProductSans.textStyles_16.apply(
-                      color: ColorStyle.primaryColor,
-                      fontWeightDelta: 1
-                  )
-              ),
+              Text("Loading ...",
+                  style: TextStyle(color: ColorStyle.primaryColor)),
             ],
           ),
         ),
@@ -67,8 +64,6 @@ extension SnackBar on String {
     );
   }
 }
-
-
 
 goToAnotherScreen(Widget page) {
   GetPage(
