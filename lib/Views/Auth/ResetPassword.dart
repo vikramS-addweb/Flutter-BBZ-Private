@@ -81,6 +81,7 @@ class ResetPassword extends StatelessWidget {
                   // -----------------------Login button---------------------------->
                   ElevatedButtonCustom(
                     text: 'SEND PASSWORD RESET LINK',
+                    size: Size(MediaQuery.of(context).size.width - 30, 50),
                     onTap: () {
                       controller.resetPassword();
                       // Get.to(const Login());

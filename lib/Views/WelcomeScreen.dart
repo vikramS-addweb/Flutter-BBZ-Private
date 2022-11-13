@@ -53,6 +53,7 @@ class WelcomeScreen extends StatelessWidget {
               const SizedBox(height: 50,),
               ElevatedButtonCustom(
                 text: 'LOGIN',
+                size: Size(MediaQuery.of(context).size.width - 30, 50),
                 onTap: () {
                   Get.to(const Login());
                 },
