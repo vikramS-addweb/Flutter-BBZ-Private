@@ -8,14 +8,12 @@ import '../Utils/Constant.dart';
 import '../Utils/Global.dart';
 import 'dart:typed_data';
 
-
-
 class API {
   API._privateConstructor();
 
   static final API instance = API._privateConstructor();
 
-  final _kBaseURL = 'https://my-own-tracker-usa-backend.vercel.app/';
+  final _kBaseURL = 'https://bbzstage.addwebprojects.com/';
 
   Future<bool> _checkInternet() async {
     try {
@@ -48,9 +46,7 @@ class API {
 
     final url = Uri.parse('${_kBaseURL}${endPoint}');
 
-    final headers = {
-      'Authorization': 'Bearer $kTOKENSAVED'
-    };
+    final headers = {'Authorization': 'Bearer $kTOKENSAVED'};
 
     try {
       showLoaderGetX();
@@ -70,8 +66,8 @@ class API {
     }
   }
 
-  Future<Map<String, dynamic>?> post({ required String endPoint,
-      required Map<String, dynamic> params}) async {
+  Future<Map<String, dynamic>?> post(
+      {required String endPoint, required Map<String, dynamic> params}) async {
     if (!await _checkInternet()) {
       return null;
     }
@@ -80,14 +76,13 @@ class API {
     try {
       showLoaderGetX();
       final response = await http.post(url,
-          headers: {
-            'Authorization': 'Bearer $kTOKENSAVED'
-          },
+          // headers: {'Authorization': 'Bearer $kTOKENSAVED'},
           body: params);
       hideLoader();
       debugPrint('Response status: ${response.statusCode}');
 
       final Map parsed = json.decode(response.body);
+      'Done'.showSuccess();
       return parsed as Map<String, dynamic>;
     } on Exception catch (exception) {
       // hideLoader();
@@ -181,11 +176,7 @@ class API {
       debugPrint('Error is:-' + error.toString());
       return null;
     }
-
   }
-
-
-
 }
 
 class APIEndPoints {
