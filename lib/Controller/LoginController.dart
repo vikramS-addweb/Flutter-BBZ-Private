@@ -8,4 +8,5 @@ class LoginController extends GetxController {
     check3.value = !check3.value;
     print('done');
   }
+
 }

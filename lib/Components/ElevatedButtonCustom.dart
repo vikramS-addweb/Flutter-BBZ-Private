@@ -6,38 +6,33 @@ import 'package:flutter/material.dart';
 class ElevatedButtonCustom extends StatelessWidget {
   final Function()? onTap;
   final String? text;
-  final Color? colorBG;
-  final Color? colorText;
-  final double? width;
-  final double? height;
 
   const ElevatedButtonCustom({
     Key? key,
     this.onTap,
     this.text = "Elevated Button",
-    this.colorBG = Colors.red,
-    this.colorText = Colors.white,
-    this.width = 50,
-    this.height = 50,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: colorBG,
+        backgroundColor: ColorStyle.primaryColor_1570A5,
         elevation: 0,
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           left: 20,
           right: 20,
         ),
-        fixedSize: Size(width!, height!),
+        fixedSize: Size(MediaQuery.of(context).size.width - 30, 50),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
         ),
       ),
       child: Text(
         text!,
-        style: TextStyle(color: colorText, fontWeight: FontWeight.bold),
+        style: TextStylesCustom.textStyles_14.apply(
+          fontWeightDelta: 2
+        ),
       ),
       onPressed: onTap,
     );

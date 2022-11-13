@@ -24,14 +24,14 @@ showLoaderGetX() {
                 child: CircularProgressIndicator(
                   strokeWidth: 3,
                   valueColor:
-                      AlwaysStoppedAnimation<Color>(ColorStyle.primaryColor),
+                      AlwaysStoppedAnimation<Color>(ColorStyle.primaryColor_1570A5),
                 ),
               ),
               Container(
                 width: 16,
               ),
               Text("Loading ...",
-                  style: TextStyle(color: ColorStyle.primaryColor)),
+                  style: TextStyle(color: ColorStyle.primaryColor_1570A5)),
             ],
           ),
         ),

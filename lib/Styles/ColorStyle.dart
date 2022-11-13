@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 class ColorStyle {
   static final Color scaffold = hex("#004383");
 
-  static final Color primaryColor = hex("#FFFFFF");
+  static final Color primaryColor_1570A5 = hex("#1570A5");
   static final Color secondryColor = hex("#7432FF");
+
   static final Color black = hex("#000000");
-  static final Color grey = hex("#AEA4A4");
-  static final Color greylow = hex("#666666");
-  static final Color greylight = hex("D6D6D6");
   static final Color white = hex("#FFFFFF");
-  static final Color yellow = hex("#CEA100");
-  static final Color blue = hex("#F4F6FA");
-  static final Color grays = hex("#BBB7C4");
+  static final Color grey_DAE1E7 = hex("#DAE1E7");
+  static final Color grey_5E6D77 = hex("#5E6D77");
 
   static Color hex(String hexString) {
     final buffer = StringBuffer();

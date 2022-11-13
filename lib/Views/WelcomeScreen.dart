@@ -1,103 +1,91 @@
+import 'package:bbz/Styles/ColorStyle.dart';
+import 'package:bbz/Styles/ImageStyle.dart';
 import 'package:flutter/material.dart';
 import '../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import '../Views/Auth/Login.dart';
-import '../Components/BackgroundImg.dart';
-import '../Views/Auth/Singup.dart';
+import '../Components/BGImage.dart';
+import '../Views/Auth/SignUp.dart';
+import '../Components/AppBarStyle.dart';
+import '../Styles/TextStyles.dart';
+import '../Components/TextRichCustom.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/Images/background.png'),
-            fit: BoxFit.cover,
-          ),
+    return Scaffold(
+      appBar: AppBarStyle(
+        title: 'Log In/Sign Up',
+        styleTitle: TextStylesCustom.textStyles_14.apply(
+          color: ColorStyle.primaryColor_1570A5,
+          fontWeightDelta: 1,
         ),
-        margin: EdgeInsets.only(top: 50),
-        child: Center(
-            child: BgImage(
-          Column(
+        elevation: 2,
+      ),
+      body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/Images/background.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          margin: const EdgeInsets.only(top: 30),
+          child: Column(
             children: [
-              Container(
-                  // margin: EdgeInsets.symmetric(
-                  //     horizontal: MediaQuery.of(context).size.width / 8),
-                  child: Text('Welcome To BBZ!',
-                      // textAlign: TextAlign.center,
-                      style: TextStyle(
-                          // fontWeight: FontWeight.bold,
-                          fontFamily: 'Poppins',
-                          color: Colors.blueAccent,
-                          fontSize: 35))),
-              Container(
-                  margin: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).size.width / 30),
-                  child: Text(
-                      textAlign: TextAlign.center,
-                      'Login/Sign Up to get your profile and stayupdated with the upcoming exams and news.',
-                      style: TextStyle(
-                          // fontWeight: FontWeight.bold,
-                          fontFamily: 'Poppins',
-                          color: Colors.grey,
-                          fontSize: 15))),
-              Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width / 30,
-                    vertical: MediaQuery.of(context).size.width / 30),
-                child: ElevatedButtonCustom(
-                  onTap: () {
-                    Get.to(Login());
-                  },
-                  text: 'LOGIN',
-                  height: 50,
-                  width: MediaQuery.of(context).size.width,
-                  colorBG: Colors.blueAccent,
-                ),
+              Text('Welcome To BBZ!',
+                  style: TextStylesCustom.textStyles_26.apply(
+                      color: ColorStyle.primaryColor_1570A5,
+                      fontWeightDelta: 1
+                  )
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Do not have an account?',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
+              const SizedBox(height: 10,),
+              Text(
+                  textAlign: TextAlign.center,
+                  'Login/Sign Up to get your profile and stayupdated with the upcoming exams and news.',
+                  style: TextStylesCustom.textStyles_13.apply(
+                      color: ColorStyle.grey_5E6D77,
+                  )
+              ),
+              const SizedBox(height: 50,),
+              ElevatedButtonCustom(
+                text: 'LOGIN',
+                onTap: () {
+                  Get.to(const Login());
+                },
+              ),
+              const SizedBox(height: 16,),
+              TextRichCustom(
+                textFirst: 'Do not have an account? ',
+                textSecond: 'SignUp',
+                onTap: () {
+                  Get.to(const SignUp());
+                },
+              ),
+              const SizedBox(height: 10,),
+              InkWell(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(ImageStyle.left_Arrow, width: 20,),
+                    const SizedBox(width: 10,),
+                    Text(
+                        'Continue as a Guest',
+                        style: TextStylesCustom.textStyles_14.apply(
+                            color: ColorStyle.primaryColor_1570A5
+                        )
                     ),
-                  ),
-                  TextButton(
-                      onPressed: () => Get.to(SignUp()),
-                      child: Text('Sign Up',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.normal,
-                              color: Colors.blueAccent))),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.arrow_back,
-                    color: Colors.blue.shade400,
-                  ),
-                  TextButton(
-                      onPressed: () => {},
-                      child: Text('Continue as a Guest',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.blueAccent))),
-                ],
+                  ],
+                ),
+                onTap: () {
+
+                },
               )
             ],
-          ),
-        )));
+          )),
+    );
   }
 }

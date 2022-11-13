@@ -6,26 +6,26 @@ import '../../Components/TextFieldBase.dart';
 import '../../Components/PasswordFieldBase.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
+import '../../Styles/ImageStyle.dart';
 import '../WelcomeScreen.dart';
 import '../../Controller/LoginController.dart';
 import '../Auth/SignUp.dart';
 import '../Auth/ResetPassword.dart';
 import '../../Styles/TextStyles.dart';
+import '../../Styles/EffectStyle.dart';
 import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
-import '../../Styles/ImageStyle.dart';
-import '../../Styles/EffectStyle.dart';
 
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class SignUp extends StatelessWidget {
+  const SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBarStyle(
-        title: 'Log In',
+        title: 'Sign Up',
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: ColorStyle.primaryColor_1570A5,),
           onPressed: () {
@@ -58,6 +58,38 @@ class Login extends StatelessWidget {
                   // -----------------------Email Feild---------------------------->
                   const SizedBox(height: 30,),
 
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextFieldOutline(
+                          hintText: 'First Name',
+                          textStyle: TextStylesCustom.textStyles_14.apply(
+                              fontWeightDelta: -1
+                          ),
+                          padding: const EdgeInsets.only(
+                              left: 16, right: 16
+                          ),
+                          colorBoder: ColorStyle.grey_DAE1E7,
+                          radiusBorder: 4,
+                        ),
+                      ),
+                      SizedBox(width: 16,),
+                      Expanded(
+                        child: TextFieldOutline(
+                          hintText: 'Last Name',
+                          textStyle: TextStylesCustom.textStyles_14.apply(
+                              fontWeightDelta: -1
+                          ),
+                          padding: const EdgeInsets.only(
+                              left: 16, right: 16
+                          ),
+                          colorBoder: ColorStyle.grey_DAE1E7,
+                          radiusBorder: 4,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
                   TextFieldOutline(
                     keyboardType: TextInputType.emailAddress,
                     hintText: 'Email address',
@@ -85,54 +117,58 @@ class Login extends StatelessWidget {
                     colorBoder: ColorStyle.grey_DAE1E7,
                     radiusBorder: 4,
                   ),
+                  const SizedBox(height: 20,),
 
-                  InkWell(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.check_box, color: ColorStyle.primaryColor_1570A5,),
-                            const SizedBox(width: 8,),
-                            Text(
-                              'Remember Me',
-                              style: TextStylesCustom.textStyles_12,
-                            ),
-                          ],
-                        ),
-                        TextButton(
-                          child: Text(
-                            'Forgot Password ?',
-                            textAlign: TextAlign.right,
-                            style: TextStylesCustom.textStyles_12,
-                          ),
-                          onPressed: () => Get.to(const ResetPassword()),
-                        ),
-                      ],
+                  // -----------------------Password Feild---------------------------->
+                  TextFieldPWDOutline(
+                    hintText: 'Confirm Password',
+                    textStyle: TextStylesCustom.textStyles_14.apply(
+                        fontWeightDelta: -1
                     ),
-                    onTap: () {
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 16
+                    ),
+                    colorBoder: ColorStyle.grey_DAE1E7,
+                    radiusBorder: 4,
+                  ),
+                  const SizedBox(height: 20,),
 
-                    },
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(Icons.check_box, color: ColorStyle.primaryColor_1570A5,),
+                      const SizedBox(width: 8,),
+                      Expanded(
+                        child: TextRichCustom(
+                          textFirst: 'I have read and accept the ',
+                          textSecond: 'Terms and Privacy Policy',
+                          onTap: () {
+                            // Get.to(const SignUp());
+                          },
+                        ),
+                      ),
+                    ],
                   ),
 
                   // -----------------------Login button---------------------------->
 
+
+
                   const SizedBox(height: 30,),
                   ElevatedButtonCustom(
-                    text: 'LOGIN',
+                    text: 'SIGN UP',
                     onTap: () {
-                      Get.to(const Login());
+                      // Get.to(const Login());
                     },
                   ),
 
                   const SizedBox(height: 16,),
 
                   TextRichCustom(
-                    textFirst: 'Do not have an account? ',
-                    textSecond: 'SignUp',
+                    textFirst: 'Already have an account? ',
+                    textSecond: 'Log in',
                     onTap: () {
-                      Get.to(const SignUp());
+                      Get.back();
                     },
                   ),
                   const SizedBox(height: 10,),
