@@ -126,6 +126,7 @@ class Login extends StatelessWidget {
                   ),
                   ElevatedButtonCustom(
                     text: 'LOGIN',
+                    size: Size(MediaQuery.of(context).size.width - 30, 50),
                     onTap: () {
                       controller.userLogin();
                       // Get.to(const Login());

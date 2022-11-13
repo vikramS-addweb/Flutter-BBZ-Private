@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import '../Styles/ColorStyle.dart';
 import '../Styles/SizeStyle.dart';
 import '../Styles/TextStyles.dart';
@@ -6,11 +8,12 @@ import 'package:flutter/material.dart';
 class ElevatedButtonCustom extends StatelessWidget {
   final Function()? onTap;
   final String? text;
-
+  final Size size;
   const ElevatedButtonCustom({
     Key? key,
     this.onTap,
     this.text = "Elevated Button",
+     this.size = const Size(100, 50)
   }) : super(key: key);
 
   @override
@@ -23,7 +26,8 @@ class ElevatedButtonCustom extends StatelessWidget {
           left: 20,
           right: 20,
         ),
-        fixedSize: Size(MediaQuery.of(context).size.width - 30, 50),
+        fixedSize: size,
+        // fixedSize: Size(MediaQuery.of(context).size.width - 30, 50),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
         ),

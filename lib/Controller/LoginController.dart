@@ -9,7 +9,7 @@ class LoginController extends GetxController {
   Rx<TextEditingController> useremail = TextEditingController().obs;
   Rx<TextEditingController> userPassword = TextEditingController().obs;
 
-  userLogin() {
+  userLogin() async {
     Get.focusScope!.unfocus();
     final params = {
       'email': useremail.value.text,
@@ -19,7 +19,9 @@ class LoginController extends GetxController {
       if (!GetUtils.isEmail(useremail.value.text))
         'Enter a Valid Email !'.showError();
       else {
-        API.instance.post(endPoint: 'api/login', params: params);
+        final response = await API.instance.post(endPoint: 'api/login', params: params);
+
+        print(response);
       }
     } else
       'Please Enter Your Email & Password !'.showError();
