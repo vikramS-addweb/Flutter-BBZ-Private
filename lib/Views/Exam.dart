@@ -72,7 +72,7 @@ class Exam extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-            Get.back();
+
           },
         ),
         styleTitle: TextStylesCustom.textStyles_22.apply(

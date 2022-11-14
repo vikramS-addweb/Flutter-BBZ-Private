@@ -11,9 +11,9 @@ showLoaderGetX() {
       child: Center(
         child: Container(
           height: 60,
-          margin: EdgeInsets.only(left: 40, right: 40),
+          margin: const EdgeInsets.only(left: 40, right: 40),
           decoration: BoxDecoration(
-              color: ColorStyle.secondryColor,
+              color: ColorStyle.primaryColor_1570A5,
               borderRadius: BorderRadius.circular(4)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -24,14 +24,18 @@ showLoaderGetX() {
                 child: CircularProgressIndicator(
                   strokeWidth: 3,
                   valueColor:
-                      AlwaysStoppedAnimation<Color>(ColorStyle.primaryColor_1570A5),
+                      AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
               ),
               Container(
                 width: 16,
               ),
-              Text("Loading ...",
-                  style: TextStyle(color: ColorStyle.primaryColor_1570A5)),
+              Text(
+                  "Loading ...",
+                  style: TextStylesCustom.textStyles_16.apply(
+                    color: Colors.white
+                  )
+              ),
             ],
           ),
         ),

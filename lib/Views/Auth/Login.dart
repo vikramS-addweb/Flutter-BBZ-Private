@@ -128,7 +128,7 @@ class Login extends StatelessWidget {
                     text: 'LOGIN',
                     size: Size(MediaQuery.of(context).size.width - 30, 50),
                     onTap: () {
-                      controller.userLogin();
+                      controller.validation();
                       // Get.to(const Login());
                     },
                   ),

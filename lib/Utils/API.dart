@@ -78,12 +78,16 @@ class API {
       final response = await http.post(url,
           // headers: {'Authorization': 'Bearer $kTOKENSAVED'},
           body: params);
-      hideLoader();
-      debugPrint('Response status: ${response.statusCode}');
+      // hideLoader();
+      debugPrint('Response status: ${response}');
 
-      final Map parsed = json.decode(response.body);
-      'Done'.showSuccess();
-      return parsed as Map<String, dynamic>;
+      Map<String, dynamic> parsed = json.decode(response.body);
+      if (response.statusCode == 200) {
+        return parsed;
+      } else {
+        parsed["error"].toString().showError();
+        return {};
+      }
     } on Exception catch (exception) {
       // hideLoader();
       // debugPrint('Exception is:-' + exception.toString());
