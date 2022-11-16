@@ -48,6 +48,7 @@ class ElevatedButtonCustoms extends StatelessWidget {
   final String? text;
   final Color? colorBG;
   final Color? colorText;
+  final Color? colorBorder;
   final double? width;
   final double? height;
 
@@ -57,6 +58,7 @@ class ElevatedButtonCustoms extends StatelessWidget {
     this.text = "Elevated Button",
     this.colorBG = Colors.blue,
     this.colorText = Colors.white,
+    this.colorBorder = Colors.white,
     this.width = 50,
     this.height = 50,
   }) : super(key: key);
@@ -72,13 +74,14 @@ class ElevatedButtonCustoms extends StatelessWidget {
         ),
         fixedSize: Size(width!, height!),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(SizeStyle.size_14),
+          borderRadius: BorderRadius.circular(5),
+          side: BorderSide(color: colorBorder!)
         ),
       ),
       child: Text(
         text!,
         style: TextStyle(
-          color: ColorStyle.secondryColor,
+          color: colorText!,
         ),
       ),
       onPressed: onTap,

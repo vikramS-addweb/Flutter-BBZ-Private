@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Styles/ImageStyle.dart';
 import '../Views/Exam.dart';
+import '../Views/Profile.dart';
 
 class TabbarScreen extends StatelessWidget {
   final int? indexSelected;
@@ -15,7 +16,8 @@ class TabbarScreen extends StatelessWidget {
 
   final arrBody = [
     const Exam(),
-    const Exam(),
+    // const Exam(),
+    const Profile(),
   ];
 
   @override
@@ -68,10 +70,10 @@ class TabbarScreen extends StatelessWidget {
                   ),
                 ],
                 selectedLabelStyle: TextStylesCustom.textStyles_14.apply(
-                    fontWeightDelta: 1,
+                  fontWeightDelta: 1,
                 ),
                 unselectedLabelStyle: TextStylesCustom.textStyles_14.apply(
-                    fontWeightDelta: 1,
+                  fontWeightDelta: 1,
                 ),
                 type: BottomNavigationBarType.fixed,
                 selectedItemColor: ColorStyle.primaryColor_1570A5,
