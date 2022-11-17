@@ -11,6 +11,10 @@ import '../Components/TextFieldCustom.dart';
 import 'Profile.dart';
 
 
+import '../Views/DrawerScreen.dart';
+import '../Utils/Constant.dart';
+
+
 class ContactUs extends StatelessWidget {
   const ContactUs({Key? key}) : super(key: key);
 
@@ -64,6 +68,8 @@ class ContactUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyle.white_F3F3F3,
+      key: keyDrawer,
+      drawer: DrawerScreen(),
       appBar: AppBarStyle(
         title: 'Contact Us',
         leading: IconButton(
@@ -73,7 +79,7 @@ class ContactUs extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-
+            keyDrawer.currentState!.openDrawer();
           },
         ),
         trailings: [

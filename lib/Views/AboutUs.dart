@@ -7,6 +7,8 @@ import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
 
+import '../Views/DrawerScreen.dart';
+import '../Utils/Constant.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({Key? key}) : super(key: key);
@@ -16,6 +18,8 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyle.white_F3F3F3,
+      key: keyDrawer,
+      drawer: DrawerScreen(),
       appBar: AppBarStyle(
         title: 'About Us',
         leading: IconButton(
@@ -25,7 +29,7 @@ class AboutUs extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-
+            keyDrawer.currentState!.openDrawer();
           },
         ),
         styleTitle: TextStylesCustom.textStyles_22.apply(

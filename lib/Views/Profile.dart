@@ -7,6 +7,9 @@ import '../Components/AppBarStyle.dart';
 import 'package:get/get.dart';
 import '../Utils/Constant.dart';
 import '../Views/DrawerScreen.dart';
+import '../Views/BookingHistory.dart';
+
+
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -73,7 +76,7 @@ class Profile extends StatelessWidget {
         //--------------------------------My profile---------------------->
         InkWell(
           onTap: (){
-            Get.to(()=>MyProfile());
+            Get.to(()=>const MyProfile());
           },
           child: Row(
             children: [
@@ -91,7 +94,7 @@ class Profile extends StatelessWidget {
               Text(
                 'My Profile',
                 style: TextStylesCustom.textStyles_14.apply(
-                  color: ColorStyle.primaryColor_1570A5,
+                  color: ColorStyle.grey_5E6D77,
                 ),
               )
             ],
@@ -102,8 +105,8 @@ class Profile extends StatelessWidget {
         ),
         //--------------------------------Booking History---------------------->
         InkWell(
-          onTap: (){
-
+          onTap: () {
+            // Get.to(()=> const BookingHistory());
           },
           child: Row(
             children: [
@@ -121,7 +124,7 @@ class Profile extends StatelessWidget {
               Text(
                 'Booking History',
                 style: TextStylesCustom.textStyles_14.apply(
-                  color: ColorStyle.primaryColor_1570A5,
+                  color: ColorStyle.grey_5E6D77,
                 ),
               )
             ],
@@ -132,7 +135,7 @@ class Profile extends StatelessWidget {
         ),
         //--------------------------------Change Password---------------------->
         InkWell(onTap: (){
-          Get.to(()=>ChangePassword());
+          Get.to(()=> const ChangePassword());
         },
           child: Row(
             children: [
@@ -150,7 +153,7 @@ class Profile extends StatelessWidget {
               Text(
                 'Change Password',
                 style: TextStylesCustom.textStyles_14.apply(
-                  color: ColorStyle.primaryColor_1570A5,
+                  color: ColorStyle.grey_5E6D77,
                 ),
               )
             ],

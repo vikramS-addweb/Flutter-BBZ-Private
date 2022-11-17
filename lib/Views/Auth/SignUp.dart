@@ -8,6 +8,7 @@ import '../../Components/PasswordFieldBase.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import '../../Styles/ImageStyle.dart';
+import '../TabbarScreen.dart';
 import '../WelcomeScreen.dart';
 import '../../Controller/LoginController.dart';
 import '../Auth/SignUp.dart';
@@ -220,7 +221,9 @@ class SignUp extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(()=>TabbarScreen());
+                    },
                   )
                 ],
               ),

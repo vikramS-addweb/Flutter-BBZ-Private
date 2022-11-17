@@ -7,6 +7,8 @@ import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
 
+import '../Views/DrawerScreen.dart';
+import '../Utils/Constant.dart';
 
 class HowWeWork extends StatelessWidget {
    HowWeWork({Key? key}) : super(key: key);
@@ -38,6 +40,8 @@ class HowWeWork extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyle.white_F3F3F3,
+      key: keyDrawer,
+      drawer: DrawerScreen(),
       appBar: AppBarStyle(
         title: 'How We Work',
         leading: IconButton(
@@ -47,7 +51,7 @@ class HowWeWork extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-
+            keyDrawer.currentState!.openDrawer();
           },
         ),
         styleTitle: TextStylesCustom.textStyles_22.apply(

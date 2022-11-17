@@ -10,13 +10,18 @@ import '../../Styles/ImageStyle.dart';
 import '../Components/ProgressBarCustom.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import '../Views/DrawerScreen.dart';
+import '../Views/ContactUs.dart';
+import '../Views/AboutUs.dart';
+import '../Views/News.dart';
+import '../Views/HowWeWork.dart';
 import '../Utils/Constant.dart';
+
 
 class DrawerScreen extends StatelessWidget {
   DrawerScreen({Key? key}) : super(key: key);
 
-  final arrIconData = [Icons.location_on_outlined, Icons.local_phone_rounded, Icons.supervisor_account_rounded, Icons.newspaper];
-  final arrTitle = ['Location', 'Contact', 'About Us', 'News'];
+  final arrIconData = [Icons.location_on_outlined, Icons.local_phone_rounded, Icons.supervisor_account_rounded, Icons.newspaper, Icons.work];
+  final arrTitle = ['Location', 'Contact', 'About Us', 'News', 'How We Work'];
 
   @override
   Widget build(BuildContext context) {
@@ -76,23 +81,45 @@ class DrawerScreen extends StatelessWidget {
                       return const SizedBox(height: 30,);
                     },
                     itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          Icon(
-                            arrIconData[index],
-                            size: 30,
-                            color: ColorStyle.primaryColor_1570A5,
-                          ),
-                          const SizedBox(width: 12,),
-                          Expanded(
-                            child: Text(
-                              arrTitle[index],
-                              style: TextStylesCustom.textStyles_20.apply(
-                                color: ColorStyle.grey_5E6D77,
+                      return InkWell(
+                        onTap: () {
+                          keyDrawer.currentState!.closeDrawer();
+
+                          switch(index){
+                            case 1:
+                              Get.to(()=>const ContactUs());
+                              break;
+                            case 2:
+                              Get.to(()=>const AboutUs());
+                              break;
+                            case 3:
+                              Get.to(()=>const News());
+                              break;
+                            case 4:
+                              Get.to(()=>HowWeWork());
+                              break;
+                            default:
+                              break;
+                          }
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              arrIconData[index],
+                              size: 30,
+                              color: ColorStyle.primaryColor_1570A5,
+                            ),
+                            const SizedBox(width: 12,),
+                            Expanded(
+                              child: Text(
+                                arrTitle[index],
+                                style: TextStylesCustom.textStyles_20.apply(
+                                  color: ColorStyle.grey_5E6D77,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       );
                     },
                   ),
