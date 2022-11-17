@@ -8,6 +8,8 @@ import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
 import '../Components/ProgressBarCustom.dart';
 import '../../Components/ElevatedButtonCustom.dart';
+import '../Views/DrawerScreen.dart';
+import '../Utils/Constant.dart';
 
 
 class Exam extends StatelessWidget {
@@ -62,7 +64,9 @@ class Exam extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: keyDrawer,
       backgroundColor: ColorStyle.white_F3F3F3,
+      drawer: DrawerScreen(),
       appBar: AppBarStyle(
         title: 'Exams',
         leading: IconButton(
@@ -72,7 +76,7 @@ class Exam extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-
+            keyDrawer.currentState!.openDrawer();
           },
         ),
         styleTitle: TextStylesCustom.textStyles_22.apply(
@@ -84,7 +88,7 @@ class Exam extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 475,
               child: Stack(
                 children: [

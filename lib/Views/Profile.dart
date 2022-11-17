@@ -5,6 +5,8 @@ import '../Styles/TextStyles.dart';
 import '../Styles/ColorStyle.dart';
 import '../Components/AppBarStyle.dart';
 import 'package:get/get.dart';
+import '../Utils/Constant.dart';
+import '../Views/DrawerScreen.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -12,18 +14,21 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(),
+      key: keyDrawer,
+      drawer: DrawerScreen(),
       appBar: AppBarStyle(
         title: 'Profile',
         styleTitle: TextStylesCustom.textStyles_20
             .apply(fontWeightDelta: 1, color: ColorStyle.primaryColor_1570A5),
         leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
+          icon: Icon(
             Icons.menu,
-            color: Colors.black,
-            size: 35,
+            color: ColorStyle.primaryColor_1570A5,
+            size: 30,
           ),
+          onPressed: () {
+            keyDrawer.currentState!.openDrawer();
+          },
         ),
         elevation: 0,
       ),

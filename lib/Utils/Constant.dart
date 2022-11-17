@@ -1,4 +1,7 @@
 
+import 'package:flutter/material.dart';
+
+GlobalKey<ScaffoldState> keyDrawer = GlobalKey(); // Create a key
 
 String kBaseUrl = 'https://cuddlingbirds-backend.vercel.app/';
 // String kBaseUrl = 'http://localhost:3000/';

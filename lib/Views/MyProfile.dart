@@ -68,8 +68,9 @@ class MyProfile extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: Image.network("https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"),),
-                            const SizedBox(width: 28,),
-                            ElevatedButtonCustoms(onTap: (){}, text: 'EDIT PICTURE', colorText: ColorStyle.primaryColor_1570A5,colorBG: Colors.white, width: Get.mediaQuery.size.width*0.45, colorBorder: ColorStyle.primaryColor_1570A5,)
+                            const SizedBox(width: 30,),
+                            Expanded(child: ElevatedButtonCustoms(onTap: (){}, text: 'EDIT PICTURE', colorText: ColorStyle.primaryColor_1570A5,colorBG: Colors.white, colorBorder: ColorStyle.primaryColor_1570A5,)),
+                            const SizedBox(width: 10,),
                           ],
                         ),
                       ),
