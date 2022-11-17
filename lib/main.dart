@@ -1,3 +1,4 @@
+import 'package:bbz/Views/Profile.dart';
 import 'package:flutter/material.dart';
 import './Views/WelcomeScreen.dart';
 import './Views/SplashScreen.dart';
@@ -5,15 +6,14 @@ import './Views/TabbarScreen.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
-
-
+import 'package:bbz/Views/ChangePassword.dart';
+import './Views/MyProfile.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-      ));
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -29,12 +29,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()
-      ),
-        home:  const SplashScreen(),
+          primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
+      home: TabbarScreen(),
       // home:   TabbarScreen(),
     );
   }
 }
-
-

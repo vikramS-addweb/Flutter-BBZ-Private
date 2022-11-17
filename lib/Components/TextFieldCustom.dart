@@ -232,3 +232,28 @@ class _TextFieldPWDOutlineState extends State<TextFieldPWDOutline> {
     );
   }
 }
+
+// ....................................text Field wit label..................................
+
+class TextFieldWithLabel extends StatelessWidget {
+  const TextFieldWithLabel({Key? key, this.firstText = 'hint text', this.secondText = '*', this.hintText = 'hintText'}) : super(key: key);
+  final String? firstText;
+  final String? secondText;
+  final String? hintText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(firstText!, style: TextStylesCustom.textStyles_14,),
+            Text(secondText!, style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.red_ED0925),),
+          ],
+        ),
+        const SizedBox(height: 14,),
+        TextFieldOutline(hintText: hintText!, radiusBorder: 4, colorBoder: ColorStyle.grey_DAE1E7, padding: const EdgeInsets.only(left: 14),colorHint: ColorStyle.grey_DAE1E7,textStyle: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_5E6D77),)
+      ],
+    );
+  }
+}

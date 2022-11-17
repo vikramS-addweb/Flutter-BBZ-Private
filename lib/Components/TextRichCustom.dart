@@ -31,7 +31,7 @@ class TextRichCustom extends StatelessWidget {
               style: TextStylesCustom.textStyles_14.apply(
                   color: ColorStyle.primaryColor_1570A5
               ),
-            recognizer:  TapGestureRecognizer()..onTap = onTap,
+            recognizer:  TapdsGestureRecognizer()..onTap = onTap,
           ),
         ],
       ),
