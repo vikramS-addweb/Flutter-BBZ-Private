@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
-      // home: BookingHistory(),
-      home:   TabbarScreen(),
+      home: const SplashScreen(),
+      // home: TabbarScreen(),
     );
   }
 }

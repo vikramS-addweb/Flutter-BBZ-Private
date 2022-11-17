@@ -16,6 +16,8 @@ import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
 import '../../Styles/ImageStyle.dart';
 import '../../Styles/EffectStyle.dart';
+import 'package:bbz/Views/TabbarScreen.dart';
+
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -163,7 +165,9 @@ class Login extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(()=>TabbarScreen());
+                    },
                   )
                 ],
               ),

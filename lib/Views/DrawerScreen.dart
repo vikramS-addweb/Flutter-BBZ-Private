@@ -82,7 +82,9 @@ class DrawerScreen extends StatelessWidget {
                     },
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: (){
+                        onTap: () {
+                          keyDrawer.currentState!.closeDrawer();
+
                           switch(index){
                             case 1:
                               Get.to(()=>const ContactUs());
