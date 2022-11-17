@@ -91,6 +91,7 @@ class Exam extends StatelessWidget {
                   Image.asset(
                     ImageStyle.examBG,
                     height: 170,
+                    width: double.infinity,
                     fit: BoxFit.fill,
                   ),
                   Container(

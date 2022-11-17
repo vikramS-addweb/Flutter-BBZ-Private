@@ -6,8 +6,7 @@ import './Views/TabbarScreen.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
-import 'package:bbz/Views/ChangePassword.dart';
-import './Views/MyProfile.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -30,8 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
-      home: TabbarScreen(),
-      // home:   TabbarScreen(),
+      home:   TabbarScreen(),
     );
   }
 }
