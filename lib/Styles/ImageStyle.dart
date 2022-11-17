@@ -12,6 +12,7 @@ class ImageStyle {
   static const String examTraining = baseImage + "exam_training.jpg";
   static const String gradingTest = baseImage + "Grading_Test.jpg";
   static const String registration = baseImage + "registration.jpg";
+  static const String newArticle = baseImage + "newsArticle.png";
 }
 
 
