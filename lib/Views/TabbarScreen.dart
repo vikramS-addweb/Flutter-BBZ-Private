@@ -17,7 +17,7 @@ class TabbarScreen extends StatelessWidget {
   final arrBody = [
     const Exam(),
     // const Exam(),
-    const Profile(),
+    Profile(),
   ];
 
   @override

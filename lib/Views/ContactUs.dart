@@ -84,7 +84,7 @@ class ContactUs extends StatelessWidget {
               size: 30,
             ),
             onPressed: () {
-              Get.to(()=>const Profile());
+              Get.to(()=> Profile());
             },
           ),
         ],

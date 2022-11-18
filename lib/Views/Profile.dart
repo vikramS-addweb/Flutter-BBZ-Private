@@ -1,3 +1,4 @@
+import 'package:bbz/Views/BookingHistory.dart';
 import 'package:flutter/material.dart';
 import './MyProfile.dart';
 import './ChangePassword.dart';
@@ -9,7 +10,10 @@ import '../Utils/Constant.dart';
 import '../Views/DrawerScreen.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+  Profile({Key? key}) : super(key: key);
+
+  final arrIconData = [Icons.mood, Icons.history, Icons.lock];
+  final arrTitle = ['My Profile', 'Booking History', 'Change Password'];
 
   @override
   Widget build(BuildContext context) {
@@ -70,91 +74,53 @@ class Profile extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        //--------------------------------My profile---------------------->
-        InkWell(
-          onTap: (){
-            Get.to(()=>MyProfile());
+        ListView.separated(
+          itemCount: arrTitle.length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          separatorBuilder: (context, index) {
+            return const SizedBox(height: 30,);
           },
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 22,
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: (){
+                switch(index){
+                  case 0:
+                    Get.to(()=>const MyProfile());
+                    break;
+                  case 1:
+                    Get.to(()=>const BookingHistory());
+                    break;
+                  case 2:
+                    Get.to(()=>const ChangePassword());
+                    break;
+                  default:
+                    break;
+                }
+              },
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 22,
+                  ),
+                  Icon(
+                    arrIconData[index],
+                    color: ColorStyle.primaryColor_1570A5,
+                    size: 25,
+                  ),
+                  const SizedBox(
+                    width: 18,
+                  ),
+                  Text(
+                    arrTitle[index],
+                    style: TextStylesCustom.textStyles_14.apply(
+                      color: ColorStyle.primaryColor_1570A5,
+                    ),
+                  )
+                ],
               ),
-              Icon(
-                Icons.mood,
-                color: ColorStyle.primaryColor_1570A5,
-                size: 25,
-              ),
-              const SizedBox(
-                width: 18,
-              ),
-              Text(
-                'My Profile',
-                style: TextStylesCustom.textStyles_14.apply(
-                  color: ColorStyle.primaryColor_1570A5,
-                ),
-              )
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        //--------------------------------Booking History---------------------->
-        InkWell(
-          onTap: (){
-
+            );
           },
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 22,
-              ),
-              Icon(
-                Icons.history,
-                color: ColorStyle.primaryColor_1570A5,
-                size: 25,
-              ),
-              const SizedBox(
-                width: 18,
-              ),
-              Text(
-                'Booking History',
-                style: TextStylesCustom.textStyles_14.apply(
-                  color: ColorStyle.primaryColor_1570A5,
-                ),
-              )
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        //--------------------------------Change Password---------------------->
-        InkWell(onTap: (){
-          Get.to(()=>ChangePassword());
-        },
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 22,
-              ),
-              Icon(
-                Icons.lock,
-                color: ColorStyle.primaryColor_1570A5,
-                size: 25,
-              ),
-              const SizedBox(
-                width: 18,
-              ),
-              Text(
-                'Change Password',
-                style: TextStylesCustom.textStyles_14.apply(
-                  color: ColorStyle.primaryColor_1570A5,
-                ),
-              )
-            ],
-          ),
         ),
         const SizedBox(
           height: 32,
