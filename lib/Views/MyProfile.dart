@@ -50,6 +50,7 @@ class MyProfile extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
                   decoration: boxDecorationAuthBox(),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
                       const SizedBox(
@@ -91,10 +92,10 @@ class MyProfile extends StatelessWidget {
                       const SizedBox(height: 15,),
                       // -----------------------Birth Date Field---------------------------->
                       const TextFieldWithLabel(firstText: 'Birth Date', hintText: 'dd-mm-yy',),
-                      const SizedBox(height: 14,),
+                      const SizedBox(height: 40,),
 
-
-                      const SizedBox(height: 28,),
+                      Text('Address',style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 1),),
+                      const SizedBox(height: 40,),
                       // -----------------------C/o field---------------------------->
                       const TextFieldWithLabel(firstText: 'C/o',secondText: '', hintText: 'Please enter',),
                       const SizedBox(height: 15,),
