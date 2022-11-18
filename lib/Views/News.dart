@@ -8,6 +8,8 @@ import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
 import 'NewsDetail.dart';
 
+import '../Views/DrawerScreen.dart';
+import '../Utils/Constant.dart';
 
 class News extends StatelessWidget {
   const News({Key? key}) : super(key: key);
@@ -18,6 +20,8 @@ class News extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyle.white_F3F3F3,
+      key: keyDrawer,
+      drawer: DrawerScreen(),
       appBar: AppBarStyle(
         title: 'News',
         leading: IconButton(
@@ -27,7 +31,7 @@ class News extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-
+            keyDrawer.currentState!.openDrawer();
           },
         ),
         styleTitle: TextStylesCustom.textStyles_22.apply(

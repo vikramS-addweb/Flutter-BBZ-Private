@@ -46,21 +46,29 @@ class ElevatedButtonCustom extends StatelessWidget {
 class ElevatedButtonCustoms extends StatelessWidget {
   final Function()? onTap;
   final String? text;
+  final TextStyle? styleText;
   final Color? colorBG;
   final Color? colorText;
   final Color? colorBorder;
+  final double? radiusBorder;
   final double? width;
   final double? height;
+  final int? fontWeight;
+  final double? textSize;
 
   const ElevatedButtonCustoms({
     Key? key,
     this.onTap,
     this.text = "Elevated Button",
+    this.styleText,
     this.colorBG = Colors.blue,
     this.colorText = Colors.white,
     this.colorBorder = Colors.white,
+    this.radiusBorder = 5,
     this.width = 50,
     this.height = 50,
+    this.fontWeight = 2,
+    this.textSize = 14,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -68,21 +76,19 @@ class ElevatedButtonCustoms extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: colorBG,
         elevation: 0,
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           left: 20,
           right: 20,
         ),
         fixedSize: Size(width!, height!),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(radiusBorder!),
           side: BorderSide(color: colorBorder!)
         ),
       ),
       child: Text(
         text!,
-        style: TextStyle(
-          color: colorText!,
-        ),
+        style: styleText != null? styleText : TextStylesCustom.textStyles_14.apply(color: colorText, fontWeightDelta: 1),
       ),
       onPressed: onTap,
     );

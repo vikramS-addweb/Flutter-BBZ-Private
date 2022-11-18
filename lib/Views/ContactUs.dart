@@ -11,59 +11,21 @@ import '../Components/TextFieldCustom.dart';
 import 'Profile.dart';
 
 
-class ContactUs extends StatelessWidget {
-  const ContactUs({Key? key}) : super(key: key);
+import '../Views/DrawerScreen.dart';
+import '../Utils/Constant.dart';
 
-  textIcon(IconData icon, String text, bool isBorder) {
-    return Container(
-      padding: const EdgeInsets.only(
-        top: 16,
-        bottom: 10,
-        left: 16,
-        right: 16,
-      ),
-      decoration: BoxDecoration(
-          border: isBorder ? Border(
-              bottom: BorderSide(
-                width: 1,
-                color: ColorStyle.grey_DAE1E7,
-              )
-          ) : const Border()
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                icon,
-                color: ColorStyle.primaryColor_1570A5,
-                size: 26,
-              ),
-              const SizedBox(width: 6),
-              Expanded(child: Text(
-                text,
-                style: TextStylesCustom.textStyles_14.apply(
-                  color: ColorStyle.grey_A8B0B5,
-                  // fontWeightDelta: 1,
-                ),
-              ),),
-              Icon(
-                Icons.keyboard_arrow_down,
-                color: ColorStyle.primaryColor_1570A5,
-                size: 34,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+
+class ContactUs extends StatelessWidget {
+  ContactUs({Key? key}) : super(key: key);
+  final arrIcons = [Icons.location_on, Icons.call, Icons.fax_outlined, Icons.language];
+  final arrTitle = ['BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen','02681 8797-0', '02681 8797-111', 'www.bbz-altenkirchen.de'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyle.white_F3F3F3,
+      key: keyDrawer,
+      drawer: DrawerScreen(),
       appBar: AppBarStyle(
         title: 'Contact Us',
         leading: IconButton(
@@ -73,21 +35,21 @@ class ContactUs extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-
+            keyDrawer.currentState!.openDrawer();
           },
         ),
-        trailings: [
-          IconButton(
-            icon: Icon(
-              Icons.account_circle_outlined,
-              color: ColorStyle.primaryColor_1570A5,
-              size: 30,
-            ),
-            onPressed: () {
-              Get.to(()=> Profile());
-            },
-          ),
-        ],
+        // trailings: [
+        //   IconButton(
+        //     icon: Icon(
+        //       Icons.account_circle_outlined,
+        //       color: ColorStyle.primaryColor_1570A5,
+        //       size: 30,
+        //     ),
+        //     onPressed: () {
+        //       Get.to(()=> Profile());
+        //     },
+        //   ),
+        // ],
         styleTitle: TextStylesCustom.textStyles_22.apply(
           color: ColorStyle.primaryColor_1570A5,
           fontWeightDelta: 1,
@@ -98,12 +60,12 @@ class ContactUs extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 695,
+              height: 645,
               child: Stack(
                 children: [
                   Image.asset(
                     ImageStyle.examBG,
-                    height: 240,
+                    height: 200,
                     width: double.infinity,
                     fit: BoxFit.fill,
                   ),
@@ -118,7 +80,7 @@ class ContactUs extends StatelessWidget {
                         const SizedBox(height: 20,),
                         Text(
                           "We'd love to hear from you",
-                          style: TextStylesCustom.textStyles_26.apply(
+                          style: TextStylesCustom.textStyles_20.apply(
                             color: Colors.white,
                             // fontWeightDelta: 1,
                           ),
@@ -137,7 +99,7 @@ class ContactUs extends StatelessWidget {
                     height: 470,
                     width: Get.mediaQuery.size.width,
                     margin: const EdgeInsets.only(
-                        top: 200,
+                        top: 150,
                         left: 16,
                         right: 16
                     ),
@@ -169,7 +131,7 @@ class ContactUs extends StatelessWidget {
                           radiusBorder: 4,
                           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
                         ),
-                      const SizedBox(height: 16,),
+                      const SizedBox(height: 20,),
                         TextFieldOutline(
                           hintText: 'Email address',
                           textStyle: TextStylesCustom.textStyles_14,
@@ -178,9 +140,8 @@ class ContactUs extends StatelessWidget {
                           radiusBorder: 4,
                           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
                         ),
-                        const SizedBox(height: 16,),
 
-                        const SizedBox(height: 16,),
+                        const SizedBox(height: 20,),
                         TextFieldOutline(
                           hintText: 'Message',
                           textStyle: TextStylesCustom.textStyles_14,
@@ -213,7 +174,102 @@ class ContactUs extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 37,
+            ),
+            Container(
+              width: double.infinity,
+              // height: 500,
+              padding: EdgeInsets.all(10),
+              color:ColorStyle.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    width: Get.mediaQuery.size.width,
+                    height: 5,
+                    color: ColorStyle.primaryColor_1570A5,
+                  ),
+                  Container(
+                    // height: 300,
+                    width: Get.mediaQuery.size.width,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    color: ColorStyle.primaryColor_1570A5.withOpacity(0.16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              ImageStyle.registration,
+                              height: 70,
+                              width: 70,
+                              fit: BoxFit.fill,
+                            ),
+                            SizedBox(width: 10,),
+                            Expanded(child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('BBZ Language School', style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.primaryColor_1570A5),),
+                                SizedBox(height: 8,),
+                                Text('are a subsidiary of BBZ Altenkirchen GmbH & Co. KG', style: TextStylesCustom.textStyles_12.apply(fontWeightDelta: 1)),
+
+                              ],
+                            ))
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+
+
+                  // ---------------------------------------------------Contact us container ----------------------------->
+                  Container(
+                    width: Get.mediaQuery.size.width,
+                    height: 1,
+                    color: ColorStyle.primaryColor_1570A5,
+                  ),
+                  Container(
+                    // height: 300,
+                    width: Get.mediaQuery.size.width,
+                    padding: EdgeInsets.all(20),
+                    color: ColorStyle.primaryColor_1570A5.withOpacity(0.16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Contact Us', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 1),),
+                        SizedBox(height: 10,),
+                        Text('Deutschtest für Zuwanderer (DTZ / A2-B1)(PR-220409-HU-DTZ)', style: TextStylesCustom.textStyles_12,),
+                        SizedBox(height: 10,),
+                        ListView.separated(
+                            itemCount: arrTitle.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(height: 10,);
+                            },
+                            itemBuilder: (context, index){
+                              return Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Icon(arrIcons[index]),
+                                  SizedBox(width: 10,),
+                                  Expanded(child: Text(
+                                    arrTitle[index],
+                                    style: TextStylesCustom.textStyles_12.apply(color: ColorStyle.primaryColor_1570A5),
+                                  ))
+                                ],
+                              );
+                            },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
 
           ],

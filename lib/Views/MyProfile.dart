@@ -36,7 +36,7 @@ class MyProfile extends StatelessWidget {
       //--------------------------------save changes bottom button---------------------->
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: ElevatedButtonCustoms(onTap: (){}, text: 'SAVE CHANGES', colorBG: ColorStyle.primaryColor_1570A5,),
+        child: ElevatedButtonCustoms(onTap: (){}, styleText: TextStylesCustom.textStyles_16, text: 'SAVE CHANGES', colorBG: ColorStyle.primaryColor_1570A5,),
       ),
       body: Stack(
         children: [
@@ -68,8 +68,8 @@ class MyProfile extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: Image.network("https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"),),
-                            const SizedBox(width: 30,),
-                            Expanded(child: ElevatedButtonCustoms(onTap: (){}, text: 'EDIT PICTURE', colorText: ColorStyle.primaryColor_1570A5,colorBG: Colors.white, colorBorder: ColorStyle.primaryColor_1570A5,)),
+                            const SizedBox(width: 20,),
+                            Expanded(child: ElevatedButtonCustoms(onTap: (){}, text: 'EDIT PICTURE', styleText: TextStylesCustom.textStyles_16.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),colorBG: Colors.white, colorBorder: ColorStyle.primaryColor_1570A5,)),
                             const SizedBox(width: 10,),
                           ],
                         ),
@@ -113,7 +113,7 @@ class MyProfile extends StatelessWidget {
                       //------------------------Change password button----------------------->
                       ElevatedButtonCustoms(onTap: (){
                         Get.to(()=>const ChangePassword());
-                      }, text: 'CHANGE PASSWORD', colorText: ColorStyle.primaryColor_1570A5,colorBG: Colors.white, width: Get.mediaQuery.size.width, colorBorder: ColorStyle.primaryColor_1570A5,),
+                      }, text: 'CHANGE PASSWORD', styleText: TextStylesCustom.textStyles_16.apply(color: ColorStyle.primaryColor_1570A5),colorBG: Colors.white, width: Get.mediaQuery.size.width, colorBorder: ColorStyle.primaryColor_1570A5,),
                       const SizedBox(height: 40,),
                     ],
 

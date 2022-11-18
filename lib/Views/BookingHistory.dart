@@ -1,11 +1,13 @@
 
 
+import 'package:bbz/Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
+import 'BookingDetails.dart';
 
 
 class BookingHistory extends StatelessWidget {
@@ -16,17 +18,17 @@ class BookingHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorStyle.white_F3F3F3,
+      backgroundColor: ColorStyle.white,
       appBar: AppBarStyle(
         title: 'Booking History',
         leading: IconButton(
           icon: Icon(
-            Icons.menu,
+            Icons.arrow_back,
             color: ColorStyle.primaryColor_1570A5,
             size: 30,
           ),
           onPressed: () {
-
+            Get.back();
           },
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -35,93 +37,156 @@ class BookingHistory extends StatelessWidget {
         ),
         elevation: 0,
       ),
-      body: ListView.separated(
-        padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 32,
-            bottom: 32
-        ),
-        itemCount: 10,
-        shrinkWrap: true,
-        separatorBuilder: (context, index) {
-          return const SizedBox(
-            // color: Colors.red,
-            height: 40,
-          );
-        },
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: (){
-              // Get.to(()=>NewsDetail());
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Upcoming Exams', style: TextStylesCustom.textStyles_18.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
-                const SizedBox(height: 19,),
-                Container(
-                  height: 300,
-                  width: Get.mediaQuery.size.width,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: ColorStyle.grey_DAE1E7),
-                  ),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 18,),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(width: 10,),
-                          Icon(Icons.credit_score, size: 28,color: ColorStyle.primaryColor_1570A5,),
-                          const SizedBox(width: 14,),
-                          Text('Full Amount Paid', style: TextStylesCustom.textStyles_10.apply(fontWeightDelta: 2),),
-                          const SizedBox(width: 10,),
-                          Container(
-                            height: 6,
-                            width: 6,
-                            margin: const EdgeInsets.only(top: 8),
-                            decoration: BoxDecoration(
-                                color: ColorStyle.grey_5E6D77,
-                              borderRadius: BorderRadius.circular(50),
-                            )
-                          ),
-                          const SizedBox(width: 10,),
-                          Text('25/03/2022 | 03:30 PM', style: TextStylesCustom.textStyles_10.apply(color: ColorStyle.primaryColor_1570A5),),
-                        ],
-                      ),
-                      const SizedBox(height: 15,),
-                      Row(
-                        children: [
-                          Image.asset(
-                            ImageStyle.pixabay,
-                            height: 78,
-                            width: 130,
-                          ),
-                          const SizedBox(width: 4,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Zusatzleistung: Postversand- Zertifikate / Ergebnisbogen', style: TextStylesCustom.textStyles_10.apply(fontWeightDelta:1),),
-                              Text('A2-B1', style: TextStylesCustom.textStyles_12.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta:1),),
-                              Row(
-                                children: [
-                                  Text('Amount Paid:', style: TextStylesCustom.textStyles_12.apply(fontWeightDelta:2),),
-                                  Text('7,50 €', style: TextStylesCustom.textStyles_12.apply(color: Colors.green, fontWeightDelta:1),),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
 
+              // ----------------------------------UPCOMING EXAMS------------------------------------->
+              Exams(title: 'Upcoming Exams', itemCount: 1,),
+
+              // ----------------------------------PAST EXAMS------------------------------------->
+              Exams(title: 'Past Exams', itemCount: 3,),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class Exams extends StatelessWidget {
+  Exams({Key? key, this.title, this.itemCount}) : super(key: key);
+  final String? title;
+  int? itemCount = 1;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title!, style: TextStylesCustom.textStyles_18.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
+        const SizedBox(height: 19,),
+        ListView.separated(
+          itemCount: itemCount!,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          separatorBuilder: (context, index) {
+            return const SizedBox(
+              // color: Colors.red,
+              height: 40,
+            );
+          },
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: (){
+                Get.to(()=>BookingDetails());
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Container(
+                    // height: 300,
+                    width: Get.mediaQuery.size.width,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: ColorStyle.grey_DAE1E7),
+                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 18,),
+                        // -----------------------------------FULL AMOUNT PAID SECTION------------------>
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(width: 10,),
+                            Icon(Icons.credit_score, size: 28,color: ColorStyle.primaryColor_1570A5,),
+                            const SizedBox(width: 14,),
+                            Text('Full Amount Paid', style: TextStylesCustom.textStyles_10.apply(fontWeightDelta: 2),),
+                            const SizedBox(width: 10,),
+                            Container(
+                                height: 6,
+                                width: 6,
+                                margin: const EdgeInsets.only(top: 8),
+                                decoration: BoxDecoration(
+                                  color: ColorStyle.grey_5E6D77,
+                                  borderRadius: BorderRadius.circular(50),
+                                )
+                            ),
+                            const SizedBox(width: 10,),
+                            Text('25/03/2022 | 03:30 PM', style: TextStylesCustom.textStyles_10.apply(color: ColorStyle.primaryColor_1570A5),),
+                          ],
+                        ),
+                        const SizedBox(height: 15,),
+                        // --------------------------------IMAGE AND DETAILS--------------------->
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(width: 10,),
+                            Image.asset(
+                              ImageStyle.pixabay,
+                              height: 90,
+                              width: 100,
+                              fit: BoxFit.fill,
+                            ),
+                            const SizedBox(width: 13,),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Zusatzleistung: Postversand- Zertifikate / Ergebnisbogen', style: TextStylesCustom.textStyles_10.apply(fontWeightDelta:1),),
+                                  Text('A2-B1', style: TextStylesCustom.textStyles_12.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta:2),),
+                                  Row(
+                                    children: [
+                                      Text('Amount Paid:', style: TextStylesCustom.textStyles_12.apply(fontWeightDelta:2),),
+                                      Text('7,50 €', style: TextStylesCustom.textStyles_12.apply(color: Colors.green, fontWeightDelta:1),),
+
+                                    ],
+                                  )
                                 ],
-                              )
-                            ],
-                          )
-                        ],
-                      )
-                    ],
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0, right: 8),
+                              child: Icon(Icons.arrow_forward_ios, color: ColorStyle.primaryColor_1570A5,size: 20,),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 20,),
+                        // ------------------------------------ BUTTONS ----------------------------->
+                        Row(
+                          children: [
+                            Expanded(child: ElevatedButtonCustoms(
+                              onTap: (){},
+                              text: 'GET INVOICE',
+                              colorText: ColorStyle.primaryColor_1570A5,
+                              colorBG: ColorStyle.white,
+                              colorBorder: ColorStyle.primaryColor_1570A5,
+                              fontWeight: 1,
+                              radiusBorder: 0,
+                            ),),
+                            Expanded(child: ElevatedButtonCustoms(
+                              onTap: (){},
+                              text: 'PRINT TICKET',
+                              radiusBorder: 0,
+                              fontWeight: 1,
+                              colorBG: ColorStyle.primaryColor_1570A5,
+                              colorBorder: ColorStyle.primaryColor_1570A5,
+                            ),)
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        },),
+                ],
+              ),
+            );
+          },),
+        const SizedBox(height: 33,),
+      ],
     );
   }
 }

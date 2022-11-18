@@ -9,6 +9,7 @@ import '../Views/Auth/SignUp.dart';
 import '../Components/AppBarStyle.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/TextRichCustom.dart';
+import 'TabbarScreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -82,7 +83,7 @@ class WelcomeScreen extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-
+                  Get.to(()=>TabbarScreen());
                 },
               )
             ],

@@ -8,6 +8,7 @@ import '../Components/AppBarStyle.dart';
 import 'package:get/get.dart';
 import '../Utils/Constant.dart';
 import '../Views/DrawerScreen.dart';
+import '../Views/BookingHistory.dart';
 
 class Profile extends StatelessWidget {
   Profile({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class Profile extends StatelessWidget {
       drawer: DrawerScreen(),
       appBar: AppBarStyle(
         title: 'Profile',
-        styleTitle: TextStylesCustom.textStyles_20
+        styleTitle: TextStylesCustom.textStyles_23
             .apply(fontWeightDelta: 1, color: ColorStyle.primaryColor_1570A5),
         leading: IconButton(
           icon: Icon(
@@ -52,7 +53,7 @@ class Profile extends StatelessWidget {
             Icon(
               Icons.account_circle_outlined,
               color: ColorStyle.primaryColor_1570A5,
-              size: 45,
+              size: 32,
             ),
             const SizedBox(
               width: 10,
@@ -79,20 +80,22 @@ class Profile extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           separatorBuilder: (context, index) {
-            return const SizedBox(height: 30,);
+            return const SizedBox(
+              height: 30,
+            );
           },
           itemBuilder: (context, index) {
             return InkWell(
-              onTap: (){
-                switch(index){
+              onTap: () {
+                switch (index) {
                   case 0:
-                    Get.to(()=>const MyProfile());
+                    Get.to(() => const MyProfile());
                     break;
                   case 1:
-                    Get.to(()=>const BookingHistory());
+                    Get.to(() => const BookingHistory());
                     break;
                   case 2:
-                    Get.to(()=>const ChangePassword());
+                    Get.to(() => const ChangePassword());
                     break;
                   default:
                     break;
@@ -106,7 +109,7 @@ class Profile extends StatelessWidget {
                   Icon(
                     arrIconData[index],
                     color: ColorStyle.primaryColor_1570A5,
-                    size: 25,
+                    size: 20,
                   ),
                   const SizedBox(
                     width: 18,
@@ -114,7 +117,7 @@ class Profile extends StatelessWidget {
                   Text(
                     arrTitle[index],
                     style: TextStylesCustom.textStyles_14.apply(
-                      color: ColorStyle.primaryColor_1570A5,
+                      color: ColorStyle.grey_5E6D77,
                     ),
                   )
                 ],
@@ -141,7 +144,7 @@ class Profile extends StatelessWidget {
             Icon(
               Icons.power_settings_new,
               color: ColorStyle.red_ED0925,
-              size: 28,
+              size: 22,
             ),
             const SizedBox(
               width: 18,
