@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 GlobalKey<ScaffoldState> keyDrawer = GlobalKey(); // Create a key
 
@@ -8,9 +9,7 @@ String kBaseUrl = 'https://cuddlingbirds-backend.vercel.app/';
 
 const kASSETURL = 'assets/image/';
 const kDefaultImage = 'mainlogo.png';
-const kTOKEN = 'token';
-String kTOKENSAVED = '';
 
+bool isLoggedIn = false;
 
-const kUSERID = '_id';
-String kUSERIDSAVED = '';
+RxInt indexSelectedTab = 0.obs;

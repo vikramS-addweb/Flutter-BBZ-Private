@@ -6,37 +6,86 @@ import 'package:get/get.dart';
 import '../Styles/ImageStyle.dart';
 import '../Views/Exam.dart';
 import '../Views/Profile.dart';
+import '../Views/WelcomeScreen.dart';
+import '../Utils/Constant.dart';
+
+
 
 class TabbarScreen extends StatelessWidget {
-  final int? indexSelected;
-
-  TabbarScreen({Key? key, this.indexSelected = 0}) : super(key: key);
+  TabbarScreen({Key? key}) : super(key: key);
 
   double iconSize = 24;
 
-  final arrBody = [
+  List<Widget> arrBody = [
     const Exam(),
-    // const Exam(),
-    const Profile(),
+    isLoggedIn ? const Profile() : const WelcomeScreen(),
+  ];
+
+  List<GlobalKey<NavigatorState>> _navigatorKeys = [
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(TabbarScreenController());
+
+    Map<String, WidgetBuilder> _routeBuilders(BuildContext context, int index) {
+      return {
+        '/': (context) {
+          return [
+            const Exam(),
+            const Profile(),
+          ].elementAt(index);
+        },
+      };
+    }
+
+    Widget _buildOffstageNavigator(int index) {
+      var routeBuilders = _routeBuilders(context, index);
+
+      return Offstage(
+        offstage: indexSelectedTab != index,
+        child: Navigator(
+          key: _navigatorKeys[index],
+          onGenerateRoute: (routeSettings) {
+            return MaterialPageRoute(
+              builder: (context) => routeBuilders[routeSettings.name]!(context),
+            );
+          },
+        ),
+      );
+    }
 
     return GetBuilder(
       init: TabbarScreenController(),
       builder: (auth) {
         return Obx(() => Scaffold(
               backgroundColor: Colors.white,
-              body: arrBody[controller.index.value],
+
+              // body: Navigator(
+              //   onGenerateRoute: (settings) {
+              //     // Widget page = Page1();
+              //     //
+              //     // if (settings.name == 'page2')
+              //     //   page = Page2();
+              //
+              //     return MaterialPageRoute(builder: (_) => const WelcomeScreen());
+              //   },
+              // ),
+
+          // body: arrBody[indexSelectedTab.value],
+
+              body: Stack(
+                children: arrBody,
+              ),
               bottomNavigationBar: BottomNavigationBar(
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(
                       Icons.history_edu_rounded,
                       size: 24,
-                      color: (controller.index.value == 0)
+                      color: (indexSelectedTab.value == 0)
                           ? ColorStyle.primaryColor_1570A5
                           : ColorStyle.grey_5E6D77,
                     ),
@@ -54,7 +103,7 @@ class TabbarScreen extends StatelessWidget {
                     icon: Icon(
                       Icons.account_circle,
                       size: 24,
-                      color: (controller.index.value == 1)
+                      color: (indexSelectedTab.value == 1)
                           ? ColorStyle.primaryColor_1570A5
                           : ColorStyle.grey_5E6D77,
                     ),
@@ -79,13 +128,14 @@ class TabbarScreen extends StatelessWidget {
                 selectedItemColor: ColorStyle.primaryColor_1570A5,
                 unselectedItemColor: Colors.grey,
                 backgroundColor: Colors.white,
-                currentIndex: controller.index.value,
+                currentIndex: indexSelectedTab.value,
                 elevation: 0,
                 onTap: (index) {
-                  controller.index.value = index;
+                  indexSelectedTab.value = index;
                 },
               ),
-            ));
+            )
+        );
       },
     );
   }

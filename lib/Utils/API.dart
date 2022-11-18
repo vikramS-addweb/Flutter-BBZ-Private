@@ -46,7 +46,7 @@ class API {
 
     final url = Uri.parse('${_kBaseURL}${endPoint}');
 
-    final headers = {'Authorization': 'Bearer $kTOKENSAVED'};
+    final headers = {'Authorization': 'Bearer'};
 
     try {
       showLoaderGetX();
@@ -111,7 +111,7 @@ class API {
 
     final url = Uri.parse('${_kBaseURL}${endPoint}');
     final request = http.MultipartRequest('POST', url);
-    request.headers['Authorization'] = 'Bearer $kTOKENSAVED';
+    request.headers['Authorization'] = 'Bearer';
 
     params.forEach((key, value) {
       request.fields[key] = value;

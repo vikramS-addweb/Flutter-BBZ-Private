@@ -19,7 +19,7 @@ class News extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorStyle.white_F3F3F3,
+      backgroundColor: ColorStyle.white,
       key: keyDrawer,
       drawer: DrawerScreen(),
       appBar: AppBarStyle(

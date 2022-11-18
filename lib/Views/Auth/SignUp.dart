@@ -3,20 +3,15 @@ import 'package:bbz/Controller/SignUpController.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:flutter/material.dart';
 import '../../Components/AppBarStyle.dart';
-import '../../Components/TextFieldBase.dart';
-import '../../Components/PasswordFieldBase.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import '../../Styles/ImageStyle.dart';
-import '../TabbarScreen.dart';
-import '../WelcomeScreen.dart';
-import '../../Controller/LoginController.dart';
-import '../Auth/SignUp.dart';
-import '../Auth/ResetPassword.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/EffectStyle.dart';
 import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
+import '../../Utils/Constant.dart';
+
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -222,7 +217,8 @@ class SignUp extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      Get.to(()=>TabbarScreen());
+                      indexSelectedTab.value = 0;
+                      Get..back()..back();
                     },
                   )
                 ],

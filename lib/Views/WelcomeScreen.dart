@@ -9,7 +9,8 @@ import '../Views/Auth/SignUp.dart';
 import '../Components/AppBarStyle.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/TextRichCustom.dart';
-import 'TabbarScreen.dart';
+import '../Utils/Constant.dart';
+
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -56,7 +57,8 @@ class WelcomeScreen extends StatelessWidget {
                 text: 'LOGIN',
                 size: Size(MediaQuery.of(context).size.width - 30, 50),
                 onTap: () {
-                  Get.to(const Login());
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=> const Login()));
+                  // Get.to(const Login());
                 },
               ),
               const SizedBox(height: 16,),
@@ -83,7 +85,7 @@ class WelcomeScreen extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-                  Get.to(()=>TabbarScreen());
+                  indexSelectedTab.value = 0;
                 },
               )
             ],

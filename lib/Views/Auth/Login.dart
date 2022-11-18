@@ -1,10 +1,7 @@
 import 'package:bbz/Components/BGImage.dart';
-import 'package:bbz/Controller/SignUpController.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:flutter/material.dart';
 import '../../Components/AppBarStyle.dart';
-import '../../Components/TextFieldBase.dart';
-import '../../Components/PasswordFieldBase.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import '../WelcomeScreen.dart';
@@ -16,7 +13,7 @@ import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
 import '../../Styles/ImageStyle.dart';
 import '../../Styles/EffectStyle.dart';
-import 'package:bbz/Views/TabbarScreen.dart';
+import '../../Utils/Constant.dart';
 
 
 class Login extends StatelessWidget {
@@ -166,7 +163,8 @@ class Login extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      Get.to(()=>TabbarScreen());
+                      indexSelectedTab.value = 0;
+                      Get.back();
                     },
                   )
                 ],
