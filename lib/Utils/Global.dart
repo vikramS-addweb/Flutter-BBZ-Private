@@ -78,3 +78,16 @@ goToAnotherScreen(Widget page) {
     curve: Curves.fastOutSlowIn,
   );
 }
+
+extension NavigateCustom on Widget {
+  navigateToCustom(context) {
+    Navigator.push(context, MaterialPageRoute(
+        builder: (context) => this
+    ));
+  }
+
+  navigateToBack(context) {
+    Navigator.pop(context!);
+  }
+
+}

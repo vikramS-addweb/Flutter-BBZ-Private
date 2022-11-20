@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/TextFieldCustom.dart';
 import '../Styles/EffectStyle.dart';
+import '../Utils/Global.dart';
+
 
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
@@ -111,8 +113,14 @@ class MyProfile extends StatelessWidget {
                       const TextFieldWithLabel(firstText: 'Country', hintText: 'Please enter',),
                       const SizedBox(height: 40,),
                       //------------------------Change password button----------------------->
-                      ElevatedButtonCustoms(onTap: (){
-                        Get.to(()=>const ChangePassword());
+                      ElevatedButtonCustoms(onTap: () {
+                        const ChangePassword().navigateToCustom(context);
+
+
+                        // Navigator.push(context, MaterialPageRoute(
+                        //     builder: (context) => const ChangePassword()
+                        // ));
+                        // Get.to(()=>const ChangePassword());
                       }, text: 'CHANGE PASSWORD', colorText: ColorStyle.primaryColor_1570A5,colorBG: Colors.white, width: Get.mediaQuery.size.width, colorBorder: ColorStyle.primaryColor_1570A5,),
                       const SizedBox(height: 40,),
                     ],

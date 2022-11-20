@@ -75,8 +75,12 @@ class Profile extends StatelessWidget {
         ),
         //--------------------------------My profile---------------------->
         InkWell(
-          onTap: (){
-            Get.to(()=>const MyProfile());
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => MyProfile()
+            ));
+
+            // Get.to(()=>const MyProfile());
           },
           child: Row(
             children: [

@@ -16,6 +16,8 @@ import '../Components/TextFieldCustom.dart';
 import '../Components/TextRichCustom.dart';
 import '../Styles/ImageStyle.dart';
 import '../Styles/EffectStyle.dart';
+import '../Utils/Global.dart';
+
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({super.key});
@@ -38,7 +40,8 @@ class ChangePassword extends StatelessWidget {
             color: ColorStyle.primaryColor_1570A5,
           ),
           onPressed: () {
-            Get.back();
+            // Get.back();
+            navigateToBack(context);
           },
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
