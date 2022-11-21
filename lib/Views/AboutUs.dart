@@ -9,6 +9,8 @@ import '../../Styles/ImageStyle.dart';
 
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
+import '../Components/BottomNavBarCustom.dart';
+
 
 class AboutUs extends StatelessWidget {
   const AboutUs({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class AboutUs extends StatelessWidget {
       backgroundColor: ColorStyle.white_F3F3F3,
       key: keyDrawer,
       drawer: DrawerScreen(),
+      bottomNavigationBar: bottomNavBarCustom(),
       appBar: AppBarStyle(
         title: 'About Us',
         leading: IconButton(

@@ -10,6 +10,8 @@ import 'Profile.dart';
 
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
+import '../Components/BottomNavBarCustom.dart';
+
 
 class ContactUs extends StatelessWidget {
   ContactUs({Key? key}) : super(key: key);
@@ -68,6 +70,7 @@ class ContactUs extends StatelessWidget {
         ),
         elevation: 2,
       ),
+      bottomNavigationBar: bottomNavBarCustom(),
       body: SingleChildScrollView(
         child: Column(
           children: [

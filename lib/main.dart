@@ -16,6 +16,8 @@ import './Views/NewsDetail.dart';
 import './Views/Profile.dart';
 import './Views/BookingConfirmation.dart';
 
+
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -40,6 +42,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
       // home: BookingConfirmation(),
       home: TabbarScreen(),
+      // home: const SplashScreen(),
     );
   }
 }
+
+

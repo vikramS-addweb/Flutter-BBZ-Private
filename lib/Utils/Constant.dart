@@ -1,5 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+
 
 GlobalKey<ScaffoldState> keyDrawer = GlobalKey(); // Create a key
 
@@ -11,6 +14,5 @@ const kDefaultImage = 'mainlogo.png';
 const kTOKEN = 'token';
 String kTOKENSAVED = '';
 
-
-const kUSERID = '_id';
-String kUSERIDSAVED = '';
+bool isLoggedIn = false;
+RxInt indexSelectedTab = 0.obs;

@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
+import 'package:flutter/cupertino.dart';
+
+
 
 showLoaderGetX() {
   Get.dialog(
@@ -70,14 +73,15 @@ goToAnotherScreen(Widget page) {
     name: "/second",
     page: () => page,
     transition: Transition.rightToLeft,
-    transitionDuration: Duration(milliseconds: 400),
+    transitionDuration: const Duration(milliseconds: 400),
     curve: Curves.fastOutSlowIn,
   );
 }
 
 extension NavigateCustom on Widget {
   navigateToCustom(context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => this));
+    Navigator.push(context, CupertinoPageRoute(builder: (context) => this));
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => this));
   }
 }
 

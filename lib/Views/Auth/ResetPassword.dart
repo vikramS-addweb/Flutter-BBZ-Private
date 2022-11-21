@@ -1,4 +1,5 @@
 import 'package:bbz/Components/BGImage.dart';
+import 'package:bbz/Components/BottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
 import '../../Components/AppBarStyle.dart';
 import '../../Components/TextFieldBase.dart';
@@ -15,6 +16,8 @@ import '../../Components/TextRichCustom.dart';
 import '../../Styles/ColorStyle.dart';
 import '../../Styles/EffectStyle.dart';
 import '../../Utils/Global.dart';
+import '../../Components/BottomNavBarCustom.dart';
+
 
 class ResetPassword extends StatelessWidget {
   const ResetPassword({super.key});
@@ -40,6 +43,7 @@ class ResetPassword extends StatelessWidget {
         ),
         elevation: 2,
       ),
+      bottomNavigationBar: bottomNavBarCustom(),
       body: Stack(
         children: [
           const BGImage(),

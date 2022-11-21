@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 import '../Utils/Constant.dart';
 import '../Views/DrawerScreen.dart';
 import '../Views/BookingHistory.dart';
+import '../Components/BottomNavBarCustom.dart';
+
 
 class Profile extends StatelessWidget {
   Profile({Key? key}) : super(key: key);
@@ -38,6 +40,7 @@ class Profile extends StatelessWidget {
         ),
         elevation: 0,
       ),
+      bottomNavigationBar: bottomNavBarCustom(),
       body: Column(children: [
         Container(
           height: 2,
