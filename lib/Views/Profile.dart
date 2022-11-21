@@ -11,6 +11,7 @@ import '../Utils/Constant.dart';
 import '../Views/DrawerScreen.dart';
 import '../Views/BookingHistory.dart';
 import '../Components/BottomNavBarCustom.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 
 class Profile extends StatelessWidget {
@@ -111,10 +112,12 @@ class Profile extends StatelessWidget {
                             builder: (context) => const MyProfile()));
                     break;
                   case 1:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BookingHistory()));
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: BookingHistory(),
+                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    );
                     break;
                   case 2:
                     Navigator.push(

@@ -9,6 +9,7 @@ import '../Styles/TextStyles.dart';
 import '../Components/TextFieldCustom.dart';
 import '../Styles/EffectStyle.dart';
 import '../Utils/Global.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
@@ -197,7 +198,12 @@ class MyProfile extends StatelessWidget {
                       //------------------------Change password button----------------------->
                       ElevatedButtonCustoms(
                         onTap: () {
-                          const ChangePassword().navigateToCustom(context);
+                          PersistentNavBarNavigator.pushNewScreen(
+                            context,
+                            screen: ChangePassword(),
+                            withNavBar: false, // OPTIONAL VALUE. True by default.
+                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                          );
 
                           // Navigator.push(context, MaterialPageRoute(
                           //     builder: (context) => const ChangePassword()

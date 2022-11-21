@@ -15,6 +15,7 @@ import './Views/BookingHistory.dart';
 import './Views/NewsDetail.dart';
 import './Views/Profile.dart';
 import './Views/BookingConfirmation.dart';
+import './Views/PersistentNavBar.dart';
 
 
 
@@ -40,8 +41,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
-      // home: BookingConfirmation(),
-      home: TabbarScreen(),
+      home: PersistentNavBar(),
+      // home: TabbarScreen(),
       // home: const SplashScreen(),
     );
   }
