@@ -38,7 +38,9 @@ class _TabbarScreenState extends State<TabbarScreen> {
               return Obx(() => Scaffold(
                   backgroundColor: Colors.white,
                   body: arrBody[indexSelectedTab.value],
-                  bottomNavigationBar: bottomNavBarCustom()));
+                  // bottomNavigationBar: bottomNavBarCustom()
+              )
+              );
             },
           );
         });
