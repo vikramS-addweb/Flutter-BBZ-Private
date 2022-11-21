@@ -14,3 +14,8 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+
+https://pub.dev/packages/custom_top_navigator/install
+https://www.youtube.com/watch?v=C5i75je9E4Y

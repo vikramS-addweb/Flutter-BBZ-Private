@@ -29,10 +29,11 @@ class LoginController extends GetxController {
       'password': userPassword.value.text
     };
 
-    final response = await API.instance.post(endPoint: 'api/login', params: params);
+    final response =
+        await API.instance.post(endPoint: 'api/login', params: params);
 
     if (response!.isNotEmpty) {
-      Get.to(TabbarScreen());
+      const TabbarScreen().navigateToCustom(Get.context);
     }
   }
 

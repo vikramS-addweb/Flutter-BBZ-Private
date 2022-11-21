@@ -14,6 +14,7 @@ import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
 import '../../Styles/ColorStyle.dart';
 import '../../Styles/EffectStyle.dart';
+import '../../Utils/Global.dart';
 
 class ResetPassword extends StatelessWidget {
   const ResetPassword({super.key});
@@ -30,7 +31,7 @@ class ResetPassword extends StatelessWidget {
             color: ColorStyle.primaryColor_1570A5,
           ),
           onPressed: () {
-            Get.back();
+            navigateToBack(context);
           },
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(

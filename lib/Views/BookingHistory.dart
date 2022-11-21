@@ -1,5 +1,3 @@
-
-
 import 'package:bbz/Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +5,11 @@ import 'package:bbz/Styles/ColorStyle.dart';
 import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
+import '../Utils/Global.dart';
 import 'BookingDetails.dart';
-
 
 class BookingHistory extends StatelessWidget {
   const BookingHistory({Key? key}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +24,7 @@ class BookingHistory extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-            Get.back();
+            navigateToBack(context);
           },
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -43,12 +39,17 @@ class BookingHistory extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               // ----------------------------------UPCOMING EXAMS------------------------------------->
-              Exams(title: 'Upcoming Exams', itemCount: 1,),
+              Exams(
+                title: 'Upcoming Exams',
+                itemCount: 1,
+              ),
 
               // ----------------------------------PAST EXAMS------------------------------------->
-              Exams(title: 'Past Exams', itemCount: 3,),
+              Exams(
+                title: 'Past Exams',
+                itemCount: 3,
+              ),
             ],
           ),
         ),
@@ -56,7 +57,6 @@ class BookingHistory extends StatelessWidget {
     );
   }
 }
-
 
 class Exams extends StatelessWidget {
   Exams({Key? key, this.title, this.itemCount}) : super(key: key);
@@ -67,8 +67,14 @@ class Exams extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title!, style: TextStylesCustom.textStyles_18.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
-        const SizedBox(height: 19,),
+        Text(
+          title!,
+          style: TextStylesCustom.textStyles_18
+              .apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),
+        ),
+        const SizedBox(
+          height: 19,
+        ),
         ListView.separated(
           itemCount: itemCount!,
           shrinkWrap: true,
@@ -81,13 +87,12 @@ class Exams extends StatelessWidget {
           },
           itemBuilder: (context, index) {
             return InkWell(
-              onTap: (){
-                Get.to(()=>BookingDetails());
+              onTap: () {
+                BookingDetails().navigateToCustom(context);
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Container(
                     // height: 300,
                     width: Get.mediaQuery.size.width,
@@ -96,16 +101,32 @@ class Exams extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        const SizedBox(height: 18,),
+                        const SizedBox(
+                          height: 18,
+                        ),
                         // -----------------------------------FULL AMOUNT PAID SECTION------------------>
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(width: 10,),
-                            Icon(Icons.credit_score, size: 28,color: ColorStyle.primaryColor_1570A5,),
-                            const SizedBox(width: 14,),
-                            Text('Full Amount Paid', style: TextStylesCustom.textStyles_10.apply(fontWeightDelta: 2),),
-                            const SizedBox(width: 10,),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              Icons.credit_score,
+                              size: 28,
+                              color: ColorStyle.primaryColor_1570A5,
+                            ),
+                            const SizedBox(
+                              width: 14,
+                            ),
+                            Text(
+                              'Full Amount Paid',
+                              style: TextStylesCustom.textStyles_10
+                                  .apply(fontWeightDelta: 2),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             Container(
                                 height: 6,
                                 width: 6,
@@ -113,69 +134,111 @@ class Exams extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: ColorStyle.grey_5E6D77,
                                   borderRadius: BorderRadius.circular(50),
-                                )
+                                )),
+                            const SizedBox(
+                              width: 10,
                             ),
-                            const SizedBox(width: 10,),
-                            Text('25/03/2022 | 03:30 PM', style: TextStylesCustom.textStyles_10.apply(color: ColorStyle.primaryColor_1570A5),),
+                            Text(
+                              '25/03/2022 | 03:30 PM',
+                              style: TextStylesCustom.textStyles_10
+                                  .apply(color: ColorStyle.primaryColor_1570A5),
+                            ),
                           ],
                         ),
-                        const SizedBox(height: 15,),
+                        const SizedBox(
+                          height: 15,
+                        ),
                         // --------------------------------IMAGE AND DETAILS--------------------->
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(width: 10,),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             Image.asset(
                               ImageStyle.pixabay,
                               height: 90,
                               width: 100,
                               fit: BoxFit.fill,
                             ),
-                            const SizedBox(width: 13,),
+                            const SizedBox(
+                              width: 13,
+                            ),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Zusatzleistung: Postversand- Zertifikate / Ergebnisbogen', style: TextStylesCustom.textStyles_10.apply(fontWeightDelta:1),),
-                                  Text('A2-B1', style: TextStylesCustom.textStyles_12.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta:2),),
+                                  Text(
+                                    'Zusatzleistung: Postversand- Zertifikate / Ergebnisbogen',
+                                    style: TextStylesCustom.textStyles_10
+                                        .apply(fontWeightDelta: 1),
+                                  ),
+                                  Text(
+                                    'A2-B1',
+                                    style: TextStylesCustom.textStyles_12.apply(
+                                        color: ColorStyle.primaryColor_1570A5,
+                                        fontWeightDelta: 2),
+                                  ),
                                   Row(
                                     children: [
-                                      Text('Amount Paid:', style: TextStylesCustom.textStyles_12.apply(fontWeightDelta:2),),
-                                      Text('7,50 €', style: TextStylesCustom.textStyles_12.apply(color: Colors.green, fontWeightDelta:1),),
-
+                                      Text(
+                                        'Amount Paid:',
+                                        style: TextStylesCustom.textStyles_12
+                                            .apply(fontWeightDelta: 2),
+                                      ),
+                                      Text(
+                                        '7,50 €',
+                                        style: TextStylesCustom.textStyles_12
+                                            .apply(
+                                                color: Colors.green,
+                                                fontWeightDelta: 1),
+                                      ),
                                     ],
                                   )
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 10,),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 8.0, right: 8),
-                              child: Icon(Icons.arrow_forward_ios, color: ColorStyle.primaryColor_1570A5,size: 20,),
+                              padding:
+                                  const EdgeInsets.only(top: 8.0, right: 8),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: ColorStyle.primaryColor_1570A5,
+                                size: 20,
+                              ),
                             )
                           ],
                         ),
-                        const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         // ------------------------------------ BUTTONS ----------------------------->
                         Row(
                           children: [
-                            Expanded(child: ElevatedButtonCustoms(
-                              onTap: (){},
-                              text: 'GET INVOICE',
-                              colorText: ColorStyle.primaryColor_1570A5,
-                              colorBG: ColorStyle.white,
-                              colorBorder: ColorStyle.primaryColor_1570A5,
-                              fontWeight: 1,
-                              radiusBorder: 0,
-                            ),),
-                            Expanded(child: ElevatedButtonCustoms(
-                              onTap: (){},
-                              text: 'PRINT TICKET',
-                              radiusBorder: 0,
-                              fontWeight: 1,
-                              colorBG: ColorStyle.primaryColor_1570A5,
-                              colorBorder: ColorStyle.primaryColor_1570A5,
-                            ),)
+                            Expanded(
+                              child: ElevatedButtonCustoms(
+                                onTap: () {},
+                                text: 'GET INVOICE',
+                                colorText: ColorStyle.primaryColor_1570A5,
+                                colorBG: ColorStyle.white,
+                                colorBorder: ColorStyle.primaryColor_1570A5,
+                                fontWeight: 1,
+                                radiusBorder: 0,
+                              ),
+                            ),
+                            Expanded(
+                              child: ElevatedButtonCustoms(
+                                onTap: () {},
+                                text: 'PRINT TICKET',
+                                radiusBorder: 0,
+                                fontWeight: 1,
+                                colorBG: ColorStyle.primaryColor_1570A5,
+                                colorBorder: ColorStyle.primaryColor_1570A5,
+                              ),
+                            )
                           ],
                         )
                       ],
@@ -184,8 +247,11 @@ class Exams extends StatelessWidget {
                 ],
               ),
             );
-          },),
-        const SizedBox(height: 33,),
+          },
+        ),
+        const SizedBox(
+          height: 33,
+        ),
       ],
     );
   }

@@ -1,5 +1,3 @@
-
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
@@ -10,11 +8,10 @@ import 'NewsDetail.dart';
 
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
+import '../Utils/Global.dart';
 
 class News extends StatelessWidget {
   const News({Key? key}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +38,8 @@ class News extends StatelessWidget {
         elevation: 0,
       ),
       body: ListView.separated(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-          top: 32,
-          bottom: 32
-        ),
+        padding:
+            const EdgeInsets.only(left: 16, right: 16, top: 32, bottom: 32),
         itemCount: 10,
         shrinkWrap: true,
         separatorBuilder: (context, index) {
@@ -57,8 +50,8 @@ class News extends StatelessWidget {
         },
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: (){
-              Get.to(()=>NewsDetail());
+            onTap: () {
+              const NewsDetail().navigateToCustom(context);
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,32 +62,37 @@ class News extends StatelessWidget {
                   width: double.infinity,
                   fit: BoxFit.fill,
                 ),
-                const SizedBox(height: 25,),
+                const SizedBox(
+                  height: 25,
+                ),
                 Text(
                   '03/30/022',
                   style: TextStylesCustom.textStyles_12.apply(
                     color: ColorStyle.primaryColor_1570A5,
                   ),
                 ),
-                const SizedBox(height: 7,),
+                const SizedBox(
+                  height: 7,
+                ),
                 Text(
                   'Lorem ipsum dolor sit amet',
-                  style: TextStylesCustom.textStyles_14.apply(
-                    color: Colors.black,
-                    fontWeightDelta: 1
-                  ),
+                  style: TextStylesCustom.textStyles_14
+                      .apply(color: Colors.black, fontWeightDelta: 1),
                 ),
-                const SizedBox(height: 9,),
+                const SizedBox(
+                  height: 9,
+                ),
                 Text(
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...',
                   style: TextStylesCustom.textStyles_13.apply(
-                      color: ColorStyle.grey_5E6D77,
+                    color: ColorStyle.grey_5E6D77,
                   ),
                 ),
               ],
             ),
           );
-        },),
+        },
+      ),
     );
   }
 }

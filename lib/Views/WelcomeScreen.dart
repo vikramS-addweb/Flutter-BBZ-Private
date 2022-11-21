@@ -10,6 +10,7 @@ import '../Components/AppBarStyle.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/TextRichCustom.dart';
 import 'TabbarScreen.dart';
+import '../Utils/Global.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -40,50 +41,57 @@ class WelcomeScreen extends StatelessWidget {
               Text('Welcome To BBZ!',
                   style: TextStylesCustom.textStyles_26.apply(
                       color: ColorStyle.primaryColor_1570A5,
-                      fontWeightDelta: 1
-                  )
+                      fontWeightDelta: 1)),
+              const SizedBox(
+                height: 10,
               ),
-              const SizedBox(height: 10,),
               Text(
                   textAlign: TextAlign.center,
                   'Login/Sign Up to get your profile and stayupdated with the upcoming exams and news.',
                   style: TextStylesCustom.textStyles_13.apply(
-                      color: ColorStyle.grey_5E6D77,
-                  )
+                    color: ColorStyle.grey_5E6D77,
+                  )),
+              const SizedBox(
+                height: 50,
               ),
-              const SizedBox(height: 50,),
               ElevatedButtonCustom(
                 text: 'LOGIN',
                 size: Size(MediaQuery.of(context).size.width - 30, 50),
                 onTap: () {
-                  Get.to(const Login());
+                  const Login().navigateToCustom(context);
                 },
               ),
-              const SizedBox(height: 16,),
+              const SizedBox(
+                height: 16,
+              ),
               TextRichCustom(
                 textFirst: 'Do not have an account? ',
                 textSecond: 'SignUp',
                 onTap: () {
-                  Get.to(const SignUp());
+                  const SignUp().navigateToCustom(context);
                 },
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               InkWell(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(ImageStyle.left_Arrow, width: 20,),
-                    const SizedBox(width: 10,),
-                    Text(
-                        'Continue as a Guest',
-                        style: TextStylesCustom.textStyles_14.apply(
-                            color: ColorStyle.primaryColor_1570A5
-                        )
+                    Image.asset(
+                      ImageStyle.left_Arrow,
+                      width: 20,
                     ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text('Continue as a Guest',
+                        style: TextStylesCustom.textStyles_14
+                            .apply(color: ColorStyle.primaryColor_1570A5)),
                   ],
                 ),
                 onTap: () {
-                  Get.to(()=>TabbarScreen());
+                  const TabbarScreen().navigateToCustom(context);
                 },
               )
             ],

@@ -22,7 +22,7 @@ class ResetPasswordController extends GetxController {
         // print('response ==========${response}');
         if (response != null) {
           'Your Reset Password Request is sent on your email'.showSuccess();
-          Get.back();
+          navigateToBack(Get.context);
         }
       }
     } else

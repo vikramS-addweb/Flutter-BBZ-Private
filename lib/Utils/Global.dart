@@ -23,19 +23,15 @@ showLoaderGetX() {
                 width: 30,
                 child: CircularProgressIndicator(
                   strokeWidth: 3,
-                  valueColor:
-                      AlwaysStoppedAnimation<Color>(Colors.white),
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
               ),
               Container(
                 width: 16,
               ),
-              Text(
-                  "Loading ...",
-                  style: TextStylesCustom.textStyles_16.apply(
-                    color: Colors.white
-                  )
-              ),
+              Text("Loading ...",
+                  style: TextStylesCustom.textStyles_16
+                      .apply(color: Colors.white)),
             ],
           ),
         ),
@@ -77,4 +73,14 @@ goToAnotherScreen(Widget page) {
     transitionDuration: Duration(milliseconds: 400),
     curve: Curves.fastOutSlowIn,
   );
+}
+
+extension NavigateCustom on Widget {
+  navigateToCustom(context) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => this));
+  }
+}
+
+navigateToBack(context) {
+  Navigator.pop(context!);
 }

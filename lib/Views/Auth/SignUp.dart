@@ -17,6 +17,7 @@ import '../../Styles/TextStyles.dart';
 import '../../Styles/EffectStyle.dart';
 import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
+import '../../Utils/Global.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -33,7 +34,7 @@ class SignUp extends StatelessWidget {
             color: ColorStyle.primaryColor_1570A5,
           ),
           onPressed: () {
-            Get.back();
+            navigateToBack(context);
           },
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -199,7 +200,7 @@ class SignUp extends StatelessWidget {
                     textFirst: 'Already have an account? ',
                     textSecond: 'Log in',
                     onTap: () {
-                      Get.back();
+                      navigateToBack(context);
                     },
                   ),
                   const SizedBox(
@@ -222,7 +223,7 @@ class SignUp extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      Get.to(()=>TabbarScreen());
+                      const TabbarScreen().navigateToCustom(context);
                     },
                   )
                 ],

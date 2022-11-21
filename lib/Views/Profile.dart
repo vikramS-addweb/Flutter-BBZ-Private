@@ -83,19 +83,36 @@ class Profile extends StatelessWidget {
             return const SizedBox(
               height: 30,
             );
+            //--------------------------------My profile---------------------->
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.push(context, MaterialPageRoute(
+            //         builder: (context) => MyProfile()
+            //     ));
+
+            //     // Get.to(()=>const MyProfile());
           },
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
                 switch (index) {
                   case 0:
-                    Get.to(() => const MyProfile());
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyProfile()));
                     break;
                   case 1:
-                    Get.to(() => const BookingHistory());
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const BookingHistory()));
                     break;
                   case 2:
-                    Get.to(() => const ChangePassword());
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ChangePassword()));
                     break;
                   default:
                     break;

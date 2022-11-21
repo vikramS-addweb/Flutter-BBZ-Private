@@ -1,5 +1,3 @@
-
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
@@ -10,15 +8,23 @@ import '../../Components/ElevatedButtonCustom.dart';
 import '../Components/TextFieldCustom.dart';
 import 'Profile.dart';
 
-
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
 
-
 class ContactUs extends StatelessWidget {
   ContactUs({Key? key}) : super(key: key);
-  final arrIcons = [Icons.location_on, Icons.call, Icons.fax_outlined, Icons.language];
-  final arrTitle = ['BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen','02681 8797-0', '02681 8797-111', 'www.bbz-altenkirchen.de'];
+  final arrIcons = [
+    Icons.location_on,
+    Icons.call,
+    Icons.fax_outlined,
+    Icons.language
+  ];
+  final arrTitle = [
+    'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen',
+    '02681 8797-0',
+    '02681 8797-111',
+    'www.bbz-altenkirchen.de'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -70,14 +76,13 @@ class ContactUs extends StatelessWidget {
                     fit: BoxFit.fill,
                   ),
                   Container(
-                    padding: const EdgeInsets.only(
-                        left: 16,
-                        right: 16
-                    ),
+                    padding: const EdgeInsets.only(left: 16, right: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         Text(
                           "We'd love to hear from you",
                           style: TextStylesCustom.textStyles_20.apply(
@@ -91,18 +96,17 @@ class ContactUs extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-                        const SizedBox(height: 40,),
+                        const SizedBox(
+                          height: 40,
+                        ),
                       ],
                     ),
                   ),
                   Container(
                     height: 470,
                     width: Get.mediaQuery.size.width,
-                    margin: const EdgeInsets.only(
-                        top: 150,
-                        left: 16,
-                        right: 16
-                    ),
+                    margin:
+                        const EdgeInsets.only(top: 150, left: 16, right: 16),
                     padding: const EdgeInsets.only(
                       top: 20,
                       left: 15,
@@ -116,10 +120,10 @@ class ContactUs extends StatelessWidget {
                             color: ColorStyle.grey_DAE1E7,
                             // spreadRadius: 1,
                             blurRadius: 4,
-                            offset: const Offset(0, 0), // changes position of shadow
+                            offset: const Offset(
+                                0, 0), // changes position of shadow
                           ),
-                        ]
-                    ),
+                        ]),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -129,19 +133,24 @@ class ContactUs extends StatelessWidget {
                           colorText: ColorStyle.grey_DAE1E7,
                           colorBoder: ColorStyle.grey_DAE1E7,
                           radiusBorder: 4,
-                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 13),
                         ),
-                      const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         TextFieldOutline(
                           hintText: 'Email address',
                           textStyle: TextStylesCustom.textStyles_14,
                           colorText: ColorStyle.grey_DAE1E7,
                           colorBoder: ColorStyle.grey_DAE1E7,
                           radiusBorder: 4,
-                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 13),
                         ),
-
-                        const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         TextFieldOutline(
                           hintText: 'Message',
                           textStyle: TextStylesCustom.textStyles_14,
@@ -149,9 +158,12 @@ class ContactUs extends StatelessWidget {
                           colorBoder: ColorStyle.grey_DAE1E7,
                           radiusBorder: 4,
                           maxLines: 8,
-                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 13),
                         ),
-                        const SizedBox(height: 60,)
+                        const SizedBox(
+                          height: 60,
+                        )
                       ],
                     ),
                   ),
@@ -180,7 +192,7 @@ class ContactUs extends StatelessWidget {
               width: double.infinity,
               // height: 500,
               padding: EdgeInsets.all(10),
-              color:ColorStyle.white,
+              color: ColorStyle.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -203,19 +215,33 @@ class ContactUs extends StatelessWidget {
                         Row(
                           children: [
                             Image.asset(
-                              ImageStyle.registration,
+                              ImageStyle.logoBBZ,
                               height: 70,
-                              width: 70,
+                              width: 80,
                               fit: BoxFit.fill,
                             ),
-                            SizedBox(width: 10,),
-                            Expanded(child: Column(
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                                child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text('BBZ Language School', style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.primaryColor_1570A5),),
-                                SizedBox(height: 8,),
-                                Text('are a subsidiary of BBZ Altenkirchen GmbH & Co. KG', style: TextStylesCustom.textStyles_12.apply(fontWeightDelta: 1)),
-
+                                SizedBox(height: 10,),
+                                Text(
+                                  'BBZ Language Schools',
+                                  style: TextStylesCustom.textStyles_16.apply(
+                                      color: ColorStyle.primaryColor_1570A5,
+                                  fontWeightDelta: 1),
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                    'are a subsidiary of BBZ Altenkirchen GmbH & Co. KG',
+                                    style: TextStylesCustom.textStyles_12
+                                        .apply(fontWeightDelta: 1)),
                               ],
                             ))
                           ],
@@ -223,8 +249,6 @@ class ContactUs extends StatelessWidget {
                       ],
                     ),
                   ),
-
-
 
                   // ---------------------------------------------------Contact us container ----------------------------->
                   Container(
@@ -240,30 +264,47 @@ class ContactUs extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Contact Us', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 1),),
-                        SizedBox(height: 10,),
-                        Text('Deutschtest für Zuwanderer (DTZ / A2-B1)(PR-220409-HU-DTZ)', style: TextStylesCustom.textStyles_12,),
-                        SizedBox(height: 10,),
+                        Text(
+                          'Contact Us',
+                          style: TextStylesCustom.textStyles_16
+                              .apply(fontWeightDelta: 1),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Deutschtest für Zuwanderer (DTZ / A2-B1)(PR-220409-HU-DTZ)',
+                          style: TextStylesCustom.textStyles_12,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         ListView.separated(
-                            itemCount: arrTitle.length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(height: 10,);
-                            },
-                            itemBuilder: (context, index){
-                              return Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Icon(arrIcons[index]),
-                                  SizedBox(width: 10,),
-                                  Expanded(child: Text(
-                                    arrTitle[index],
-                                    style: TextStylesCustom.textStyles_12.apply(color: ColorStyle.primaryColor_1570A5),
-                                  ))
-                                ],
-                              );
-                            },
+                          itemCount: arrTitle.length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(
+                              height: 10,
+                            );
+                          },
+                          itemBuilder: (context, index) {
+                            return Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(arrIcons[index]),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                    child: Text(
+                                  arrTitle[index],
+                                  style: TextStylesCustom.textStyles_12.apply(
+                                      color: ColorStyle.primaryColor_1570A5),
+                                ))
+                              ],
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -271,7 +312,6 @@ class ContactUs extends StatelessWidget {
                 ],
               ),
             ),
-
           ],
         ),
       ),

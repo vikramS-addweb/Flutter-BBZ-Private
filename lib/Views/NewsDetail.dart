@@ -1,24 +1,19 @@
-
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
-
+import '../Utils/Global.dart';
 
 class NewsDetail extends StatelessWidget {
   const NewsDetail({Key? key}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyle.white_F3F3F3,
       appBar: AppBarStyle(
-
         title: 'Lorem ipsum dolor',
         leading: IconButton(
           icon: Icon(
@@ -27,7 +22,7 @@ class NewsDetail extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-            Get.back();
+            navigateToBack(context);
           },
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -46,7 +41,9 @@ class NewsDetail extends StatelessWidget {
               width: double.infinity,
               fit: BoxFit.fill,
             ),
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 11),
               child: Text(
@@ -56,8 +53,9 @@ class NewsDetail extends StatelessWidget {
                 ),
               ),
             ),
-
-            const SizedBox(height: 9,),
+            const SizedBox(
+              height: 9,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 11),
               child: Text(

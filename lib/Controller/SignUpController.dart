@@ -48,7 +48,7 @@ class SignUpController extends GetxController {
 
       if (response != null) {
         'You are Registered Successfully'.showSuccess();
-        Get.back();
+        navigateToBack(Get.context);
       }
       // 'You are Registered Successfully'.showSuccess();
       // signUp();
