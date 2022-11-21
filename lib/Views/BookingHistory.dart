@@ -111,10 +111,18 @@ class Exams extends StatelessWidget {
                             const SizedBox(
                               width: 10,
                             ),
-                            Icon(
-                              Icons.credit_score,
-                              size: 28,
-                              color: ColorStyle.primaryColor_1570A5,
+                            // Icon(
+                            //   Icons.credit_score,
+                            //   size: 28,
+                            //   color: ColorStyle.primaryColor_1570A5,
+                            // ),
+                            SizedBox(
+                              width: 28,
+                              height: 28,
+                              child: Image.asset(
+                                ImageStyle.paid,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                             const SizedBox(
                               width: 14,

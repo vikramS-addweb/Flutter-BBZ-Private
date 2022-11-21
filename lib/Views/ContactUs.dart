@@ -228,12 +228,14 @@ class ContactUs extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                SizedBox(height: 10,),
+                                SizedBox(
+                                  height: 10,
+                                ),
                                 Text(
                                   'BBZ Language Schools',
                                   style: TextStylesCustom.textStyles_16.apply(
                                       color: ColorStyle.primaryColor_1570A5,
-                                  fontWeightDelta: 1),
+                                      fontWeightDelta: 1),
                                 ),
                                 SizedBox(
                                   height: 4,

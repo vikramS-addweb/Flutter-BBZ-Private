@@ -38,22 +38,24 @@ class _TabbarScreenState extends State<TabbarScreen> {
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.history_edu_rounded,
-                size: 24,
-                color: (controller.index.value == 0)
-                    ? ColorStyle.primaryColor_1570A5
-                    : ColorStyle.grey_5E6D77,
+              icon: SizedBox(
+                width: 24,
+                height: 24,
+                child: Image.asset(
+                  ImageStyle.test,
+                  fit: BoxFit.fill,
+                ),
               ),
               label: 'Exam',
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_circle,
-                size: 24,
-                color: (controller.index.value == 1)
-                    ? ColorStyle.primaryColor_1570A5
-                    : ColorStyle.grey_5E6D77,
+              icon: SizedBox(
+                width: 24,
+                height: 24,
+                child: Image.asset(
+                  ImageStyle.account,
+                  fit: BoxFit.fill,
+                ),
               ),
               label: 'Profile',
             ),

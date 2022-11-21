@@ -1,3 +1,4 @@
+import 'package:bbz/Styles/ImageStyle.dart';
 import 'package:bbz/Views/BookingHistory.dart';
 import 'package:flutter/material.dart';
 import './MyProfile.dart';
@@ -50,10 +51,14 @@ class Profile extends StatelessWidget {
             const SizedBox(
               width: 19,
             ),
-            Icon(
-              Icons.account_circle_outlined,
-              color: ColorStyle.primaryColor_1570A5,
-              size: 32,
+            SizedBox(
+              width: 32,
+              height: 32,
+              child: Image.asset(
+                ImageStyle.account,
+                fit: BoxFit.fill,
+                color: ColorStyle.primaryColor_1570A5,
+              ),
             ),
             const SizedBox(
               width: 10,

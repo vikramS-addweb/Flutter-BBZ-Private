@@ -18,12 +18,31 @@ class BookingDetails extends StatelessWidget {
     {'item': 'Exam fees', 'value': '7,50 €'},
   ];
 
+  List yourInformation = [
+    {'item': 'First name', 'value': 'John'},
+    {'item': 'Last name', 'value': ''},
+    {'item': 'Identification No.', 'value': 'Lorem'},
+    {'item': 'Email', 'value': 'johndoe@gmail.com'},
+    {'item': 'Salutation', 'value': 'Lorem'},
+    {'item': 'Academic title', 'value': 'Lorem ipsum'},
+    {'item': 'Birth date', 'value': '22/03/1995'},
+    {'item': 'Birth place', 'value': 'Korea'},
+    {'item': 'Country of birth', 'value': 'South Korea'},
+    {'item': 'Mother Tongue', 'value': 'India'},
+    {'item': 'Telephone', 'value': '12345678'},
+    {'item': 'Mobile', 'value': '+491234566'},
+    {
+      'item': 'Address',
+      'value': 'Lorem ipsum, dolor sit amet,adipresq, sdf-123456'
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyle.white,
       appBar: AppBarStyle(
-        title: 'Booking History',
+        title: 'Deutschtest für Zuwanderer (DTZ / A2-B1) (PR-220409-HU-DTZ)',
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -59,68 +78,98 @@ class BookingDetails extends StatelessWidget {
       // appBar: AppBarStyle(),
       // )
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Container(
-              //   width: Get.mediaQuery.size.width,
-              //   height: 5,
-              //   color: ColorStyle.grey_DAE1E7,
-              // ),
-              const SizedBox(
-                height: 36,
-              ),
-              // -----------------------------------Booking Details---------------------->
-              Text(
-                'Booking Details',
-                style: TextStylesCustom.textStyles_18.apply(
-                    color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Booking ID',
-                      style: TextStylesCustom.textStyles_14.apply(
+                  // Container(
+                  //   width: Get.mediaQuery.size.width,
+                  //   height: 5,
+                  //   color: ColorStyle.grey_DAE1E7,
+                  // ),
+                  const SizedBox(
+                    height: 36,
+                  ),
+                  // -----------------------------------Booking Details---------------------->
+                  Text(
+                    'Booking Details',
+                    style: TextStylesCustom.textStyles_18.apply(
                         color: ColorStyle.primaryColor_1570A5,
-                      )),
-                  Text('86',
-                      style: TextStylesCustom.textStyles_14.apply(
-                        color: ColorStyle.primaryColor_1570A5,
-                      ))
+                        fontWeightDelta: 1),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Booking ID',
+                          style: TextStylesCustom.textStyles_14.apply(
+                            color: ColorStyle.primaryColor_1570A5,
+                          )),
+                      Text('86',
+                          style: TextStylesCustom.textStyles_14.apply(
+                            color: ColorStyle.primaryColor_1570A5,
+                          ))
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ItemsList(items: bookingDetails),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Total',
+                          style: TextStylesCustom.textStyles_14.apply(
+                            color: ColorStyle.primaryColor_1570A5,
+                          )),
+                      Text('7,50 €',
+                          style: TextStylesCustom.textStyles_14.apply(
+                            color: ColorStyle.primaryColor_1570A5,
+                          ))
+                    ],
+                  ),
+                  SizedBox(
+                    height: 36,
+                  ),
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
-              ItemsList(items: bookingDetails),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Total',
-                      style: TextStylesCustom.textStyles_14.apply(
-                        color: ColorStyle.primaryColor_1570A5,
-                      )),
-                  Text('7,50 €',
-                      style: TextStylesCustom.textStyles_14.apply(
-                        color: ColorStyle.primaryColor_1570A5,
-                      ))
-                ],
-              ),
-              SizedBox(
-                height: 36,
-              ),
+            ),
 
-              // ---------------------------------------------Your Information------------------->
-            ],
-          ),
+            // ---------------------------------------------Your Information------------------->
+
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              color: ColorStyle.lightBlue_F2F2F2,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 35,
+                    ),
+                    Text(
+                      'Your Information',
+                      style: TextStylesCustom.textStyles_18.apply(
+                          color: ColorStyle.primaryColor_1570A5,
+                          fontWeightDelta: 1),
+                    ),
+                    SizedBox(
+                      height: 35,
+                    ),
+                    ItemsList(items: yourInformation),
+                    SizedBox(
+                      height: 40,
+                    ),
+                  ]),
+            )
+          ],
         ),
       ),
     );
@@ -147,11 +196,17 @@ class ItemsList extends StatelessWidget {
           itemBuilder: (context, index) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(items[index]['item'],
                     style: TextStylesCustom.textStyles_14),
-                Text(items[index]['value'],
-                    style: TextStylesCustom.textStyles_14),
+                SizedBox(
+                  width: Get.mediaQuery.size.width * 0.5,
+                  child: Text(items[index]['value'],
+                      textAlign: TextAlign.end,
+                      style: TextStylesCustom.textStyles_14
+                          .apply(color: ColorStyle.grey_A8B0B5)),
+                ),
               ],
             );
           },
