@@ -50,7 +50,7 @@ BottomNavigationBar bottomNavBarCustom() {
     currentIndex: indexSelectedTab.value,
     elevation: 0,
     onTap: (index) {
-      // indexSelectedTab.value = index;
+      indexSelectedTab.value = index;
 
       switch (index) {
         case 0:
