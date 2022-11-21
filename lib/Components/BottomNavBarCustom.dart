@@ -17,12 +17,14 @@ BottomNavigationBar bottomNavBarCustom() {
   return BottomNavigationBar(
     items: [
       BottomNavigationBarItem(
-        icon: Icon(
-          Icons.history_edu_rounded,
-          size: 24,
+        icon: SizedBox(
+          width: 24,
+          height: 24,
+          child: Image.asset(ImageStyle.test,fit: BoxFit.fill,
           color: (indexSelectedTab.value == 0)
               ? ColorStyle.primaryColor_1570A5
               : ColorStyle.grey_5E6D77,
+          ),
         ),
         label: 'Exam',
       ),
