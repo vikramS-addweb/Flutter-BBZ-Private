@@ -10,6 +10,8 @@ import '../../Styles/ImageStyle.dart';
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
 
+import '../Components/BottomNavBarCustom.dart';
+
 class HowWeWork extends StatelessWidget {
    HowWeWork({Key? key}) : super(key: key);
 
@@ -42,6 +44,7 @@ class HowWeWork extends StatelessWidget {
       backgroundColor: ColorStyle.white_F3F3F3,
       key: keyDrawer,
       drawer: DrawerScreen(),
+      bottomNavigationBar: bottomNavBarCustom(),
       appBar: AppBarStyle(
         title: 'How We Work',
         leading: IconButton(

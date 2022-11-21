@@ -9,6 +9,8 @@ import 'NewsDetail.dart';
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
 import '../Utils/Global.dart';
+import '../Components/BottomNavBarCustom.dart';
+
 
 class News extends StatelessWidget {
   const News({Key? key}) : super(key: key);
@@ -19,6 +21,7 @@ class News extends StatelessWidget {
       backgroundColor: ColorStyle.white_F3F3F3,
       key: keyDrawer,
       drawer: DrawerScreen(),
+      bottomNavigationBar: bottomNavBarCustom(),
       appBar: AppBarStyle(
         title: 'News',
         leading: IconButton(

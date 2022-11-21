@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../Utils/Global.dart';
 import '../Utils/API.dart';
+import '../Utils/Constant.dart';
 
 class SignUpController extends GetxController {
   final check = false.obs;
@@ -47,6 +48,8 @@ class SignUpController extends GetxController {
           API.instance.post(endPoint: 'api/signup', params: params);
 
       if (response != null) {
+        isLoggedIn = true;
+
         'You are Registered Successfully'.showSuccess();
         navigateToBack(Get.context);
       }

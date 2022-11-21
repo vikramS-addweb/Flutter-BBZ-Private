@@ -1,5 +1,7 @@
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:bbz/Styles/ImageStyle.dart';
+import 'package:bbz/Views/BookingHistory.dart';
+import 'package:bbz/Views/Exam.dart';
 import 'package:flutter/material.dart';
 import '../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
@@ -11,6 +13,9 @@ import '../Styles/TextStyles.dart';
 import '../Components/TextRichCustom.dart';
 import 'TabbarScreen.dart';
 import '../Utils/Global.dart';
+import '../Utils/Constant.dart';
+import '../Components/BottomNavBarCustom.dart';
+
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -26,6 +31,7 @@ class WelcomeScreen extends StatelessWidget {
         ),
         elevation: 2,
       ),
+      bottomNavigationBar: bottomNavBarCustom(),
       body: Container(
           width: double.infinity,
           height: double.infinity,
@@ -91,7 +97,7 @@ class WelcomeScreen extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-                  const TabbarScreen().navigateToCustom(context);
+                  Get.offAll(const Exam());
                 },
               )
             ],
@@ -99,3 +105,5 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 }
+
+
