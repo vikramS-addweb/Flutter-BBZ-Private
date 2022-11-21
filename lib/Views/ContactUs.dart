@@ -14,10 +14,16 @@ import '../Utils/Constant.dart';
 class ContactUs extends StatelessWidget {
   ContactUs({Key? key}) : super(key: key);
   final arrIcons = [
-    Icons.location_on,
-    Icons.call,
-    Icons.fax_outlined,
-    Icons.language
+    Icon(Icons.location_on),
+    Icon(Icons.call),
+    // Icon(Icons.fax_outlined),
+    SizedBox(
+      width: 20,
+      height: 20,
+      child: Image.asset(ImageStyle.fax, fit: BoxFit.fill,),
+    ),
+
+    Icon(Icons.language),
   ];
   final arrTitle = [
     'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen',
@@ -294,7 +300,7 @@ class ContactUs extends StatelessWidget {
                             return Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Icon(arrIcons[index]),
+                                arrIcons[index],
                                 SizedBox(
                                   width: 10,
                                 ),
