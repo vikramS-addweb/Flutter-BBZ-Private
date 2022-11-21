@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
+import 'package:flutter/cupertino.dart';
+
+
 
 showLoaderGetX() {
   Get.dialog(
@@ -23,19 +26,15 @@ showLoaderGetX() {
                 width: 30,
                 child: CircularProgressIndicator(
                   strokeWidth: 3,
-                  valueColor:
-                      AlwaysStoppedAnimation<Color>(Colors.white),
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
               ),
               Container(
                 width: 16,
               ),
-              Text(
-                  "Loading ...",
-                  style: TextStylesCustom.textStyles_16.apply(
-                    color: Colors.white
-                  )
-              ),
+              Text("Loading ...",
+                  style: TextStylesCustom.textStyles_16
+                      .apply(color: Colors.white)),
             ],
           ),
         ),
@@ -74,7 +73,18 @@ goToAnotherScreen(Widget page) {
     name: "/second",
     page: () => page,
     transition: Transition.rightToLeft,
-    transitionDuration: Duration(milliseconds: 400),
+    transitionDuration: const Duration(milliseconds: 400),
     curve: Curves.fastOutSlowIn,
   );
+}
+
+extension NavigateCustom on Widget {
+  navigateToCustom(context) {
+    Navigator.push(context, CupertinoPageRoute(builder: (context) => this));
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => this));
+  }
+}
+
+navigateToBack(context) {
+  Navigator.pop(context!);
 }

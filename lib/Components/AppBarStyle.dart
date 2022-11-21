@@ -1,8 +1,5 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 
 class AppBarStyle extends StatelessWidget implements PreferredSizeWidget {
   final SystemUiOverlayStyle? overlayStyle;

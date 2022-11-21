@@ -1,3 +1,7 @@
+import 'package:bbz/Views/AboutUs.dart';
+import 'package:bbz/Views/BookingDetails.dart';
+import 'package:bbz/Views/ContactUs.dart';
+import 'package:bbz/Views/HowWeWork.dart';
 import 'package:bbz/Views/Profile.dart';
 import 'package:flutter/material.dart';
 import './Views/WelcomeScreen.dart';
@@ -8,6 +12,11 @@ import 'package:flutter/services.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import './Views/News.dart';
 import './Views/BookingHistory.dart';
+import './Views/NewsDetail.dart';
+import './Views/Profile.dart';
+import './Views/BookingConfirmation.dart';
+
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,8 +40,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
-      home: const SplashScreen(),
-      // home: TabbarScreen(),
+      // home: BookingConfirmation(),
+      home: TabbarScreen(),
+      // home: const SplashScreen(),
     );
   }
 }
+
+

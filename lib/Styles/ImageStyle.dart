@@ -13,6 +13,9 @@ class ImageStyle {
   static const String gradingTest = baseImage + "Grading_Test.jpg";
   static const String registration = baseImage + "registration.jpg";
   static const String newArticle = baseImage + "newsArticle.png";
-
+  static const String paid = baseImage + "paid.png";
   static const String cancelDrawer = baseImage + "cancelDrawer.png";
+  static const String account = baseImage + "account.png";
+  static const String test = baseImage + "test.png";
+  static const String fax = baseImage + "fax.png";
 }

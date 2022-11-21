@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import '../Utils/Global.dart';
 import '../Utils/API.dart';
 import '../Views/TabbarScreen.dart';
+import '../Utils/Constant.dart';
+
+
 
 class LoginController extends GetxController {
   RxBool check3 = false.obs;
@@ -32,7 +35,9 @@ class LoginController extends GetxController {
     final response = await API.instance.post(endPoint: 'api/login', params: params);
 
     if (response!.isNotEmpty) {
-      Get.to(TabbarScreen());
+      isLoggedIn = true;
+
+      const TabbarScreen().navigateToCustom(Get.context);
     }
   }
 

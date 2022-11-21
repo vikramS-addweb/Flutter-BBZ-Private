@@ -10,6 +10,8 @@ import '../../Styles/ImageStyle.dart';
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
 
+import '../Components/BottomNavBarCustom.dart';
+
 class HowWeWork extends StatelessWidget {
    HowWeWork({Key? key}) : super(key: key);
 
@@ -42,6 +44,7 @@ class HowWeWork extends StatelessWidget {
       backgroundColor: ColorStyle.white_F3F3F3,
       key: keyDrawer,
       drawer: DrawerScreen(),
+      bottomNavigationBar: bottomNavBarCustom(),
       appBar: AppBarStyle(
         title: 'How We Work',
         leading: IconButton(
@@ -67,7 +70,7 @@ class HowWeWork extends StatelessWidget {
               children: [
                 Image.asset(
                   ImageStyle.examBG,
-                  height: 170,
+                  height: 190,
                   width: double.infinity,
                   fit: BoxFit.fill,
                 ),
@@ -81,9 +84,11 @@ class HowWeWork extends StatelessWidget {
                     children: [
                       const SizedBox(height: 20,),
                       Text(
-                        'Know Who we are!',
-                        style: TextStylesCustom.textStyles_26.apply(
+                        'Our process for your better understanding',
+                        style: TextStylesCustom.textStyles_24.apply(
                           color: Colors.white,
+                          heightDelta: 1,
+                          heightFactor: 0
                           // fontWeightDelta: 1,
                         ),
                       ),
@@ -96,7 +101,7 @@ class HowWeWork extends StatelessWidget {
                   // height: 320,
                   width: Get.mediaQuery.size.width,
                   margin: const EdgeInsets.only(
-                      top: 110,
+                      top: 140,
                       left: 16,
                       right: 16
                   ),

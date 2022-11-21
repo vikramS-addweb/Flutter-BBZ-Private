@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
+import '../Utils/Global.dart';
 import 'dart:io';
 
 class PickerCustom {
@@ -47,7 +48,7 @@ class PickerCustom {
                   ),
                 ),
                 onTap: () async {
-                  Get.back();
+                  navigateToBack(Get.context);
 
                   final ImagePicker _picker = ImagePicker();
                   final imageFile = await _picker.pickImage(
@@ -67,7 +68,7 @@ class PickerCustom {
                   ),
                 ),
                 onTap: () async {
-                  Get.back();
+                  navigateToBack(Get.context);
 
                   final ImagePicker _picker = ImagePicker();
                   final imageFile = await _picker.pickImage(
@@ -102,7 +103,7 @@ class PickerCustom {
                   ),
                 ),
                 onTap: () {
-                  Get.back();
+                  navigateToBack(Get.context);
                 },
               ),
               SizedBox(
@@ -113,7 +114,7 @@ class PickerCustom {
         ),
       ),
       onTap: () {
-        Get.back();
+        navigateToBack(Get.context);
       },
     ));
   }

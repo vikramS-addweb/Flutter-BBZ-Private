@@ -1,9 +1,9 @@
-
 import 'package:bbz/Styles/ImageStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../Views/WelcomeScreen.dart';
+import '../Utils/Global.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   gotToWelcomeScree() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(const WelcomeScreen());
+      const WelcomeScreen().navigateToCustom(context);
     });
   }
 
@@ -50,7 +50,9 @@ class _SplashScreenState extends State<SplashScreen> {
         margin: const EdgeInsets.only(top: 30),
         child: Column(
           children: [
-            const SizedBox(height: 100,),
+            const SizedBox(
+              height: 100,
+            ),
             Image.asset(
               ImageStyle.logoBBZ,
               width: 138,
@@ -61,4 +63,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-

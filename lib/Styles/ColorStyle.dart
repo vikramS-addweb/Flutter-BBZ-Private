@@ -14,6 +14,7 @@ class ColorStyle {
   static final Color red_ED0925 = hex("#ED0925");
   static final Color brown_C16D00 = hex("#C16D00");
   static final Color white_F3F3F3 = hex("#F3F3F3");
+  static final Color lightBlue_F2F2F2 = hex("#F3F3F3");
 
   static Color hex(String hexString) {
     final buffer = StringBuffer();
@@ -21,11 +22,7 @@ class ColorStyle {
     buffer.write(hexString.replaceFirst('#', ''));
     return Color(int.parse(buffer.toString(), radix: 16));
   }
-
-
 }
-
-
 
 extension ColorConversion on Color {
   MaterialColor toMaterialColor() {
@@ -50,6 +47,3 @@ extension ColorConversion on Color {
     return MaterialColor(value, swatch);
   }
 }
-
-
-

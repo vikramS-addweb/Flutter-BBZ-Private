@@ -10,6 +10,7 @@ import '../Components/ProgressBarCustom.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
+import '../Components/BottomNavBarCustom.dart';
 
 
 class Exam extends StatelessWidget {
@@ -85,6 +86,7 @@ class Exam extends StatelessWidget {
         ),
         elevation: 2,
       ),
+      bottomNavigationBar: bottomNavBarCustom(),
       body: SingleChildScrollView(
         child: Column(
           children: [

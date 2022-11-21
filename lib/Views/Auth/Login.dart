@@ -7,6 +7,7 @@ import '../../Components/TextFieldBase.dart';
 import '../../Components/PasswordFieldBase.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
+import '../Exam.dart';
 import '../WelcomeScreen.dart';
 import '../../Controller/LoginController.dart';
 import '../Auth/SignUp.dart';
@@ -17,6 +18,8 @@ import '../../Components/TextRichCustom.dart';
 import '../../Styles/ImageStyle.dart';
 import '../../Styles/EffectStyle.dart';
 import 'package:bbz/Views/TabbarScreen.dart';
+import '../../Utils/Global.dart';
+import '../../Components/BottomNavBarCustom.dart';
 
 
 class Login extends StatelessWidget {
@@ -34,7 +37,7 @@ class Login extends StatelessWidget {
             color: ColorStyle.primaryColor_1570A5,
           ),
           onPressed: () {
-            Get.back();
+            navigateToBack(context);
           },
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -43,6 +46,7 @@ class Login extends StatelessWidget {
         ),
         elevation: 2,
       ),
+      bottomNavigationBar: bottomNavBarCustom(),
       body: Stack(
         children: [
           const BGImage(),
@@ -116,7 +120,8 @@ class Login extends StatelessWidget {
                           textAlign: TextAlign.right,
                           style: TextStylesCustom.textStyles_12,
                         ),
-                        onPressed: () => Get.to(const ResetPassword()),
+                        onPressed: () =>
+                            const ResetPassword().navigateToCustom(context),
                       ),
                     ],
                   ),
@@ -143,7 +148,7 @@ class Login extends StatelessWidget {
                     textFirst: 'Do not have an account? ',
                     textSecond: 'SignUp',
                     onTap: () {
-                      Get.to(const SignUp());
+                      const SignUp().navigateToCustom(context);
                     },
                   ),
                   const SizedBox(
@@ -166,7 +171,7 @@ class Login extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      Get.to(()=>TabbarScreen());
+                      Get.offAll(const Exam());
                     },
                   )
                 ],

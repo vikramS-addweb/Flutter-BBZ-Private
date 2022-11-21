@@ -8,6 +8,7 @@ import '../../Components/PasswordFieldBase.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import '../../Styles/ImageStyle.dart';
+import '../Exam.dart';
 import '../TabbarScreen.dart';
 import '../WelcomeScreen.dart';
 import '../../Controller/LoginController.dart';
@@ -17,6 +18,9 @@ import '../../Styles/TextStyles.dart';
 import '../../Styles/EffectStyle.dart';
 import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
+import '../../Utils/Global.dart';
+import '../../Components/BottomNavBarCustom.dart';
+
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -33,7 +37,7 @@ class SignUp extends StatelessWidget {
             color: ColorStyle.primaryColor_1570A5,
           ),
           onPressed: () {
-            Get.back();
+            navigateToBack(context);
           },
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -42,11 +46,12 @@ class SignUp extends StatelessWidget {
         ),
         elevation: 2,
       ),
+      bottomNavigationBar: bottomNavBarCustom(),
       body: Stack(
         children: [
           const BGImage(),
           SingleChildScrollView(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 60),
             child: Container(
               margin: const EdgeInsets.only(top: 30),
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
@@ -199,7 +204,7 @@ class SignUp extends StatelessWidget {
                     textFirst: 'Already have an account? ',
                     textSecond: 'Log in',
                     onTap: () {
-                      Get.back();
+                      navigateToBack(context);
                     },
                   ),
                   const SizedBox(
@@ -222,7 +227,7 @@ class SignUp extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      Get.to(()=>TabbarScreen());
+                      Get.offAll(const Exam());
                     },
                   )
                 ],

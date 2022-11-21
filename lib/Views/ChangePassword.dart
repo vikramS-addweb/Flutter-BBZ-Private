@@ -16,6 +16,8 @@ import '../Components/TextFieldCustom.dart';
 import '../Components/TextRichCustom.dart';
 import '../Styles/ImageStyle.dart';
 import '../Styles/EffectStyle.dart';
+import '../Utils/Global.dart';
+
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({super.key});
@@ -28,7 +30,12 @@ class ChangePassword extends StatelessWidget {
 
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: ElevatedButtonCustoms(onTap: (){}, text: 'SAVE CHANGES', colorBG: ColorStyle.primaryColor_1570A5,),
+        child: ElevatedButtonCustoms(
+          onTap: (){},
+          text: 'SAVE CHANGES',
+          styleText: TextStylesCustom.textStyles_16,
+          colorBG: ColorStyle.primaryColor_1570A5,
+        ),
       ),
       appBar: AppBarStyle(
         title: 'Change Password',
@@ -38,7 +45,8 @@ class ChangePassword extends StatelessWidget {
             color: ColorStyle.primaryColor_1570A5,
           ),
           onPressed: () {
-            Get.back();
+            // Get.back();
+            navigateToBack(context);
           },
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -68,13 +76,13 @@ class ChangePassword extends StatelessWidget {
 
 
                       // -----------------------Email Field---------------------------->
-                      TextFieldWithLabel(firstText: 'Current Password', hintText: 'Johndoe@gmail.com',),
+                      TextFieldWithLabel(firstText: 'Current Password', hintText: 'Please enter',),
                       SizedBox(height: 15,),
                       // -----------------------Telephone Field---------------------------->
                       TextFieldWithLabel(firstText: 'New Password', hintText: 'Please enter',),
                       SizedBox(height: 15,),
                       // -----------------------Birth Date Field---------------------------->
-                      TextFieldWithLabel(firstText: 'Confirm Password', hintText: 'dd-mm-yy',),
+                      TextFieldWithLabel(firstText: 'Confirm Password', hintText: 'Please enter',),
                       SizedBox(height: 14,),
 
 
