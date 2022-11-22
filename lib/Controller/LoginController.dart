@@ -37,7 +37,7 @@ class LoginController extends GetxController {
     if (response!.isNotEmpty) {
       isLoggedIn = true;
 
-      const TabbarScreen().navigateToCustom(Get.context);
+      TabbarScreen().navigateToCustom(Get.context);
     }
   }
 

@@ -8,18 +8,19 @@ import '../../Components/PasswordFieldBase.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import '../../Styles/ImageStyle.dart';
-import '../Exam.dart';
-import '../TabbarScreen.dart';
-import '../WelcomeScreen.dart';
+import '../Views/Exam.dart';
+import '../Views/TabbarScreen.dart';
+import '../Views/WelcomeScreen.dart';
 import '../../Controller/LoginController.dart';
-import '../Auth/SignUp.dart';
-import '../Auth/ResetPassword.dart';
+import '../Views/SignUp.dart';
+import '../Views/ResetPassword.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/EffectStyle.dart';
 import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
 import '../../Utils/Global.dart';
 import '../../Components/BottomNavBarCustom.dart';
+import 'PersistentBottomNavBarCustom.dart';
 
 
 class SignUp extends StatelessWidget {
@@ -46,7 +47,7 @@ class SignUp extends StatelessWidget {
         ),
         elevation: 2,
       ),
-      bottomNavigationBar: bottomNavBarCustom(),
+      // bottomNavigationBar: bottomNavBarCustom(),
       body: Stack(
         children: [
           const BGImage(),
@@ -227,7 +228,7 @@ class SignUp extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      Get.offAll(const Exam());
+                      PersistentBottomNavBarCustom().navigateToCustom(context, withNavBar: false);
                     },
                   )
                 ],

@@ -40,7 +40,7 @@ class Profile extends StatelessWidget {
         ),
         elevation: 0,
       ),
-      bottomNavigationBar: bottomNavBarCustom(),
+      // bottomNavigationBar: bottomNavBarCustom(),
       body: Column(children: [
         Container(
           height: 2,

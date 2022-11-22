@@ -88,7 +88,7 @@ class Exam extends StatelessWidget {
         ),
         elevation: 2,
       ),
-      bottomNavigationBar: bottomNavBarCustom(),
+      // bottomNavigationBar: bottomNavBarCustom(),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -7,10 +7,11 @@ import 'package:get/get.dart';
 import '../Styles/ImageStyle.dart';
 import '../Views/Exam.dart';
 import '../Views/Profile.dart';
-import 'package:custom_top_navigator/custom_scaffold.dart';
+// import 'package:custom_top_navigator/custom_scaffold.dart';
 import '../Utils/Constant.dart';
 import '../Views/WelcomeScreen.dart';
 import 'package:flutter/cupertino.dart';
+
 
 
 BottomNavigationBar bottomNavBarCustom() {
@@ -67,3 +68,5 @@ BottomNavigationBar bottomNavBarCustom() {
     },
   );
 }
+
+

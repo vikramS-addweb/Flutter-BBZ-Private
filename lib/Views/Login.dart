@@ -2,24 +2,25 @@ import 'package:bbz/Components/BGImage.dart';
 import 'package:bbz/Controller/SignUpController.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:flutter/material.dart';
-import '../../Components/AppBarStyle.dart';
-import '../../Components/TextFieldBase.dart';
-import '../../Components/PasswordFieldBase.dart';
-import '../../Components/ElevatedButtonCustom.dart';
+import '../Components/AppBarStyle.dart';
+import '../Components/TextFieldBase.dart';
+import '../Components/PasswordFieldBase.dart';
+import '../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
-import '../Exam.dart';
-import '../WelcomeScreen.dart';
-import '../../Controller/LoginController.dart';
-import '../Auth/SignUp.dart';
-import '../Auth/ResetPassword.dart';
-import '../../Styles/TextStyles.dart';
-import '../../Components/TextFieldCustom.dart';
-import '../../Components/TextRichCustom.dart';
-import '../../Styles/ImageStyle.dart';
-import '../../Styles/EffectStyle.dart';
+import 'Exam.dart';
+import 'PersistentBottomNavBarCustom.dart';
+import 'WelcomeScreen.dart';
+import '../Controller/LoginController.dart';
+import '../Views/SignUp.dart';
+import '../Views/ResetPassword.dart';
+import '../Styles/TextStyles.dart';
+import '../Components/TextFieldCustom.dart';
+import '../Components/TextRichCustom.dart';
+import '../Styles/ImageStyle.dart';
+import '../Styles/EffectStyle.dart';
 import 'package:bbz/Views/TabbarScreen.dart';
-import '../../Utils/Global.dart';
-import '../../Components/BottomNavBarCustom.dart';
+import '../Utils/Global.dart';
+import '../Components/BottomNavBarCustom.dart';
 
 
 class Login extends StatelessWidget {
@@ -46,7 +47,7 @@ class Login extends StatelessWidget {
         ),
         elevation: 2,
       ),
-      bottomNavigationBar: bottomNavBarCustom(),
+      // bottomNavigationBar: bottomNavBarCustom(),
       body: Stack(
         children: [
           const BGImage(),
@@ -171,7 +172,7 @@ class Login extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      Get.offAll(const Exam());
+                      PersistentBottomNavBarCustom().navigateToCustom(context, withNavBar: false);
                     },
                   )
                 ],
