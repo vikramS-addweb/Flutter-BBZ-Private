@@ -5,9 +5,9 @@ import 'package:bbz/Views/Exam.dart';
 import 'package:flutter/material.dart';
 import '../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
-import '../Views/Auth/Login.dart';
+import 'Login.dart';
 import '../Components/BGImage.dart';
-import '../Views/Auth/SignUp.dart';
+import '../Views/SignUp.dart';
 import '../Components/AppBarStyle.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/TextRichCustom.dart';
@@ -15,7 +15,7 @@ import 'TabbarScreen.dart';
 import '../Utils/Global.dart';
 import '../Utils/Constant.dart';
 import '../Components/BottomNavBarCustom.dart';
-
+import '../Views/PersistentBottomNavBarCustom.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -31,7 +31,7 @@ class WelcomeScreen extends StatelessWidget {
         ),
         elevation: 2,
       ),
-      bottomNavigationBar: bottomNavBarCustom(),
+      // bottomNavigationBar: bottomNavBarCustom(),
       body: Container(
           width: double.infinity,
           height: double.infinity,
@@ -97,7 +97,7 @@ class WelcomeScreen extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-                  Get.offAll(const Exam());
+                  PersistentBottomNavBarCustom().navigateToCustom(context, withNavBar: false);
                 },
               )
             ],

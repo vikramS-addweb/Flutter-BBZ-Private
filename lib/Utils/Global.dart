@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 
 showLoaderGetX() {
@@ -79,8 +79,17 @@ goToAnotherScreen(Widget page) {
 }
 
 extension NavigateCustom on Widget {
-  navigateToCustom(context) {
-    Navigator.push(context, CupertinoPageRoute(builder: (context) => this));
+  navigateToCustom(context, { bool withNavBar = true}) {
+
+    PersistentNavBarNavigator.pushNewScreen(
+      context,
+      screen: this,
+      withNavBar: withNavBar,
+
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
+
+    // Navigator.push(context, CupertinoPageRoute(builder: (context) => this));
     // Navigator.push(context, MaterialPageRoute(builder: (context) => this));
   }
 }
