@@ -18,4 +18,5 @@ class ImageStyle {
   static const String account = baseImage + "account.png";
   static const String test = baseImage + "test.png";
   static const String fax = baseImage + "fax.png";
+  static const String checkCircle = baseImage + "check_circle.png";
 }

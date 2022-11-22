@@ -6,10 +6,10 @@ import '../../Components/TextFieldBase.dart';
 import '../../Components/PasswordFieldBase.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
-import '../WelcomeScreen.dart';
 import '../../Controller/LoginController.dart';
 import '../../Controller/ResetPasswordController.dart';
-import '../Auth/SignUp.dart';
+import '../Views/SignUp.dart';
+import '../Views/WelcomeScreen.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
@@ -43,7 +43,7 @@ class ResetPassword extends StatelessWidget {
         ),
         elevation: 2,
       ),
-      bottomNavigationBar: bottomNavBarCustom(),
+      // bottomNavigationBar: bottomNavBarCustom(),
       body: Stack(
         children: [
           const BGImage(),

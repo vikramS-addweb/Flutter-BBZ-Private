@@ -93,6 +93,12 @@ class TextStylesCustom {
     fontWeight: FontWeight.normal,
   );
 
+  static TextStyle get textStyles_21 => TextStyle(
+    fontSize: 21,
+    fontFamily: kFontFamily,
+    fontWeight: FontWeight.normal,
+  );
+
   static TextStyle get textStyles_22 => TextStyle(
     fontSize: 22,
     fontFamily: kFontFamily,

@@ -22,7 +22,7 @@ class AboutUs extends StatelessWidget {
       backgroundColor: ColorStyle.white_F3F3F3,
       key: keyDrawer,
       drawer: DrawerScreen(),
-      bottomNavigationBar: bottomNavBarCustom(),
+      // bottomNavigationBar: bottomNavBarCustom(),
       appBar: AppBarStyle(
         title: 'About Us',
         leading: IconButton(

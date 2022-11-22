@@ -11,6 +11,8 @@ import '../../Components/ElevatedButtonCustom.dart';
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
 import '../Components/BottomNavBarCustom.dart';
+import '../Utils/Global.dart';
+import 'BookingConfirmation.dart';
 
 
 class Exam extends StatelessWidget {
@@ -86,7 +88,7 @@ class Exam extends StatelessWidget {
         ),
         elevation: 2,
       ),
-      bottomNavigationBar: bottomNavBarCustom(),
+      // bottomNavigationBar: bottomNavBarCustom(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -253,177 +255,182 @@ class Exam extends StatelessWidget {
                       );
                     },
                     itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: ColorStyle.grey_DAE1E7
-                            )
-                        ),
-                        child: Column(
-                          children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  ImageStyle.pixabay,
-                                  height: 250,
-                                  width: double.infinity,
-                                  fit: BoxFit.fill,
-                                ),
-                                Positioned(
-                                  top: 20,
-                                  left: 0,
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 16,
-                                        right: 16
+                      return InkWell(
+                        onTap: (){
+                          BookingConfirmation().navigateToCustom(context);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: ColorStyle.grey_DAE1E7
+                              )
+                          ),
+                          child: Column(
+                            children: [
+                              Stack(
+                                children: [
+                                  Image.asset(
+                                    ImageStyle.pixabay,
+                                    height: 250,
+                                    width: double.infinity,
+                                    fit: BoxFit.fill,
+                                  ),
+                                  Positioned(
+                                    top: 20,
+                                    left: 0,
+                                    child: Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 16,
+                                          right: 16
+                                      ),
+                                      decoration: BoxDecoration(
+                                          color: ColorStyle.red_ED0925
+                                      ),
+                                      child: Text(
+                                        'A2-B1',
+                                        style: TextStylesCustom.textStyles_16.apply(
+                                          color: Colors.white,
+                                          fontWeightDelta: 1,
+                                        ),
+                                      ),
                                     ),
-                                    decoration: BoxDecoration(
-                                        color: ColorStyle.red_ED0925
-                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 16,
+                                    left: 16,
                                     child: Text(
-                                      'A2-B1',
-                                      style: TextStylesCustom.textStyles_16.apply(
+                                      '7,50 €',
+                                      style: TextStylesCustom.textStyles_22.apply(
                                         color: Colors.white,
                                         fontWeightDelta: 1,
                                       ),
                                     ),
                                   ),
-                                ),
-                                Positioned(
-                                  bottom: 16,
-                                  left: 16,
-                                  child: Text(
-                                    '7,50 €',
-                                    style: TextStylesCustom.textStyles_22.apply(
-                                      color: Colors.white,
-                                      fontWeightDelta: 1,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 20,),
-                            Container(
-                              padding: const EdgeInsets.only(
-                                  left: 16,
-                                  right: 16
-                              ),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Zusatzleistung: Postversand - Zertifikate / Ergebnisbogen',
-                                    style: TextStylesCustom.textStyles_14.apply(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 12,),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: FittedBox(
-                                                child: Text(
-                                                  'Exam Date: ',
-                                                  style: TextStylesCustom.textStyles_14.apply(
-                                                      color: Colors.black,
-                                                      fontWeightDelta: 2
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: FittedBox(
-                                                child: Text(
-                                                  '25/06/2022',
-                                                  style: TextStylesCustom.textStyles_14.apply(
-                                                    color: ColorStyle.primaryColor_1570A5,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10,),
-                                      Expanded(
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: FittedBox(
-                                                child: Text(
-                                                  'Exam Date: ',
-                                                  style: TextStylesCustom.textStyles_14.apply(
-                                                      color: Colors.black,
-                                                      fontWeightDelta: 2
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: FittedBox(
-                                                // fit: BoxFit.fitWidth,
-                                                child: Text(
-                                                  '25/06/2022',
-                                                  style: TextStylesCustom.textStyles_14.apply(
-                                                    color: ColorStyle.brown_C16D00,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 30,),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      const Icon(
-                                        Icons.location_on,
-                                        size: 20,
-                                      ),
-                                      const SizedBox(width: 14,),
-                                      Expanded(
-                                        child: Text(
-                                          'Brüder Grimm Bildungscentrum e. V. Langstr. 60 63452 Hanau',
-                                          style: TextStylesCustom.textStyles_13.apply(
-                                            color: ColorStyle.primaryColor_1570A5,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 30,),
-                                  Container(
-                                    height: 1,
-                                    color: ColorStyle.grey_DAE1E7,
-                                  ),
-                                  const SizedBox(height: 20,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Available Seats',
-                                        style: TextStylesCustom.textStyles_14.apply(
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      ProgressBarCircularCustom(
-                                        text: '250',
-                                        progress: 250,
-                                        total: 400,
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 20,),
                                 ],
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 20,),
+                              Container(
+                                padding: const EdgeInsets.only(
+                                    left: 16,
+                                    right: 16
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Zusatzleistung: Postversand - Zertifikate / Ergebnisbogen',
+                                      style: TextStylesCustom.textStyles_14.apply(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 12,),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: FittedBox(
+                                                  child: Text(
+                                                    'Exam Date: ',
+                                                    style: TextStylesCustom.textStyles_14.apply(
+                                                        color: Colors.black,
+                                                        fontWeightDelta: 2
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: FittedBox(
+                                                  child: Text(
+                                                    '25/06/2022',
+                                                    style: TextStylesCustom.textStyles_14.apply(
+                                                      color: ColorStyle.primaryColor_1570A5,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10,),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: FittedBox(
+                                                  child: Text(
+                                                    'Exam Date: ',
+                                                    style: TextStylesCustom.textStyles_14.apply(
+                                                        color: Colors.black,
+                                                        fontWeightDelta: 2
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: FittedBox(
+                                                  // fit: BoxFit.fitWidth,
+                                                  child: Text(
+                                                    '25/06/2022',
+                                                    style: TextStylesCustom.textStyles_14.apply(
+                                                      color: ColorStyle.brown_C16D00,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 30,),
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const Icon(
+                                          Icons.location_on,
+                                          size: 20,
+                                        ),
+                                        const SizedBox(width: 14,),
+                                        Expanded(
+                                          child: Text(
+                                            'Brüder Grimm Bildungscentrum e. V. Langstr. 60 63452 Hanau',
+                                            style: TextStylesCustom.textStyles_13.apply(
+                                              color: ColorStyle.primaryColor_1570A5,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 30,),
+                                    Container(
+                                      height: 1,
+                                      color: ColorStyle.grey_DAE1E7,
+                                    ),
+                                    const SizedBox(height: 20,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Available Seats',
+                                          style: TextStylesCustom.textStyles_14.apply(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        ProgressBarCircularCustom(
+                                          text: '250',
+                                          progress: 250,
+                                          total: 400,
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 20,),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },)

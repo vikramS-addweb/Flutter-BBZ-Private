@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../Views/WelcomeScreen.dart';
 import '../Utils/Global.dart';
+import 'PersistentBottomNavBarCustom.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   gotToWelcomeScree() {
     Future.delayed(const Duration(seconds: 3), () {
-      const WelcomeScreen().navigateToCustom(context);
+      PersistentBottomNavBarCustom().navigateToCustom(context);
     });
   }
 
