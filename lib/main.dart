@@ -41,8 +41,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
       // home: BookingConfirmation(),
-      home: TabbarScreen(),
-      // home: const SplashScreen(),
+      // home: TabbarScreen(),
+      home: const SplashScreen(),
     );
   }
 }
