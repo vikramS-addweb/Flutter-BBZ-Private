@@ -82,42 +82,9 @@ class BookingConfirmation extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 25,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.check_circle_rounded, color: ColorStyle.primaryColor_1570A5,),
-                Container(
-                  width: 70,
-                  height: 3,
-                  color: ColorStyle.primaryColor_1570A5,
-                ),
-                Icon(Icons.check_circle_rounded, color: ColorStyle.primaryColor_1570A5,),
-                Container(
-                  width: 70,
-                  height: 3,
-                  color: ColorStyle.primaryColor_1570A5,
-                ),
-                Icon(Icons.check_circle_rounded, color: ColorStyle.primaryColor_1570A5,),
-              ],
+            Center(
+              child: Image.asset(ImageStyle.bookingConfirmationBar, width: 250, height: 100,),
             ),
-            SizedBox(
-              width: 300,
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Expanded(child: SizedBox(width: 25,)),
-                  Text('BOOKING', style: TextStylesCustom.textStyles_10.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
-                  const SizedBox(width: 35,),
-                  Text('PAYMENT', style: TextStylesCustom.textStyles_10.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
-                  const SizedBox(width: 16,),
-                  Text('CONFIRMATION', style: TextStylesCustom.textStyles_10.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 22,),
-
 // -------------------------------------------------------Booking Successful block-------------------------->
             Stack(
               children: [
@@ -347,13 +314,13 @@ class BookingConfirmation extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            // Image.asset(
-                            //   ImageStyle.logoBBZ,
-                            //   height: 70,
-                            //   width: 80,
-                            //   fit: BoxFit.fill,
-                            // ),
-                            Icon(Icons.lightbulb, size: 70, color: ColorStyle.orange_C16D00),
+                            Image.asset(
+                              ImageStyle.lightbulb,
+                              height: 60,
+                              width: 45,
+                              fit: BoxFit.fill,
+                            ),
+                            // Icon(Icons.lightbulb, size: 70, color: ColorStyle.orange_C16D00),
                             const SizedBox(
                               width: 10,
                             ),

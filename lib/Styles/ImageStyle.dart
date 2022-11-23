@@ -24,6 +24,10 @@ class ImageStyle {
   static const String feather_calendar = baseImage + "feather_calendar.png";
   static const String hourglass = baseImage + "hourglass_icon.png";
   static const String legal_document = baseImage + "legal_document.png";
+  static const String ticketBarcode = baseImage + "ticketBarcode.png";
+  static const String bookingFormBar = baseImage + "bookingFormBar.png";
+  static const String bookingConfirmationBar = baseImage + "bookingConfirmationBar.png";
+  static const String lightbulb = baseImage + "lightbulb.png";
 
 
 }

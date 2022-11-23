@@ -7,6 +7,8 @@ import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
 import '../Utils/Global.dart';
 import 'BookingDetails.dart';
+import 'Invoice.dart';
+import 'Ticket.dart';
 
 class BookingHistory extends StatelessWidget {
   const BookingHistory({Key? key}) : super(key: key);
@@ -86,78 +88,78 @@ class Exams extends StatelessWidget {
             );
           },
           itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () {
-                BookingDetails().navigateToCustom(context);
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    // height: 300,
-                    width: Get.mediaQuery.size.width,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: ColorStyle.grey_DAE1E7),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 18,
-                        ),
-                        // -----------------------------------FULL AMOUNT PAID SECTION------------------>
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              width: 10,
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  // height: 300,
+                  width: Get.mediaQuery.size.width,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: ColorStyle.grey_DAE1E7),
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      // -----------------------------------FULL AMOUNT PAID SECTION------------------>
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          // Icon(
+                          //   Icons.credit_score,
+                          //   size: 28,
+                          //   color: ColorStyle.primaryColor_1570A5,
+                          // ),
+                          SizedBox(
+                            width: 28,
+                            height: 28,
+                            child: Image.asset(
+                              ImageStyle.paid,
+                              fit: BoxFit.fill,
                             ),
-                            // Icon(
-                            //   Icons.credit_score,
-                            //   size: 28,
-                            //   color: ColorStyle.primaryColor_1570A5,
-                            // ),
-                            SizedBox(
-                              width: 28,
-                              height: 28,
-                              child: Image.asset(
-                                ImageStyle.paid,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 14,
-                            ),
-                            Text(
-                              'Full Amount Paid',
-                              style: TextStylesCustom.textStyles_10
-                                  .apply(fontWeightDelta: 2),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                                height: 6,
-                                width: 6,
-                                margin: const EdgeInsets.only(top: 8),
-                                decoration: BoxDecoration(
-                                  color: ColorStyle.grey_5E6D77,
-                                  borderRadius: BorderRadius.circular(50),
-                                )),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              '25/03/2022 | 03:30 PM',
-                              style: TextStylesCustom.textStyles_10
-                                  .apply(color: ColorStyle.primaryColor_1570A5),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        // --------------------------------IMAGE AND DETAILS--------------------->
-                        Row(
+                          ),
+                          const SizedBox(
+                            width: 14,
+                          ),
+                          Text(
+                            'Full Amount Paid',
+                            style: TextStylesCustom.textStyles_10
+                                .apply(fontWeightDelta: 2),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                              height: 6,
+                              width: 6,
+                              margin: const EdgeInsets.only(top: 8),
+                              decoration: BoxDecoration(
+                                color: ColorStyle.grey_5E6D77,
+                                borderRadius: BorderRadius.circular(50),
+                              )),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            '25/03/2022 | 03:30 PM',
+                            style: TextStylesCustom.textStyles_10
+                                .apply(color: ColorStyle.primaryColor_1570A5),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      // --------------------------------IMAGE AND DETAILS--------------------->
+                      InkWell(
+                        onTap: (){
+                          BookingDetails().navigateToCustom(context, withNavBar: false);
+                        },
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(
@@ -220,40 +222,44 @@ class Exams extends StatelessWidget {
                             )
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        // ------------------------------------ BUTTONS ----------------------------->
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButtonCustoms(
-                                onTap: () {},
-                                text: 'GET INVOICE',
-                                colorText: ColorStyle.primaryColor_1570A5,
-                                colorBG: ColorStyle.white,
-                                colorBorder: ColorStyle.primaryColor_1570A5,
-                                fontWeight: 1,
-                                radiusBorder: 0,
-                              ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      // ------------------------------------ BUTTONS ----------------------------->
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButtonCustoms(
+                              onTap: () {
+                                Invoice().navigateToCustom(context, withNavBar: false);
+                              },
+                              text: 'GET INVOICE',
+                              colorText: ColorStyle.primaryColor_1570A5,
+                              colorBG: ColorStyle.white,
+                              colorBorder: ColorStyle.primaryColor_1570A5,
+                              fontWeight: 1,
+                              radiusBorder: 0,
                             ),
-                            Expanded(
-                              child: ElevatedButtonCustoms(
-                                onTap: () {},
-                                text: 'PRINT TICKET',
-                                radiusBorder: 0,
-                                fontWeight: 1,
-                                colorBG: ColorStyle.primaryColor_1570A5,
-                                colorBorder: ColorStyle.primaryColor_1570A5,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
+                          ),
+                          Expanded(
+                            child: ElevatedButtonCustoms(
+                              onTap: () {
+                                Ticket().navigateToCustom(context, withNavBar: false);
+                              },
+                              text: 'PRINT TICKET',
+                              radiusBorder: 0,
+                              fontWeight: 1,
+                              colorBG: ColorStyle.primaryColor_1570A5,
+                              colorBorder: ColorStyle.primaryColor_1570A5,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           },
         ),

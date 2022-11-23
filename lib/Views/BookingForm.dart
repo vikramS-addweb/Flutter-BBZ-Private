@@ -85,76 +85,13 @@ class BookingForm extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.check_circle_rounded,
-                  color: ColorStyle.primaryColor_1570A5,
-                ),
-                Container(
-                  width: 70,
-                  height: 3,
-                  color: ColorStyle.primaryColor_1570A5,
-                ),
-                Icon(
-                  Icons.check_circle_rounded,
-                  color: ColorStyle.grey_DAE1E7,
-                ),
-                Container(
-                  width: 70,
-                  height: 3,
-                  color: ColorStyle.grey_DAE1E7,
-                ),
-                Icon(
-                  Icons.check_circle_rounded,
-                  color: ColorStyle.grey_DAE1E7,
-                ),
-              ],
-            ),
-            SizedBox(
-              width: 300,
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Expanded(
-                      child: SizedBox(
-                    width: 25,
-                  )),
-                  Text(
-                    'BOOKING',
-                    style: TextStylesCustom.textStyles_10.apply(
-                        color: ColorStyle.primaryColor_1570A5,
-                        fontWeightDelta: 1),
-                  ),
-                  const SizedBox(
-                    width: 35,
-                  ),
-                  Text(
-                    'PAYMENT',
-                    style: TextStylesCustom.textStyles_10.apply(
-                        color: ColorStyle.primaryColor_1570A5,
-                        fontWeightDelta: 1),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Text(
-                    'CONFIRMATION',
-                    style: TextStylesCustom.textStyles_10.apply(
-                        color: ColorStyle.primaryColor_1570A5,
-                        fontWeightDelta: 1),
-                  ),
-                ],
-              ),
+
+            Center(
+              child: Image.asset(ImageStyle.bookingFormBar, width: 250, height: 100,),
             ),
 
-            const SizedBox(
-              height: 22,
-            ),
+
+
 
 // -------------------------------------------------------Booking Successful block-------------------------->
             Stack(
