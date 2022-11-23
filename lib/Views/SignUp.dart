@@ -43,7 +43,7 @@ class SignUp extends StatelessWidget {
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
           color: ColorStyle.primaryColor_1570A5,
-          fontWeightDelta: 1,
+          fontWeightDelta: 2,
         ),
         elevation: 2,
       ),
@@ -165,7 +165,7 @@ class SignUp extends StatelessWidget {
                               controller.check.value
                                   ? Icons.check_box
                                   : Icons.check_box_outline_blank,
-                              color: ColorStyle.primaryColor_1570A5,
+                              color: controller.check.value ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_DAE1E7,
                             ),
                           )),
                       const SizedBox(
@@ -190,6 +190,9 @@ class SignUp extends StatelessWidget {
                   ),
                   ElevatedButtonCustom(
                     text: 'SIGN UP',
+                    styleText: TextStylesCustom.textStyles_15.apply(
+                        fontWeightDelta: 4
+                    ),
                     size: Size(MediaQuery.of(context).size.width - 30, 50),
                     onTap: () {
                       controller.userSignUp();
@@ -216,7 +219,7 @@ class SignUp extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Continue as a Guest',
-                            style: TextStylesCustom.textStyles_14
+                            style: TextStylesCustom.textStyles_15
                                 .apply(color: ColorStyle.primaryColor_1570A5)),
                         const SizedBox(
                           width: 10,

@@ -39,7 +39,7 @@ class ResetPassword extends StatelessWidget {
         ),
         styleTitle: TextStylesCustom.textStyles_16.apply(
           color: ColorStyle.primaryColor_1570A5,
-          fontWeightDelta: 1,
+          fontWeightDelta: 2,
         ),
         elevation: 2,
       ),
@@ -87,6 +87,9 @@ class ResetPassword extends StatelessWidget {
                   ElevatedButtonCustom(
                     text: 'SEND PASSWORD RESET LINK',
                     size: Size(MediaQuery.of(context).size.width - 30, 50),
+                    styleText: TextStylesCustom.textStyles_15.apply(
+                      fontWeightDelta: 2,
+                    ),
                     onTap: () {
                       controller.resetPassword();
                       // Get.to(const Login());

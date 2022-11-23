@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 
 import '../Styles/ColorStyle.dart';
 import '../Styles/SizeStyle.dart';
@@ -9,11 +8,16 @@ class ElevatedButtonCustom extends StatelessWidget {
   final Function()? onTap;
   final String? text;
   final Size size;
+  final TextStyle? styleText;
+
+
+
   const ElevatedButtonCustom({
     Key? key,
     this.onTap,
     this.text = "Elevated Button",
-     this.size = const Size(100, 50)
+    this.size = const Size(100, 50),
+    this.styleText = const TextStyle()
   }) : super(key: key);
 
   @override
@@ -32,13 +36,11 @@ class ElevatedButtonCustom extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
       ),
+      onPressed: onTap,
       child: Text(
         text!,
-        style: TextStylesCustom.textStyles_14.apply(
-          fontWeightDelta: 2
-        ),
+        style: styleText,
       ),
-      onPressed: onTap,
     );
   }
 }
@@ -86,11 +88,11 @@ class ElevatedButtonCustoms extends StatelessWidget {
           side: BorderSide(color: colorBorder!)
         ),
       ),
+      onPressed: onTap,
       child: Text(
         text!,
         style: styleText != null? styleText : TextStylesCustom.textStyles_14.apply(color: colorText, fontWeightDelta: 1),
       ),
-      onPressed: onTap,
     );
   }
 }
