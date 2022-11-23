@@ -15,6 +15,8 @@ class ColorStyle {
   static final Color brown_C16D00 = hex("#C16D00");
   static final Color white_F3F3F3 = hex("#F3F3F3");
   static final Color lightBlue_F2F2F2 = hex("#F3F3F3");
+  static final Color orange_C16D00 = hex("#C16D00");
+
 
   static Color hex(String hexString) {
     final buffer = StringBuffer();

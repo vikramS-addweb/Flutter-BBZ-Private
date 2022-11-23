@@ -48,24 +48,38 @@ class BookingForm extends StatelessWidget {
       ),
       bottomNavigationBar:
       Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Row(
-          children: [
-            SizedBox(width: 10,),
-            Text('Total', style: TextStylesCustom.textStyles_12,),
-            SizedBox(width: 13,),
-            Text('7,50 €', style: TextStylesCustom.textStyles_22.apply(color: ColorStyle.primaryColor_1570A5),),
-            SizedBox(width: 35,),
-            Expanded(
-                child: ElevatedButtonCustoms(
-                  onTap: (){
-                    BookingConfirmation().navigateToCustom(context, withNavBar: false);
-                  },
-                  text: 'PAY NOW',
-                  colorBG: ColorStyle.primaryColor_1570A5.withOpacity(0.5),
-                )
-            )
-          ],
+
+        decoration: BoxDecoration(
+          boxShadow: [
+          BoxShadow(
+          color: ColorStyle.grey_DAE1E7,
+          // spreadRadius: 1,
+          blurRadius: 4,
+          offset: const Offset(
+              0, 0), // changes position of shadow
+        ),]
+        ),
+        child: Container(
+          color: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Row(
+            children: [
+              SizedBox(width: 10,),
+              Text('Total', style: TextStylesCustom.textStyles_12,),
+              SizedBox(width: 13,),
+              Text('7,50 €', style: TextStylesCustom.textStyles_22.apply(color: ColorStyle.primaryColor_1570A5),),
+              SizedBox(width: 35,),
+              Expanded(
+                  child: ElevatedButtonCustoms(
+                    onTap: (){
+                      BookingConfirmation().navigateToCustom(context, withNavBar: false);
+                    },
+                    text: 'PAY NOW',
+                    colorBG: ColorStyle.primaryColor_1570A5.withOpacity(0.5),
+                  )
+              )
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -286,7 +300,7 @@ class BookingForm extends StatelessWidget {
                 SizedBox(height: 35,),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text('Booking Submission', style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.primaryColor_1570A5),),
+                  child: Text('Booking Submission', style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
                 ),
                 SizedBox(height: 17,),
                 Container(
@@ -300,11 +314,10 @@ class BookingForm extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Contact Information', style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 1),),
-                      SizedBox(height: 6,),
+                      Text('Contact Information', style: TextStylesCustom.textStyles_15.apply(fontWeightDelta: 1),),
+                      SizedBox(height: 40,),
 
-                      SizedBox(height: 18,),
-                      DropdownButtonCustom(ontap: (){}, list: ['Please select'], width: Get.mediaQuery.size.width, dropdownValue: 'Please select',),
+                      DropdownWithLabel(firstText:'Salutation', ontap: (){}, list: ['Please select'], width: Get.mediaQuery.size.width, dropdownValue: 'Please select',),
                       SizedBox(height: 15,),
 
                       TextFieldWithLabel(firstText: 'Academic Title', hintText: 'Please enter',),
