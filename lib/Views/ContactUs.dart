@@ -20,8 +20,8 @@ class ContactUs extends StatelessWidget {
     Icon(Icons.call),
     // Icon(Icons.fax_outlined),
     SizedBox(
-      width: 20,
-      height: 20,
+      width: 19,
+      height: 19,
       child: Image.asset(ImageStyle.fax, fit: BoxFit.fill,),
     ),
 
@@ -303,7 +303,10 @@ class ContactUs extends StatelessWidget {
                             return Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                arrIcons[index],
+                                Padding(
+                                  padding: const EdgeInsets.only(top:4.0),
+                                  child: arrIcons[index],
+                                ),
                                 SizedBox(
                                   width: 10,
                                 ),

@@ -13,7 +13,7 @@ import '../Utils/Constant.dart';
 import '../Components/BottomNavBarCustom.dart';
 import '../Utils/Global.dart';
 import 'BookingConfirmation.dart';
-import 'BookingForm.dart';
+import 'ExamDetail.dart';
 
 
 class Exam extends StatelessWidget {
@@ -258,7 +258,7 @@ class Exam extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: (){
-                          BookingForm().navigateToCustom(context, withNavBar: false);
+                          ExamDetail().navigateToCustom(context, withNavBar: false);
                         },
                         child: Container(
                           decoration: BoxDecoration(

@@ -20,6 +20,10 @@ class ImageStyle {
   static const String fax = baseImage + "fax.png";
   static const String checkCircle = baseImage + "check_circle.png";
   static const String calendar = baseImage + "calendar.png";
+  static const String user = baseImage + "user.png";
+  static const String feather_calendar = baseImage + "feather_calendar.png";
+  static const String hourglass = baseImage + "hourglass_icon.png";
+  static const String legal_document = baseImage + "legal_document.png";
 
 
 }
