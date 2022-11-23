@@ -219,16 +219,17 @@ class _TextFieldPWDOutlineState extends State<TextFieldPWDOutline> {
               borderSide: BorderSide(color: widget.colorBoder!, width: 1)),
           hintText: widget.hintText,
           hintStyle: widget.textStyle!.apply(color: widget.colorHint),
-          suffixIcon: IconButton(
-            icon: Icon(
-              isObscureText ? Icons.visibility : Icons.visibility_off,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              isObscureText = !isObscureText;
-              setState(() {});
-            },
-          )),
+          // suffixIcon: IconButton(
+          //   icon: Icon(
+          //     isObscureText ? Icons.visibility : Icons.visibility_off,
+          //     color: Colors.black,
+          //   ),
+          //   onPressed: () {
+          //     isObscureText = !isObscureText;
+          //     setState(() {});
+          //   },
+          // )
+    ),
     );
   }
 }

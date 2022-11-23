@@ -29,7 +29,8 @@ class TextRichCustom extends StatelessWidget {
           TextSpan(
               text: textSecond,
               style: TextStylesCustom.textStyles_14.apply(
-                  color: ColorStyle.primaryColor_1570A5
+                  color: ColorStyle.primaryColor_1570A5,
+                fontWeightDelta: 2
               ),
             recognizer:  TapGestureRecognizer()..onTap = onTap,
           ),

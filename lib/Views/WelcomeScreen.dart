@@ -27,7 +27,7 @@ class WelcomeScreen extends StatelessWidget {
         title: 'Log In/Sign Up',
         styleTitle: TextStylesCustom.textStyles_14.apply(
           color: ColorStyle.primaryColor_1570A5,
-          fontWeightDelta: 1,
+          fontWeightDelta: 2,
         ),
         elevation: 2,
       ),
@@ -41,67 +41,93 @@ class WelcomeScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          margin: const EdgeInsets.only(top: 30),
-          child: Column(
-            children: [
-              Text('Welcome To BBZ!',
-                  style: TextStylesCustom.textStyles_26.apply(
-                      color: ColorStyle.primaryColor_1570A5,
-                      fontWeightDelta: 1)),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                  textAlign: TextAlign.center,
-                  'Login/Sign Up to get your profile and stayupdated with the upcoming exams and news.',
-                  style: TextStylesCustom.textStyles_13.apply(
-                    color: ColorStyle.grey_5E6D77,
-                  )),
-              const SizedBox(
-                height: 50,
-              ),
-              ElevatedButtonCustom(
-                text: 'LOGIN',
-                size: Size(MediaQuery.of(context).size.width - 30, 50),
-                onTap: () {
-                  const Login().navigateToCustom(context);
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextRichCustom(
-                textFirst: 'Do not have an account? ',
-                textSecond: 'SignUp',
-                onTap: () {
-                  const SignUp().navigateToCustom(context);
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              InkWell(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      ImageStyle.left_Arrow,
-                      width: 20,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text('Continue as a Guest',
-                        style: TextStylesCustom.textStyles_14
-                            .apply(color: ColorStyle.primaryColor_1570A5)),
-                  ],
+          child: Padding(
+            padding: const EdgeInsets.only(right: 16, left: 16),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 30,
                 ),
-                onTap: () {
-                  PersistentBottomNavBarCustom().navigateToCustom(context, withNavBar: false);
-                },
-              )
-            ],
-          )),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.g_translate_outlined,
+                      size: 40,
+                      color: ColorStyle.primaryColor_1570A5,
+                    ),
+                    onPressed: () {
+
+                    },
+                  ),
+                ),
+                Text(
+                    'Welcome To BBZ!',
+                    style: TextStylesCustom.textStyles_26.apply(
+                        color: ColorStyle.primaryColor_1570A5,
+                        fontWeightDelta: 1)
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                    textAlign: TextAlign.center,
+                    'Login/Sign Up to get your profile and stayupdated with the upcoming exams and news.',
+                    style: TextStylesCustom.textStyles_13.apply(
+                      color: ColorStyle.grey_5E6D77,
+                    )),
+                const SizedBox(
+                  height: 50,
+                ),
+                ElevatedButtonCustom(
+                  text: 'LOGIN',
+                  styleText: TextStylesCustom.textStyles_15.apply(
+                    fontWeightDelta: 4
+                  ),
+                  size: Size(MediaQuery.of(context).size.width, 50),
+                  onTap: () {
+                    const Login().navigateToCustom(context);
+                  },
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                TextRichCustom(
+                  textFirst: 'Do not have an account? ',
+                  textSecond: 'SignUp',
+                  onTap: () {
+                    const SignUp().navigateToCustom(context);
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        ImageStyle.left_Arrow,
+                        width: 20,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                          'Continue as a Guest',
+                          style: TextStylesCustom.textStyles_14
+                              .apply(color: ColorStyle.primaryColor_1570A5)
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    PersistentBottomNavBarCustom().navigateToCustom(context, withNavBar: false);
+                  },
+                )
+              ],
+            ),
+          )
+      ),
     );
   }
 }

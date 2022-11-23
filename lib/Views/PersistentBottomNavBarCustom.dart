@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:bbz/Styles/ImageStyle.dart';
 import '../Styles/TextStyles.dart';
 
+import '../Utils/Constant.dart';
+import 'package:flutter/cupertino.dart';
 
 
 class PersistentBottomNavBarCustom extends StatelessWidget {
@@ -20,7 +22,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       const Exam(),
-      const WelcomeScreen(),
+      isLoggedIn ? Profile() : const WelcomeScreen(),
     ];
   }
 
@@ -46,7 +48,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
             height: 18,
           child: Image.asset(ImageStyle.account, fit: BoxFit.fill,),
         ),
-        title: ("Settings"),
+        title: ("Profile"),
         // textStyle: TextStylesCustom.textStyles_12,
         activeColorPrimary: ColorStyle.primaryColor_1570A5,
         inactiveColorPrimary: ColorStyle.grey_5E6D77,
@@ -76,7 +78,6 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
       hideNavigationBarWhenKeyboardShows: true,
       navBarHeight: 70,
       decoration: const NavBarDecoration(
-
         boxShadow: [
           BoxShadow(
             color: Colors.grey,
@@ -87,6 +88,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
+
       // itemAnimationProperties: const ItemAnimationProperties( // Navigation Bar's items animation properties.
       //   duration: Duration(milliseconds: 200),
       //   curve: Curves.ease,
@@ -100,6 +102,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
       //   curve: Curves.ease,
       //   duration: Duration(milliseconds: 200),
       // ),
+
       navBarStyle: NavBarStyle.style3, // Choose the nav bar style with this property.
     );
   }
