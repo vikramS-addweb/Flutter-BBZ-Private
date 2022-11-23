@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:bbz/Styles/ImageStyle.dart';
 import 'package:flutter/material.dart';
@@ -133,21 +131,22 @@ class Detail extends StatelessWidget {
                    Text(
                     "Libero sem vitae sed donec conubia integer nisi integer rhoncus imperdiet orci odio libero est integer a integer tincidunt sollicitudin blandit fusce nibh leo vulputate lobortis egestas dapibus faucibus metus conubia maecenas cras potenti cum hac arcu rhoncus nullam eros dictum torquent integer cursus bibendum sem sociis molestie tellus purus Quam fusce convallis ipsum malesuada amet velit aliquam urna nullam vehicula fermentum id morbi dis magnis porta sagittis euismod etiam"
                     ,style: TextStyle( fontSize: 15 )),
-                  SizedBox(height: 20,),
+                 
 
                    Container(
                     width: Get.mediaQuery.size.width,
-                    height: 280,
+                    height: 80,
                     decoration: const BoxDecoration(
                       color: Colors.white
                     ),
                     child: Card(
                       elevation: 8,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Fee  " ),
                           Text("7,50 €"),
-                          // ElevatedButton(onPressed: ()=> {},child: Text("Book now", style: TextStyle(color: Colors.black),),)
+                          ElevatedButton(onPressed: ()=> {},child: Text("Book now", style: TextStyle(color: Colors.white),),)
                         ],
                       ),
                     ),
