@@ -353,7 +353,7 @@ class BookingConfirmation extends StatelessWidget {
                             //   width: 80,
                             //   fit: BoxFit.fill,
                             // ),
-                            const Icon(Icons.lightbulb, size: 70, color: Colors.orange),
+                            Icon(Icons.lightbulb, size: 70, color: ColorStyle.orange_C16D00),
                             const SizedBox(
                               width: 10,
                             ),
