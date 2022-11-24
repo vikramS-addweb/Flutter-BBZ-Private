@@ -53,6 +53,8 @@ class API {
       final response = await http.get(url, headers: headers);
       hideLoader();
 
+      debugPrint(response.body);
+
       final Map parsed = json.decode(response.body);
       return parsed as Map<String, dynamic>;
     } on Exception catch (exception) {

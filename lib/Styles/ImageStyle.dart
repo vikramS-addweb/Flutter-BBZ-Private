@@ -29,5 +29,12 @@ class ImageStyle {
   static const String bookingConfirmationBar = baseImage + "bookingConfirmationBar.png";
   static const String lightbulb = baseImage + "lightbulb.png";
 
+  static const String call = baseImage + "call.svg";
+  static const String group = baseImage + "Group.svg";
+  static const String iconMaterialGroup = baseImage + "Icon_material_group.svg";
+  static const String language = baseImage + "language.svg";
+  static const String location = baseImage + "location.png";
+  static const String newspaper = baseImage + "newspaper.svg";
+
 
 }
