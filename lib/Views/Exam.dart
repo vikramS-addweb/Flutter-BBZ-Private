@@ -1,5 +1,6 @@
 
 
+import 'package:bbz/Components/PickerCustom.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
@@ -14,54 +15,60 @@ import '../Components/BottomNavBarCustom.dart';
 import '../Utils/Global.dart';
 import 'BookingConfirmation.dart';
 import 'ExamDetail.dart';
+import '../Components/DropdownButtonCustom.dart';
 
 
 class Exam extends StatelessWidget {
   const Exam({Key? key}) : super(key: key);
 
   textIcon(IconData icon, String text, bool isBorder) {
-    return Container(
-      padding: const EdgeInsets.only(
-        top: 16,
-        bottom: 10,
-        left: 16,
-        right: 16,
-      ),
-      decoration: BoxDecoration(
-          border: isBorder ? Border(
-              bottom: BorderSide(
-                width: 1,
-                color: ColorStyle.grey_DAE1E7,
-              )
-          ) : Border()
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                icon,
-                color: ColorStyle.primaryColor_1570A5,
-                size: 26,
-              ),
-              const SizedBox(width: 6),
-              Expanded(child: Text(
-                text,
-                style: TextStylesCustom.textStyles_14.apply(
-                  color: ColorStyle.grey_A8B0B5,
-                  // fontWeightDelta: 1,
+    return InkWell(
+      child: Container(
+        padding: const EdgeInsets.only(
+          top: 16,
+          bottom: 10,
+          left: 16,
+          right: 16,
+        ),
+        decoration: BoxDecoration(
+            border: isBorder ? Border(
+                bottom: BorderSide(
+                  width: 1,
+                  color: ColorStyle.grey_DAE1E7,
+                )
+            ) : Border()
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  icon,
+                  color: ColorStyle.primaryColor_1570A5,
+                  size: 26,
                 ),
-              ),),
-              Icon(
-                Icons.keyboard_arrow_down,
-                color: ColorStyle.primaryColor_1570A5,
-                size: 34,
-              ),
-            ],
-          ),
-        ],
+                const SizedBox(width: 6),
+                Expanded(child: Text(
+                  text,
+                  style: TextStylesCustom.textStyles_14.apply(
+                    color: ColorStyle.grey_A8B0B5,
+                    // fontWeightDelta: 1,
+                  ),
+                ),),
+                Icon(
+                  Icons.keyboard_arrow_down,
+                  color: ColorStyle.primaryColor_1570A5,
+                  size: 34,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
+      onTap: () {
+        PickerCustom.datePicker('dd MMM yyyy');
+      },
     );
   }
 
@@ -191,9 +198,36 @@ class Exam extends StatelessWidget {
                             ],
                           ),
                         ),
-                        textIcon(Icons.location_on, 'Select Your Center Location', true),
+                        DropdownButtonCustom(
+                          width: MediaQuery.of(context).size.width - 32,
+                          height: 50,
+                          hintText: 'Select Your Center Location',
+                          list: const ['One', 'Two', 'Three'],
+                          padding: const EdgeInsets.only(
+                            left: 16, right: 16
+                          ),
+                          colorIcon: ColorStyle.primaryColor_1570A5,
+                          icon: Icons.location_on_sharp,
+                          textStyle: TextStylesCustom.textStyles_14,
+                        ),
+                        Container(
+                          height: 1,
+                          color: ColorStyle.grey_DAE1E7,
+                        ),
                         textIcon(Icons.calendar_today_sharp, 'Your Exam Date (from - to)', true),
-                        textIcon(Icons.g_translate_rounded, 'Select Your Language Level', false),
+                        DropdownButtonCustom(
+                          width: MediaQuery.of(context).size.width - 32,
+                          height: 50,
+                          hintText: 'Select Your Language Level',
+                          list: const ['One', 'Two', 'Three'],
+                          padding: const EdgeInsets.only(
+                              left: 16, right: 16
+                          ),
+                          colorIcon: ColorStyle.primaryColor_1570A5,
+                          textStyle: TextStylesCustom.textStyles_14,
+                          icon: Icons.g_translate_rounded,
+                        ),
+                        // textIcon(Icons.g_translate_rounded, 'Select Your Language Level', false),
                       ],
                     ),
                   ),
