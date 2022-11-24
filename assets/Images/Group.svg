@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.8" height="17.44" viewBox="0 0 21.8 17.44">
+  <g id="Group_2379" data-name="Group 2379" transform="translate(-27 -144)">
+    <rect id="Rectangle_152" data-name="Rectangle 152" width="6" height="4" transform="translate(29 156)" fill="#1570a5"/>
+    <rect id="Rectangle_153" data-name="Rectangle 153" width="6" height="4" transform="translate(41 156)" fill="#1570a5"/>
+    <rect id="Rectangle_154" data-name="Rectangle 154" width="6" height="4" transform="translate(35 145)" fill="#1570a5"/>
+    <path id="Icon_awesome-network-wired" data-name="Icon awesome-network-wired" d="M21.8,8.993V8.448a.545.545,0,0,0-.545-.545H11.718V6.54H14.17a1.09,1.09,0,0,0,1.09-1.09V1.09A1.09,1.09,0,0,0,14.17,0H7.63A1.09,1.09,0,0,0,6.54,1.09V5.45A1.09,1.09,0,0,0,7.63,6.54h2.453V7.9H.545A.545.545,0,0,0,0,8.448v.545a.545.545,0,0,0,.545.545H4.088V10.9H2.18a1.09,1.09,0,0,0-1.09,1.09v4.36a1.09,1.09,0,0,0,1.09,1.09H7.63a1.09,1.09,0,0,0,1.09-1.09V11.99A1.09,1.09,0,0,0,7.63,10.9H5.723V9.538H16.078V10.9H14.17a1.09,1.09,0,0,0-1.09,1.09v4.36a1.09,1.09,0,0,0,1.09,1.09h5.45a1.09,1.09,0,0,0,1.09-1.09V11.99a1.09,1.09,0,0,0-1.09-1.09H17.713V9.538h3.543A.545.545,0,0,0,21.8,8.993ZM8.72,4.36V2.18h4.36V4.36ZM6.54,15.26H3.27V13.08H6.54Zm11.99,0H15.26V13.08h3.27Z" transform="translate(27 144)" fill="#1570a5"/>
+  </g>
+</svg>

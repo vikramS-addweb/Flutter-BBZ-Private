@@ -7,13 +7,15 @@ import '../../Styles/ImageStyle.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import '../Components/TextFieldCustom.dart';
 import 'Profile.dart';
-
+import '../Controller/ContactUsController.dart';
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
 import '../Components/BottomNavBarCustom.dart';
 
 
 class ContactUs extends StatelessWidget {
+
+  final controller = ContactUsController();
   ContactUs({Key? key}) : super(key: key);
   final arrIcons = [
     Icon(Icons.location_on),
@@ -137,6 +139,7 @@ class ContactUs extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFieldOutline(
+                          controller: controller.userName.value,
                           hintText: 'Your Name',
                           textStyle: TextStylesCustom.textStyles_14,
                           colorText: ColorStyle.grey_DAE1E7,
@@ -149,6 +152,7 @@ class ContactUs extends StatelessWidget {
                           height: 20,
                         ),
                         TextFieldOutline(
+                          controller: controller.userEmail.value,
                           hintText: 'Email address',
                           textStyle: TextStylesCustom.textStyles_14,
                           colorText: ColorStyle.grey_DAE1E7,
@@ -161,6 +165,7 @@ class ContactUs extends StatelessWidget {
                           height: 20,
                         ),
                         TextFieldOutline(
+                          controller: controller.userMessage.value,
                           hintText: 'Message',
                           textStyle: TextStylesCustom.textStyles_14,
                           colorText: ColorStyle.grey_DAE1E7,
@@ -185,6 +190,7 @@ class ContactUs extends StatelessWidget {
                         text: 'SEND MESSAGE',
                         size: const Size(200, 46),
                         onTap: () {
+                          controller.validation();
                           // controller.userLogin();
                           // Get.to(const Login());
                         },

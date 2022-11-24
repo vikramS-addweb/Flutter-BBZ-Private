@@ -7,11 +7,12 @@ import '../Styles/TextStyles.dart';
 import '../Utils/Global.dart';
 import '../Styles/ImageStyle.dart';
 import 'DrawerScreen.dart';
+import '../Controller/LocationController.dart';
 
 class Location extends StatelessWidget {
   Location({Key? key}) : super(key: key);
 
-
+  final controller = Get.put(LocationController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,81 +38,108 @@ class Location extends StatelessWidget {
         ),
         elevation: 2,
       ),
-      body: ListView.separated(
-        padding: EdgeInsets.only(top: 30, bottom: 30, left: 10, right: 10),
-        itemBuilder: ((context, index){
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Frankfurt',
-              style: TextStylesCustom.textStyles_18
-                  .apply(fontWeightDelta: 1),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'GutleutstraBe 34-36',
-              style: TextStylesCustom.textStyles_14
-                  .apply(color: ColorStyle.grey_5E6D77),
-            ),
-            Text(
-              '60329 Frankfurt am Main',
-              style: TextStylesCustom.textStyles_14
-                  .apply(color: ColorStyle.grey_5E6D77),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              '1hr Ansprechpartner:',
-              style: TextStylesCustom.textStyles_14
-                  .apply(color: ColorStyle.grey_5E6D77),
-            ),
-            Text(
-              'Herr Wiersch',
-              style: TextStylesCustom.textStyles_14
-                  .apply(color: ColorStyle.grey_5E6D77),
-            ),
-            Text(
-              'Telefon: 069 348792507',
-              style: TextStylesCustom.textStyles_14
-                  .apply(color: ColorStyle.grey_5E6D77),
-            ),
-            Row(
+      body: GetBuilder(
+        init: controller,
+        initState: (state){
+          controller.initMethods();
+        },
+        builder: (controller) {
+          return Obx(()=> SingleChildScrollView(
+            child: Column(
               children: [
                 Text(
-                  'E-mail: ',
-                  style: TextStylesCustom.textStyles_14
-                      .apply(color: ColorStyle.grey_5E6D77),
+                  controller.testing.value,
+                  style: TextStylesCustom.textStyles_18
+                      .apply(fontWeightDelta: 1),
                 ),
-                Text(
-                  'frankfurt2@bbz.kiry.de',
-                  style: TextStylesCustom.textStyles_14
-                      .apply(color: ColorStyle.green_008428),
-                ),
+                ListView.separated(
+                  padding: const EdgeInsets.only(top: 30, bottom: 30, left: 10, right: 10),
+                  itemBuilder: ((context, index){
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if(controller.locationData[index].name != null)
+                        Text(
+                          controller.locationData[index].name!,
+                          style: TextStylesCustom.textStyles_18
+                              .apply(fontWeightDelta: 1),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'GutleutstraBe 34-36',
+                          style: TextStylesCustom.textStyles_14
+                              .apply(color: ColorStyle.grey_5E6D77),
+                        ),
+                        Text(
+                          '60329 Frankfurt am Main',
+                          style: TextStylesCustom.textStyles_14
+                              .apply(color: ColorStyle.grey_5E6D77),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          '1hr Ansprechpartner:',
+                          style: TextStylesCustom.textStyles_14
+                              .apply(color: ColorStyle.grey_5E6D77),
+                        ),
+                        Text(
+                          'Herr Wiersch',
+                          style: TextStylesCustom.textStyles_14
+                              .apply(color: ColorStyle.grey_5E6D77),
+                        ),
+                        if(controller.locationData[index].phoneNumber != null)
+                        Text(
+                          'Telefon: ${controller.locationData[index].phoneNumber}',
+                          style: TextStylesCustom.textStyles_14
+                              .apply(color: ColorStyle.grey_5E6D77),
+                        ),
+                        if(controller.locationData[index].email != null)
+                        Row(
+                          children: [
+                            Text(
+                              'E-mail: ',
+                              style: TextStylesCustom.textStyles_14
+                                  .apply(color: ColorStyle.grey_5E6D77),
+                            ),
+
+                            Text(
+                              controller.locationData[index].email!,
+                              style: TextStylesCustom.textStyles_14
+                                  .apply(color: ColorStyle.green_008428),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+// -------------------------------------------------------Map Container------------------------------------------->
+                        Container(
+                          width: Get.mediaQuery.size.width,
+                          height: 400,
+                          color: ColorStyle.grey_DAE1E7,
+                          child: const Center(
+                            child: Text('location block'),
+                          ),
+                        )
+                      ],
+                    );
+                  }), separatorBuilder: ((context, index){
+                  return const SizedBox(height: 20,);
+                }),
+                  itemCount: controller.locationData.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                )
               ],
             ),
-            SizedBox(
-              height: 30,
-            ),
-// -------------------------------------------------------Map Container------------------------------------------->
-            Container(
-              width: Get.mediaQuery.size.width,
-              height: 400,
-              color: ColorStyle.grey_DAE1E7,
-              child: Center(
-                child: Text('location block'),
-              ),
-            )
-          ],
-        );
-      }), separatorBuilder: ((context, index){
-        return SizedBox(height: 20,);
-      }), itemCount: 2,
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,),
+          ));
+        },
+      )
+
+
     );
   }
 }

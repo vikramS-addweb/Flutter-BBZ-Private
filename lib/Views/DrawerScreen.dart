@@ -16,18 +16,34 @@ import '../Views/HowWeWork.dart';
 import '../Utils/Constant.dart';
 import '../Utils/Global.dart';
 import 'Location.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DrawerScreen extends StatelessWidget {
   DrawerScreen({Key? key}) : super(key: key);
 
   final arrIconData = [
-    Icons.location_on_outlined,
-    Icons.local_phone_rounded,
-    Icons.supervisor_account_rounded,
-    Icons.newspaper,
-    Icons.work
+    SvgPicture.asset(
+      ImageStyle.iconMaterialGroup,
+    ),
+    SvgPicture.asset(
+      ImageStyle.group,
+    ),
+    SvgPicture.asset(
+      ImageStyle.call,
+    ),
+    Image.asset(
+      ImageStyle.location,
+    ),
+    SvgPicture.asset(
+      ImageStyle.newspaper,
+    ),
+    SvgPicture.asset(
+      ImageStyle.language,
+    ),
+
+
   ];
-  final arrTitle = ['Location', 'Contact', 'About Us', 'News', 'How We Work'];
+  final arrTitle = ['ABOUT US', 'HOW WE WORK', 'Contact', 'Location', 'NEWS', 'LANGUAGE'];
 
   @override
   Widget build(BuildContext context) {
@@ -103,19 +119,19 @@ class DrawerScreen extends StatelessWidget {
 
                           switch (index) {
                             case 0:
-                              Location().navigateToCustom(context);
+                              AboutUs().navigateToCustom(context);
                               break;
                             case 1:
-                              ContactUs().navigateToCustom(context);
+                              HowWeWork().navigateToCustom(context);
                               break;
                             case 2:
-                              const AboutUs().navigateToCustom(context);
+                              ContactUs().navigateToCustom(context);
                               break;
                             case 3:
-                              const News().navigateToCustom(context);
+                              Location().navigateToCustom(context);
                               break;
                             case 4:
-                              HowWeWork().navigateToCustom(context);
+                              News().navigateToCustom(context);
                               break;
                             default:
                               break;
@@ -123,18 +139,20 @@ class DrawerScreen extends StatelessWidget {
                         },
                         child: Row(
                           children: [
-                            Icon(
-                              arrIconData[index],
-                              size: 30,
-                              color: ColorStyle.primaryColor_1570A5,
+                            // Image.asset(arrIconData[index], width: 30, height: 30,),
+                            SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: arrIconData[index],
                             ),
+                            // arrIconData[index],
                             const SizedBox(
                               width: 12,
                             ),
                             Expanded(
                               child: Text(
                                 arrTitle[index],
-                                style: TextStylesCustom.textStyles_20.apply(
+                                style: TextStylesCustom.textStyles_16.apply(
                                   color: ColorStyle.grey_5E6D77,
                                 ),
                               ),
