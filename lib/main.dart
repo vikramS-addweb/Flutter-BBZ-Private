@@ -15,7 +15,7 @@ import './Views/BookingHistory.dart';
 import './Views/NewsDetail.dart';
 import './Views/ExamDetail.dart';
 import './Views/BookingConfirmation.dart';
-import './Views/BookingHistory.dart';
+import './Views/Location.dart';
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 
 void main() {
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
-      // home: BookingHistory(),
+      // home: Location(),
       // home: TabbarScreen(),
       home: SplashScreen(),
     );

@@ -15,6 +15,7 @@ import '../Views/News.dart';
 import '../Views/HowWeWork.dart';
 import '../Utils/Constant.dart';
 import '../Utils/Global.dart';
+import 'Location.dart';
 
 class DrawerScreen extends StatelessWidget {
   DrawerScreen({Key? key}) : super(key: key);
@@ -101,6 +102,9 @@ class DrawerScreen extends StatelessWidget {
                           keyDrawer.currentState!.closeDrawer();
 
                           switch (index) {
+                            case 0:
+                              Location().navigateToCustom(context);
+                              break;
                             case 1:
                               ContactUs().navigateToCustom(context);
                               break;
