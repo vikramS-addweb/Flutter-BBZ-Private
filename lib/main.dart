@@ -17,8 +17,10 @@ import './Views/ExamDetail.dart';
 import './Views/BookingConfirmation.dart';
 import './Views/Location.dart';
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

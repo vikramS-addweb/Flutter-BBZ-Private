@@ -52,7 +52,7 @@ class SignUp extends StatelessWidget {
         children: [
           const BGImage(),
           SingleChildScrollView(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 60),
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 30),
             child: Container(
               margin: const EdgeInsets.only(top: 30),
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
@@ -175,6 +175,7 @@ class SignUp extends StatelessWidget {
                         child: TextRichCustom(
                           textFirst: 'I have read and accept the ',
                           textSecond: 'Terms and Privacy Policy',
+                          fontWeightdelta: 0,
                           onTap: () {
                             // Get.to(const SignUp());
                           },
