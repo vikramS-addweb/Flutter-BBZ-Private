@@ -16,6 +16,7 @@ import '../Utils/Global.dart';
 import '../Utils/Constant.dart';
 import '../Components/BottomNavBarCustom.dart';
 import '../Views/PersistentBottomNavBarCustom.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -31,6 +32,13 @@ class WelcomeScreen extends StatelessWidget {
         ),
         elevation: 2,
       ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     // Add your onPressed code here!
+        //   },
+        //   backgroundColor: ColorStyle.white,
+        //   child: SvgPicture.asset(ImageStyle.language, fit: BoxFit.fill,),
+        // ),
       // bottomNavigationBar: bottomNavBarCustom(),
       body: Container(
           width: double.infinity,
@@ -94,7 +102,8 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 TextRichCustom(
                   textFirst: 'Do not have an account? ',
-                  textSecond: 'SignUp',
+                  textSecond: 'Sign Up',
+                  fontWeightdelta: 0,
                   onTap: () {
                     const SignUp().navigateToCustom(context);
                   },
@@ -106,17 +115,18 @@ class WelcomeScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        ImageStyle.left_Arrow,
-                        width: 20,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
+
                       Text(
                           'Continue as a Guest',
                           style: TextStylesCustom.textStyles_14
                               .apply(color: ColorStyle.primaryColor_1570A5)
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Image.asset(
+                        ImageStyle.right_Arrow,
+                        width: 20,
                       ),
                     ],
                   ),

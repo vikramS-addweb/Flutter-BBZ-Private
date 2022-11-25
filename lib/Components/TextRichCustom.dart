@@ -10,8 +10,9 @@ class TextRichCustom extends StatelessWidget {
   final String? textFirst;
   final String? textSecond;
   final Function()? onTap;
+  final int? fontWeightdelta;
 
-  const TextRichCustom({Key? key, this.textFirst = 'Text First', this.textSecond = 'Text Second', this.onTap}) : super(key: key);
+  const TextRichCustom({Key? key, this.textFirst = 'Text First', this.textSecond = 'Text Second', this.onTap, this.fontWeightdelta=1}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class TextRichCustom extends StatelessWidget {
               text: textSecond,
               style: TextStylesCustom.textStyles_14.apply(
                   color: ColorStyle.primaryColor_1570A5,
-
+                  fontWeightDelta: fontWeightdelta!
               ),
             recognizer:  TapGestureRecognizer()..onTap = onTap,
           ),
