@@ -18,8 +18,8 @@ class ContactUs extends StatelessWidget {
   final controller = ContactUsController();
   ContactUs({Key? key}) : super(key: key);
   final arrIcons = [
-    Icon(Icons.location_on),
-    Icon(Icons.call),
+    const Icon(Icons.location_on),
+    const Icon(Icons.call),
     // Icon(Icons.fax_outlined),
     SizedBox(
       width: 19,
@@ -27,7 +27,7 @@ class ContactUs extends StatelessWidget {
       child: Image.asset(ImageStyle.fax, fit: BoxFit.fill,),
     ),
 
-    Icon(Icons.language),
+    const Icon(Icons.language),
   ];
   final arrTitle = [
     'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen',
@@ -206,12 +206,12 @@ class ContactUs extends StatelessWidget {
             Container(
               width: double.infinity,
               // height: 500,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               color: ColorStyle.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Container(
@@ -222,7 +222,7 @@ class ContactUs extends StatelessWidget {
                   Container(
                     // height: 300,
                     width: Get.mediaQuery.size.width,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     color: ColorStyle.primaryColor_1570A5.withOpacity(0.16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -235,7 +235,7 @@ class ContactUs extends StatelessWidget {
                               width: 80,
                               fit: BoxFit.fill,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Expanded(
@@ -243,7 +243,7 @@ class ContactUs extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Text(
@@ -252,7 +252,7 @@ class ContactUs extends StatelessWidget {
                                       color: ColorStyle.primaryColor_1570A5,
                                       fontWeightDelta: 1),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 4,
                                 ),
                                 Text(
@@ -276,7 +276,7 @@ class ContactUs extends StatelessWidget {
                   Container(
                     // height: 300,
                     width: Get.mediaQuery.size.width,
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     color: ColorStyle.primaryColor_1570A5.withOpacity(0.16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -286,14 +286,14 @@ class ContactUs extends StatelessWidget {
                           style: TextStylesCustom.textStyles_16
                               .apply(fontWeightDelta: 1),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           'Deutschtest für Zuwanderer (DTZ / A2-B1)(PR-220409-HU-DTZ)',
                           style: TextStylesCustom.textStyles_12,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         ListView.separated(
@@ -309,11 +309,17 @@ class ContactUs extends StatelessWidget {
                             return Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top:4.0),
+                                // Padding(
+                                //   padding: const EdgeInsets.only(top:4.0),
+                                //   child: arrIcons[index],
+                                // ),
+                                Container(
+                                  margin: const EdgeInsets.only(
+                                    top: 4
+                                  ),
                                   child: arrIcons[index],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
