@@ -17,7 +17,9 @@ import 'package:flutter/cupertino.dart';
 
 
 class PersistentBottomNavBarCustom extends StatelessWidget {
-  PersistentBottomNavBarCustom({Key? key}) : super(key: key);
+
+  final int initialIndex;
+  PersistentBottomNavBarCustom({Key? key,  this.initialIndex = 1}) : super(key: key);
 
   List<Widget> _buildScreens() {
     return [
@@ -60,15 +62,8 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
-      controller: PersistentTabController(initialIndex: 0),
-      // padding: const NavBarPadding.only(
-      //     top: 10,
-      //     bottom: 10,
-      //     left: 0,
-      //     right: 0
-      // ),
-
-      screens: _buildScreens(),
+      controller: PersistentTabController(initialIndex: initialIndex),
+        screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
       backgroundColor: Colors.white,

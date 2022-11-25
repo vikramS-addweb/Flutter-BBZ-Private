@@ -11,7 +11,7 @@ import '../Views/SignUp.dart';
 import '../Components/AppBarStyle.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/TextRichCustom.dart';
-import 'TabbarScreen.dart';
+import 'Exam.dart';
 import '../Utils/Global.dart';
 import '../Utils/Constant.dart';
 import '../Components/BottomNavBarCustom.dart';
@@ -31,6 +31,15 @@ class WelcomeScreen extends StatelessWidget {
           fontWeightDelta: 2,
         ),
         elevation: 2,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: ColorStyle.primaryColor_1570A5,
+          ),
+          onPressed: () {
+            PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
+          },
+        ),
       ),
         // floatingActionButton: FloatingActionButton(
         //   onPressed: () {
