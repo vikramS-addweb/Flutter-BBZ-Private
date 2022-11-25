@@ -68,11 +68,12 @@ class DrawerScreen extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Icon(
-                          Icons.waving_hand_outlined,
-                          size: 60,
-                          color: ColorStyle.primaryColor_1570A5,
-                        ),
+                        // Icon(
+                        //   Icons.waving_hand_outlined,
+                        //   size: 60,
+                        //   color: ColorStyle.primaryColor_1570A5,
+                        // ),
+                        Image.asset(ImageStyle.wavingHand, width: 45, height: 45,),
                         const SizedBox(
                           width: 12,
                         ),
@@ -81,7 +82,7 @@ class DrawerScreen extends StatelessWidget {
                             'Hello there!',
                             style: TextStylesCustom.textStyles_26.apply(
                               color: ColorStyle.primaryColor_1570A5,
-                              fontWeightDelta: 2,
+                              fontWeightDelta: 1,
                             ),
                           ),
                         ),
@@ -119,7 +120,7 @@ class DrawerScreen extends StatelessWidget {
 
                           switch (index) {
                             case 0:
-                              AboutUs().navigateToCustom(context);
+                              AboutUs(urlCustom: 'https://bbzstage.addwebprojects.com/page/about-us',).navigateToCustom(context);
                               break;
                             case 1:
                               HowWeWork().navigateToCustom(context);
@@ -128,7 +129,7 @@ class DrawerScreen extends StatelessWidget {
                               ContactUs().navigateToCustom(context);
                               break;
                             case 3:
-                              Location().navigateToCustom(context);
+                              Location(urlCustom: 'https://bbzstage.addwebprojects.com/page/locations',).navigateToCustom(context);
                               break;
                             case 4:
                               News().navigateToCustom(context);

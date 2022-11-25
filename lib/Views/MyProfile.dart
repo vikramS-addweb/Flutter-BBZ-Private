@@ -9,6 +9,7 @@ import '../Styles/TextStyles.dart';
 import '../Components/TextFieldCustom.dart';
 import '../Styles/EffectStyle.dart';
 import '../Utils/Global.dart';
+import '../Styles/ImageStyle.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
@@ -46,7 +47,18 @@ class MyProfile extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          const BGImage(),
+          Container(
+            width: Get.mediaQuery.size.width,
+            height: Get.mediaQuery.size.height,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/Images/MyProfile_background.png',
+                ),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
           SingleChildScrollView(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
@@ -69,13 +81,13 @@ class MyProfile extends StatelessWidget {
                         height: 115,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: ColorStyle.grey_A8B0B5)),
+                            border: Border.all(color: ColorStyle.grey_DAE1E7)),
                         child: Row(
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(50),
-                              child: Image.network(
-                                  "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"),
+                              child: Image.asset(
+                                  ImageStyle.myProfilePhoto),
                             ),
                             const SizedBox(
                               width: 20,
@@ -104,7 +116,7 @@ class MyProfile extends StatelessWidget {
                           Expanded(
                               child: TextFieldWithLabel(
                             firstText: 'First Name',
-                            hintText: 'Joe',
+                            hintText: 'John',
                           )),
                           SizedBox(
                             width: 21,

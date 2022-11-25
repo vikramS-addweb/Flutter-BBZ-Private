@@ -11,6 +11,7 @@ import '../Utils/Constant.dart';
 import '../Views/DrawerScreen.dart';
 import '../Views/BookingHistory.dart';
 import '../Components/BottomNavBarCustom.dart';
+import '../Controller/LoginController.dart';
 
 
 class Profile extends StatelessWidget {
@@ -18,6 +19,7 @@ class Profile extends StatelessWidget {
 
   final arrIconData = [Icons.mood, Icons.history, Icons.lock];
   final arrTitle = ['My Profile', 'Booking History', 'Change Password'];
+  final loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -161,26 +163,31 @@ class Profile extends StatelessWidget {
           height: 32,
         ),
         //--------------------------------Logout---------------------->
-        Row(
-          children: [
-            const SizedBox(
-              width: 22,
-            ),
-            Icon(
-              Icons.power_settings_new,
-              color: ColorStyle.red_ED0925,
-              size: 22,
-            ),
-            const SizedBox(
-              width: 18,
-            ),
-            Text(
-              'Log Out',
-              style: TextStylesCustom.textStyles_14.apply(
-                color: ColorStyle.red_ED0925,
+        InkWell(
+          onTap: (){
+            loginController.logout();
+          },
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 22,
               ),
-            )
-          ],
+              Icon(
+                Icons.power_settings_new,
+                color: ColorStyle.red_ED0925,
+                size: 22,
+              ),
+              const SizedBox(
+                width: 18,
+              ),
+              Text(
+                'Log Out',
+                style: TextStylesCustom.textStyles_14.apply(
+                  color: ColorStyle.red_ED0925,
+                ),
+              )
+            ],
+          ),
         ),
       ]),
     );

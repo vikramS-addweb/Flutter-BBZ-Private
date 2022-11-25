@@ -16,6 +16,8 @@ import '../Utils/Global.dart';
 import 'BookingConfirmation.dart';
 import 'ExamDetail.dart';
 import '../Components/DropdownButtonCustom.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 
 class Exam extends StatelessWidget {
@@ -316,10 +318,19 @@ class Exam extends StatelessWidget {
                                     child: Container(
                                       padding: const EdgeInsets.only(
                                           left: 16,
-                                          right: 16
+                                          right: 16,
+                                          top: 33,
+                                          bottom: 33
                                       ),
                                       decoration: BoxDecoration(
-                                          color: ColorStyle.red_ED0925
+                                          image: DecorationImage(
+                                            image: Svg(
+                                              'assets/Images/exam_redBlock.svg',
+                                            ),
+                                            fit: BoxFit.fill,
+
+                                          ),
+                                          // color: ColorStyle.red_ED0925
                                       ),
                                       child: Text(
                                         'A2-B1',
@@ -333,11 +344,19 @@ class Exam extends StatelessWidget {
                                   Positioned(
                                     bottom: 16,
                                     left: 16,
-                                    child: Text(
-                                      '7,50 €',
-                                      style: TextStylesCustom.textStyles_22.apply(
-                                        color: Colors.white,
-                                        fontWeightDelta: 1,
+
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                        color: ColorStyle.primaryColor_1570A5
+                                      ),
+                                      padding: EdgeInsets.symmetric(horizontal: 8),
+                                      child: Text(
+                                        '7,50 €',
+                                        style: TextStylesCustom.textStyles_22.apply(
+                                          color: Colors.white,
+                                          fontWeightDelta: 1,
+                                        ),
                                       ),
                                     ),
                                   ),

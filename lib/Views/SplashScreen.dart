@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../Views/WelcomeScreen.dart';
 import '../Utils/Global.dart';
 import 'PersistentBottomNavBarCustom.dart';
+import '../Controller/LoginController.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,10 +15,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final controller = Get.put(LoginController());
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    Future.delayed(const Duration(milliseconds: 500), () {
+      controller.checkIsLoggedIn();
+    });
 
     gotToWelcomeScree();
   }

@@ -28,6 +28,9 @@ class ImageStyle {
   static const String bookingFormBar = baseImage + "bookingFormBar.png";
   static const String bookingConfirmationBar = baseImage + "bookingConfirmationBar.png";
   static const String lightbulb = baseImage + "lightbulb.png";
+  static const String wavingHand = baseImage + "waving_hand.png";
+  static const String myProfilePhoto = baseImage + "MyProfilePhoto.png";
+  static const String myProfileBackground = baseImage + "MyProfile_background.png";
 
   static const String call = baseImage + "call.svg";
   static const String group = baseImage + "Group.svg";
@@ -35,6 +38,8 @@ class ImageStyle {
   static const String language = baseImage + "language.svg";
   static const String location = baseImage + "location.png";
   static const String newspaper = baseImage + "newspaper.svg";
+  static const String welcomeLanguage = baseImage + "welcome_language.svg";
+  static const String examRedBlock = baseImage + "exam_redBlock.svg";
 
 
 }

@@ -41,13 +41,18 @@ class WelcomeScreen extends StatelessWidget {
           },
         ),
       ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {
-        //     // Add your onPressed code here!
-        //   },
-        //   backgroundColor: ColorStyle.white,
-        //   child: SvgPicture.asset(ImageStyle.language, fit: BoxFit.fill,),
-        // ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(50), bottomLeft: Radius.circular(50))
+        ),
+        label:Text(' Choose language', style: TextStylesCustom.textStyles_14,),
+        icon: SvgPicture.asset(ImageStyle.welcomeLanguage, height: 30,),
+        backgroundColor: ColorStyle.primaryColor_1570A5,
+      ),
       // bottomNavigationBar: bottomNavBarCustom(),
       body: Container(
           width: double.infinity,
@@ -65,19 +70,19 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.g_translate_outlined,
-                      size: 40,
-                      color: ColorStyle.primaryColor_1570A5,
-                    ),
-                    onPressed: () {
-
-                    },
-                  ),
-                ),
+                // Align(
+                //   alignment: Alignment.centerRight,
+                //   child: IconButton(
+                //     icon: Icon(
+                //       Icons.g_translate_outlined,
+                //       size: 40,
+                //       color: ColorStyle.primaryColor_1570A5,
+                //     ),
+                //     onPressed: () {
+                //
+                //     },
+                //   ),
+                // ),
                 Text(
                     'Welcome To BBZ!',
                     style: TextStylesCustom.textStyles_26.apply(

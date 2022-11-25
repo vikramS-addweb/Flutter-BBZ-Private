@@ -1,19 +1,39 @@
+import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Utils/Global.dart';
 import '../Utils/API.dart';
 import '../Views/TabbarScreen.dart';
 import '../Utils/Constant.dart';
+import 'package:get_storage/get_storage.dart';
+import '../Views/WelcomeScreen.dart';
+import '../Views/Profile.dart';
 
 
 
 class LoginController extends GetxController {
   RxBool check3 = false.obs;
+  RxBool loggedIn = false.obs;
 
   Rx<TextEditingController> useremail = TextEditingController().obs;
   Rx<TextEditingController> userPassword = TextEditingController().obs;
 
+  checkIsLoggedIn(){
+    final storage = GetStorage();
+    debugPrint('userId : ${storage.read('userId')}');
+    if( storage.read('userId') != null){
+      isLoggedIn = true;
+    }
+  }
+
+  logout(){
+    isLoggedIn = false;
+    GetStorage().remove('userId');
+    PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
+  }
+
   validation() async {
+    // checkIsLoggedIn();
     Get.focusScope!.unfocus();
 
     if (useremail.value.text.isNotEmpty && userPassword.value.text.isNotEmpty) {
@@ -37,7 +57,13 @@ class LoginController extends GetxController {
     if (response!.isNotEmpty) {
       isLoggedIn = true;
 
-      TabbarScreen().navigateToCustom(Get.context);
+
+      if(check3.value) {
+        GetStorage().write('userId', response['id']);
+        debugPrint('userId : ${GetStorage().read('userId')}');
+      }
+      // TabbarScreen().navigateToCustom(Get.context);
+      PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
     }
   }
 
