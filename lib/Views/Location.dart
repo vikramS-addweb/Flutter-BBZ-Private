@@ -1,7 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../Styles/TextStyles.dart';
 import '../Utils/Global.dart';
+import '../Components/AppBarStyle.dart';
+import '../Styles/ColorStyle.dart';
 
 
 class Location extends StatefulWidget {
@@ -13,30 +16,30 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
+   late WebViewController _webViewController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       // extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 100,
-        title: Text(
-          'Location',
-          style: TextStylesCustom.textStyles_20.apply(color: Colors.white, fontWeightDelta: 3),
-        ),
-        leading: ElevatedButton.icon(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(
-              Icons.chevron_left
+      appBar: AppBarStyle(
+        title: 'Location',
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: ColorStyle.primaryColor_1570A5,
+            size: 30,
           ),
-          label: const Text('Back'),
-          style: ElevatedButton.styleFrom(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
+          onPressed: () {
+            navigateToBack(context);
+          },
         ),
+        styleTitle: TextStylesCustom.textStyles_20.apply(
+          color: ColorStyle.primaryColor_1570A5,
+          fontWeightDelta: 1,
+        ),
+        elevation: 1,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -51,7 +54,7 @@ class _LocationState extends State<Location> {
           gestureNavigationEnabled: true,
           backgroundColor: const Color(0x00000000),
           onWebViewCreated: (WebViewController webViewController) {
-
+              this._webViewController = webViewController;
           },
           onProgress: (int progress) {
             debugPrint('WebView is loading (progress : $progress%)');
@@ -68,10 +71,36 @@ class _LocationState extends State<Location> {
             debugPrint('Page started loading: $url');
             showLoaderGetX();
           },
+          // onPageFinished: (String url) {
+          //   debugPrint('Page finished loading: $url');
+          //   hideLoader();
+          // },
+
           onPageFinished: (String url) {
             debugPrint('Page finished loading: $url');
+
+            // Removes header and footer from page
+            // _webViewController
+            //     .evaluateJavascript("javascript:(function() { " +
+            //     "var head = document.getElementsByTagName('header')[0];" +
+            //     "head.parentNode.removeChild(head);" +
+            //     "var footer = document.getElementsByTagName('footer')[0];" +
+            //     "footer.parentNode.removeChild(footer);" +
+            //     "})()")
+            //     .then((value) => debugPrint('Page finished loading Javascript'))
+            //     .catchError((onError) => debugPrint('$onError'));
+
+            _webViewController.runJavascript(
+                "document.getElementsByClassName('bravo_header')[0].style.display='none'");
+            _webViewController.runJavascript(
+                "document.getElementsByClassName('bravo_footer')[0].style.display='none'");
+            // _webViewController.runJavascript(
+            //     "document.getElementsByTagName('h1')[0].style.display='none'");
+            _webViewController.runJavascript(
+                "document.getElementsByTagName('h1')[0].parentNode.removeChild(document.getElementsByTagName('h1')[0])");
             hideLoader();
           },
+
         ),
       ),
     );
