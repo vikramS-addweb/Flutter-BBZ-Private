@@ -12,24 +12,25 @@ class DateFieldCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        Column(
+        Row(
           children: [
-            Row(
-              children: [
-                Text(firstText!, style: TextStylesCustom.textStyles_14,),
-                Text(secondText!, style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.red_ED0925),),
-              ],
-            ),
-            const SizedBox(height: 14,),
-            TextFieldOutline(hintText: hintText!, radiusBorder: 4, colorBoder: ColorStyle.grey_DAE1E7, padding: const EdgeInsets.only(left: 14),colorHint: ColorStyle.grey_DAE1E7,textStyle: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_5E6D77),)
+            Text(firstText!, style: TextStylesCustom.textStyles_14,),
+            Text(secondText!, style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.red_ED0925),),
           ],
         ),
-        Positioned(
-            top: 55,
-            right: 12,
-            child: SizedBox(width: 20, height: 21 , child: Image.asset(ImageStyle.calendar, color: ColorStyle.primaryColor_1570A5, fit: BoxFit.fill,),))
+        const SizedBox(height: 14,),
+
+        Stack(
+          children: [
+            TextFieldOutline(hintText: hintText!, radiusBorder: 4, colorBoder: ColorStyle.grey_DAE1E7, padding: const EdgeInsets.only(left: 14),colorHint: ColorStyle.grey_DAE1E7,textStyle: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_5E6D77),),
+            Positioned(
+                top: 13,
+                right: 25,
+                child: SizedBox(width: 20, height: 21 , child: Image.asset(ImageStyle.calendar, color: ColorStyle.primaryColor_1570A5, fit: BoxFit.fill,),))
+          ],
+        )
       ],
     );
   }

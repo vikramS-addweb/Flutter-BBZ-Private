@@ -18,7 +18,8 @@ class ExamDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarStyle(
-        title: 'Exam Detail',
+        title: '''       Deutschtest für Zuwanderer
+(DTZ / A2-B1) (PR-220409-HU-DTZ)''',
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -84,8 +85,8 @@ class ExamDetail extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       height: 150,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 13),
+                      padding: const EdgeInsets.only(
+                          left: 10,right: 10, top: 28),
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(ImageStyle.examBG),
@@ -93,10 +94,13 @@ class ExamDetail extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'A2-B1 Level',
-                            style: TextStylesCustom.textStyles_21
-                                .apply(color: Colors.white),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 4.0),
+                            child: Text(
+                              'A2-B1 Level',
+                              style: TextStylesCustom.textStyles_21
+                                  .apply(color: Colors.white),
+                            ),
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,7 +168,8 @@ class ExamDetail extends StatelessWidget {
                                   child: Image.asset(ImageStyle.user,fit: BoxFit.fill,),
                                 ),
                                 const SizedBox(width: 10,),
-                                Text('Seats Available  |', style: TextStylesCustom.textStyles_14.apply(color: Colors.green, fontWeightDelta: 1),),
+                                Text('Seats Available   |', style: TextStylesCustom.textStyles_14.apply(color: Colors.green, fontWeightDelta: 1),),
+                                Text('|', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.orange_C16D00, fontWeightDelta: 2),),
                                 const SizedBox(width: 10,),
                                 Text('400/500', style: TextStylesCustom.textStyles_14.apply(color: Colors.green),)
                               ],
@@ -178,7 +183,8 @@ class ExamDetail extends StatelessWidget {
                                   child: Image.asset(ImageStyle.feather_calendar,fit: BoxFit.fill,),
                                 ),
                                 const SizedBox(width: 10,),
-                                Text('Exam Date', style: TextStylesCustom.textStyles_14.apply( fontWeightDelta: 1),),
+                                Text('Exam Date  ', style: TextStylesCustom.textStyles_14.apply( fontWeightDelta: 1),),
+                                Text(' |', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.grey_DAE1E7, fontWeightDelta: 2),),
                                 const SizedBox(width: 10,),
                                 Text('25/03/2022 (SAT)', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
                               ],
@@ -192,7 +198,8 @@ class ExamDetail extends StatelessWidget {
                                   child: Image.asset(ImageStyle.hourglass,fit: BoxFit.fill,),
                                 ),
                                 const SizedBox(width: 10,),
-                                Text('Reg. Until  |', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00, fontWeightDelta: 1),),
+                                Text('Reg. Until   ', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00, fontWeightDelta: 1),),
+                                Text('|', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.orange_C16D00, fontWeightDelta: 2),),
                                 const SizedBox(width: 10,),
                                 Text('25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00),)
                               ],
@@ -206,7 +213,8 @@ class ExamDetail extends StatelessWidget {
                                   child: Image.asset(ImageStyle.legal_document,fit: BoxFit.fill,),
                                 ),
                                 const SizedBox(width: 10,),
-                                Text('Exam Time  |', style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 1),),
+                                Text('Exam Time   ', style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 1),),
+                                Text(' |', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.grey_DAE1E7, fontWeightDelta: 2),),
                                 const SizedBox(width: 10,),
                                 Text('09:30 AM', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
                               ],

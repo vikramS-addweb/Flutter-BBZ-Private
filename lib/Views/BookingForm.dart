@@ -29,7 +29,9 @@ class BookingForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarStyle(
-        title: 'Booking Form',
+        title: '''Deutschtest für Zuwanderer
+(DTZ / A2-B1) (PR-220409-HU-DTZ)''',
+        centerTitle: true,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -64,10 +66,10 @@ class BookingForm extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Row(
             children: [
-              SizedBox(width: 10,),
-              Text('Total', style: TextStylesCustom.textStyles_12,),
+              // SizedBox(width: 10,),
+              Text('Total', style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.grey_5E6D77),),
               SizedBox(width: 13,),
-              Text('7,50 €', style: TextStylesCustom.textStyles_22.apply(color: ColorStyle.primaryColor_1570A5),),
+              Text('7,50 €', style: TextStylesCustom.textStyles_22.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
               SizedBox(width: 35,),
               Expanded(
                   child: ElevatedButtonCustoms(
@@ -101,8 +103,8 @@ class BookingForm extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       height: 150,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 13),
+                      padding: const EdgeInsets.only(
+                          left: 10, right: 10, top: 28),
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(ImageStyle.examBG),
@@ -110,10 +112,13 @@ class BookingForm extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'A2-B1 Level',
-                            style: TextStylesCustom.textStyles_21
-                                .apply(color: Colors.white),
+                          Padding(
+                            padding: const EdgeInsets.only(left:4.0),
+                            child: Text(
+                              'A2-B1 Level',
+                              style: TextStylesCustom.textStyles_21
+                                  .apply(color: Colors.white),
+                            ),
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,14 +217,14 @@ class BookingForm extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Total:',
-                                style: TextStylesCustom.textStyles_18.apply(color: ColorStyle.primaryColor_1570A5)),
+                                style: TextStylesCustom.textStyles_18.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1)),
                             Expanded(
                               child: SizedBox(
                                 width: Get.mediaQuery.size.width * 0.5,
                                 child: Text('7,50 €',
                                     textAlign: TextAlign.end,
                                     style: TextStylesCustom.textStyles_18
-                                        .apply(color: Colors.black)),
+                                        .apply(color: Colors.black, fontWeightDelta: 1)),
                               ),
                             ),
                           ],
@@ -251,7 +256,7 @@ class BookingForm extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Contact Information', style: TextStylesCustom.textStyles_15.apply(fontWeightDelta: 1),),
+                      Text('Contact Information', style: TextStylesCustom.textStyles_15.apply(fontWeightDelta: 2),),
                       SizedBox(height: 40,),
 
                       DropdownWithLabel(firstText:'Salutation', ontap: (){}, list: ['Please select'], width: Get.mediaQuery.size.width, dropdownValue: 'Please select',),
@@ -295,7 +300,7 @@ class BookingForm extends StatelessWidget {
                         children: [
                           Icon(Icons.add, color: ColorStyle.primaryColor_1570A5, size: 30,),
                           SizedBox(width: 7,),
-                          Expanded(child: Text('Upload ID Proof', style: TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),)),
+                          Text('Upload ID Proof', style: TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 2),),
                           Text(' *', style: TextStylesCustom.textStyles_16.apply(color: Colors.red),),
                           SizedBox(width: 7,),
                           Expanded(child: Text('(size up to 500 kb)', style: TextStylesCustom.textStyles_12.apply(color: ColorStyle.grey_5E6D77),)),
@@ -303,7 +308,7 @@ class BookingForm extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 36,),
-                      Text('Address', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 1),),
+                      Text('Address', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 2),),
                       SizedBox(height: 33,),
 
                       SizedBox(height: 15,),
@@ -322,7 +327,7 @@ class BookingForm extends StatelessWidget {
                       TextFieldWithLabel(firstText: 'Country', hintText: 'Please enter',),
 
                       SizedBox(height: 35,),
-                      Text('Select Payment Method', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 1),),
+                      Text('Select Payment Method', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 2),),
                       SizedBox(height: 23,),
 
                       Container(
@@ -340,7 +345,7 @@ class BookingForm extends StatelessWidget {
                                 children: [
                                   Icon(Icons.circle_outlined, color: ColorStyle.grey_DAE1E7,),
                                   SizedBox(width: 8,),
-                                  Expanded(child: Text('Paypal', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 1),)),
+                                  Expanded(child: Text('Paypal', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 2),)),
                                 ],
                               ),
                             ),
@@ -355,7 +360,7 @@ class BookingForm extends StatelessWidget {
                                 children: [
                                   Icon(Icons.circle_outlined, color: ColorStyle.grey_DAE1E7,),
                                   SizedBox(width: 8,),
-                                  Expanded(child: Text('VISA/Master Card', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 1),)),
+                                  Expanded(child: Text('VISA/Master Card', style: TextStylesCustom.textStyles_16.apply(fontWeightDelta: 2),)),
                                 ],
                               ),
                             )
@@ -366,7 +371,10 @@ class BookingForm extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.check_box_outline_blank, color: ColorStyle.grey_A8B0B5,),
+                          Padding(
+                            padding: const EdgeInsets.only(top:2.0),
+                            child: Icon(Icons.check_box_outline_blank, color: ColorStyle.grey_A8B0B5,),
+                          ),
                           SizedBox(width: 8,),
                           Expanded(
                             child: RichText(
@@ -389,10 +397,13 @@ class BookingForm extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.check_box_outline_blank,color: ColorStyle.grey_A8B0B5,),
+                          Padding(
+                            padding: const EdgeInsets.only(top:2.0),
+                            child: Icon(Icons.check_box_outline_blank,color: ColorStyle.grey_A8B0B5,),
+                          ),
                           SizedBox(width: 8,),
                           Expanded(
-                            child: Text('I agree that the service can be performed before the end of the right of withdrawal and I am aware that the right of withdrawal ends with the specified withdrawal period.', style: TextStylesCustom.textStyles_11.apply(color: Colors.black)),
+                            child: Text('I agree that the service can be performed before the end of the right of withdrawal and I am aware that the right of withdrawal ends with the specified withdrawal period.', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
                           )
                         ],
                       ),
