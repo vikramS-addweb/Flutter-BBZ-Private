@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import './Views/News.dart';
-import './Views/BookingHistory.dart';
+import './Views/BookingForm.dart';
 import './Views/NewsDetail.dart';
 import './Views/ExamDetail.dart';
 import './Views/BookingConfirmation.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
-      // home: Location(),
+      // home: ExamDetail(),
       // home: TabbarScreen(),
       home: SplashScreen(),
     );
