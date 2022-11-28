@@ -18,10 +18,24 @@ import 'ExamDetail.dart';
 import '../Components/DropdownButtonCustom.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import '../Controller/WelcomeController.dart';
 
 
-class Exam extends StatelessWidget {
+class Exam extends StatefulWidget {
   const Exam({Key? key}) : super(key: key);
+  @override
+  State<Exam> createState() => _ExamState();
+}
+
+class _ExamState extends State<Exam> {
+  final welcomeController = Get.put(WelcomeController());
+  @override
+  initState() {
+    Future.delayed(const Duration(milliseconds: 500), () {
+      welcomeController.isBackVisible.value = true;
+
+    });
+  }
 
   textIcon(IconData icon, String text, bool isBorder) {
     return InkWell(
@@ -414,7 +428,7 @@ class Exam extends StatelessWidget {
                                               Expanded(
                                                 child: FittedBox(
                                                   child: Text(
-                                                    'Exam Date: ',
+                                                    'Reg Until: ',
                                                     style: TextStylesCustom.textStyles_14.apply(
                                                         color: Colors.black,
                                                         fontWeightDelta: 2
@@ -428,7 +442,7 @@ class Exam extends StatelessWidget {
                                                   child: Text(
                                                     '25/06/2022',
                                                     style: TextStylesCustom.textStyles_14.apply(
-                                                      color: ColorStyle.brown_C16D00,
+                                                      color: ColorStyle.grey_5E6D77,
                                                     ),
                                                   ),
                                                 ),

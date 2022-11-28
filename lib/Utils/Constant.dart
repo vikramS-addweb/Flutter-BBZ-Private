@@ -16,3 +16,4 @@ String kTOKENSAVED = '';
 
 bool isLoggedIn = false;
 RxInt indexSelectedTab = 0.obs;
+RxBool isBackOnAuth = false.obs;

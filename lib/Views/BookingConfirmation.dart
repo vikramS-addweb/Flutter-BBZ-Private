@@ -5,6 +5,7 @@ import '../Styles/TextStyles.dart';
 import '../Styles/ColorStyle.dart';
 import '../Utils/Global.dart';
 import '../Styles/ImageStyle.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 class BookingConfirmation extends StatelessWidget {
@@ -43,14 +44,17 @@ class BookingConfirmation extends StatelessWidget {
   ];
 
   final arrIcons = [
-    const Icon(Icons.location_on),
-    const Icon(Icons.call),
+    // const Icon(Icons.location_on),
+    SvgPicture.asset(ImageStyle.bookingConfirmation_location),
+    SvgPicture.asset(ImageStyle.call, color: Colors.black,),
+    SvgPicture.asset(ImageStyle.mail),
+    // const Icon(Icons.call),
     // Icon(Icons.fax_outlined),
 
 
-    const Icon(
-  Icons.mail_outline,
-  ),
+  //   const Icon(
+  // Icons.mail_outline,
+  // ),
   ];
   final arrTitle = [
     'Brüder Grimm Bildungscentrum e. V. Langstr.60 63452 Hanau',
@@ -82,8 +86,11 @@ class BookingConfirmation extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Center(
-              child: Image.asset(ImageStyle.bookingConfirmationBar, width: 250, height: 100,),
+            Padding(
+              padding: const EdgeInsets.only(left:20.0),
+              child: Center(
+                child: Image.asset(ImageStyle.bookingConfirmationBar, width: 250, height: 100,),
+              ),
             ),
 // -------------------------------------------------------Booking Successful block-------------------------->
             Stack(
@@ -117,7 +124,10 @@ class BookingConfirmation extends StatelessWidget {
                           Expanded(
                             child: Column(
                               children: [
-                                Text('Booking successful!', style: TextStylesCustom.textStyles_21.apply(color: Colors.white),),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 7.0),
+                                  child: Text('Booking successful!', style: TextStylesCustom.textStyles_21.apply(color: Colors.white),),
+                                ),
                                 Text('Booking details has been sent to:johndoe@gmail.com', style: TextStylesCustom.textStyles_12.apply(color: Colors.white),)
                               ],
                             ),
@@ -129,7 +139,7 @@ class BookingConfirmation extends StatelessWidget {
 
                     Container(
                       width: double.infinity,
-                      height: 200,
+                      height: 145,
                       color: ColorStyle.white_F3F3F3,
                     ),
                   ],
@@ -185,7 +195,11 @@ class BookingConfirmation extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(Icons.location_on),
+                        Padding(
+                          padding: const EdgeInsets.only(top:4.0, right: 5),
+                          child: SvgPicture.asset(ImageStyle.bookingConfirmation_location),
+                        ),
+                        // const Icon(Icons.location_on),
                         Expanded(child: Text(
                           'Brüder Grimm Bildungscentrum e. V.Langstr. 60 63452 Hanau',
                           style: TextStylesCustom.textStyles_14.apply(
@@ -259,7 +273,7 @@ class BookingConfirmation extends StatelessWidget {
                     width: Get.mediaQuery.size.width * 0.4,
                     child: Text('7,50 €',
                         textAlign: TextAlign.end,
-                        style: TextStylesCustom.textStyles_18.apply(fontWeightDelta: 1)),
+                        style: TextStylesCustom.textStyles_18.apply(fontWeightDelta: 2)),
                   ),
                 ],
               ),
@@ -322,16 +336,16 @@ class BookingConfirmation extends StatelessWidget {
                             ),
                             // Icon(Icons.lightbulb, size: 70, color: ColorStyle.orange_C16D00),
                             const SizedBox(
-                              width: 10,
+                              width: 20,
                             ),
                             Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
+                                    // const SizedBox(
+                                    //   height: 10,
+                                    // ),
                                     Text(
                                       'Do you have a query?',
                                       style: TextStylesCustom.textStyles_16.apply(
@@ -393,7 +407,10 @@ class BookingConfirmation extends StatelessWidget {
                             return Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                arrIcons[index],
+                                Padding(
+                                  padding: const EdgeInsets.only(top:4.0),
+                                  child: arrIcons[index],
+                                ),
                                 const SizedBox(
                                   width: 10,
                                 ),
@@ -489,7 +506,7 @@ class ItemsListCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(items[index]['item'],
-                    style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 1)),
+                    style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 2)),
                 const SizedBox(width: 10,),
                 Expanded(
                   child: SizedBox(

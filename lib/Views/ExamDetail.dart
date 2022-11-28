@@ -18,7 +18,7 @@ class ExamDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarStyle(
-        title: '''       Deutschtest für Zuwanderer
+        title: '''Deutschtest für Zuwanderer
 (DTZ / A2-B1) (PR-220409-HU-DTZ)''',
         leading: IconButton(
           icon: Icon(
@@ -55,7 +55,7 @@ class ExamDetail extends StatelessWidget {
           child: Row(
             children: [
               const SizedBox(width: 10,),
-              Text('Fee', style: TextStylesCustom.textStyles_12.apply(color: ColorStyle.grey_5E6D77),),
+              Text('Fee', style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.grey_5E6D77),),
               const SizedBox(width: 13,),
               Text('7,50 €', style: TextStylesCustom.textStyles_22.apply(color: ColorStyle.primaryColor_1570A5),),
               const SizedBox(width: 35,),
@@ -168,8 +168,8 @@ class ExamDetail extends StatelessWidget {
                                   child: Image.asset(ImageStyle.user,fit: BoxFit.fill,),
                                 ),
                                 const SizedBox(width: 10,),
-                                Text('Seats Available   |', style: TextStylesCustom.textStyles_14.apply(color: Colors.green, fontWeightDelta: 1),),
-                                Text('|', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.orange_C16D00, fontWeightDelta: 2),),
+                                Text('Seats Available   ', style: TextStylesCustom.textStyles_14.apply(color: Colors.green, fontWeightDelta: 2),),
+                                Text('|', style: TextStylesCustom.textStyles_14.apply( color: Colors.green, fontWeightDelta: 2),),
                                 const SizedBox(width: 10,),
                                 Text('400/500', style: TextStylesCustom.textStyles_14.apply(color: Colors.green),)
                               ],
@@ -183,7 +183,7 @@ class ExamDetail extends StatelessWidget {
                                   child: Image.asset(ImageStyle.feather_calendar,fit: BoxFit.fill,),
                                 ),
                                 const SizedBox(width: 10,),
-                                Text('Exam Date  ', style: TextStylesCustom.textStyles_14.apply( fontWeightDelta: 1),),
+                                Text('Exam Date  ', style: TextStylesCustom.textStyles_14.apply( fontWeightDelta: 2),),
                                 Text(' |', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.grey_DAE1E7, fontWeightDelta: 2),),
                                 const SizedBox(width: 10,),
                                 Text('25/03/2022 (SAT)', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
@@ -198,7 +198,7 @@ class ExamDetail extends StatelessWidget {
                                   child: Image.asset(ImageStyle.hourglass,fit: BoxFit.fill,),
                                 ),
                                 const SizedBox(width: 10,),
-                                Text('Reg. Until   ', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00, fontWeightDelta: 1),),
+                                Text('Reg. Until   ', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00, fontWeightDelta: 2),),
                                 Text('|', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.orange_C16D00, fontWeightDelta: 2),),
                                 const SizedBox(width: 10,),
                                 Text('25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00),)
@@ -213,7 +213,7 @@ class ExamDetail extends StatelessWidget {
                                   child: Image.asset(ImageStyle.legal_document,fit: BoxFit.fill,),
                                 ),
                                 const SizedBox(width: 10,),
-                                Text('Exam Time   ', style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 1),),
+                                Text('Exam Time   ', style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 2),),
                                 Text(' |', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.grey_DAE1E7, fontWeightDelta: 2),),
                                 const SizedBox(width: 10,),
                                 Text('09:30 AM', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
