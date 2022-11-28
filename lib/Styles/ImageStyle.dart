@@ -40,6 +40,8 @@ class ImageStyle {
   static const String newspaper = baseImage + "newspaper.svg";
   static const String welcomeLanguage = baseImage + "welcome_language.svg";
   static const String examRedBlock = baseImage + "exam_redBlock.svg";
+  static const String bookingConfirmation_location = baseImage + "BookingConformation_location_on.svg";
+  static const String mail = baseImage + "feather-mail.svg";
 
 
 }

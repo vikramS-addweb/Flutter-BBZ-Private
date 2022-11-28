@@ -1,3 +1,4 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
@@ -18,7 +19,8 @@ class ContactUs extends StatelessWidget {
   final controller = ContactUsController();
   ContactUs({Key? key}) : super(key: key);
   final arrIcons = [
-    const Icon(Icons.location_on),
+    // const Icon(Icons.location_on),
+    SvgPicture.asset(ImageStyle.bookingConfirmation_location, height: 20,),
     const Icon(Icons.call),
     // Icon(Icons.fax_outlined),
     SizedBox(
@@ -92,11 +94,11 @@ class ContactUs extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(
-                          height: 20,
+                          height: 37,
                         ),
                         Text(
                           "We'd love to hear from you",
-                          style: TextStylesCustom.textStyles_20.apply(
+                          style: TextStylesCustom.textStyles_22.apply(
                             color: Colors.white,
                             // fontWeightDelta: 1,
                           ),

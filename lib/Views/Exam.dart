@@ -414,7 +414,7 @@ class Exam extends StatelessWidget {
                                               Expanded(
                                                 child: FittedBox(
                                                   child: Text(
-                                                    'Exam Date: ',
+                                                    'Reg Until: ',
                                                     style: TextStylesCustom.textStyles_14.apply(
                                                         color: Colors.black,
                                                         fontWeightDelta: 2
@@ -428,7 +428,7 @@ class Exam extends StatelessWidget {
                                                   child: Text(
                                                     '25/06/2022',
                                                     style: TextStylesCustom.textStyles_14.apply(
-                                                      color: ColorStyle.brown_C16D00,
+                                                      color: ColorStyle.grey_5E6D77,
                                                     ),
                                                   ),
                                                 ),

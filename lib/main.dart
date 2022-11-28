@@ -13,7 +13,7 @@ import 'package:bbz/Styles/ColorStyle.dart';
 import './Views/News.dart';
 import './Views/BookingForm.dart';
 import './Views/NewsDetail.dart';
-import './Views/ExamDetail.dart';
+import './Views/ContactUs.dart';
 import './Views/BookingConfirmation.dart';
 import './Views/Location.dart';
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
-      // home: ExamDetail(),
+      // home: ContactUs(),
       // home: TabbarScreen(),
       home: SplashScreen(),
     );
