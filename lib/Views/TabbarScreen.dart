@@ -28,7 +28,7 @@ class _TabbarScreenState extends State<TabbarScreen> {
 
   final arrBody = [
     const Exam(),
-    isLoggedIn ? Profile() : const WelcomeScreen(),
+    isLoggedIn ? Profile() : WelcomeScreen(),
   ];
 
   onTapItem(int index) {
@@ -44,6 +44,9 @@ class _TabbarScreenState extends State<TabbarScreen> {
         builder: (auth) {
           return GetBuilder(
             init: TabbarScreenController(),
+            initState: (_) {
+
+            },
             builder: (auth) {
               return Obx(() => Scaffold(
                 backgroundColor: Colors.white,

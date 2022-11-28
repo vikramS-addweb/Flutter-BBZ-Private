@@ -179,7 +179,7 @@ class Login extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      PersistentBottomNavBarCustom().navigateToCustom(context, withNavBar: false);
+                      PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
                     },
                   )
                 ],

@@ -60,7 +60,7 @@ BottomNavigationBar bottomNavBarCustom() {
           Get.offAll(const Exam());
           break;
         case 1:
-          Get.offAll(isLoggedIn ? Profile() : const WelcomeScreen(),);
+          Get.offAll(isLoggedIn ? Profile() : WelcomeScreen(),);
           break;
         default:
           break;

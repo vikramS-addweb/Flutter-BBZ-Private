@@ -24,7 +24,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       const Exam(),
-      isLoggedIn ? Profile() : const WelcomeScreen(),
+      isLoggedIn ? Profile() : WelcomeScreen(),
     ];
   }
 

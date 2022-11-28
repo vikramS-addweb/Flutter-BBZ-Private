@@ -43,7 +43,7 @@ class DrawerScreen extends StatelessWidget {
 
 
   ];
-  final arrTitle = ['ABOUT US', 'HOW WE WORK', 'Contact', 'Location', 'NEWS', 'LANGUAGE'];
+  final arrTitle = ['ABOUT US', 'HOW WE WORK', 'CONTACT', 'LOCATION', 'NEWS', 'LANGUAGE'];
 
   @override
   Widget build(BuildContext context) {

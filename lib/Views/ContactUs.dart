@@ -21,7 +21,8 @@ class ContactUs extends StatelessWidget {
   final arrIcons = [
     // const Icon(Icons.location_on),
     SvgPicture.asset(ImageStyle.bookingConfirmation_location, height: 20,),
-    const Icon(Icons.call),
+    SvgPicture.asset(ImageStyle.contactCall, height: 20,),
+    // const Icon(Icons.call),
     // Icon(Icons.fax_outlined),
     SizedBox(
       width: 19,
@@ -319,7 +320,7 @@ class ContactUs extends StatelessWidget {
                                   margin: const EdgeInsets.only(
                                     top: 4
                                   ),
-                                  child: arrIcons[index],
+                                  child: SizedBox(width: 20, height: 20, child: arrIcons[index]),
                                 ),
                                 const SizedBox(
                                   width: 10,
