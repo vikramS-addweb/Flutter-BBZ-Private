@@ -120,7 +120,7 @@ class DrawerScreen extends StatelessWidget {
 
                           switch (index) {
                             case 0:
-                              AboutUs(urlCustom: 'https://bbzstage.addwebprojects.com/page/about-us',).navigateToCustom(context);
+                              AboutUs().navigateToCustom(context);
                               break;
                             case 1:
                               HowWeWork().navigateToCustom(context);

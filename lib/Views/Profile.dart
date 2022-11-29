@@ -12,6 +12,7 @@ import '../Views/DrawerScreen.dart';
 import '../Views/BookingHistory.dart';
 import '../Components/BottomNavBarCustom.dart';
 import '../Controller/LoginController.dart';
+import '../Utils/Global.dart';
 
 
 class Profile extends StatelessWidget {
@@ -107,22 +108,13 @@ class Profile extends StatelessWidget {
               onTap: () {
                 switch (index) {
                   case 0:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MyProfile()));
+                    MyProfile().navigateToCustom(context, withNavBar: false);
                     break;
                   case 1:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BookingHistory()));
+                    const BookingHistory().navigateToCustom(context);
                     break;
                   case 2:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ChangePassword()));
+                    const ChangePassword().navigateToCustom(context, withNavBar: false);
                     break;
                   default:
                     break;

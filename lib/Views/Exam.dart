@@ -327,14 +327,14 @@ class _ExamState extends State<Exam> {
                                     fit: BoxFit.fill,
                                   ),
                                   Positioned(
-                                    top: 20,
+                                    top: -12,
                                     left: 0,
                                     child: Container(
                                       padding: const EdgeInsets.only(
-                                          left: 16,
-                                          right: 16,
-                                          top: 33,
-                                          bottom: 33
+                                          left: 30,
+                                          right: 30,
+                                          top: 40,
+                                          bottom: 40
                                       ),
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
@@ -426,13 +426,9 @@ class _ExamState extends State<Exam> {
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               Expanded(
-                                                child: FittedBox(
-                                                  child: Text(
-                                                    'Reg Until: ',
-                                                    style: TextStylesCustom.textStyles_14.apply(
-                                                        color: Colors.black,
-                                                        fontWeightDelta: 2
-                                                    ),
+                                                child: Text('Reg Until:',style: TextStylesCustom.textStyles_14.apply(
+                                                      color: Colors.black,
+                                                      fontWeightDelta: 2
                                                   ),
                                                 ),
                                               ),
@@ -441,8 +437,9 @@ class _ExamState extends State<Exam> {
                                                   // fit: BoxFit.fitWidth,
                                                   child: Text(
                                                     '25/06/2022',
+
                                                     style: TextStylesCustom.textStyles_14.apply(
-                                                      color: ColorStyle.grey_5E6D77,
+                                                      color: ColorStyle.red_ED0925,
                                                     ),
                                                   ),
                                                 ),
@@ -456,9 +453,13 @@ class _ExamState extends State<Exam> {
                                     Row(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        const Icon(
-                                          Icons.location_on,
-                                          size: 20,
+                                        // const Icon(
+                                        //   Icons.location_on,
+                                        //   size: 20,
+                                        // ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 4.0),
+                                          child: Image(image:Svg(ImageStyle.examLocation), width: 13,),
                                         ),
                                         const SizedBox(width: 14,),
                                         Expanded(
