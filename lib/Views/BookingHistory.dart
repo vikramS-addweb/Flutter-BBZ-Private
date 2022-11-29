@@ -9,6 +9,7 @@ import '../Utils/Global.dart';
 import 'BookingDetails.dart';
 import 'Invoice.dart';
 import 'Ticket.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BookingHistory extends StatelessWidget {
   const BookingHistory({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class BookingHistory extends StatelessWidget {
           color: ColorStyle.primaryColor_1570A5,
           fontWeightDelta: 1,
         ),
-        elevation: 0,
+        elevation: 2,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -127,8 +128,8 @@ class Exams extends StatelessWidget {
                           ),
                           Text(
                             'Full Amount Paid',
-                            style: TextStylesCustom.textStyles_10
-                                .apply(fontWeightDelta: 2),
+                            style: TextStylesCustom.textStyles_12
+                                .apply(fontWeightDelta: 3),
                           ),
                           const SizedBox(
                             width: 10,
@@ -136,7 +137,7 @@ class Exams extends StatelessWidget {
                           Container(
                               height: 6,
                               width: 6,
-                              margin: const EdgeInsets.only(top: 8),
+                              margin: const EdgeInsets.only(top: 5),
                               decoration: BoxDecoration(
                                 color: ColorStyle.grey_5E6D77,
                                 borderRadius: BorderRadius.circular(50),
@@ -146,7 +147,7 @@ class Exams extends StatelessWidget {
                           ),
                           Text(
                             '25/03/2022 | 03:30 PM',
-                            style: TextStylesCustom.textStyles_10
+                            style: TextStylesCustom.textStyles_12
                                 .apply(color: ColorStyle.primaryColor_1570A5),
                           ),
                         ],
@@ -168,7 +169,7 @@ class Exams extends StatelessWidget {
                             Image.asset(
                               ImageStyle.pixabay,
                               height: 90,
-                              width: 100,
+                              width: 120,
                               fit: BoxFit.fill,
                             ),
                             const SizedBox(
@@ -180,12 +181,12 @@ class Exams extends StatelessWidget {
                                 children: [
                                   Text(
                                     'Zusatzleistung: Postversand- Zertifikate / Ergebnisbogen',
-                                    style: TextStylesCustom.textStyles_10
+                                    style: TextStylesCustom.textStyles_12
                                         .apply(fontWeightDelta: 1),
                                   ),
                                   Text(
                                     'A2-B1',
-                                    style: TextStylesCustom.textStyles_12.apply(
+                                    style: TextStylesCustom.textStyles_14.apply(
                                         color: ColorStyle.primaryColor_1570A5,
                                         fontWeightDelta: 2),
                                   ),
@@ -193,12 +194,12 @@ class Exams extends StatelessWidget {
                                     children: [
                                       Text(
                                         'Amount Paid:',
-                                        style: TextStylesCustom.textStyles_12
-                                            .apply(fontWeightDelta: 2),
+                                        style: TextStylesCustom.textStyles_14
+                                            .apply(fontWeightDelta: 3),
                                       ),
                                       Text(
                                         '7,50 €',
-                                        style: TextStylesCustom.textStyles_12
+                                        style: TextStylesCustom.textStyles_14
                                             .apply(
                                                 color: Colors.green,
                                                 fontWeightDelta: 1),
@@ -214,11 +215,7 @@ class Exams extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 8.0, right: 8),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: ColorStyle.primaryColor_1570A5,
-                                size: 20,
-                              ),
+                              child: SvgPicture.asset(ImageStyle.bookingHistory_arrow)
                             )
                           ],
                         ),

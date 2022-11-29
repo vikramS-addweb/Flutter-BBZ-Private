@@ -21,7 +21,7 @@ class ContactUs extends StatelessWidget {
   final arrIcons = [
     // const Icon(Icons.location_on),
     SvgPicture.asset(ImageStyle.bookingConfirmation_location, height: 30,),
-    SvgPicture.asset(ImageStyle.contactCall,),
+    SizedBox(child: SvgPicture.asset(ImageStyle.contactCall, fit: BoxFit.fill, height: 18,)),
     // const Icon(Icons.call),
     // Icon(Icons.fax_outlined),
      Image.asset(ImageStyle.fax,),
@@ -76,7 +76,7 @@ class ContactUs extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 645,
+              height: 563,
               child: Stack(
                 children: [
                   Image.asset(
@@ -113,7 +113,7 @@ class ContactUs extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 470,
+                    height: 390,
                     width: Get.mediaQuery.size.width,
                     margin:
                         const EdgeInsets.only(top: 150, left: 16, right: 16),
@@ -175,7 +175,7 @@ class ContactUs extends StatelessWidget {
                               horizontal: 14, vertical: 13),
                         ),
                         const SizedBox(
-                          height: 60,
+                          height: 30,
                         )
                       ],
                     ),
@@ -256,7 +256,7 @@ class ContactUs extends StatelessWidget {
                                 ),
                                 Text(
                                     'are a subsidiary of BBZ Altenkirchen GmbH & Co. KG',
-                                    style: TextStylesCustom.textStyles_12
+                                    style: TextStylesCustom.textStyles_14
                                         .apply(fontWeightDelta: 1)),
                               ],
                             ))

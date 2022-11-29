@@ -108,14 +108,14 @@ class BookingConfirmation extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(50))
-                            ),
-                            margin: const EdgeInsets.only(top: 30),
+                            // decoration: const BoxDecoration(
+                            //   color: Colors.white,
+                            //   borderRadius: BorderRadius.all(Radius.circular(50))
+                            // ),
+                            margin: const EdgeInsets.only(top: 20),
                             height: 46,
                             width: 46,
-                            child: const Icon(Icons.check_circle_sharp, size: 45, color: Colors.green,),
+                            child: SvgPicture.asset(ImageStyle.bookingSuccessful_green),
                             // child: Image.asset(ImageStyle.checkCircle, fit: BoxFit.fill,)
                           ),
 
@@ -123,12 +123,11 @@ class BookingConfirmation extends StatelessWidget {
 
                           Expanded(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 7.0),
-                                  child: Text('Booking successful!', style: TextStylesCustom.textStyles_21.apply(color: Colors.white),),
-                                ),
-                                Text('Booking details has been sent to:johndoe@gmail.com', style: TextStylesCustom.textStyles_12.apply(color: Colors.white),)
+                                Text('Booking successful!', style: TextStylesCustom.textStyles_22.apply(color: Colors.white),),
+                                SizedBox(height: 6,),
+                                Text('Booking details has been sent to:johndoe@gmail.com', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
                               ],
                             ),
                           )
@@ -327,6 +326,7 @@ class BookingConfirmation extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
                               ImageStyle.lightbulb,
@@ -338,29 +338,28 @@ class BookingConfirmation extends StatelessWidget {
                             const SizedBox(
                               width: 20,
                             ),
-                            Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    // const SizedBox(
-                                    //   height: 10,
-                                    // ),
-                                    Text(
-                                      'Do you have a query?',
-                                      style: TextStylesCustom.textStyles_16.apply(
-                                          color: ColorStyle.primaryColor_1570A5,
-                                          fontWeightDelta: 1),
-                                    ),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                    Text(
-                                        'You can connect with us anytime!',
-                                        style: TextStylesCustom.textStyles_12
-                                            .apply(fontWeightDelta: 1)),
-                                  ],
-                                ))
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                // const SizedBox(
+                                //   height: 10,
+                                // ),
+                                Text(
+                                  'Do you have a query?',
+                                  style: TextStylesCustom.textStyles_16.apply(
+                                      color: ColorStyle.primaryColor_1570A5,
+                                      fontWeightDelta: 1),
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                    'You can connect with us anytime!',
+                                    style: TextStylesCustom.textStyles_14
+                                        .apply(fontWeightDelta: 1)),
+                              ],
+                            )
                           ],
                         ),
                       ],
@@ -407,12 +406,19 @@ class BookingConfirmation extends StatelessWidget {
                             return Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top:4.0),
-                                  child: arrIcons[index],
-                                ),
-                                const SizedBox(
-                                  width: 10,
+                                Container(
+                                  width: 25,
+                                  padding: EdgeInsets.only(top: 4),
+                                  child: Row(
+                                    children: [
+                                      arrIcons[index],
+                                      Expanded(
+                                        child: SizedBox(
+                                          width: 10,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Expanded(
                                     child: Text(
@@ -514,7 +520,7 @@ class ItemsListCard extends StatelessWidget {
                     child: Text(items[index]['value'],
                         // textAlign: TextAlign.end,
                         style: TextStylesCustom.textStyles_14
-                            .apply(color: ColorStyle.grey_A8B0B5)),
+                            .apply(color: ColorStyle.grey_A8B0B5, fontWeightDelta: 2)),
                   ),
                 ),
               ],
