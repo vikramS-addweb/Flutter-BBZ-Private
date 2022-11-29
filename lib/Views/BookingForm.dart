@@ -135,7 +135,7 @@ class BookingForm extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   'Brüder Grimm Bildungscentrum e. V. Langstr. 60 63452 Hanau',
-                                  style: TextStylesCustom.textStyles_12
+                                  style: TextStylesCustom.textStyles_14
                                       .apply(color: Colors.white),
                                 ),
                               )
