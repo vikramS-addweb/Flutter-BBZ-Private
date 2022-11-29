@@ -11,7 +11,7 @@ class BookingDetails extends StatelessWidget {
   List bookingDetails = [
     {'item': 'Booking status', 'value': 'Paid'},
     {'item': 'Booking date', 'value': '25/03/2022'},
-    {'item': 'Payment Method', 'value': 'Stripe Checkout'},
+    {'item': 'Payment method', 'value': 'Stripe Checkout'},
     {'item': 'Exam type', 'value': 'lorem ipsum'},
     {'item': 'Exam date', 'value': '25/05/2022'},
     {'item': 'Exam time', 'value': '03:30 pm'},
@@ -28,7 +28,7 @@ class BookingDetails extends StatelessWidget {
     {'item': 'Birth date', 'value': '22/03/1995'},
     {'item': 'Birth place', 'value': 'Korea'},
     {'item': 'Country of birth', 'value': 'South Korea'},
-    {'item': 'Mother Tongue', 'value': 'India'},
+    {'item': 'Mother tongue', 'value': 'India'},
     {'item': 'Telephone', 'value': '12345678'},
     {'item': 'Mobile', 'value': '+491234566'},
     {
@@ -42,7 +42,8 @@ class BookingDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorStyle.white,
       appBar: AppBarStyle(
-        title: 'Deutschtest für Zuwanderer (DTZ / A2-B1) (PR-220409-HU-DTZ)',
+        title: '''       Deutschtest für Zuwanderer 
+(DTZ / A2-B1) (PR-220409-HU-DTZ)''',
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,

@@ -29,7 +29,7 @@ class BookingForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarStyle(
-        title: '''Deutschtest für Zuwanderer
+        title: '''       Deutschtest für Zuwanderer
 (DTZ / A2-B1) (PR-220409-HU-DTZ)''',
         centerTitle: true,
         leading: IconButton(
@@ -117,7 +117,7 @@ class BookingForm extends StatelessWidget {
                             child: Text(
                               'A2-B1 Level',
                               style: TextStylesCustom.textStyles_21
-                                  .apply(color: Colors.white),
+                                  .apply(color: Colors.white, fontWeightDelta: 1),
                             ),
                           ),
                           Row(
@@ -293,7 +293,7 @@ class BookingForm extends StatelessWidget {
                       TextFieldWithLabel(firstText: 'Telephone', secondText: '', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'Mobile', secondText: '', hintText: 'Please enter',),
+                      TextFieldWithLabel(firstText: 'Mobile', secondText: '*', hintText: 'Please enter',),
 
                       SizedBox(height: 35,),
                       Row(

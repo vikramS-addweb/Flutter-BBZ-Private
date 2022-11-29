@@ -44,6 +44,8 @@ class ImageStyle {
   static const String mail = baseImage + "feather-mail.svg";
   static const String contactCall = baseImage + "ionic-ios-call.svg";
   static const String examLocation = baseImage + "material-location-on.svg";
+  static const String bookingSuccessful_green = baseImage + "bookingSuccessful_green.svg";
+  static const String bookingHistory_arrow = baseImage + "BookingHistory_arrow.svg";
 
 
 }
