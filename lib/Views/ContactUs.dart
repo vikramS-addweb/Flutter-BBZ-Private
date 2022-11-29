@@ -20,15 +20,11 @@ class ContactUs extends StatelessWidget {
   ContactUs({Key? key}) : super(key: key);
   final arrIcons = [
     // const Icon(Icons.location_on),
-    SvgPicture.asset(ImageStyle.bookingConfirmation_location, height: 20,),
-    SvgPicture.asset(ImageStyle.contactCall, height: 20,),
+    SvgPicture.asset(ImageStyle.bookingConfirmation_location, height: 30,),
+    SvgPicture.asset(ImageStyle.contactCall,),
     // const Icon(Icons.call),
     // Icon(Icons.fax_outlined),
-    SizedBox(
-      width: 19,
-      height: 19,
-      child: Image.asset(ImageStyle.fax, fit: BoxFit.fill,),
-    ),
+     Image.asset(ImageStyle.fax,),
 
     const Icon(Icons.language),
   ];
@@ -318,12 +314,16 @@ class ContactUs extends StatelessWidget {
                                 // ),
                                 Container(
                                   margin: const EdgeInsets.only(
-                                    top: 4
+                                    top: 0
                                   ),
-                                  child: SizedBox(width: 20, height: 20, child: arrIcons[index]),
-                                ),
-                                const SizedBox(
-                                  width: 10,
+                                  child: Container( width: 27,height: 20, child: Row(
+                                    children: [
+                                      arrIcons[index],
+                                      Expanded(child: SizedBox(
+                                        width: 10,
+                                      ),)
+                                    ],
+                                  )),
                                 ),
                                 Expanded(
                                     child: Text(
