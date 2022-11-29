@@ -129,7 +129,7 @@ class DrawerScreen extends StatelessWidget {
                               ContactUs().navigateToCustom(context);
                               break;
                             case 3:
-                              Location(urlCustom: 'https://bbzstage.addwebprojects.com/page/locations',).navigateToCustom(context);
+                              Location().navigateToCustom(context);
                               break;
                             case 4:
                               News().navigateToCustom(context);

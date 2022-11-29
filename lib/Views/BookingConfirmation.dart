@@ -26,7 +26,7 @@ class BookingConfirmation extends StatelessWidget {
     {'item': 'Mobile', 'value': '+491234566'},
     {
       'item': 'Address',
-      'value': 'Lorem ipsum, dolor sit amet,adipresq, sdf-123456'
+      'value': 'Lorem ipsum, dolor sit amet, adipresq, sdf-123456'
     },
   ];
 
@@ -45,7 +45,7 @@ class BookingConfirmation extends StatelessWidget {
 
   final arrIcons = [
     // const Icon(Icons.location_on),
-    SvgPicture.asset(ImageStyle.bookingConfirmation_location),
+    SvgPicture.asset(ImageStyle.bookingConfirmation_location, height: 18,),
     SvgPicture.asset(ImageStyle.call, color: Colors.black,),
     SvgPicture.asset(ImageStyle.mail),
     // const Icon(Icons.call),
@@ -127,7 +127,7 @@ class BookingConfirmation extends StatelessWidget {
                               children: [
                                 Text('Booking successful!', style: TextStylesCustom.textStyles_22.apply(color: Colors.white),),
                                 SizedBox(height: 6,),
-                                Text('Booking details has been sent to:johndoe@gmail.com', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
+                                Text('Booking details has been sent to: johndoe@gmail.com', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
                               ],
                             ),
                           )
@@ -471,14 +471,12 @@ class ItemsList extends StatelessWidget {
               children: [
                 Text(items[index]['item'],
                     style: TextStylesCustom.textStyles_14),
-                Expanded(
-                  child: SizedBox(
-                    width: Get.mediaQuery.size.width * 0.5,
-                    child: Text(items[index]['value'],
-                        textAlign: TextAlign.end,
-                        style: TextStylesCustom.textStyles_14
-                            .apply(color: secondColor == null ? ColorStyle.grey_A8B0B5 : secondColor)),
-                  ),
+                SizedBox(
+                  width: Get.mediaQuery.size.width * 0.6,
+                  child: Text(items[index]['value'],
+                      textAlign: TextAlign.end,
+                      style: TextStylesCustom.textStyles_14
+                          .apply(color: secondColor == null ? ColorStyle.grey_A8B0B5 : secondColor)),
                 ),
               ],
             );

@@ -42,7 +42,7 @@ class BookingDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorStyle.white,
       appBar: AppBarStyle(
-        title: '''       Deutschtest für Zuwanderer 
+        title: '''      Deutschtest für Zuwanderer 
 (DTZ / A2-B1) (PR-220409-HU-DTZ)''',
         leading: IconButton(
           icon: Icon(

@@ -18,7 +18,7 @@ class ExamDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarStyle(
-        title: '''Deutschtest für Zuwanderer
+        title: '''       Deutschtest für Zuwanderer
 (DTZ / A2-B1) (PR-220409-HU-DTZ)''',
         leading: IconButton(
           icon: Icon(
@@ -99,7 +99,7 @@ class ExamDetail extends StatelessWidget {
                             child: Text(
                               'A2-B1 Level',
                               style: TextStylesCustom.textStyles_21
-                                  .apply(color: Colors.white),
+                                  .apply(color: Colors.white, fontWeightDelta: 1),
                             ),
                           ),
                           Row(
@@ -117,7 +117,7 @@ class ExamDetail extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   'Brüder Grimm Bildungscentrum e. V. Langstr. 60 63452 Hanau',
-                                  style: TextStylesCustom.textStyles_12
+                                  style: TextStylesCustom.textStyles_14
                                       .apply(color: Colors.white),
                                 ),
                               )

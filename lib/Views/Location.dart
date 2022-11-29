@@ -9,7 +9,7 @@ import '../Styles/ColorStyle.dart';
 
 class Location extends StatefulWidget {
   final String urlCustom;
-  const Location({Key? key, this.urlCustom = 'https://flutter.dev'}) : super(key: key);
+  const Location({Key? key, this.urlCustom = 'https://www.sprachtestcenter.de/page/locations'}) : super(key: key);
 
   @override
   State<Location> createState() => _LocationState();

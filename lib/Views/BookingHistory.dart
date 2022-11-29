@@ -137,7 +137,7 @@ class Exams extends StatelessWidget {
                           Container(
                               height: 6,
                               width: 6,
-                              margin: const EdgeInsets.only(top: 5),
+                              margin: const EdgeInsets.only(top: 6),
                               decoration: BoxDecoration(
                                 color: ColorStyle.grey_5E6D77,
                                 borderRadius: BorderRadius.circular(50),
