@@ -42,7 +42,7 @@ class _ExamState extends State<Exam> {
     });
   }
 
-  textIcon(IconData icon, String text, bool isBorder) {
+  textIcon(ImageProvider IconImage, String text, bool isBorder) {
     return InkWell(
       child: Container(
         padding: const EdgeInsets.only(
@@ -64,11 +64,21 @@ class _ExamState extends State<Exam> {
           children: [
             Row(
               children: [
-                Icon(
-                  icon,
-                  color: ColorStyle.primaryColor_1570A5,
-                  size: 26,
+                SizedBox(
+                  width: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image(image: IconImage, width: 15,),
+                    ],
+                  ),
                 ),
+
+                // Icon(
+                //   icon,
+                //   color: ColorStyle.primaryColor_1570A5,
+                //   size: 26,
+                // ),
                 const SizedBox(width: 6),
                 Expanded(child: Text(
                   text,
@@ -234,14 +244,14 @@ class _ExamState extends State<Exam> {
                                 left: 16, right: 16
                             ),
                             colorIcon: ColorStyle.primaryColor_1570A5,
-                            icon: Icons.location_on_sharp,
+                            icon: Svg(ImageStyle.ticket_location, ),
                             textStyle: TextStylesCustom.textStyles_14,
                           ),
                           Container(
                             height: 1,
                             color: ColorStyle.grey_DAE1E7,
                           ),
-                          textIcon(Icons.calendar_today_sharp, 'Your Exam Date (from - to)', true),
+                          textIcon(AssetImage(ImageStyle.calendar), 'Your Exam Date (from - to)', true),
                           DropdownButtonCustom(
                             width: MediaQuery.of(context).size.width - 32,
                             height: 50,
@@ -252,7 +262,7 @@ class _ExamState extends State<Exam> {
                             ),
                             colorIcon: ColorStyle.primaryColor_1570A5,
                             textStyle: TextStylesCustom.textStyles_14,
-                            icon: Icons.g_translate_rounded,
+                            icon: Svg(ImageStyle.language),
                           ),
                           // textIcon(Icons.g_translate_rounded, 'Select Your Language Level', false),
                         ],

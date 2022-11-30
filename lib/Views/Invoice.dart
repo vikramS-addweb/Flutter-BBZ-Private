@@ -90,7 +90,7 @@ class Invoice extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 5),
                 alignment: Alignment.centerLeft,
-                child: Icon(Icons.print,size: 45,),
+                child: Icon(Icons.print,size: 55,),
               ),
               Padding(
                 padding:
