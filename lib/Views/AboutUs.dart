@@ -102,8 +102,9 @@ import '../Components/BottomNavBarCustom.dart';
 
 
 class AboutUs extends StatelessWidget {
-  const AboutUs({Key? key}) : super(key: key);
+  AboutUs({Key? key}) : super(key: key);
 
+  GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 
 
-GlobalKey<ScaffoldState> keyDrawer = GlobalKey(); // Create a key
+// GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
 String kBaseUrl = 'https://cuddlingbirds-backend.vercel.app/';
 // String kBaseUrl = 'http://localhost:3000/';

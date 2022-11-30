@@ -18,6 +18,8 @@ import '../Utils/Global.dart';
 class Profile extends StatelessWidget {
   Profile({Key? key}) : super(key: key);
 
+  GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
+
   final arrIconData = [Icons.mood, Icons.history, Icons.lock];
   final arrTitle = ['My Profile', 'Booking History', 'Change Password'];
   final loginController = Get.put(LoginController());
