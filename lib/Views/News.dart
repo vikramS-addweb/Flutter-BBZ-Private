@@ -47,13 +47,15 @@ class News extends StatelessWidget {
       ),
       body: GetBuilder(
         initState: (state) {
-          controller.initMethods();
+          // controller.initMethods();
         },
         init: controller,
-        builder: ((controller) => Obx(() => ListView.separated(
+        builder: ((controller) =>
+            // Obx(() =>
+                ListView.separated(
               padding: const EdgeInsets.only(
                   left: 16, right: 16, top: 32, bottom: 32),
-              itemCount: controller.newsData.length,
+              itemCount: 5,
               shrinkWrap: true,
               separatorBuilder: (context, index) {
                 return const SizedBox(
@@ -105,7 +107,9 @@ class News extends StatelessWidget {
                   ),
                 );
               },
-            ))),
+            )
+            // )
+        ),
       ),
 
     );
