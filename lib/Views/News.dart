@@ -12,9 +12,11 @@ import '../Utils/Global.dart';
 import '../Components/BottomNavBarCustom.dart';
 import '../Controller/NewsController.dart';
 
+
 class News extends StatelessWidget {
   News({Key? key}) : super(key: key);
   final controller = Get.put(NewsController());
+
 
   GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
@@ -109,6 +111,7 @@ class News extends StatelessWidget {
             // )
         ),
       ),
+
     );
   }
 }
