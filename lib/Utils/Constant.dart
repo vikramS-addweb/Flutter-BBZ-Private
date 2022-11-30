@@ -16,5 +16,5 @@ String kTOKENSAVED = '113|Quu6fxgJbJzAnlxLNLieY2nKDTt2Laqyczy0v8qN';
 const networkImage = 'https://bbzstage.addwebprojects.com/uploads/';
 
 bool isLoggedIn = false;
-RxInt indexSelectedTab = 0.obs;
+RxInt indexSelectedTab = 1.obs;
 RxBool isBackOnAuth = false.obs;
