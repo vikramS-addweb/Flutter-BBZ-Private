@@ -57,7 +57,6 @@ class LoginController extends GetxController {
     if (response!.isNotEmpty) {
       isLoggedIn = true;
 
-
       if(check3.value) {
         GetStorage().write('userId', response['id']);
         debugPrint('userId : ${GetStorage().read('userId')}');

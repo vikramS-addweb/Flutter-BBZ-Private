@@ -15,9 +15,12 @@ import '../Components/BottomNavBarCustom.dart';
 
 
 class ContactUs extends StatelessWidget {
+  ContactUs({Key? key}) : super(key: key);
+
+  GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
   final controller = ContactUsController();
-  ContactUs({Key? key}) : super(key: key);
+
   final arrIcons = [
     // const Icon(Icons.location_on),
     SvgPicture.asset(ImageStyle.bookingConfirmation_location, height: 30,),

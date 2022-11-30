@@ -31,9 +31,12 @@ class Exam extends StatefulWidget {
 }
 
 class _ExamState extends State<Exam> {
+  GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
+
   final welcomeController = Get.put(WelcomeController());
   final examDetailController = Get.put(ExamDetailController());
   final controller = Get.put(ExamController());
+
   @override
   initState() {
     Future.delayed(const Duration(milliseconds: 500), () {

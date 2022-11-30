@@ -15,6 +15,8 @@ import '../Components/BottomNavBarCustom.dart';
 class HowWeWork extends StatelessWidget {
    HowWeWork({Key? key}) : super(key: key);
 
+   GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
+
   final demoData = [
     {
       'assetImageWidget': ImageStyle.registration,

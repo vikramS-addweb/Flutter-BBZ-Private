@@ -13,7 +13,9 @@ import '../Components/BottomNavBarCustom.dart';
 
 
 class News extends StatelessWidget {
-  const News({Key? key}) : super(key: key);
+  News({Key? key}) : super(key: key);
+
+  GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
   @override
   Widget build(BuildContext context) {

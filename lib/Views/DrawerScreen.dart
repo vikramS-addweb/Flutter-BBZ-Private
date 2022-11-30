@@ -40,9 +40,8 @@ class DrawerScreen extends StatelessWidget {
     SvgPicture.asset(
       ImageStyle.language,
     ),
-
-
   ];
+
   final arrTitle = ['ABOUT US', 'HOW WE WORK', 'CONTACT', 'LOCATION', 'NEWS', 'LANGUAGE'];
 
   @override
@@ -116,7 +115,7 @@ class DrawerScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          keyDrawer.currentState!.closeDrawer();
+                          Scaffold.of(context).closeDrawer();
 
                           switch (index) {
                             case 0:
@@ -187,7 +186,7 @@ class DrawerScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
-              keyDrawer.currentState!.closeDrawer();
+              Scaffold.of(context).closeDrawer();
             },
           )
         ],
