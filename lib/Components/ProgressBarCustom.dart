@@ -52,7 +52,8 @@ class ProgressBarCircularCustom extends StatelessWidget {
       progressColor: ColorStyle.brown_C16D00,
       percent: (progress / total > 1.0) ? 1.0 : progress / total,
       center: Text(
-          '${(progress / total > 1.0) ? 100 : (progress * 100  / total).round()}%',
+          // '${(progress / total > 1.0) ? 100 : (progress * 100  / total).round()}%',
+        '240',
           style: TextStylesCustom.textStyles_13.apply(
               fontWeightDelta: 2,
               color: ColorStyle.brown_C16D00
