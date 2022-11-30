@@ -25,7 +25,7 @@ class AppBarStyle extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle = true,
   }) : super(key: key);
 
-  double heightAppBar = 54;
+  double heightAppBar = 65;
 
   @override
   Size get preferredSize => new Size.fromHeight(heightAppBar);

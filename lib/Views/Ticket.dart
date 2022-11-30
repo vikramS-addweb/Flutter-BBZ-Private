@@ -103,7 +103,14 @@ JohnDoe@gmail.com
                     //   width: 70 ,
                     //   fit: BoxFit.fill,
                     // ),
-                    SizedBox( height: 50,child: SvgPicture.asset(ticketDetails[index]['icon'],)),
+                    SizedBox( width: 60,child: Row(
+                      children: [
+                        SvgPicture.asset(ticketDetails[index]['icon'], width: 45,),
+                        Expanded(
+                            child: SizedBox(width: 0,)
+                        )
+                      ],
+                    )),
                     const SizedBox(width: 16,),
                     Expanded(
                       child: Column( crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,8 +136,9 @@ JohnDoe@gmail.com
               
               // ---------------------------------------------QR Code---------------------------------------->
               Center(
-                child: Image.asset(ImageStyle.ticketBarcode, width: 200, height: 200,),
-              )
+                child: Image.asset(ImageStyle.ticketBarcode, width: 230, height: 230,),
+              ),
+              SizedBox(height: 50,)
             ],
           ),
         ),

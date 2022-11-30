@@ -1,4 +1,5 @@
 import 'package:bbz/Styles/ColorStyle.dart';
+import 'package:bbz/Styles/ImageStyle.dart';
 import 'package:flutter/material.dart';
 import '../Styles/TextStyles.dart';
 
@@ -10,7 +11,7 @@ class DropdownButtonCustom extends StatefulWidget {
   final List? list;
   final EdgeInsets? padding;
   final Color? colorIcon;
-  final IconData? icon;
+  final ImageProvider? icon;
   final TextStyle? textStyle;
   final String? hintText;
 
@@ -24,7 +25,7 @@ class DropdownButtonCustom extends StatefulWidget {
         this.colorIcon = Colors.red,
         this.textStyle = const TextStyle(color: Colors.red),
         this.hintText = 'Type your hint text here',
-        this.icon = Icons.add
+        required this.icon
       }) : super(key: key);
 
   @override
@@ -42,12 +43,18 @@ class _DropdownButtonCustomState extends State<DropdownButtonCustom> {
       padding: widget.padding,
       child: Row(
         children: [
-          Icon(
-            widget.icon,
-            color: ColorStyle.primaryColor_1570A5,
-            size: 26,
-          ),
-          const SizedBox(width: 6),
+          // Icon(
+          //   widget.icon,
+          //   color: ColorStyle.primaryColor_1570A5,
+          //   size: 26,
+          // ),
+          SizedBox(height:20, width: 26, child: Row(
+            children: [
+              Image(image: widget.icon!,),
+              Expanded(child: SizedBox(width: 6)),
+            ],
+          )),
+
           Expanded(
               child: DropdownButton<String>(
                 icon: Icon(

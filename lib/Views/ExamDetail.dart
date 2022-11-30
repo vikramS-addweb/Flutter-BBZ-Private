@@ -125,9 +125,9 @@ class ExamDetail extends StatelessWidget {
 
                                   Expanded(
                                     child: controller.examDetailData['location'] != null ? Text(
-                                      '${controller.examDetailData['location']['name'] ?? '' }, '
-                                          '${controller.examDetailData['location']['street_name'] ?? '' }, '
-                                          '${controller.examDetailData['location']['city'] ?? '' }, '
+                                      '${controller.examDetailData['location']['name'] ?? '' } '
+                                          '${controller.examDetailData['location']['street_name'] ?? '' } '
+                                          '${controller.examDetailData['location']['city'] ?? '' } '
                                           '${controller.examDetailData['location']['zip_code'] ?? '' }',
                                       style: TextStylesCustom.textStyles_14
                                           .apply(color: Colors.white),
