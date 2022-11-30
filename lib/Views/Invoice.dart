@@ -88,9 +88,9 @@ class Invoice extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.only(right: 50),
-                alignment: Alignment.centerRight,
-                child: Icon(Icons.print,size: 50,),
+                padding: EdgeInsets.only(left: 5),
+                alignment: Alignment.centerLeft,
+                child: Icon(Icons.print,size: 45,),
               ),
               Padding(
                 padding:

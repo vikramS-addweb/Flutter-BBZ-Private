@@ -21,6 +21,7 @@ import '../Components/DropdownButtonCustom.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import '../Controller/WelcomeController.dart';
 import '../Controller/ExamController.dart';
+import '../Controller/ExamDetailController.dart';
 
 
 class Exam extends StatefulWidget {
@@ -31,6 +32,7 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
   final welcomeController = Get.put(WelcomeController());
+  final examDetailController = Get.put(ExamDetailController());
   final controller = Get.put(ExamController());
   @override
   initState() {
@@ -317,7 +319,9 @@ class _ExamState extends State<Exam> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: (){
-                            ExamDetail().navigateToCustom(context, withNavBar: false);
+                            // examDetailController.fetchExamDetails(controller.upcomingExamData[index]['id']);
+                            if(controller.upcomingExamData[index]['id'] != null)
+                            ExamDetail(id: controller.upcomingExamData[index]['id']).navigateToCustom(context, withNavBar: false);
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -525,6 +529,12 @@ class _ExamState extends State<Exam> {
                                               color: Colors.black,
                                             ),
                                           ),
+                                          (controller.upcomingExamData[index]['total_seat'] != null && controller.upcomingExamData[index]['available_seats'] != null) ?
+                                          ProgressBarCircularCustom(
+                                            text: '250',
+                                            progress: controller.upcomingExamData[index]['available_seats'] + .0,
+                                            total: controller.upcomingExamData[index]['total_seat'] + .0,
+                                          ) :
                                           ProgressBarCircularCustom(
                                             text: '250',
                                             progress: 250,

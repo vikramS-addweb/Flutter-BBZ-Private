@@ -46,6 +46,11 @@ class ImageStyle {
   static const String examLocation = baseImage + "material-location-on.svg";
   static const String bookingSuccessful_green = baseImage + "bookingSuccessful_green.svg";
   static const String bookingHistory_arrow = baseImage + "BookingHistory_arrow.svg";
+  static const String ticket_calendar = baseImage + "Ticket_calendar.svg";
+  static const String ticket_location = baseImage + "Ticket_location.svg";
+  static const String ticket_100_percent = baseImage + "Ticket_100_percent.svg";
+  static const String ticket_person = baseImage + "Ticket_person.svg";
+  static const String ticket_time = baseImage + "Ticket_time.svg";
 
 
 }

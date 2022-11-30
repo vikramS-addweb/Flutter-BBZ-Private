@@ -5,26 +5,42 @@ import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import '../Utils/Global.dart';
 import '../Styles/ImageStyle.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Ticket extends StatelessWidget {
   Ticket({Key? key}) : super(key: key);
 
-  List profileDetail = [
-    {'item': 'Full Name:', 'value': 'John Doe'},
-    {'item': 'Email:', 'value': 'JohnDoe@gmail.com'},
-    {'item': 'Phone:', 'value': '9846453748'},
-    {'item': 'Address:', 'value': 'Bdfgadsf, 453256, DE'},
+  List ticketDetails = [
+    {
+      'icon': ImageStyle.ticket_location,
+      'title': 'Location',
+      'secondText':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.',
+    },
+    {
+      'icon': ImageStyle.ticket_calendar,
+      'title': 'Date',
+      'secondText': '11.11.2020',
+    },
+    {
+      'icon': ImageStyle.ticket_100_percent,
+      'title': 'Price',
+      'secondText': '100 €',
+    },
+    {
+      'icon': ImageStyle.ticket_time,
+      'title': 'Exam Time',
+      'secondText': '15:49:00',
+    },
+    {
+      'icon': ImageStyle.ticket_person,
+      'title': 'Student',
+      'secondText': '''Heuebd Jxjejfe
+JohnDoe@gmail.com
+9876545678''',
+    },
   ];
 
-  List bookingDetails = [
-    {'item': 'Booking Number', 'value': '377'},
-    {'item': 'Booking Status', 'value': 'Paid'},
-    {'item': 'Payment Method', 'value': 'Stripe'},
-    {'item': 'Exam Name', 'value': 'Test2'},
-    {'item': 'Exam Type', 'value': 'B1'},
-    {'item': 'Exam Time And Date', 'value': '11.11.2022(15:49:00)'},
-    {'item': 'Fee', 'value': ''}
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,183 +66,65 @@ class Ticket extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
+          color: ColorStyle.white_FAFAFA,
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Test2',
-                style: TextStylesCustom.textStyles_16
-                    .apply(color: ColorStyle.primaryColor_1570A5),
+                'Test 2',
+                style: TextStylesCustom.textStyles_19
+                    .apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 2),
               ),
               SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.location_on,
-                    color: ColorStyle.primaryColor_1570A5,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Bxhejx, DE',
-                    style: TextStylesCustom.textStyles_14,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              // ----------------------------------------------Date and Price-------------------------------->
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.calendar_today,
-                            color: ColorStyle.primaryColor_1570A5,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          SizedBox(
-                              width: 120,
-                              child: Text(
-                                'Date',
-                                style: TextStylesCustom.textStyles_14,
-                              ))
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        '11.11.2020',
-                        style: TextStylesCustom.textStyles_14
-                            .apply(fontWeightDelta: 1),
-                      )
-                    ],
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.money,
-                              color: ColorStyle.primaryColor_1570A5,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Price',
-                              style: TextStylesCustom.textStyles_14,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          '100 €',
-                          style: TextStylesCustom.textStyles_14
-                              .apply(fontWeightDelta: 1),
-                        )
-                      ],
+              ListView.separated(
+                physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: ((context, index) => Container(
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                decoration:   BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: ColorStyle.grey_DAE1E7.withOpacity(0.5),
+                      blurRadius: 10.0,
                     ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              // -------------------------------------------Exam time and Student------------------------->
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+                  ],
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(width: 10,),
+                    // Image.asset(
+                    //   ImageStyle.calendar,
+                    //   height: 70,
+                    //   width: 70 ,
+                    //   fit: BoxFit.fill,
+                    // ),
+                    SizedBox( height: 50,child: SvgPicture.asset(ticketDetails[index]['icon'],)),
+                    const SizedBox(width: 16,),
+                    Expanded(
+                      child: Column( crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.watch_later_outlined,
-                            color: ColorStyle.primaryColor_1570A5,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          SizedBox(
-                              width: 120,
-                              child: Text(
-                                'Exam Time',
-                                style: TextStylesCustom.textStyles_14,
-                              ))
+                          Text(ticketDetails[index]['title'], style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
+                          SizedBox(height: 10,),
+                          Text(ticketDetails[index]['secondText'], style: TextStylesCustom.textStyles_14,)
+
                         ],
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        '15:49:00',
-                        style: TextStylesCustom.textStyles_14
-                            .apply(fontWeightDelta: 1),
-                      )
-                    ],
-                  ),
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            color: ColorStyle.primaryColor_1570A5,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Student',
-                            style: TextStylesCustom.textStyles_14,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Heuebd Jxjejfe',
-                        style: TextStylesCustom.textStyles_14
-                            .apply(color: ColorStyle.grey_5E6D77),
-                      ),
-                      Text(
-                        'JohnDoe@gmail.com',
-                        style: TextStylesCustom.textStyles_14
-                            .apply(color: ColorStyle.grey_5E6D77),
-                      ),
-                      Text(
-                        '9876545678',
-                        style: TextStylesCustom.textStyles_14
-                            .apply(color: ColorStyle.grey_5E6D77),
-                      )
-                    ],
-                  ))
-                ],
+                    ),
+                  ],
+                ),
+              )),
+                  separatorBuilder: ((context, index)=> SizedBox(height: 5,)),
+                  itemCount: ticketDetails.length,
+                  shrinkWrap: true,
               ),
+
               SizedBox(
-                height: 50,
+                height: 40,
               ),
               
               // ---------------------------------------------QR Code---------------------------------------->
