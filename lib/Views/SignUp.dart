@@ -1,6 +1,7 @@
 import 'package:bbz/Components/BGImage.dart';
 import 'package:bbz/Controller/SignUpController.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
+import 'package:bbz/Utils/Constant.dart';
 import 'package:flutter/material.dart';
 import '../../Components/AppBarStyle.dart';
 import '../../Components/TextFieldBase.dart';
@@ -232,6 +233,7 @@ class SignUp extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
+                      indexSelectedTab.value = 0;
                       PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
                     },
                   )

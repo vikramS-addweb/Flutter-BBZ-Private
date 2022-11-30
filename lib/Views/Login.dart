@@ -1,6 +1,7 @@
 
 import 'package:bbz/Components/BGImage.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
+import 'package:bbz/Utils/Constant.dart';
 import 'package:flutter/material.dart';
 import '../Components/AppBarStyle.dart';
 import '../Components/ElevatedButtonCustom.dart';
@@ -166,9 +167,11 @@ class Login extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Continue as a Guest',
+                        Text(
+                            'Continue as a Guest',
                             style: TextStylesCustom.textStyles_15
-                                .apply(color: ColorStyle.primaryColor_1570A5)),
+                                .apply(color: ColorStyle.primaryColor_1570A5)
+                        ),
                         const SizedBox(
                           width: 10,
                         ),
@@ -179,6 +182,7 @@ class Login extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
+                      indexSelectedTab.value = 0;
                       PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
                     },
                   )

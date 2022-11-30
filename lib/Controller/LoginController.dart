@@ -21,8 +21,12 @@ class LoginController extends GetxController {
   checkIsLoggedIn(){
     final storage = GetStorage();
     debugPrint('userId : ${storage.read('userId')}');
+
     if( storage.read('userId') != null){
       isLoggedIn = true;
+      return true;
+    } else {
+      return false;
     }
   }
 

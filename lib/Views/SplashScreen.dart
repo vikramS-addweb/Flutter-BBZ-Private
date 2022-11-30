@@ -6,6 +6,8 @@ import '../Views/WelcomeScreen.dart';
 import '../Utils/Global.dart';
 import 'PersistentBottomNavBarCustom.dart';
 import '../Controller/LoginController.dart';
+import 'package:bbz/Utils/Constant.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,20 +18,29 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final controller = Get.put(LoginController());
+
   @override
   void initState() {
     // TODO: implement initState
+
     super.initState();
     Future.delayed(const Duration(milliseconds: 500), () {
-      controller.checkIsLoggedIn();
+      final isLoggedIn = controller.checkIsLoggedIn();
+
+      if (isLoggedIn) {
+        indexSelectedTab.value = 0;
+      } else {
+        indexSelectedTab.value = 1;
+      }
+
+      gotToWelcomeScree(indexSelectedTab.value);
     });
 
-    gotToWelcomeScree();
   }
 
-  gotToWelcomeScree() {
+  gotToWelcomeScree(int index) {
     Future.delayed(const Duration(seconds: 3), () {
-      PersistentBottomNavBarCustom().navigateToCustom(context);
+      PersistentBottomNavBarCustom(initialIndex: index,).navigateToCustom(context);
     });
   }
 

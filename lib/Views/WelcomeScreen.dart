@@ -52,6 +52,7 @@ class WelcomeScreen extends StatelessWidget {
               color: ColorStyle.primaryColor_1570A5,
             ),
             onPressed: () {
+              indexSelectedTab.value = 0;
               PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
             },
           ) : const SizedBox(width: 0,),
@@ -163,6 +164,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     onTap: () {
                       controller.isBackVisible.value = true;
+                      indexSelectedTab.value = 0;
                       PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
                     },
                   )
