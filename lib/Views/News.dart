@@ -68,7 +68,7 @@ class News extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    const NewsDetail().navigateToCustom(context);
+                    NewsDetail(id: controller.newsData[index]['id']).navigateToCustom(context);
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +112,7 @@ class News extends StatelessWidget {
                             .apply(color: Colors.black, fontWeightDelta: 1),
                       ):
                       Text(
-                        'Lorem ipsum dolor sit amet',
+                        'Lorem ipsum dolor sit amet ',
                         style: TextStylesCustom.textStyles_14
                             .apply(color: Colors.black, fontWeightDelta: 1),
                       ),
@@ -120,21 +120,23 @@ class News extends StatelessWidget {
                         height: 9,
                       ),
                       controller.newsData[index]['content'] != null ?
-                      Html(
-                          style: {
-                            'p':Style.fromTextStyle(TextStylesCustom.textStyles_13.apply(
-                              color: ColorStyle.grey_5E6D77,
-                              // backgroundColor: ColorStyle.white_F3F3F3
-
-                            )),
-                            "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,),
-                            '#': Style(
-                              // fontSize: FontSize(18),
-                              maxLines: 3,
-                              textOverflow: TextOverflow.ellipsis,
-                            ),
-                          },
-                          data: controller.newsData[index]['content']
+                      SizedBox(
+                        height: 48,
+                        child: Html(
+                            style: {
+                              'p':Style.fromTextStyle(TextStylesCustom.textStyles_13.apply(
+                                color: ColorStyle.grey_5E6D77,
+                                // backgroundColor: ColorStyle.white_F3F3F3
+                              )),
+                              "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,),
+                              '#': Style(
+                                // fontSize: FontSize(18),
+                                maxLines: 3,
+                                textOverflow: TextOverflow.ellipsis,
+                              ),
+                            },
+                            data: controller.newsData[index]['content']
+                        ),
                       ):
                       Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...',
