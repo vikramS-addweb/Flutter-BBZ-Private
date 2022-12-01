@@ -94,12 +94,17 @@ class _LocationState extends State<Location> {
                 "document.getElementsByClassName('bravo_header')[0].style.display='none'");
             _webViewController.runJavascript(
                 "document.getElementsByClassName('bravo_footer')[0].style.display='none'");
-            // _webViewController.runJavascript(
-            //     "document.getElementsByTagName('h1')[0].style.display='none'");
+            _webViewController.runJavascript(
+                "document.getElementsByTagName('h1')[0].style.display='none'");
             _webViewController.runJavascript(
                 "document.getElementsByTagName('h1')[0].parentNode.removeChild(document.getElementsByTagName('h1')[0])");
+            // _webViewController.runJavascript(
+            //     "document.getElementsByClassName('fixed-bottom')[0].style.display='none'");
+
+
             _webViewController.runJavascript(
-                "document.getElementsByClassName('fixed-bottom')[0].style.display='none'");
+              "document.getElementsByClassName('booking_cookie_agreement')[0].classList.remove('booking_cookie_agreement', 'p-3', 'd-flex', 'fixed-bottom').addClass('d-none')"
+            );
             hideLoader();
           },
 

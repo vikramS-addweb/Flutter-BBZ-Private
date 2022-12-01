@@ -12,6 +12,7 @@ import '../Components/DropdownButtonCustom.dart';
 import '../Components/DateFieldCustom.dart';
 import 'BookingForm.dart';
 import '../Controller/ExamDetailController.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class ExamDetail extends StatelessWidget {
   ExamDetail({Key? key, required this.id}) : super(key: key);
@@ -23,14 +24,14 @@ class ExamDetail extends StatelessWidget {
     return GetBuilder(
       init: controller,
         initState: (state){
-          // controller.initMethods(id!);
+          controller.initMethods(id!);
         },
         builder: ((controller) =>
-        // Obx(() =>
+        Obx(() =>
             Scaffold(
           appBar: AppBarStyle(
             title:
-                // '${controller.examDetailData['title'] ??
+                controller.examDetailData['title'] != null ? '${controller.examDetailData['title']}':
                 '''      Deutschtest für Zuwanderer
 (DTZ / A2-B1) (PR-220409-HU-DTZ)''',
             leading: IconButton(
@@ -110,8 +111,8 @@ class ExamDetail extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 4.0),
                                 child: Text(
-                                  // '${controller.examDetailData['exam_level'] ?? ''}',
-                                  'A2-B1 Level',
+                                  '${controller.examDetailData['exam_level'] ?? 'A2-B1 Level'}',
+
                                   style: TextStylesCustom.textStyles_21
                                       .apply(color: Colors.white, fontWeightDelta: 1),
                                 ),
@@ -130,14 +131,14 @@ class ExamDetail extends StatelessWidget {
 
                                   Expanded(
                                     child:
-                                    // controller.examDetailData['location'] != null ? Text(
-                                    //   '${controller.examDetailData['location']['name'] ?? '' } '
-                                    //       '${controller.examDetailData['location']['street_name'] ?? '' } '
-                                    //       '${controller.examDetailData['location']['city'] ?? '' } '
-                                    //       '${controller.examDetailData['location']['zip_code'] ?? '' }',
-                                    //   style: TextStylesCustom.textStyles_14
-                                    //       .apply(color: Colors.white),
-                                    // ) :
+                                    controller.examDetailData['location'] != null ? Text(
+                                      '${controller.examDetailData['location']['name'] ?? '' } '
+                                          '${controller.examDetailData['location']['street_name'] ?? '' } '
+                                          '${controller.examDetailData['location']['city'] ?? '' } '
+                                          '${controller.examDetailData['location']['zip_code'] ?? '' }',
+                                      style: TextStylesCustom.textStyles_14
+                                          .apply(color: Colors.white),
+                                    ) :
                                     Text(
                                       'Brüder Grimm Bildungscentrum e. V. Langstr.60 63452 Hanau',
                                       style: TextStylesCustom.textStyles_14
@@ -194,9 +195,9 @@ class ExamDetail extends StatelessWidget {
                                     Text('Seats Available   ', style: TextStylesCustom.textStyles_14.apply(color: Colors.green, fontWeightDelta: 2),),
                                     Text('|', style: TextStylesCustom.textStyles_14.apply( color: Colors.green, fontWeightDelta: 2),),
                                     const SizedBox(width: 10,),
-                                    Text('400/500', style: TextStylesCustom.textStyles_14.apply(color: Colors.green),)
+                                    // Text('400/500', style: TextStylesCustom.textStyles_14.apply(color: Colors.green),)
 
-                                    // Text('${controller.examDetailData['available_seats'] ?? '400'}/${controller.examDetailData['total_seat'] ?? '500'}', style: TextStylesCustom.textStyles_14.apply(color: Colors.green),)
+                                    Text('${controller.examDetailData['available_seats'] ?? '400'}/${controller.examDetailData['total_seat'] ?? '500'}', style: TextStylesCustom.textStyles_14.apply(color: Colors.green),)
                                   ],
                                 ),
                                 const SizedBox(height: 30,),
@@ -211,9 +212,9 @@ class ExamDetail extends StatelessWidget {
                                     Text('Exam Date  ', style: TextStylesCustom.textStyles_14.apply( fontWeightDelta: 2),),
                                     Text(' |', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.grey_DAE1E7, fontWeightDelta: 2),),
                                     const SizedBox(width: 10,),
-                                    Text( '25/03/2022 (SAT)', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
+                                    // Text( '25/03/2022 (SAT)', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
 
-                                    // Text( controller.examDetailData['exam_date'] != null ? '${DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${controller.examDetailData['exam_date']}'))}':'25/03/2022 (SAT)', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
+                                    Text( controller.examDetailData['exam_date'] != null ? '${DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${controller.examDetailData['exam_date']}'))}':'25/03/2022 (SAT)', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
                                   ],
                                 ),
                                 const SizedBox(height: 30,),
@@ -228,8 +229,8 @@ class ExamDetail extends StatelessWidget {
                                     Text('Reg. Until   ', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00, fontWeightDelta: 2),),
                                     Text('|', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.orange_C16D00, fontWeightDelta: 2),),
                                     const SizedBox(width: 10,),
-                                    Text('25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00),)
-                                    // Text(controller.examDetailData['reg_until_date'] != null ? '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.examDetailData['reg_until_date']}'))}':'25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00),)
+                                    // Text('25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00),)
+                                    Text(controller.examDetailData['reg_until_date'] != null ? '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.examDetailData['reg_until_date']}'))}':'25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00),)
 
                                   ],
                                 ),
@@ -245,8 +246,8 @@ class ExamDetail extends StatelessWidget {
                                     Text('Exam Time   ', style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 2),),
                                     Text(' |', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.grey_DAE1E7, fontWeightDelta: 2),),
                                     const SizedBox(width: 10,),
-                                    Text('09:30 AM', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
-                                    // Text(controller.examDetailData['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${controller.examDetailData['exam_date']}T${controller.examDetailData['exam_time']}'))}':'09:30 AM', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
+                                    // Text('09:30 AM', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
+                                    Text(controller.examDetailData['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${controller.examDetailData['exam_date']}T${controller.examDetailData['exam_time']}'))}':'09:30 AM', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
                                   ],
                                 )
                               ],
@@ -268,6 +269,14 @@ class ExamDetail extends StatelessWidget {
                       const SizedBox(height: 35,),
                       Text('Description', style: TextStylesCustom.textStyles_17.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
                       const SizedBox(height: 6,),
+                      controller.examDetailData['content'] != null?
+                      Html(
+                          style: {
+                            'p':Style.fromTextStyle(TextStylesCustom.textStyles_14),
+                            "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,)
+                          },
+                          data: controller.examDetailData['content']
+                      ):
                       Text('Libero sem vitae sed donec conubia integer nisi integer rhoncus imperdiet orci odio libero est integer a integer tincidunt sollicitudin blandit fusce nibh leo vulputate lobortis egestas dapibus faucibus metus conubia maecenas cras potenti cum hac arcu rhoncus nullam eros dictum torquent integer cursus bibendum sem sociis molestie tellus purus Quam fusce convallis ipsum malesuada amet velit aliquam urna nullam vehicula fermentum id morbi dis magnis porta sagittis euismod etiam',style: TextStylesCustom.textStyles_14,),
                       // Text(controller.examDetailData['content'] != null ? '${controller.examDetailData['content']}' :'Libero sem vitae sed donec conubia integer nisi integer rhoncus imperdiet orci odio libero est integer a integer tincidunt sollicitudin blandit fusce nibh leo vulputate lobortis egestas dapibus faucibus metus conubia maecenas cras potenti cum hac arcu rhoncus nullam eros dictum torquent integer cursus bibendum sem sociis molestie tellus purus Quam fusce convallis ipsum malesuada amet velit aliquam urna nullam vehicula fermentum id morbi dis magnis porta sagittis euismod etiam',style: TextStylesCustom.textStyles_14,),
                       const SizedBox(height: 33,),
@@ -284,7 +293,7 @@ class ExamDetail extends StatelessWidget {
             ),
           ),
         )
-        // )
+        )
             ))
       ;
   }
