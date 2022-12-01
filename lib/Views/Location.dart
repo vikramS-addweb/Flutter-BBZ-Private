@@ -82,10 +82,10 @@ class _LocationState extends State<Location> {
             // Removes header and footer from page
             // _webViewController
             //     .evaluateJavascript("javascript:(function() { " +
-            //     "var head = document.getElementsByTagName('header')[0];" +
-            //     "head.parentNode.removeChild(head);" +
-            //     "var footer = document.getElementsByTagName('footer')[0];" +
-            //     "footer.parentNode.removeChild(footer);" +
+            //     "var cookiesDiv = document.getElementsByclassName('booking_cookie_agreement')[0];" +
+            //     "cookiesDiv.classList.remove('booking_cookie_agreement', 'p-3', 'd-flex', 'fixed-bottom');" +
+            //     "cookiesDiv.classList.add('d-none');" +
+            //     // "footer.parentNode.removeChild(footer);" +
             //     "})()")
             //     .then((value) => debugPrint('Page finished loading Javascript'))
             //     .catchError((onError) => debugPrint('$onError'));
@@ -97,14 +97,14 @@ class _LocationState extends State<Location> {
             _webViewController.runJavascript(
                 "document.getElementsByTagName('h1')[0].style.display='none'");
             _webViewController.runJavascript(
-                "document.getElementsByTagName('h1')[0].parentNode.removeChild(document.getElementsByTagName('h1')[0])");
+                "document.getElementsByClassName('booking_cookie_agreement')[0].parentNode.removeChild(document.getElementsByClassName('booking_cookie_agreement')[0])");
             // _webViewController.runJavascript(
             //     "document.getElementsByClassName('fixed-bottom')[0].style.display='none'");
 
 
-            _webViewController.runJavascript(
-              "document.getElementsByClassName('booking_cookie_agreement')[0].classList.remove('booking_cookie_agreement', 'p-3', 'd-flex', 'fixed-bottom').addClass('d-none')"
-            );
+            // _webViewController.runJavascript(
+            //   "document.getElementsByClassName('booking_cookie_agreement')[0].classList.remove('booking_cookie_agreement', 'p-3', 'd-flex', 'fixed-bottom').addClass('d-none')"
+            // );
             hideLoader();
           },
 
