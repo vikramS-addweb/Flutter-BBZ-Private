@@ -111,11 +111,11 @@ class _ExamState extends State<Exam> {
     return GetBuilder(
         init: controller,
         initState: (state){
-          // controller.initMethods();
+          controller.initMethods();
         },
         builder: (controller){
       return
-        // Obx(() =>
+        Obx(() =>
           Scaffold(
         key: keyDrawer,
         backgroundColor: ColorStyle.white_F3F3F3,
@@ -322,8 +322,8 @@ class _ExamState extends State<Exam> {
                     ),
                     const SizedBox(height: 40,),
                     ListView.separated(
-                      // itemCount: controller.upcomingExamData.length,
-                      itemCount: 5,
+                      itemCount: controller.upcomingExamData.length,
+                      // itemCount: 5,
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       separatorBuilder: (context, index) {
@@ -336,8 +336,8 @@ class _ExamState extends State<Exam> {
                         return InkWell(
                           onTap: (){
                             // examDetailController.fetchExamDetails(controller.upcomingExamData[index]['id']);
-                            // if(controller.upcomingExamData[index]['id'] != null)
-                            ExamDetail(id:1).navigateToCustom(context, withNavBar: false);
+                            if(controller.upcomingExamData[index]['id'] != null)
+                            ExamDetail(id:controller.upcomingExamData[index]['id']).navigateToCustom(context, withNavBar: false);
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -349,8 +349,8 @@ class _ExamState extends State<Exam> {
                               children: [
                                 Stack(
                                   children: [
-                                    // (controller.upcomingExamData[index]['image'] != null && controller.upcomingExamData[index]['image']['file_path'] != null)?
-                                    //     Image.network('${networkImage}${controller.upcomingExamData[index]['image']['file_path']}'):
+                                    (controller.upcomingExamData[index]['image'] != null && controller.upcomingExamData[index]['image']['file_path'] != null)?
+                                        Image.network('${networkImage}${controller.upcomingExamData[index]['image']['file_path']}'):
                                     Image.asset(
                                       ImageStyle.pixabay,
                                       height: 250,
@@ -378,13 +378,13 @@ class _ExamState extends State<Exam> {
                                           // color: ColorStyle.red_ED0925
                                         ),
                                         child:
-                                        // controller.upcomingExamData[index]['term_name'] != null? Text(
-                                        //   controller.upcomingExamData[index]['term_name'],
-                                        //   style: TextStylesCustom.textStyles_16.apply(
-                                        //     color: Colors.white,
-                                        //     fontWeightDelta: 1,
-                                        //   ),
-                                        // ):
+                                        controller.upcomingExamData[index]['term_name'] != null? Text(
+                                          controller.upcomingExamData[index]['term_name'],
+                                          style: TextStylesCustom.textStyles_16.apply(
+                                            color: Colors.white,
+                                            fontWeightDelta: 1,
+                                          ),
+                                        ):
                                         Text(
                                           'A2-B1',
                                           style: TextStylesCustom.textStyles_16.apply(
@@ -405,13 +405,13 @@ class _ExamState extends State<Exam> {
                                         ),
                                         padding: EdgeInsets.symmetric(horizontal: 8),
                                         child:
-                                        // controller.upcomingExamData[index]['price'] != null? Text(
-                                        //   '${controller.upcomingExamData[index]['price']} €',
-                                        //   style: TextStylesCustom.textStyles_22.apply(
-                                        //     color: Colors.white,
-                                        //     fontWeightDelta: 1,
-                                        //   ),
-                                        // ):
+                                        controller.upcomingExamData[index]['price'] != null? Text(
+                                          '${controller.upcomingExamData[index]['price']} €',
+                                          style: TextStylesCustom.textStyles_22.apply(
+                                            color: Colors.white,
+                                            fontWeightDelta: 1,
+                                          ),
+                                        ):
                                         Text(
                                           '7,50 €',
                                           style: TextStylesCustom.textStyles_22.apply(
@@ -432,12 +432,12 @@ class _ExamState extends State<Exam> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      // controller.upcomingExamData[index]['title'] != null? Text(
-                                      //   '${controller.upcomingExamData[index]['title']}',
-                                      //   style: TextStylesCustom.textStyles_14.apply(
-                                      //     color: Colors.black,
-                                      //   )
-                                      // ) :
+                                      controller.upcomingExamData[index]['title'] != null? Text(
+                                        '${controller.upcomingExamData[index]['title']}',
+                                        style: TextStylesCustom.textStyles_14.apply(
+                                          color: Colors.black,
+                                        )
+                                      ) :
                                       Text(
                                         'Zusatzleistung: Postversand - Zertifikate / Ergebnisbogen',
                                         style: TextStylesCustom.textStyles_14.apply(
@@ -464,12 +464,12 @@ class _ExamState extends State<Exam> {
                                                 Expanded(
                                                   child: FittedBox(
                                                     child:
-                                                    // controller.upcomingExamData[index]['exam_date'] != null ? Text(
-                                                    //   '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.upcomingExamData[index]['exam_date']}'))}',
-                                                    //   style: TextStylesCustom.textStyles_14.apply(
-                                                    //     color: ColorStyle.primaryColor_1570A5,
-                                                    //   ),
-                                                    // ) :
+                                                    controller.upcomingExamData[index]['exam_date'] != null ? Text(
+                                                      '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.upcomingExamData[index]['exam_date']}'))}',
+                                                      style: TextStylesCustom.textStyles_14.apply(
+                                                        color: ColorStyle.primaryColor_1570A5,
+                                                      ),
+                                                    ) :
                                                     Text(
                                                       '22/06/2022',
                                                       style: TextStylesCustom.textStyles_14.apply(
@@ -494,12 +494,12 @@ class _ExamState extends State<Exam> {
                                                 FittedBox(
                                                   // fit: BoxFit.fitWidth,
                                                   child:
-                                                  // controller.upcomingExamData[index]['reg_until_date'] != null ? Text(
-                                                  //   '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.upcomingExamData[index]['reg_until_date']}'))}',
-                                                  //   style: TextStylesCustom.textStyles_14.apply(
-                                                  //     color: ColorStyle.red_ED0925,
-                                                  //   ),
-                                                  // ) :
+                                                  controller.upcomingExamData[index]['reg_until_date'] != null ? Text(
+                                                    '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.upcomingExamData[index]['reg_until_date']}'))}',
+                                                    style: TextStylesCustom.textStyles_14.apply(
+                                                      color: ColorStyle.red_ED0925,
+                                                    ),
+                                                  ) :
                                                   Text(
                                                     '25/06/2022',
 
@@ -528,15 +528,15 @@ class _ExamState extends State<Exam> {
                                           const SizedBox(width: 14,),
                                           Expanded(
                                             child:
-                                            // controller.upcomingExamData[index]['location'] != null ?  Text(
-                                            //   '${controller.upcomingExamData[index]['location']['name'] ?? '' }, '
-                                            //       '${controller.upcomingExamData[index]['location']['street_name'] ?? '' } '
-                                            //       '${controller.upcomingExamData[index]['location']['city'] ?? '' }, '
-                                            //       '${controller.upcomingExamData[index]['location']['zip_code'] ?? '' }',
-                                            //   style: TextStylesCustom.textStyles_13.apply(
-                                            //     color: ColorStyle.primaryColor_1570A5,
-                                            //   ),
-                                            // ) :
+                                            controller.upcomingExamData[index]['location'] != null ?  Text(
+                                              '${controller.upcomingExamData[index]['location']['name'] ?? '' }, '
+                                                  '${controller.upcomingExamData[index]['location']['street_name'] ?? '' } '
+                                                  '${controller.upcomingExamData[index]['location']['city'] ?? '' }, '
+                                                  '${controller.upcomingExamData[index]['location']['zip_code'] ?? '' }',
+                                              style: TextStylesCustom.textStyles_13.apply(
+                                                color: ColorStyle.primaryColor_1570A5,
+                                              ),
+                                            ) :
                                             Text(
                                               'Brüder Grimm Bildungscentrum e. V. Langstr. 60 63452 Hanau',
                                               style: TextStylesCustom.textStyles_13.apply(
@@ -561,12 +561,13 @@ class _ExamState extends State<Exam> {
                                               color: Colors.black,
                                             ),
                                           ),
-                                          // (controller.upcomingExamData[index]['total_seat'] != null && controller.upcomingExamData[index]['available_seats'] != null) ?
-                                          // ProgressBarCircularCustom(
-                                          //   text: '250',
-                                          //   progress: controller.upcomingExamData[index]['available_seats'] + .0,
-                                          //   total: controller.upcomingExamData[index]['total_seat'] + .0,
-                                          // ) :
+
+                                          (controller.upcomingExamData[index]['total_seat'] != null && controller.upcomingExamData[index]['available_seats'] != null) ?
+                                          ProgressBarCircularCustom(
+                                            text: '250',
+                                            progress: controller.upcomingExamData[index]['available_seats'] + .0,
+                                            total: controller.upcomingExamData[index]['total_seat'] + .0,
+                                          ) :
                                           ProgressBarCircularCustom(
                                             text: '250',
                                             progress: 250,
@@ -590,7 +591,7 @@ class _ExamState extends State<Exam> {
           ),
         ),
       )
-      // )
+      )
           ;
 
     }) ;

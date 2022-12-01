@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
+import 'package:intl/intl.dart';
 import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
@@ -11,6 +12,7 @@ import '../Utils/Constant.dart';
 import '../Utils/Global.dart';
 import '../Components/BottomNavBarCustom.dart';
 import '../Controller/NewsController.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 
 class News extends StatelessWidget {
@@ -23,7 +25,7 @@ class News extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorStyle.white_F3F3F3,
+      backgroundColor: ColorStyle.white,
       key: keyDrawer,
       drawer: DrawerScreen(),
       // bottomNavigationBar: bottomNavBarCustom(),
@@ -43,19 +45,19 @@ class News extends StatelessWidget {
           color: ColorStyle.primaryColor_1570A5,
           fontWeightDelta: 1,
         ),
-        elevation: 0,
+        elevation: 2,
       ),
       body: GetBuilder(
         initState: (state) {
-          // controller.initMethods();
+          controller.initMethods();
         },
         init: controller,
         builder: ((controller) =>
-            // Obx(() =>
+            Obx(() =>
                 ListView.separated(
               padding: const EdgeInsets.only(
                   left: 16, right: 16, top: 32, bottom: 32),
-              itemCount: 5,
+              itemCount: controller.newsData.length,
               shrinkWrap: true,
               separatorBuilder: (context, index) {
                 return const SizedBox(
@@ -71,6 +73,13 @@ class News extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      controller.newsData[index]['media'] != null && controller.newsData[index]['media']['file_path'] != null ?
+                      Image.network(
+                        '$networkImage${controller.newsData[index]['media']['file_path']}',
+                        height: 250,
+                        width: double.infinity,
+                        fit: BoxFit.fill,
+                      ):
                       Image.asset(
                         ImageStyle.newArticle,
                         height: 250,
@@ -80,6 +89,13 @@ class News extends StatelessWidget {
                       const SizedBox(
                         height: 25,
                       ),
+                      controller.newsData[index]['created_at'] != null ?
+                      Text(
+                        '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.newsData[index]['created_at']}'))}',
+                        style: TextStylesCustom.textStyles_12.apply(
+                          color: ColorStyle.primaryColor_1570A5,
+                        ),
+                      ):
                       Text(
                         '03/30/022',
                         style: TextStylesCustom.textStyles_12.apply(
@@ -89,6 +105,12 @@ class News extends StatelessWidget {
                       const SizedBox(
                         height: 7,
                       ),
+                      controller.newsData[index]['title'] != null ?
+                      Text(
+                        '${controller.newsData[index]['title']}',
+                        style: TextStylesCustom.textStyles_14
+                            .apply(color: Colors.black, fontWeightDelta: 1),
+                      ):
                       Text(
                         'Lorem ipsum dolor sit amet',
                         style: TextStylesCustom.textStyles_14
@@ -97,6 +119,23 @@ class News extends StatelessWidget {
                       const SizedBox(
                         height: 9,
                       ),
+                      controller.newsData[index]['content'] != null ?
+                      Html(
+                          style: {
+                            'p':Style.fromTextStyle(TextStylesCustom.textStyles_13.apply(
+                              color: ColorStyle.grey_5E6D77,
+                              // backgroundColor: ColorStyle.white_F3F3F3
+
+                            )),
+                            "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,),
+                            '#': Style(
+                              // fontSize: FontSize(18),
+                              maxLines: 3,
+                              textOverflow: TextOverflow.ellipsis,
+                            ),
+                          },
+                          data: controller.newsData[index]['content']
+                      ):
                       Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...',
                         style: TextStylesCustom.textStyles_13.apply(
@@ -108,7 +147,7 @@ class News extends StatelessWidget {
                 );
               },
             )
-            // )
+            )
         ),
       ),
 
