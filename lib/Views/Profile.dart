@@ -116,7 +116,7 @@ class Profile extends StatelessWidget {
                     const BookingHistory().navigateToCustom(context);
                     break;
                   case 2:
-                    const ChangePassword().navigateToCustom(context, withNavBar: false);
+                    ChangePassword().navigateToCustom(context, withNavBar: false);
                     break;
                   default:
                     break;

@@ -12,7 +12,9 @@ import '../Utils/Global.dart';
 import '../Styles/ImageStyle.dart';
 
 class MyProfile extends StatelessWidget {
-  const MyProfile({super.key});
+  MyProfile({super.key});
+
+  final fromkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,12 @@ class MyProfile extends StatelessWidget {
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ElevatedButtonCustoms(
-          onTap: () {},
+          onTap: () {
+            if(fromkey.currentState!.validate()){
+              debugPrint('yay you logged in successfully');
+              // controller.validation();
+            }
+          },
           styleText: TextStylesCustom.textStyles_16,
           text: 'SAVE CHANGES',
           colorBG: ColorStyle.primaryColor_1570A5,
@@ -61,7 +68,9 @@ class MyProfile extends StatelessWidget {
           ),
           SingleChildScrollView(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Column(
+            child:  Form(
+              key: fromkey,
+              child: Column(
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 30),
@@ -112,11 +121,18 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       Row(
-                        children: const [
+                        children: [
                           Expanded(
                               child: TextFormFieldWithLabel(
                             firstText: 'First Name',
                             hintText: 'John',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "First name is required";
+                                  }else {
+                                    return null;
+                                  }
+                                },
                           )),
                           SizedBox(
                             width: 21,
@@ -125,6 +141,13 @@ class MyProfile extends StatelessWidget {
                               child: TextFormFieldWithLabel(
                             firstText: 'Last Name',
                             hintText: 'Doe',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Last name is required";
+                                  }else {
+                                    return null;
+                                  }
+                                },
                           )),
                         ],
                       ),
@@ -132,15 +155,24 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------Email Field---------------------------->
-                      const TextFormFieldWithLabel(
+                      TextFormFieldWithLabel(
                         firstText: 'Email',
                         hintText: 'Johndoe@gmail.com',
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Email is required";
+                          }else if(!GetUtils.isEmail(value)){
+                            return "Email is invalid";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       const SizedBox(
                         height: 15,
                       ),
                       // -----------------------Telephone Field---------------------------->
-                      const TextFormFieldWithLabel(
+                      TextFormFieldWithLabel(
                         firstText: 'Telephone',
                         secondText: '',
                         hintText: 'Please enter',
@@ -149,9 +181,16 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------Birth Date Field---------------------------->
-                      const TextFormFieldWithLabel(
+                       TextFormFieldWithLabel(
                         firstText: 'Birth Date',
                         hintText: 'dd-mm-yy',
+                         validator: (value) {
+                           if (value!.isEmpty) {
+                             return "Birth Date is required";
+                           }else {
+                             return null;
+                           }
+                         },
                       ),
                       const SizedBox(
                         height: 40,
@@ -166,7 +205,7 @@ class MyProfile extends StatelessWidget {
                         height: 40,
                       ),
                       // -----------------------C/o field---------------------------->
-                      const TextFormFieldWithLabel(
+                      TextFormFieldWithLabel(
                         firstText: 'C/o',
                         secondText: '',
                         hintText: 'Please enter',
@@ -175,33 +214,62 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------Street field---------------------------->
-                      const TextFormFieldWithLabel(
+                      TextFormFieldWithLabel(
                         firstText: 'Street',
                         hintText: 'Please enter',
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Street is required";
+                          }else {
+                            return null;
+                          }
+                        },
                       ),
                       const SizedBox(
                         height: 15,
                       ),
                       // -----------------------City field---------------------------->
-                      const TextFormFieldWithLabel(
+                      TextFormFieldWithLabel(
                         firstText: 'City',
                         hintText: 'Please enter',
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "City is required";
+                          }else {
+                            return null;
+                          }
+                        },
                       ),
                       const SizedBox(
                         height: 15,
                       ),
                       // -----------------------Postal field---------------------------->
-                      const TextFormFieldWithLabel(
+                      TextFormFieldWithLabel(
                         firstText: 'Postal Code',
                         hintText: 'Please enter',
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Postal code is required";
+                          }else {
+                            return null;
+                          }
+                        },
                       ),
                       const SizedBox(
                         height: 15,
                       ),
                       // -----------------------Country field---------------------------->
-                      const TextFormFieldWithLabel(
+                      TextFormFieldWithLabel(
                         firstText: 'Country',
                         hintText: 'Please enter',
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Country is required";
+                          }else {
+                            return null;
+                          }
+                        },
+
                       ),
                       const SizedBox(
                         height: 40,
@@ -209,7 +277,7 @@ class MyProfile extends StatelessWidget {
                       //------------------------Change password button----------------------->
                       ElevatedButtonCustoms(
                         onTap: () {
-                          const ChangePassword().navigateToCustom(context);
+                          ChangePassword().navigateToCustom(context);
 
                           // Navigator.push(context, MaterialPageRoute(
                           //     builder: (context) => const ChangePassword()
@@ -233,6 +301,7 @@ class MyProfile extends StatelessWidget {
                 )
               ],
             ),
+          )
           )
         ],
       ),

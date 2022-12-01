@@ -88,6 +88,7 @@ class API {
       if (response.statusCode == 200) {
         return parsed;
       } else {
+        hideLoader();
         parsed["error"].toString().showError();
         return {};
       }

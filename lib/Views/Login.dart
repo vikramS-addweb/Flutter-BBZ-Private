@@ -74,6 +74,15 @@ class Login extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 16, right: 16),
                       colorBoder: ColorStyle.grey_DAE1E7,
                       radiusBorder: 4,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Email is required";
+                        }else if(!GetUtils.isEmail(value)){
+                          return "Email is invalid";
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
 
                     const SizedBox(
@@ -89,6 +98,16 @@ class Login extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 16, right: 16),
                       colorBoder: ColorStyle.grey_DAE1E7,
                       radiusBorder: 4,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Password is required";
+                        }else if(value.length < 6){
+                          return "Password must be at least 6 characters";
+                        }
+                        else {
+                          return null;
+                        }
+                      },
                     ),
 
                     Row(
@@ -132,7 +151,7 @@ class Login extends StatelessWidget {
                             style: TextStylesCustom.textStyles_12,
                           ),
                           onPressed: () =>
-                              const ResetPassword().navigateToCustom(context),
+                              ResetPassword().navigateToCustom(context),
                         ),
                       ],
                     ),
@@ -149,7 +168,11 @@ class Login extends StatelessWidget {
                       ),
                       size: Size(MediaQuery.of(context).size.width - 30, 50),
                       onTap: () {
-                        controller.validation();
+                        if(fromkey.currentState!.validate()){
+                          debugPrint('yay you logged in successfully');
+                          controller.validation();
+                        }
+                        // controller.validation();
                         // Get.to(const Login());
                       },
                     ),

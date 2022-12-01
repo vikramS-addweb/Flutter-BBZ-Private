@@ -20,7 +20,8 @@ import '../Utils/Global.dart';
 
 
 class ChangePassword extends StatelessWidget {
-  const ChangePassword({super.key});
+  ChangePassword({super.key});
+  final fromkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,12 @@ class ChangePassword extends StatelessWidget {
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ElevatedButtonCustoms(
-          onTap: (){},
+          onTap: (){
+            if(fromkey.currentState!.validate()){
+              debugPrint('yay you logged in successfully');
+              // controller.validation();
+            }
+          },
           text: 'SAVE CHANGES',
           styleText: TextStylesCustom.textStyles_16,
           colorBG: ColorStyle.primaryColor_1570A5,
@@ -66,8 +72,10 @@ class ChangePassword extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 30),
                   padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
                   decoration: boxDecorationAuthBox(),
-                  child: Column(
-                    children: const [
+                  child: Form(
+                    key: fromkey,
+                    child:Column(
+                    children: [
 
                       SizedBox(
                         height: 48,
@@ -75,14 +83,51 @@ class ChangePassword extends StatelessWidget {
 
 
 
-                      // -----------------------Email Field---------------------------->
-                      TextFormFieldWithLabel(firstText: 'Current Password', hintText: 'Please enter',),
+                      // -----------------------current password Field---------------------------->
+                      TextFormFieldWithLabel(
+
+                        firstText: 'Current Password',
+                        hintText: 'Please enter',
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Current password is required";
+                            } else if(value.length < 6){
+                              return "Current password must be at least 6 characters";
+                            }else {
+                              return null;
+                            }
+                          },
+                      ),
                       SizedBox(height: 15,),
-                      // -----------------------Telephone Field---------------------------->
-                      TextFormFieldWithLabel(firstText: 'New Password', hintText: 'Please enter',),
+                      // -----------------------New Password---------------------------->
+                      TextFormFieldWithLabel(
+                        firstText: 'New Password',
+                        hintText: 'Please enter',
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "New password is required";
+                          } else if(value.length < 6){
+                            return "New password must be at least 6 characters";
+                          }else {
+                            return null;
+                          }
+                        },
+                      ),
                       SizedBox(height: 15,),
-                      // -----------------------Birth Date Field---------------------------->
-                      TextFormFieldWithLabel(firstText: 'Confirm Password', hintText: 'Please enter',),
+                      // -----------------------confirm password Field---------------------------->
+                      TextFormFieldWithLabel(
+                        firstText: 'Confirm Password',
+                        hintText: 'Please enter',
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Confirm password is required";
+                          } else if(value.length < 6){
+                            return "Confirm password must be at least 6 characters";
+                          }else {
+                            return null;
+                          }
+                        },
+                      ),
                       SizedBox(height: 14,),
 
 
@@ -90,6 +135,7 @@ class ChangePassword extends StatelessWidget {
                     ],
 
                   ),
+                  )
                 ),
                 const SizedBox(height: 100,),
 
