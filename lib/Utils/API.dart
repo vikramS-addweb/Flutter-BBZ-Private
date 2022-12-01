@@ -81,7 +81,8 @@ class API {
           // headers: {'Authorization': 'Bearer $kTOKENSAVED'},
           body: params);
       // hideLoader();
-      debugPrint('Response status: ${response}');
+      debugPrint('Response status: ${response.statusCode}');
+      debugPrint('Response status: ${response.body}');
 
       Map<String, dynamic> parsed = json.decode(response.body);
       if (response.statusCode == 200) {

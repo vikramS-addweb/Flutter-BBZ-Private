@@ -24,7 +24,7 @@ class DateFieldCustom extends StatelessWidget {
 
         Stack(
           children: [
-            TextFieldOutline(hintText: hintText!, radiusBorder: 4, colorBoder: ColorStyle.grey_DAE1E7, padding: const EdgeInsets.only(left: 14),colorHint: ColorStyle.grey_DAE1E7,textStyle: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_5E6D77),),
+            TextFormFieldOutline(hintText: hintText!, radiusBorder: 4, colorBoder: ColorStyle.grey_DAE1E7, padding: const EdgeInsets.only(left: 14),colorHint: ColorStyle.grey_DAE1E7,textStyle: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_5E6D77),),
             Positioned(
                 top: 13,
                 right: 25,

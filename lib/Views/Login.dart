@@ -20,11 +20,14 @@ import '../Utils/Global.dart';
 
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  Login({super.key});
+
+  final fromkey = GlobalKey<FormState>();
+  final controller = LoginController();
+
 
   @override
   Widget build(BuildContext context) {
-    final controller = LoginController();
     return Scaffold(
       appBar: AppBarStyle(
         title: 'Log In',
@@ -53,140 +56,143 @@ class Login extends StatelessWidget {
               margin: const EdgeInsets.only(top: 30),
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
               decoration: boxDecorationAuthBox(),
-              child: Column(
-                children: [
-                  // -----------------------Email Feild---------------------------->
-                  const SizedBox(
-                    height: 30,
-                  ),
+              child: Form(
+                key: fromkey,
+                child: Column(
+                  children: [
+                    // -----------------------Email Feild---------------------------->
+                    const SizedBox(
+                      height: 30,
+                    ),
 
-                  TextFieldOutline(
-                    controller: controller.useremail.value,
-                    keyboardType: TextInputType.emailAddress,
-                    hintText: 'Email address',
-                    textStyle: TextStylesCustom.textStyles_14
-                        .apply(fontWeightDelta: -1),
-                    padding: const EdgeInsets.only(left: 16, right: 16),
-                    colorBoder: ColorStyle.grey_DAE1E7,
-                    radiusBorder: 4,
-                  ),
+                    TextFormFieldOutline(
+                      controller: controller.useremail.value,
+                      keyboardType: TextInputType.emailAddress,
+                      hintText: 'Email address',
+                      textStyle: TextStylesCustom.textStyles_14
+                          .apply(fontWeightDelta: -1),
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      colorBoder: ColorStyle.grey_DAE1E7,
+                      radiusBorder: 4,
+                    ),
 
-                  const SizedBox(
-                    height: 20,
-                  ),
+                    const SizedBox(
+                      height: 20,
+                    ),
 
-                  // -----------------------Password Feild---------------------------->
-                  TextFieldPWDOutline(
-                    controller: controller.userPassword.value,
-                    hintText: 'Password',
-                    textStyle: TextStylesCustom.textStyles_14
-                        .apply(fontWeightDelta: -1),
-                    padding: const EdgeInsets.only(left: 16, right: 16),
-                    colorBoder: ColorStyle.grey_DAE1E7,
-                    radiusBorder: 4,
-                  ),
+                    // -----------------------Password Feild---------------------------->
+                    TextFormFieldPWDOutline(
+                      controller: controller.userPassword.value,
+                      hintText: 'Password',
+                      textStyle: TextStylesCustom.textStyles_14
+                          .apply(fontWeightDelta: -1),
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      colorBoder: ColorStyle.grey_DAE1E7,
+                      radiusBorder: 4,
+                    ),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          InkWell(
-                              onTap: () => controller.RememberMe(),
-                              child: Obx(
-                                () => Icon(
-                                  controller.check3.value
-                                      ? Icons.check_box
-                                      : Icons.check_box_outline_blank,
-                                  color: controller.check3.value ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_DAE1E7,
-                                ),
-                              )),
-                          const SizedBox(
-                            width: 8,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          // mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                                onTap: () => controller.RememberMe(),
+                                child: Obx(
+                                      () => Icon(
+                                    controller.check3.value
+                                        ? Icons.check_box
+                                        : Icons.check_box_outline_blank,
+                                    color: controller.check3.value ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_DAE1E7,
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              'Remember Me',
+                              style: TextStylesCustom.textStyles_12,
+                            ),
+                          ],
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            elevation: 0,
+                            padding: const EdgeInsets.only(
+                              right: 0,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                           ),
-                          Text(
-                            'Remember Me',
+                          child: Text(
+                            'Forgot Password ?',
+                            textAlign: TextAlign.right,
                             style: TextStylesCustom.textStyles_12,
                           ),
-                        ],
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          elevation: 0,
-                          padding: const EdgeInsets.only(
-                            right: 0,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        child: Text(
-                          'Forgot Password ?',
-                          textAlign: TextAlign.right,
-                          style: TextStylesCustom.textStyles_12,
-                        ),
-                        onPressed: () =>
-                            const ResetPassword().navigateToCustom(context),
-                      ),
-                    ],
-                  ),
-
-                  // -----------------------Login button---------------------------->
-
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  ElevatedButtonCustom(
-                    text: 'LOGIN',
-                    styleText: TextStylesCustom.textStyles_15.apply(
-                        fontWeightDelta: 4
-                    ),
-                    size: Size(MediaQuery.of(context).size.width - 30, 50),
-                    onTap: () {
-                      controller.validation();
-                      // Get.to(const Login());
-                    },
-                  ),
-
-                  const SizedBox(
-                    height: 16,
-                  ),
-
-                  TextRichCustom(
-                    textFirst: 'Do not have an account? ',
-                    textSecond: 'Sign Up',
-                    onTap: () {
-                      const SignUp().navigateToCustom(context);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  InkWell(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                            'Continue as a Guest',
-                            style: TextStylesCustom.textStyles_15
-                                .apply(color: ColorStyle.primaryColor_1570A5)
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Image.asset(
-                          ImageStyle.right_Arrow,
-                          width: 20,
+                          onPressed: () =>
+                              const ResetPassword().navigateToCustom(context),
                         ),
                       ],
                     ),
-                    onTap: () {
-                      indexSelectedTab.value = 0;
-                      PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
-                    },
-                  )
-                ],
+
+                    // -----------------------Login button---------------------------->
+
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    ElevatedButtonCustom(
+                      text: 'LOGIN',
+                      styleText: TextStylesCustom.textStyles_15.apply(
+                          fontWeightDelta: 4
+                      ),
+                      size: Size(MediaQuery.of(context).size.width - 30, 50),
+                      onTap: () {
+                        controller.validation();
+                        // Get.to(const Login());
+                      },
+                    ),
+
+                    const SizedBox(
+                      height: 16,
+                    ),
+
+                    TextRichCustom(
+                      textFirst: 'Do not have an account? ',
+                      textSecond: 'Sign Up',
+                      onTap: () {
+                        SignUp().navigateToCustom(context);
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    InkWell(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                              'Continue as a Guest',
+                              style: TextStylesCustom.textStyles_15
+                                  .apply(color: ColorStyle.primaryColor_1570A5)
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Image.asset(
+                            ImageStyle.right_Arrow,
+                            width: 20,
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        indexSelectedTab.value = 0;
+                        PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           )

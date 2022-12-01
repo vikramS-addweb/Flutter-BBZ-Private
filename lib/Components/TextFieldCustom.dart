@@ -1,9 +1,8 @@
-
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import 'package:flutter/material.dart';
 
-class TextFieldUnderline extends StatelessWidget {
+class TextFormFieldUnderline extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final EdgeInsets? padding;
@@ -15,8 +14,9 @@ class TextFieldUnderline extends StatelessWidget {
   final TextStyle? textStyle;
   final double? radiusBorder;
   final int? maxLines;
+  final String? Function(String?)? validator;
 
-  TextFieldUnderline({
+  TextFormFieldUnderline({
     Key? key,
     this.controller,
     this.padding = EdgeInsets.zero,
@@ -29,11 +29,12 @@ class TextFieldUnderline extends StatelessWidget {
     this.textStyle = const TextStyle(),
     this.radiusBorder = 8.0,
     this.maxLines = 1,
+    this.validator,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
       maxLines: maxLines,
@@ -50,11 +51,12 @@ class TextFieldUnderline extends StatelessWidget {
           hintText: hintText,
           hintStyle: textStyle!.apply(color: colorHint)),
       style: textStyle!,
+      validator: validator,
     );
   }
 }
 
-class TextFieldUnderlinePrefixText extends StatelessWidget {
+class TextFormFieldUnderlinePrefixText extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final EdgeInsets? padding;
@@ -67,8 +69,9 @@ class TextFieldUnderlinePrefixText extends StatelessWidget {
   final TextStyle? textStyle;
   final double? radiusBorder;
   final int? maxLines;
+  final String? Function(String?)? validator;
 
-  TextFieldUnderlinePrefixText({
+  TextFormFieldUnderlinePrefixText({
     Key? key,
     this.controller,
     this.padding = EdgeInsets.zero,
@@ -82,6 +85,7 @@ class TextFieldUnderlinePrefixText extends StatelessWidget {
     this.textStyle = const TextStyle(),
     this.radiusBorder = 8.0,
     this.maxLines = 1,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -99,7 +103,7 @@ class TextFieldUnderlinePrefixText extends StatelessWidget {
             width: 10,
           ),
           Expanded(
-              child: TextField(
+              child: TextFormField(
             controller: controller,
             keyboardType: keyboardType,
             maxLines: maxLines,
@@ -112,6 +116,7 @@ class TextFieldUnderlinePrefixText extends StatelessWidget {
               hintStyle: textStyle!.apply(color: colorHint),
             ),
             style: textStyle!,
+            validator: validator,
           )),
         ],
       ),
@@ -119,7 +124,7 @@ class TextFieldUnderlinePrefixText extends StatelessWidget {
   }
 }
 
-class TextFieldOutline extends StatelessWidget {
+class TextFormFieldOutline extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final EdgeInsets? padding;
@@ -131,8 +136,9 @@ class TextFieldOutline extends StatelessWidget {
   final TextStyle? textStyle;
   final double? radiusBorder;
   final int? maxLines;
+  final String? Function(String?)? validator;
 
-  TextFieldOutline({
+  TextFormFieldOutline({
     Key? key,
     this.controller,
     this.padding = EdgeInsets.zero,
@@ -145,33 +151,33 @@ class TextFieldOutline extends StatelessWidget {
     this.textStyle = const TextStyle(),
     this.radiusBorder = 8.0,
     this.maxLines = 1,
+    this.validator,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
       maxLines: maxLines,
       decoration: InputDecoration(
           fillColor: colorFill,
           contentPadding: padding,
-
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radiusBorder!),
               borderSide: BorderSide(color: colorBoder!, width: 1)),
-
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radiusBorder!),
               borderSide: BorderSide(color: colorBoder!, width: 1)),
           hintText: hintText,
           hintStyle: textStyle!.apply(color: colorHint)),
       style: textStyle!,
+      validator: validator,
     );
   }
 }
 
-class TextFieldPWDOutline extends StatefulWidget {
+class TextFormFieldPWDOutline extends StatefulWidget {
   final TextEditingController? controller;
   final EdgeInsets? padding;
   final String? hintText;
@@ -181,8 +187,9 @@ class TextFieldPWDOutline extends StatefulWidget {
   final Color? colorHint;
   final TextStyle? textStyle;
   final double? radiusBorder;
+  final String? Function(String?)? validator;
 
-  const TextFieldPWDOutline({
+  const TextFormFieldPWDOutline({
     Key? key,
     this.controller,
     this.padding = EdgeInsets.zero,
@@ -193,51 +200,49 @@ class TextFieldPWDOutline extends StatefulWidget {
     this.colorText = Colors.black,
     this.textStyle = const TextStyle(),
     this.radiusBorder = 8.0,
+    this.validator,
   }) : super(key: key);
 
   @override
-  _TextFieldPWDOutlineState createState() => _TextFieldPWDOutlineState();
+  _TextFormFieldPWDOutlineState createState() =>
+      _TextFormFieldPWDOutlineState();
 }
 
-class _TextFieldPWDOutlineState extends State<TextFieldPWDOutline> {
+class _TextFormFieldPWDOutlineState extends State<TextFormFieldPWDOutline> {
   bool isObscureText = true;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       obscureText: isObscureText,
       controller: widget.controller,
       style: widget.textStyle!,
       decoration: InputDecoration(
-          fillColor: widget.colorFill,
-          contentPadding: widget.padding,
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(widget.radiusBorder!),
-              borderSide: BorderSide(color: widget.colorBoder!, width: 1)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(widget.radiusBorder!),
-              borderSide: BorderSide(color: widget.colorBoder!, width: 1)),
-          hintText: widget.hintText,
-          hintStyle: widget.textStyle!.apply(color: widget.colorHint),
-          // suffixIcon: IconButton(
-          //   icon: Icon(
-          //     isObscureText ? Icons.visibility : Icons.visibility_off,
-          //     color: Colors.black,
-          //   ),
-          //   onPressed: () {
-          //     isObscureText = !isObscureText;
-          //     setState(() {});
-          //   },
-          // )
-    ),
+        fillColor: widget.colorFill,
+        contentPadding: widget.padding,
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.radiusBorder!),
+            borderSide: BorderSide(color: widget.colorBoder!, width: 1)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.radiusBorder!),
+            borderSide: BorderSide(color: widget.colorBoder!, width: 1)),
+        hintText: widget.hintText,
+        hintStyle: widget.textStyle!.apply(color: widget.colorHint),
+      ),
+      validator: widget.validator,
     );
   }
 }
 
 // ....................................text Field wit label..................................
 
-class TextFieldWithLabel extends StatelessWidget {
-  const TextFieldWithLabel({Key? key, this.firstText = 'hint text', this.secondText = '*', this.hintText = 'hintText'}) : super(key: key);
+class TextFormFieldWithLabel extends StatelessWidget {
+  const TextFormFieldWithLabel(
+      {Key? key,
+      this.firstText = 'hint text',
+      this.secondText = '*',
+      this.hintText = 'hintText'})
+      : super(key: key);
   final String? firstText;
   final String? secondText;
   final String? hintText;
@@ -248,12 +253,29 @@ class TextFieldWithLabel extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(firstText!, style: TextStylesCustom.textStyles_14,),
-            Text(secondText!, style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.red_ED0925),),
+            Text(
+              firstText!,
+              style: TextStylesCustom.textStyles_14,
+            ),
+            Text(
+              secondText!,
+              style: TextStylesCustom.textStyles_14
+                  .apply(color: ColorStyle.red_ED0925),
+            ),
           ],
         ),
-        const SizedBox(height: 14,),
-        TextFieldOutline(hintText: hintText!, radiusBorder: 4, colorBoder: ColorStyle.grey_DAE1E7, padding: const EdgeInsets.only(left: 14),colorHint: ColorStyle.grey_DAE1E7,textStyle: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_5E6D77),)
+        const SizedBox(
+          height: 14,
+        ),
+        TextFormFieldOutline(
+          hintText: hintText!,
+          radiusBorder: 4,
+          colorBoder: ColorStyle.grey_DAE1E7,
+          padding: const EdgeInsets.only(left: 14),
+          colorHint: ColorStyle.grey_DAE1E7,
+          textStyle: TextStylesCustom.textStyles_14
+              .apply(color: ColorStyle.grey_5E6D77),
+        )
       ],
     );
   }
