@@ -262,39 +262,39 @@ class BookingForm extends StatelessWidget {
                       DropdownWithLabel(firstText:'Salutation', ontap: (){}, list: ['Please select'], width: Get.mediaQuery.size.width, dropdownValue: 'Please select',),
                       SizedBox(height: 15,),
 
-                      TextFieldWithLabel(firstText: 'Academic Title', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Academic Title', hintText: 'Please enter',),
                       SizedBox(height: 15,),
                       Row(
                         children: [
-                          Expanded(child: TextFieldWithLabel(firstText: 'First Name', hintText: 'Please enter',),),
+                          Expanded(child: TextFormFieldWithLabel(firstText: 'First Name', hintText: 'Please enter',),),
                           SizedBox(width: 20,),
-                          Expanded(child: TextFieldWithLabel(firstText: 'Last Name', hintText: 'Please enter',),)
+                          Expanded(child: TextFormFieldWithLabel(firstText: 'Last Name', hintText: 'Please enter',),)
                         ],
                       ),
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'Identification Number', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Identification Number', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'Email', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Email', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
                       DateFieldCustom(firstText: 'Birth Date', hintText: 'dd-mm-yy',),
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'Birth Place', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Birth Place', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'Country Of Birth', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Country Of Birth', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
                       DropdownWithLabel(firstText:'Mother Tongue', ontap: (){}, list: ['Please select'], width: Get.mediaQuery.size.width, dropdownValue: 'Please select',),
 
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'Telephone', secondText: '', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Telephone', secondText: '', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'Mobile', secondText: '*', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Mobile', secondText: '*', hintText: 'Please enter',),
 
                       SizedBox(height: 35,),
                       Row(
@@ -313,16 +313,16 @@ class BookingForm extends StatelessWidget {
                       SizedBox(height: 33,),
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'C/o',secondText: '', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'C/o',secondText: '', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'Street', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Street', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'City', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'City', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
-                      TextFieldWithLabel(firstText: 'Postal Code', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Postal Code', hintText: 'Please enter',),
 
                       SizedBox(height: 15,),
                       DropdownWithLabel(firstText:'Country', ontap: (){}, list: ['Germany'], width: Get.mediaQuery.size.width, dropdownValue: 'Germany',),

@@ -125,7 +125,7 @@ class WelcomeScreen extends StatelessWidget {
                     size: Size(MediaQuery.of(context).size.width, 50),
                     onTap: () {
                       controller.isBackVisible.value = true;
-                      const Login().navigateToCustom(context);
+                      Login().navigateToCustom(context);
                     },
                   ),
                   const SizedBox(
@@ -137,7 +137,7 @@ class WelcomeScreen extends StatelessWidget {
                     fontWeightdelta: 0,
                     onTap: () {
                       controller.isBackVisible.value = true;
-                      const SignUp().navigateToCustom(context);
+                       SignUp().navigateToCustom(context);
                     },
                   ),
                   const SizedBox(

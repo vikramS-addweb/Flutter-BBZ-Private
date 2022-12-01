@@ -114,7 +114,7 @@ class MyProfile extends StatelessWidget {
                       Row(
                         children: const [
                           Expanded(
-                              child: TextFieldWithLabel(
+                              child: TextFormFieldWithLabel(
                             firstText: 'First Name',
                             hintText: 'John',
                           )),
@@ -122,7 +122,7 @@ class MyProfile extends StatelessWidget {
                             width: 21,
                           ),
                           Expanded(
-                              child: TextFieldWithLabel(
+                              child: TextFormFieldWithLabel(
                             firstText: 'Last Name',
                             hintText: 'Doe',
                           )),
@@ -132,7 +132,7 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------Email Field---------------------------->
-                      const TextFieldWithLabel(
+                      const TextFormFieldWithLabel(
                         firstText: 'Email',
                         hintText: 'Johndoe@gmail.com',
                       ),
@@ -140,7 +140,7 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------Telephone Field---------------------------->
-                      const TextFieldWithLabel(
+                      const TextFormFieldWithLabel(
                         firstText: 'Telephone',
                         secondText: '',
                         hintText: 'Please enter',
@@ -149,7 +149,7 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------Birth Date Field---------------------------->
-                      const TextFieldWithLabel(
+                      const TextFormFieldWithLabel(
                         firstText: 'Birth Date',
                         hintText: 'dd-mm-yy',
                       ),
@@ -166,7 +166,7 @@ class MyProfile extends StatelessWidget {
                         height: 40,
                       ),
                       // -----------------------C/o field---------------------------->
-                      const TextFieldWithLabel(
+                      const TextFormFieldWithLabel(
                         firstText: 'C/o',
                         secondText: '',
                         hintText: 'Please enter',
@@ -175,7 +175,7 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------Street field---------------------------->
-                      const TextFieldWithLabel(
+                      const TextFormFieldWithLabel(
                         firstText: 'Street',
                         hintText: 'Please enter',
                       ),
@@ -183,7 +183,7 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------City field---------------------------->
-                      const TextFieldWithLabel(
+                      const TextFormFieldWithLabel(
                         firstText: 'City',
                         hintText: 'Please enter',
                       ),
@@ -191,7 +191,7 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------Postal field---------------------------->
-                      const TextFieldWithLabel(
+                      const TextFormFieldWithLabel(
                         firstText: 'Postal Code',
                         hintText: 'Please enter',
                       ),
@@ -199,7 +199,7 @@ class MyProfile extends StatelessWidget {
                         height: 15,
                       ),
                       // -----------------------Country field---------------------------->
-                      const TextFieldWithLabel(
+                      const TextFormFieldWithLabel(
                         firstText: 'Country',
                         hintText: 'Please enter',
                       ),

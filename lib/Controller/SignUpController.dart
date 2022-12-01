@@ -14,48 +14,37 @@ class SignUpController extends GetxController {
   Rx<TextEditingController> password = TextEditingController().obs;
   Rx<TextEditingController> cPassword = TextEditingController().obs;
 
-  userSignUp() {
+  userSignUp() async {
     Get.focusScope!.unfocus();
-    print(check.value.runtimeType);
+
+    // final params = {
+    //   'first_name': firstName.value.text,
+    //   'last_name': lastName.value.text,
+    //   'email': email.value.text,
+    //   'password': password.value.text,
+    //   'phone': mobile.value.text,
+    //   'term': '${check.value}'
+    // };
+
     final params = {
-      'first_name': firstName.value.text,
-      'last_name': lastName.value.text,
-      'email': email.value.text,
-      'password': password.value.text,
-      'phone': mobile.value.text,
-      'term': '${check.value}'
+      'first_name': "first name",
+      'last_name': "last name",
+      'email': "rajaa@gmail.com",
+      'password': "123456",
+      'phone': "123456",
+      'term': 'true'
     };
-    RegExp regex =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-    if (firstName.value.text.isEmpty ||
-        lastName.value.text.isEmpty ||
-        email.value.text.isEmpty ||
-        password.value.text.isEmpty ||
-        cPassword.value.text.isEmpty)
-      'All Fields are Required'.showError();
-    else if (password.value.text.length < 8)
-      'Password should have atleast 8 characters'.showError();
-    else if (!regex.hasMatch(password.value.text))
-      'Enter a stronger password'.showError();
-    else if (!GetUtils.isEmail(email.value.text))
-      'Enter a Valid Email Address'.showError();
-    else if (password.value.text != cPassword.value.text)
-      'Confimation password does not match the entered password'.showError();
-    else if (!check.value)
-      'Please Read Terms and Privacy Policy'.showError();
-    else {
-      final response =
-          API.instance.post(endPoint: 'api/signup', params: params);
 
-      if (response != null) {
-        isLoggedIn = true;
+    final response = await API.instance.post(endPoint: 'api/signup', params: params);
 
-        'You are Registered Successfully'.showSuccess();
-        navigateToBack(Get.context);
-      }
-      // 'You are Registered Successfully'.showSuccess();
-      // signUp();
+    debugPrint(response.toString());
+
+    if (response!.isNotEmpty) {
+      isLoggedIn = true;
+
+      'You are Registered Successfully'.showSuccess();
     }
+
   }
 
   RememberMe() {

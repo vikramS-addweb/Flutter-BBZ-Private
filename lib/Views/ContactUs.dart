@@ -140,7 +140,7 @@ class ContactUs extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextFieldOutline(
+                        TextFormFieldOutline(
                           controller: controller.userName.value,
                           hintText: 'Your Name',
                           textStyle: TextStylesCustom.textStyles_14,
@@ -153,7 +153,7 @@ class ContactUs extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        TextFieldOutline(
+                        TextFormFieldOutline(
                           controller: controller.userEmail.value,
                           hintText: 'Email address',
                           textStyle: TextStylesCustom.textStyles_14,
@@ -166,7 +166,7 @@ class ContactUs extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        TextFieldOutline(
+                        TextFormFieldOutline(
                           controller: controller.userMessage.value,
                           hintText: 'Message',
                           textStyle: TextStylesCustom.textStyles_14,

@@ -76,13 +76,13 @@ class ChangePassword extends StatelessWidget {
 
 
                       // -----------------------Email Field---------------------------->
-                      TextFieldWithLabel(firstText: 'Current Password', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Current Password', hintText: 'Please enter',),
                       SizedBox(height: 15,),
                       // -----------------------Telephone Field---------------------------->
-                      TextFieldWithLabel(firstText: 'New Password', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'New Password', hintText: 'Please enter',),
                       SizedBox(height: 15,),
                       // -----------------------Birth Date Field---------------------------->
-                      TextFieldWithLabel(firstText: 'Confirm Password', hintText: 'Please enter',),
+                      TextFormFieldWithLabel(firstText: 'Confirm Password', hintText: 'Please enter',),
                       SizedBox(height: 14,),
 
 

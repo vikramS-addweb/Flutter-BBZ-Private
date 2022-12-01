@@ -69,7 +69,7 @@ class ResetPassword extends StatelessWidget {
                     height: 30,
                   ),
 
-                  TextFieldOutline(
+                  TextFormFieldOutline(
                     controller: controller.useremail.value,
                     keyboardType: TextInputType.emailAddress,
                     hintText: 'Email address',
