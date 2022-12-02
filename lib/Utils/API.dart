@@ -86,6 +86,7 @@ class API {
 
       Map<String, dynamic> parsed = json.decode(response.body);
       if (response.statusCode == 200) {
+        hideLoader();
         return parsed;
       } else {
         hideLoader();

@@ -28,6 +28,7 @@ class ContactUsController extends GetxController {
   }
 
   sendMessage() async {
+    Get.focusScope!.unfocus();
     final params = {
       'full_name': userName.value.text,
       'email': userEmail.value.text,
@@ -39,8 +40,11 @@ class ContactUsController extends GetxController {
     if (response!.isNotEmpty) {
       // isLoggedIn = true;
       response['success'].toString().showSuccess();
+      userName.value.text = '';
+      userEmail.value.text = '';
+      userMessage.value.text = '';
 
-      PersistentBottomNavBarCustom().navigateToCustom(Get.context, withNavBar: false);
+      // PersistentBottomNavBarCustom().navigateToCustom(Get.context, withNavBar: false);
     }
   }
 

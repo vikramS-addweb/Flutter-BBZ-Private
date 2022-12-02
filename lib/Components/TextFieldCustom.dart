@@ -243,6 +243,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
       this.firstText = 'hint text',
       this.secondText = '*',
       this.hintText = 'hintText',
+        this.keyboardType = TextInputType.text,
       this.validator,
       })
       : super(key: key);
@@ -250,6 +251,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
   final String? firstText;
   final String? secondText;
   final String? hintText;
+  final TextInputType? keyboardType;
   String? Function(String?)? validator;
 
   @override
@@ -273,6 +275,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
           height: 14,
         ),
         TextFormFieldOutline(
+          keyboardType: keyboardType,
           controller: controller,
           hintText: hintText!,
           radiusBorder: 4,

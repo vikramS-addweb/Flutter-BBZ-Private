@@ -91,8 +91,8 @@ class ChangePassword extends StatelessWidget {
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Current password is required";
-                            } else if(value.length < 6){
-                              return "Current password must be at least 6 characters";
+                            } else if(value.length < 8){
+                              return "Current password must be at least 8 characters";
                             }else {
                               return null;
                             }
@@ -106,8 +106,8 @@ class ChangePassword extends StatelessWidget {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "New password is required";
-                          } else if(value.length < 6){
-                            return "New password must be at least 6 characters";
+                          } else if(value.length < 8){
+                            return "New password must be at least 8 characters";
                           }else {
                             return null;
                           }
@@ -121,8 +121,8 @@ class ChangePassword extends StatelessWidget {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Confirm password is required";
-                          } else if(value.length < 6){
-                            return "Confirm password must be at least 6 characters";
+                          } else if(value.length < 8){
+                            return "Confirm password must be at least 8 characters";
                           }else {
                             return null;
                           }

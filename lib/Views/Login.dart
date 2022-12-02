@@ -101,8 +101,8 @@ class Login extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Password is required";
-                        }else if(value.length < 6){
-                          return "Password must be at least 6 characters";
+                        }else if(value.length < 8){
+                          return "Password must be at least 8 characters";
                         }
                         else {
                           return null;

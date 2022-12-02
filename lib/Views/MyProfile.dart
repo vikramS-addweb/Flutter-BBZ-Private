@@ -44,7 +44,6 @@ class MyProfile extends StatelessWidget {
           onTap: () {
             if(fromkey.currentState!.validate()){
               debugPrint('yay you logged in successfully');
-              // controller.validation();
             }
           },
           styleText: TextStylesCustom.textStyles_16,
@@ -129,7 +128,10 @@ class MyProfile extends StatelessWidget {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return "First name is required";
-                                  }else {
+                                  } else if (!GetUtils.isAlphabetOnly(value)){
+                                    return " The first name must only contain letters";
+                                  }
+                                  else {
                                     return null;
                                   }
                                 },
@@ -144,7 +146,10 @@ class MyProfile extends StatelessWidget {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return "Last name is required";
-                                  }else {
+                                  } else if (!GetUtils.isAlphabetOnly(value)){
+                                    return " The last name must only contain letters";
+                                  }
+                                  else {
                                     return null;
                                   }
                                 },
@@ -173,9 +178,19 @@ class MyProfile extends StatelessWidget {
                       ),
                       // -----------------------Telephone Field---------------------------->
                       TextFormFieldWithLabel(
+                        keyboardType: TextInputType.phone,
                         firstText: 'Telephone',
                         secondText: '',
                         hintText: 'Please enter',
+                          // validator: (value) {
+                          //   if (value!.isEmpty) {
+                          //     return "T is required";
+                          //   } else if (value.length < 9 || value.length >13) {
+                          //     return "Phone must be between 9 and 13 digits";
+                          //   } else {
+                          //     return null;
+                          //   }
+                          // }
                       ),
                       const SizedBox(
                         height: 15,
@@ -235,7 +250,10 @@ class MyProfile extends StatelessWidget {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "City is required";
-                          }else {
+                          }else if (!GetUtils.isAlphabetOnly(value)){
+                            return " City name must only contain letters";
+                          }
+                          else {
                             return null;
                           }
                         },
@@ -245,6 +263,7 @@ class MyProfile extends StatelessWidget {
                       ),
                       // -----------------------Postal field---------------------------->
                       TextFormFieldWithLabel(
+                        keyboardType: TextInputType.number,
                         firstText: 'Postal Code',
                         hintText: 'Please enter',
                         validator: (value) {
@@ -265,7 +284,10 @@ class MyProfile extends StatelessWidget {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Country is required";
-                          }else {
+                          } else if (!GetUtils.isAlphabetOnly(value)){
+                            return " Country name must only contain letters";
+                          }
+                          else {
                             return null;
                           }
                         },

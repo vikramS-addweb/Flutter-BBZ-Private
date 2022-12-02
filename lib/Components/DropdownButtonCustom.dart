@@ -20,7 +20,7 @@ class DropdownButtonCustom extends StatefulWidget {
         this.onChanged,
         this.width = 150,
         this.height = 50,
-        this.list = const ['One', 'Two', 'Three'],
+        this.list = const [{'name' : 'One'}, {'name' : 'Two'}, { 'name':'Three'}],
         this.padding = const EdgeInsets.all(0),
         this.colorIcon = Colors.red,
         this.textStyle = const TextStyle(color: Colors.red),
@@ -83,9 +83,9 @@ class _DropdownButtonCustomState extends State<DropdownButtonCustom> {
                   });
                 },
                 items: widget.list!.map((e) => DropdownMenuItem<String>(
-                  value: e,
+                  value: e['name'],
                   child: Text(
-                    e,
+                    e['name'],
                     style: widget.textStyle!.apply(color: Colors.black),
                   ),
                 )).toList(),

@@ -20,6 +20,8 @@ class ContactUs extends StatelessWidget {
   GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
   final controller = ContactUsController();
+  final formkey = GlobalKey<FormState>();
+
 
   final arrIcons = [
     // const Icon(Icons.location_on),
@@ -79,8 +81,9 @@ class ContactUs extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 563,
+              // height: 603,
               child: Stack(
+                clipBehavior: Clip.none,
                 children: [
                   Image.asset(
                     ImageStyle.examBG,
@@ -116,7 +119,7 @@ class ContactUs extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 390,
+                    // height: 400,
                     width: Get.mediaQuery.size.width,
                     margin:
                         const EdgeInsets.only(top: 150, left: 16, right: 16),
@@ -137,6 +140,8 @@ class ContactUs extends StatelessWidget {
                                 0, 0), // changes position of shadow
                           ),
                         ]),
+                    child:Form(
+                    key: formkey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -149,6 +154,16 @@ class ContactUs extends StatelessWidget {
                           radiusBorder: 4,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 13),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Name is required";
+                              } else if (!GetUtils.isAlphabetOnly(value!)){
+                                return " Name must only contain letters";
+                              }
+                              else {
+                                return null;
+                              }
+                            }
                         ),
                         const SizedBox(
                           height: 20,
@@ -162,6 +177,15 @@ class ContactUs extends StatelessWidget {
                           radiusBorder: 4,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 13),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Email is required";
+                            }else if(!GetUtils.isEmail(value)){
+                              return "Email is invalid";
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
                         const SizedBox(
                           height: 20,
@@ -173,18 +197,26 @@ class ContactUs extends StatelessWidget {
                           colorText: ColorStyle.grey_DAE1E7,
                           colorBoder: ColorStyle.grey_DAE1E7,
                           radiusBorder: 4,
-                          maxLines: 8,
+                          maxLines: 6,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 13),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Message is required";
+                            }else {
+                              return null;
+                            }
+                          },
                         ),
-                        const SizedBox(
-                          height: 30,
+
+                         SizedBox(
+                          height: 50,
                         )
                       ],
                     ),
-                  ),
+                  )),
                   Positioned(
-                    bottom: 0,
+                    bottom: -23,
                     left: 0,
                     right: 0,
                     child: Center(
@@ -192,7 +224,12 @@ class ContactUs extends StatelessWidget {
                         text: 'SEND MESSAGE',
                         size: const Size(200, 46),
                         onTap: () {
-                          controller.validation();
+
+                          if(formkey.currentState!.validate()){
+                            // debugPrint('yay you logged in successfully');
+                            controller.sendMessage();
+                          }
+                          // controller.validation();
                           // controller.userLogin();
                           // Get.to(const Login());
                         },
