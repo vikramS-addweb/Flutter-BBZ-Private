@@ -244,7 +244,7 @@ class _ExamState extends State<Exam> {
                             width: MediaQuery.of(context).size.width - 32,
                             height: 50,
                             hintText: 'Select Your Center Location',
-                            list: const ['One', 'Two', 'Three'],
+                            list: controller.searchDetails['locations'] != null ? controller.searchDetails['locations'] : [{'name' : 'One'}, {'name' : 'Two'}, { 'name':'Three'}],
                             padding: const EdgeInsets.only(
                                 left: 16, right: 16
                             ),
@@ -261,7 +261,7 @@ class _ExamState extends State<Exam> {
                             width: MediaQuery.of(context).size.width - 32,
                             height: 50,
                             hintText: 'Select Your Language Level',
-                            list: const ['One', 'Two', 'Three'],
+                            list: [{'name' : 'One'}, {'name' : 'Two'}, { 'name':'Three'},],
                             padding: const EdgeInsets.only(
                                 left: 16, right: 16
                             ),

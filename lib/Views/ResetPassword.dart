@@ -20,7 +20,8 @@ import '../../Components/BottomNavBarCustom.dart';
 
 
 class ResetPassword extends StatelessWidget {
-  const ResetPassword({super.key});
+  ResetPassword({super.key});
+  final fromkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,9 @@ class ResetPassword extends StatelessWidget {
               margin: const EdgeInsets.only(top: 30),
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
               decoration: boxDecorationAuthBox(),
-              child: Column(
+              child: Form(
+                key: fromkey,
+                child:Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
@@ -78,6 +81,15 @@ class ResetPassword extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 16, right: 16),
                     colorBoder: ColorStyle.grey_DAE1E7,
                     radiusBorder: 4,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Email is required";
+                      }else if(!GetUtils.isEmail(value)){
+                        return "Email is invalid";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
 
                   const SizedBox(
@@ -91,13 +103,16 @@ class ResetPassword extends StatelessWidget {
                       fontWeightDelta: 2,
                     ),
                     onTap: () {
-                      controller.resetPassword();
+                      if(fromkey.currentState!.validate()){
+                        debugPrint('yay you logged in successfully');
+                      }
+                      // controller.resetPassword();
                       // Get.to(const Login());
                     },
                   ),
                 ],
               ),
-            ),
+            ),)
           ),
         ],
       ),

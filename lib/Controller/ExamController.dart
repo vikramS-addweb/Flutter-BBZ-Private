@@ -6,10 +6,12 @@ import '../Utils/API.dart';
 
 class ExamController extends GetxController {
   RxList upcomingExamData = [].obs;
+  RxMap searchDetails = {}.obs;
 
   void initMethods(){
     Future.delayed(Duration(microseconds: 100), () {
       fetchUpcomingExam();
+      fetchSearchDetails();
     });
   }
 
@@ -25,4 +27,15 @@ class ExamController extends GetxController {
     }
   }
 
+  Future fetchSearchDetails() async {
+
+
+    final response = await API.instance.get(endPoint: 'api/exam-search-detail');
+
+    if (response!.isNotEmpty) {
+      debugPrint('SearchDetails response count ${response['data'].toList().length}');
+      searchDetails.value = response['data'];
+      update();
+    }
+  }
 }

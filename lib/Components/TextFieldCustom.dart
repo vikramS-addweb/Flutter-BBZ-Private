@@ -237,15 +237,22 @@ class _TextFormFieldPWDOutlineState extends State<TextFormFieldPWDOutline> {
 // ....................................text Field wit label..................................
 
 class TextFormFieldWithLabel extends StatelessWidget {
-  const TextFormFieldWithLabel(
+  TextFormFieldWithLabel(
       {Key? key,
+        this.controller,
       this.firstText = 'hint text',
       this.secondText = '*',
-      this.hintText = 'hintText'})
+      this.hintText = 'hintText',
+        this.keyboardType = TextInputType.text,
+      this.validator,
+      })
       : super(key: key);
+  final TextEditingController? controller;
   final String? firstText;
   final String? secondText;
   final String? hintText;
+  final TextInputType? keyboardType;
+  String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -268,6 +275,8 @@ class TextFormFieldWithLabel extends StatelessWidget {
           height: 14,
         ),
         TextFormFieldOutline(
+          keyboardType: keyboardType,
+          controller: controller,
           hintText: hintText!,
           radiusBorder: 4,
           colorBoder: ColorStyle.grey_DAE1E7,
@@ -275,6 +284,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
           colorHint: ColorStyle.grey_DAE1E7,
           textStyle: TextStylesCustom.textStyles_14
               .apply(color: ColorStyle.grey_5E6D77),
+          validator: validator,
         )
       ],
     );

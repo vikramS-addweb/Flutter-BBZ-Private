@@ -83,8 +83,11 @@ class SignUp extends StatelessWidget {
                             radiusBorder: 4,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Enter first name.";
-                              } else {
+                                return "First name is required";
+                              } else if (!GetUtils.isAlphabetOnly(value)){
+                                return " The first name must only contain letters";
+                              }
+                              else {
                                 return null;
                               }
                             },
@@ -105,8 +108,11 @@ class SignUp extends StatelessWidget {
                             radiusBorder: 4,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Enter last name.";
-                              } else {
+                                return "Last name is required";
+                              } else if (!GetUtils.isAlphabetOnly(value)){
+                                return " The last name must only contain letters";
+                              }
+                              else {
                                 return null;
                               }
                             },
@@ -129,9 +135,9 @@ class SignUp extends StatelessWidget {
                       radiusBorder: 4,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Enter an email.";
+                          return "Email is required";
                         } if (!GetUtils.isEmail(value)) {
-                          return "Enter a valid email.";
+                          return "Email is invalid";
                         } else {
                           return null;
                         }
@@ -143,7 +149,7 @@ class SignUp extends StatelessWidget {
                     // -----------------------Mobile Feild---------------------------->
                     TextFormFieldOutline(
                       controller: controller.mobile.value,
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.phone,
                       hintText: 'Mobile Number',
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
@@ -152,9 +158,9 @@ class SignUp extends StatelessWidget {
                       radiusBorder: 4,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Password should have atleast 8 characters.";
-                        } else if (value.length < 10) {
-                          return "Mobile number should be in 10 digits";
+                          return "Mobile number is required";
+                        } else if (value.length < 9 || value.length >13) {
+                          return "Phone must be between 9 and 13 digits";
                         } else {
                           return null;
                         }
@@ -178,10 +184,14 @@ class SignUp extends StatelessWidget {
                         RegExp regex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
                         if (value!.isEmpty) {
-                          return "Password should have atleast 8 characters.";
-                        } else if (!regex.hasMatch(value)) {
-                          return "Password should have atleast 8 characters.";
-                        } else {
+                          return "Password is required.";
+                        } else if (value.length < 8){
+                          return "Password should have atleast 8 characters";
+                        }
+                        // else if (!regex.hasMatch(value)) {
+                        //   return "Password should have atleast 8 characters.";
+                        // }
+                        else {
                           return null;
                         }
                       },
@@ -201,7 +211,7 @@ class SignUp extends StatelessWidget {
                       radiusBorder: 4,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Confirm Password must not be empty.";
+                          return "Confirm password is required.";
                         } else if (controller.password.value.text != controller.cPassword.value.text) {
                           return "Password and confirm password must be same.";
                         } else {
@@ -217,6 +227,7 @@ class SignUp extends StatelessWidget {
                       children: [
                         InkWell(
                             onTap: () => controller.RememberMe(),
+
                             child: Obx(
                                   () => Icon(
                                 controller.check.value
@@ -255,9 +266,14 @@ class SignUp extends StatelessWidget {
                       onTap: () {
                         debugPrint('Save is clicking ...');
 
-                        // if (fromkey.currentState!.validate()) {
-                          controller.userSignUp();
-                        // }
+                        if (fromkey.currentState!.validate()) {
+                          if(controller.check.value) {
+                            // controller.userSignUp();
+                            debugPrint('validation done');
+                          }else{
+                            'Terms and Privacy Policy is Required'.showError();
+                          }
+                        }
 
                       },
                     ),
