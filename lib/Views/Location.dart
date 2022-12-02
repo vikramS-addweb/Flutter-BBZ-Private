@@ -5,11 +5,14 @@ import '../Styles/TextStyles.dart';
 import '../Utils/Global.dart';
 import '../Components/AppBarStyle.dart';
 import '../Styles/ColorStyle.dart';
+import '../Views/DrawerScreen.dart';
+
 
 
 class Location extends StatefulWidget {
   final String urlCustom;
   const Location({Key? key, this.urlCustom = 'https://bbzstage.addwebprojects.com/page/locations'}) : super(key: key);
+
 
   @override
   State<Location> createState() => _LocationState();
@@ -17,22 +20,26 @@ class Location extends StatefulWidget {
 
 class _LocationState extends State<Location> {
    late WebViewController _webViewController;
+   GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
-  @override
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: keyDrawer,
+      drawer: DrawerScreen(),
       backgroundColor: Colors.transparent,
       // extendBodyBehindAppBar: true,
       appBar: AppBarStyle(
         title: 'Location',
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
+            Icons.menu,
             color: ColorStyle.primaryColor_1570A5,
             size: 30,
           ),
           onPressed: () {
-            navigateToBack(context);
+            keyDrawer.currentState!.openDrawer();
           },
         ),
         styleTitle: TextStylesCustom.textStyles_20.apply(

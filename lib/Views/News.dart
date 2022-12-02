@@ -124,16 +124,15 @@ class News extends StatelessWidget {
                         height: 48,
                         child: Html(
                             style: {
-                              'p':Style.fromTextStyle(TextStylesCustom.textStyles_13.apply(
-                                color: ColorStyle.grey_5E6D77,
-                                // backgroundColor: ColorStyle.white_F3F3F3
-                              )),
+
                               "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,),
                               '#': Style(
-                                // fontSize: FontSize(18),
                                 maxLines: 3,
                                 textOverflow: TextOverflow.ellipsis,
                               ),
+                              'p':Style.fromTextStyle(TextStylesCustom.textStyles_13.apply(
+                                color: ColorStyle.grey_5E6D77,
+                              )),
                             },
                             data: controller.newsData[index]['content']
                         ),
