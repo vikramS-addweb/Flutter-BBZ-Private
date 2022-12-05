@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../Utils/Global.dart';
 import '../Utils/API.dart';
 import '../Utils/Constant.dart';
+import 'dart:convert';
+import 'package:get_storage/get_storage.dart';
+import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
+
 
 class SignUpController extends GetxController {
   final check = false.obs;
@@ -29,9 +33,9 @@ class SignUpController extends GetxController {
     final params = {
       'first_name': "first name",
       'last_name': "last name",
-      'email': "rajaa@gmail.com",
-      'password': "123456",
-      'phone': "123456",
+      'email': "raja1@gmail.comeee3233",
+      'password': "12345678",
+      'phone': "123456789012121231233",
       'term': 'true'
     };
 
@@ -42,12 +46,39 @@ class SignUpController extends GetxController {
     if (response!.isNotEmpty) {
       isLoggedIn = true;
 
-      'You are Registered Successfully'.showSuccess();
+      if (response['error'] != null) {
+        final dictMessage = Map<String, dynamic>.from(response['messages']);
+
+        if (dictMessage['email'] != null) {
+          final arrEmail = dictMessage['email'];
+          arrEmail[0].toString().showError();
+
+          return;
+        } else if (dictMessage['phone'] != null) {
+          final arrPhone = dictMessage['phone'];
+          arrPhone[0].toString().showError();
+
+          return;
+        }
+      } else {
+        GetStorage().write('user', jsonEncode(response));
+
+        dictUserSaved = response;
+        kSavedUserID = dictUserSaved[kUserID].toString();
+        kTOKENSAVED = dictUserSaved[kTOKEN];
+
+        PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context,);
+      }
     }
 
   }
 
-  RememberMe() {
+  isTermsConditions() {
     check.value = !check.value;
   }
+
 }
+
+
+
+

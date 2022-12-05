@@ -78,7 +78,7 @@ class DrawerScreen extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            'Hello there!',
+                            "Hello ${isLoggedIn ? dictUserSaved['name'].toString() : 'Hello there!'}",
                             style: TextStylesCustom.textStyles_26.apply(
                               color: ColorStyle.primaryColor_1570A5,
                               fontWeightDelta: 1,

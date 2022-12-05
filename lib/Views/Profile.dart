@@ -72,9 +72,10 @@ class Profile extends StatelessWidget {
               width: 10,
             ),
             Text(
-              'John Doe',
+              dictUserSaved['name'].toString(),
               style: TextStylesCustom.textStyles_26.apply(
-                  color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),
+                  color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1
+              ),
             )
           ],
         ),
