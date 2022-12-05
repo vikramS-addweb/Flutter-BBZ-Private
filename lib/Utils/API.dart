@@ -53,7 +53,8 @@ class API {
       final response = await http.get(url, headers: headers);
       hideLoader();
 
-      debugPrint(response.body);
+      debugPrint(response.statusCode.toString());
+      // debugPrint(response.body);
 
       final Map parsed = json.decode(response.body);
       return parsed as Map<String, dynamic>;
@@ -74,7 +75,8 @@ class API {
       return null;
     }
 
-    final url = Uri.parse('${_kBaseURL}${endPoint}');
+    final url = Uri.parse(_kBaseURL+endPoint);
+
     try {
       showLoaderGetX();
       final response = await http.post(url,
@@ -82,10 +84,10 @@ class API {
           body: params);
       // hideLoader();
       debugPrint('Response status: ${response.statusCode}');
-      debugPrint('Response status: ${response.body}');
+      // debugPrint('Response status: ${response.body}');
 
       Map<String, dynamic> parsed = json.decode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         hideLoader();
         return parsed;
       } else {

@@ -226,7 +226,7 @@ class SignUp extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         InkWell(
-                            onTap: () => controller.RememberMe(),
+                            onTap: () => controller.isTermsConditions(),
 
                             child: Obx(
                                   () => Icon(
@@ -265,12 +265,14 @@ class SignUp extends StatelessWidget {
                       size: Size(MediaQuery.of(context).size.width - 30, 50),
                       onTap: () {
                         debugPrint('Save is clicking ...');
+                        controller.userSignUp();
+
+                        return;
 
                         if (fromkey.currentState!.validate()) {
                           if(controller.check.value) {
                             // controller.userSignUp();
-                            debugPrint('validation done');
-                          }else{
+                          } else {
                             'Terms and Privacy Policy is Required'.showError();
                           }
                         }

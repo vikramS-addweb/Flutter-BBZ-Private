@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,12 +21,20 @@ class LoginController extends GetxController {
   Rx<TextEditingController> useremail = TextEditingController().obs;
   Rx<TextEditingController> userPassword = TextEditingController().obs;
 
-  checkIsLoggedIn(){
+  checkIsLoggedIn() {
     final storage = GetStorage();
-    debugPrint('userId : ${storage.read('userId')}');
+    // debugPrint('user : ${storage.read(kUserDetails)}');
+    final strUserSAVED = storage.read(kUserDetails);
 
-    if( storage.read('userId') != null){
+    if( strUserSAVED != null) {
       isLoggedIn = true;
+
+      dictUserSaved = Map<String, dynamic>.from(jsonDecode(strUserSAVED));
+      print(dictUserSaved);
+
+      kSavedUserID = dictUserSaved[kUserID].toString();
+      kTOKENSAVED = dictUserSaved[kTOKEN];
+
       return true;
     } else {
       return false;
@@ -32,12 +43,11 @@ class LoginController extends GetxController {
 
   logout(){
     isLoggedIn = false;
-    GetStorage().remove('userId');
+    GetStorage().remove(kUserDetails);
     PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
   }
 
   validation() async {
-    // checkIsLoggedIn();
     Get.focusScope!.unfocus();
 
     if (useremail.value.text.isNotEmpty && userPassword.value.text.isNotEmpty) {
@@ -57,16 +67,20 @@ class LoginController extends GetxController {
     };
 
     final response = await API.instance.post(endPoint: 'api/login', params: params);
+    // log(response.toString());
 
     if (response!.isNotEmpty) {
       isLoggedIn = true;
 
       if(check3.value) {
-        GetStorage().write('userId', response['id']);
-        debugPrint('userId : ${GetStorage().read('userId')}');
+        GetStorage().write('user', jsonEncode(response));
+        dictUserSaved = response;
+        kSavedUserID = dictUserSaved[kUserID].toString();
+        kTOKENSAVED = dictUserSaved[kTOKEN];
       }
+
       // TabbarScreen().navigateToCustom(Get.context);
-      PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
+      PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context,);
     }
   }
 
@@ -74,3 +88,5 @@ class LoginController extends GetxController {
     check3.value = !check3.value;
   }
 }
+
+
