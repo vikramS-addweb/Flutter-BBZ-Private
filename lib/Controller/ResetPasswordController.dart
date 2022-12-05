@@ -9,24 +9,28 @@ class ResetPasswordController extends GetxController {
 
   resetPassword() {
     Get.focusScope!.unfocus();
+
     final params = {
       'email': useremail.value.text,
     };
-    if (useremail.value.text.isNotEmpty) {
-      if (!GetUtils.isEmail(useremail.value.text))
-        'Enter a Valid Email !'.showError();
-      else {
-        final response =
-            API.instance.post(endPoint: 'api/reset-password', params: params);
 
-        // print('response ==========${response}');
-        if (response != null) {
-          'Your Reset Password Request is sent on your email'.showSuccess();
-          // navigateToBack(Get.context);
-          debugPrint(response.toString());
-        }
-      }
-    } else
+    final response =
+    API.instance.post(endPoint: 'api/reset-password', params: params);
+
+    if (response != null) {
+      // 'profile updated'.showSuccess();
+      // Future.delayed(Duration(seconds: 1), () {
+      //   showAlertDialog(Get.context!);
+      // });
+      "Password reset link is sent to your email.".showSuccess();
+
+      // navigateToBack(Get.context);
+
+      // PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
+    }else {
       'Please Enter Your Email!'.showError();
+    }
   }
 }
+
+

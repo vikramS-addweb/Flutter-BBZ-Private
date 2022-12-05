@@ -97,3 +97,31 @@ extension NavigateCustom on Widget {
 navigateToBack(context) {
   Navigator.pop(context!);
 }
+
+showAlertDialog(BuildContext context) {
+  // set up the button
+  Widget okButton = TextButton(
+    child: Text("Login"),
+    onPressed: () {
+      navigateToBack(Get.context);
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Alert!", style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 1),),
+    content: Text("Password reset link is sent to your email.", style: TextStylesCustom.textStyles_12,),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
