@@ -78,7 +78,9 @@ class API {
     try {
       showLoaderGetX();
       final response = await http.post(url,
-          // headers: {'Authorization': 'Bearer $kTOKENSAVED'},
+          headers: {
+        'Accept' : 'application/json',
+          },
           body: params);
       // hideLoader();
       debugPrint('Response status: ${response.statusCode}');
