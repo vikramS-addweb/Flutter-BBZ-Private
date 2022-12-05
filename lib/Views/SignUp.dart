@@ -265,9 +265,9 @@ class SignUp extends StatelessWidget {
                       size: Size(MediaQuery.of(context).size.width - 30, 50),
                       onTap: () {
                         debugPrint('Save is clicking ...');
-                        controller.userSignUp();
+                        // controller.userSignUp();
 
-                        return;
+
 
                         if (fromkey.currentState!.validate()) {
                           if(controller.check.value) {
@@ -276,6 +276,7 @@ class SignUp extends StatelessWidget {
                             'Terms and Privacy Policy is Required'.showError();
                           }
                         }
+                        return;
 
                       },
                     ),

@@ -21,23 +21,23 @@ class SignUpController extends GetxController {
   userSignUp() async {
     Get.focusScope!.unfocus();
 
-    // final params = {
-    //   'first_name': firstName.value.text,
-    //   'last_name': lastName.value.text,
-    //   'email': email.value.text,
-    //   'password': password.value.text,
-    //   'phone': mobile.value.text,
-    //   'term': '${check.value}'
-    // };
-
     final params = {
-      'first_name': "first name",
-      'last_name': "last name",
-      'email': "raja1@gmail.comeee3233",
-      'password': "12345678",
-      'phone': "123456789012121231233",
-      'term': 'true'
+      'first_name': firstName.value.text,
+      'last_name': lastName.value.text,
+      'email': email.value.text,
+      'password': password.value.text,
+      'phone': mobile.value.text,
+      'term': '${check.value}'
     };
+
+    // final params = {
+    //   'first_name': "first name",
+    //   'last_name': "last name",
+    //   'email': "raja1@gmail.comeee3233",
+    //   'password': "12345678",
+    //   'phone': "123456789012121231233",
+    //   'term': 'true'
+    // };
 
     final response = await API.instance.post(endPoint: 'api/signup', params: params);
 

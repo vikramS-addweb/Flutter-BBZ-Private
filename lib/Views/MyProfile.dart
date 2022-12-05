@@ -303,21 +303,27 @@ class MyProfile extends StatelessWidget {
                                 height: 15,
                               ),
                               // -----------------------Country field---------------------------->
-                              TextFormFieldWithLabel(
-                                controller: controller.country.value,
-                                firstText: 'Country',
-                                hintText: 'Please enter',
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "Country is required";
-                                  } else if (!GetUtils.isAlphabetOnly(value)){
-                                    return " Country name must only contain letters";
-                                  }
-                                  else {
-                                    return null;
-                                  }
+                              InkWell(
+                                onTap: (){
+                                  PickerCustom.countryPicker();
                                 },
+                                child: TextFormFieldWithLabel(
+                                  enabled: false,
+                                  controller: controller.country.value,
+                                  firstText: 'Country',
+                                  hintText: 'Please enter',
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Country is required";
+                                    } else if (!GetUtils.isAlphabetOnly(value)){
+                                      return " Country name must only contain letters";
+                                    }
+                                    else {
+                                      return null;
+                                    }
+                                  },
 
+                                ),
                               ),
                               const SizedBox(
                                 height: 40,

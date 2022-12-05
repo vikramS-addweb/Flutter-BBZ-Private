@@ -132,7 +132,7 @@ class API {
             'Authorization': 'Bearer $kTOKENSAVED'
           },
           body: params);
-      // hideLoader();
+      hideLoader();
       debugPrint('Response status: ${response.statusCode}');
       debugPrint('Response status: ${response.body}');
 

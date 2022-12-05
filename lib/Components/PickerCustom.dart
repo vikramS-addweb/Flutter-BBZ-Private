@@ -7,8 +7,21 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import '../Utils/Global.dart';
 import 'dart:io';
+import 'package:country_picker/country_picker.dart';
 
 class PickerCustom {
+
+  static countryPicker() async {
+    showCountryPicker(
+      context: Get.context!,
+      showPhoneCode: true, // optional. Shows phone code before the country name.
+      onSelect: (Country country) {
+        print('Select country: ${country.displayName}');
+      },
+    );
+  }
+
+
   static datePicker(String dateFormat) async {
     DateTime selectedDate = DateTime.now();
 

@@ -51,6 +51,7 @@ dependencies:
   get_storage: ^2.0.3
   webview_flutter: ^3.0.2
   flutter_html: ^3.0.0-alpha.3
+  country_picker: ^2.0.18
 
 dev_dependencies:
   flutter_test:
