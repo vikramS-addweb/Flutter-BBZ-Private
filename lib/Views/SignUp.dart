@@ -271,7 +271,7 @@ class SignUp extends StatelessWidget {
 
                         if (fromkey.currentState!.validate()) {
                           if(controller.check.value) {
-                            // controller.userSignUp();
+                            controller.userSignUp();
                           } else {
                             'Terms and Privacy Policy is Required'.showError();
                           }

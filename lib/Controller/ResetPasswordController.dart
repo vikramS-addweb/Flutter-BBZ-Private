@@ -22,7 +22,8 @@ class ResetPasswordController extends GetxController {
         // print('response ==========${response}');
         if (response != null) {
           'Your Reset Password Request is sent on your email'.showSuccess();
-          navigateToBack(Get.context);
+          // navigateToBack(Get.context);
+          debugPrint(response.toString());
         }
       }
     } else
