@@ -104,9 +104,10 @@ class ResetPassword extends StatelessWidget {
                     ),
                     onTap: () {
                       if(fromkey.currentState!.validate()){
-                        debugPrint('yay you logged in successfully');
+                        // debugPrint('yay you logged in successfully');
+                        controller.resetPassword();
                       }
-                      // controller.resetPassword();
+
                       // Get.to(const Login());
                     },
                   ),

@@ -33,7 +33,7 @@ class LoginController extends GetxController {
   logout(){
     isLoggedIn = false;
     GetStorage().remove('userId');
-    PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
+    PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context,);
   }
 
   validation() async {
