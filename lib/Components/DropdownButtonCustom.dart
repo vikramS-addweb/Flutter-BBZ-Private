@@ -1,6 +1,7 @@
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:bbz/Styles/ImageStyle.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../Styles/TextStyles.dart';
 
 class DropdownButtonCustom extends StatefulWidget {
@@ -172,31 +173,42 @@ class _DropdownButtonCustomState extends State<DropdownButtonCustom> {
 //   }
 // }
 
-class DropdownWithLabel extends StatelessWidget {
-  const DropdownWithLabel({
+class DropdownWithLabel extends StatefulWidget {
+   DropdownWithLabel({
     Key? key,
     this.firstText = 'hint text',
     this.secondText = '*',
     // this.hintText = 'hintText',
-    this.ontap,
+    // this.ontap,
     this.width = 150,
     this.height = 50,
     this.list,
-    this.dropdownValue = '',
+    // this.dropdownValue = '',
+    this.onChanged,
+     this.controllerValue,
   }) : super(key: key);
 
   final String? firstText;
   final String? secondText;
+  final RxString? controllerValue;
 
   // final String? hintText;
-  final Function()? ontap;
+  // final Function()? ontap;
 
   // final Color? colorBG;
   final double? width;
   final double? height;
   final List? list;
-  final String? dropdownValue;
+  // final String? dropdownValue;
+  void Function(String?)? onChanged;
 
+  @override
+  State<DropdownWithLabel> createState() => _DropdownWithLabelState();
+}
+
+class _DropdownWithLabelState extends State<DropdownWithLabel> {
+
+  String? dropdownValue;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -204,11 +216,11 @@ class DropdownWithLabel extends StatelessWidget {
         Row(
           children: [
             Text(
-              firstText!,
+              widget.firstText!,
               style: TextStylesCustom.textStyles_14,
             ),
             Text(
-              secondText!,
+              widget.secondText!,
               style: TextStylesCustom.textStyles_14
                   .apply(color: ColorStyle.red_ED0925),
             ),
@@ -218,8 +230,8 @@ class DropdownWithLabel extends StatelessWidget {
           height: 14,
         ),
         SizedBox(
-          width: width,
-          height: height,
+          width: widget.width,
+          height: widget.height,
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -227,7 +239,12 @@ class DropdownWithLabel extends StatelessWidget {
                 //border of dropdown button
                 borderRadius: BorderRadius.circular(5)),
             child: DropdownButton<String>(
-              value: list!.first,
+              // value: list!.first,
+              value: dropdownValue,
+              hint: Padding(
+                padding: const EdgeInsets.only(left:5.0),
+                child: Text('Please select', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_DAE1E7),),
+              ),
               isExpanded: true,
               icon: Icon(
                 Icons.expand_more,
@@ -240,13 +257,15 @@ class DropdownWithLabel extends StatelessWidget {
                 height: 0,
                 color: Colors.deepPurpleAccent,
               ),
-              onChanged: (String? value) {
+              onChanged:
+                  (String? value) {
+                widget.controllerValue!.value = value!;
                 // This is called when the user selects an item.
-                // setState(() {
-                //   dropdownValue = value!;
-                // });
+                setState(() {
+                  dropdownValue = value!;
+                });
               },
-              items: list!
+              items: widget.list!
                   .map((e) => DropdownMenuItem<String>(
                         value: e,
                         child: Text(e),
