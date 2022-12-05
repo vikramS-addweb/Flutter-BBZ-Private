@@ -12,7 +12,10 @@ String kBaseUrl = 'https://cuddlingbirds-backend.vercel.app/';
 const kASSETURL = 'assets/image/';
 const kDefaultImage = 'mainlogo.png';
 const kTOKEN = 'token';
-String kTOKENSAVED = '113|Quu6fxgJbJzAnlxLNLieY2nKDTt2Laqyczy0v8qN';
+
+
+// String kTOKENSAVED = '113|Quu6fxgJbJzAnlxLNLieY2nKDTt2Laqyczy0v8qN';
+String kTOKENSAVED = '289|E3BrSQnNvAZSYfDVZCUo4zIKQziU8xervdztwULu';
 const networkImage = 'https://bbzstage.addwebprojects.com/uploads/';
 
 bool isLoggedIn = false;

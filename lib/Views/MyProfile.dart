@@ -10,323 +10,351 @@ import '../Components/TextFieldCustom.dart';
 import '../Styles/EffectStyle.dart';
 import '../Utils/Global.dart';
 import '../Styles/ImageStyle.dart';
+import '../Controller/MyProfileController.dart';
+import '../Components/PickerCustom.dart';
 
 class MyProfile extends StatelessWidget {
   MyProfile({super.key});
 
   final fromkey = GlobalKey<FormState>();
+  final controller = Get.put(MyProfileController());
 
   @override
   Widget build(BuildContext context) {
     // final controller = LoginController();
-    return Scaffold(
-      appBar: AppBarStyle(
-        title: 'My Profile',
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: ColorStyle.primaryColor_1570A5,
-          ),
-          onPressed: () {
-            navigateToBack(context);
-          },
-        ),
-        styleTitle: TextStylesCustom.textStyles_16.apply(
-          color: ColorStyle.primaryColor_1570A5,
-          fontWeightDelta: 1,
-        ),
-        elevation: 2,
-      ),
-      //--------------------------------save changes bottom button---------------------->
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: ElevatedButtonCustoms(
-          onTap: () {
-            if(fromkey.currentState!.validate()){
-              debugPrint('yay you logged in successfully');
-            }
-          },
-          styleText: TextStylesCustom.textStyles_16,
-          text: 'SAVE CHANGES',
-          colorBG: ColorStyle.primaryColor_1570A5,
-        ),
-      ),
-      body: Stack(
-        children: [
-          Container(
-            width: Get.mediaQuery.size.width,
-            height: Get.mediaQuery.size.height,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  'assets/Images/MyProfile_background.png',
-                ),
-                fit: BoxFit.fill,
+    return GetBuilder(
+      initState: (state){
+        controller.initMethods();
+      },
+      init: controller,
+        builder: ((controller)=>Obx(() => Scaffold(
+          appBar: AppBarStyle(
+            title: 'My Profile',
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: ColorStyle.primaryColor_1570A5,
               ),
+              onPressed: () {
+                navigateToBack(context);
+              },
+            ),
+            styleTitle: TextStylesCustom.textStyles_16.apply(
+              color: ColorStyle.primaryColor_1570A5,
+              fontWeightDelta: 1,
+            ),
+            elevation: 2,
+          ),
+          //--------------------------------save changes bottom button---------------------->
+          bottomNavigationBar: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: ElevatedButtonCustoms(
+              onTap: () {
+                if(fromkey.currentState!.validate()){
+                  controller.editProfile();
+                  debugPrint('yay you logged in successfully');
+                }
+              },
+              styleText: TextStylesCustom.textStyles_16,
+              text: 'SAVE CHANGES',
+              colorBG: ColorStyle.primaryColor_1570A5,
             ),
           ),
-          SingleChildScrollView(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child:  Form(
-              key: fromkey,
-              child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 30),
-                  padding:
-                      const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-                  decoration: boxDecorationAuthBox(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        // margin: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 12, horizontal: 5),
-                        height: 115,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: ColorStyle.grey_DAE1E7)),
-                        child: Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: Image.asset(
-                                  ImageStyle.myProfilePhoto),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Expanded(
-                                child: ElevatedButtonCustoms(
-                              onTap: () {},
-                              text: 'EDIT PICTURE',
-                              styleText: TextStylesCustom.textStyles_16.apply(
-                                  color: ColorStyle.primaryColor_1570A5,
-                                  fontWeightDelta: 1),
-                              colorBG: Colors.white,
-                              colorBorder: ColorStyle.primaryColor_1570A5,
-                            )),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: TextFormFieldWithLabel(
-                            firstText: 'First Name',
-                            hintText: 'John',
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "First name is required";
-                                  } else if (!GetUtils.isAlphabetOnly(value)){
-                                    return " The first name must only contain letters";
-                                  }
-                                  else {
-                                    return null;
-                                  }
-                                },
-                          )),
-                          SizedBox(
-                            width: 21,
-                          ),
-                          Expanded(
-                              child: TextFormFieldWithLabel(
-                            firstText: 'Last Name',
-                            hintText: 'Doe',
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "Last name is required";
-                                  } else if (!GetUtils.isAlphabetOnly(value)){
-                                    return " The last name must only contain letters";
-                                  }
-                                  else {
-                                    return null;
-                                  }
-                                },
-                          )),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      // -----------------------Email Field---------------------------->
-                      TextFormFieldWithLabel(
-                        firstText: 'Email',
-                        hintText: 'Johndoe@gmail.com',
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Email is required";
-                          }else if(!GetUtils.isEmail(value)){
-                            return "Email is invalid";
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      // -----------------------Telephone Field---------------------------->
-                      TextFormFieldWithLabel(
-                        keyboardType: TextInputType.phone,
-                        firstText: 'Telephone',
-                        secondText: '',
-                        hintText: 'Please enter',
-                          // validator: (value) {
-                          //   if (value!.isEmpty) {
-                          //     return "T is required";
-                          //   } else if (value.length < 9 || value.length >13) {
-                          //     return "Phone must be between 9 and 13 digits";
-                          //   } else {
-                          //     return null;
-                          //   }
-                          // }
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      // -----------------------Birth Date Field---------------------------->
-                       TextFormFieldWithLabel(
-                        firstText: 'Birth Date',
-                        hintText: 'dd-mm-yy',
-                         validator: (value) {
-                           if (value!.isEmpty) {
-                             return "Birth Date is required";
-                           }else {
-                             return null;
-                           }
-                         },
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-
-                      Text(
-                        'Address',
-                        style: TextStylesCustom.textStyles_16
-                            .apply(fontWeightDelta: 1),
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      // -----------------------C/o field---------------------------->
-                      TextFormFieldWithLabel(
-                        firstText: 'C/o',
-                        secondText: '',
-                        hintText: 'Please enter',
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      // -----------------------Street field---------------------------->
-                      TextFormFieldWithLabel(
-                        firstText: 'Street',
-                        hintText: 'Please enter',
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Street is required";
-                          }else {
-                            return null;
-                          }
-                        },
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      // -----------------------City field---------------------------->
-                      TextFormFieldWithLabel(
-                        firstText: 'City',
-                        hintText: 'Please enter',
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "City is required";
-                          }else if (!GetUtils.isAlphabetOnly(value)){
-                            return " City name must only contain letters";
-                          }
-                          else {
-                            return null;
-                          }
-                        },
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      // -----------------------Postal field---------------------------->
-                      TextFormFieldWithLabel(
-                        keyboardType: TextInputType.number,
-                        firstText: 'Postal Code',
-                        hintText: 'Please enter',
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Postal code is required";
-                          }else {
-                            return null;
-                          }
-                        },
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      // -----------------------Country field---------------------------->
-                      TextFormFieldWithLabel(
-                        firstText: 'Country',
-                        hintText: 'Please enter',
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Country is required";
-                          } else if (!GetUtils.isAlphabetOnly(value)){
-                            return " Country name must only contain letters";
-                          }
-                          else {
-                            return null;
-                          }
-                        },
-
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      //------------------------Change password button----------------------->
-                      ElevatedButtonCustoms(
-                        onTap: () {
-                          ChangePassword().navigateToCustom(context);
-
-                          // Navigator.push(context, MaterialPageRoute(
-                          //     builder: (context) => const ChangePassword()
-                          // ));
-                          // Get.to(()=>const ChangePassword());
-                        },
-                        text: 'CHANGE PASSWORD',
-                        colorText: ColorStyle.primaryColor_1570A5,
-                        colorBG: Colors.white,
-                        width: Get.mediaQuery.size.width,
-                        colorBorder: ColorStyle.primaryColor_1570A5,
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                    ],
+          body: Stack(
+            children: [
+              Container(
+                width: Get.mediaQuery.size.width,
+                height: Get.mediaQuery.size.height,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      'assets/Images/MyProfile_background.png',
+                    ),
+                    fit: BoxFit.fill,
                   ),
                 ),
-                const SizedBox(
-                  height: 100,
-                )
-              ],
-            ),
-          )
-          )
-        ],
-      ),
+              ),
+              SingleChildScrollView(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child:  Form(
+                    key: fromkey,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 30),
+                          padding:
+                          const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+                          decoration: boxDecorationAuthBox(),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Container(
+                                // margin: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 5),
+                                height: 115,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(color: ColorStyle.grey_DAE1E7)),
+                                child: Row(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Image.asset(
+                                          ImageStyle.myProfilePhoto),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                        child: ElevatedButtonCustoms(
+                                          onTap: () {},
+                                          text: 'EDIT PICTURE',
+                                          styleText: TextStylesCustom.textStyles_16.apply(
+                                              color: ColorStyle.primaryColor_1570A5,
+                                              fontWeightDelta: 1),
+                                          colorBG: Colors.white,
+                                          colorBorder: ColorStyle.primaryColor_1570A5,
+                                        )),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                      child: TextFormFieldWithLabel(
+                                        controller: controller.firstName.value,
+                                        firstText: 'First Name',
+                                        hintText: 'John',
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "First name is required";
+                                          } else if (!GetUtils.isAlphabetOnly(value)){
+                                            return " The first name must only contain letters";
+                                          }
+                                          else {
+                                            return null;
+                                          }
+                                        },
+                                      )),
+                                  SizedBox(
+                                    width: 21,
+                                  ),
+                                  Expanded(
+                                      child: TextFormFieldWithLabel(
+                                        controller: controller.lastName.value,
+                                        firstText: 'Last Name',
+                                        hintText: 'Doe',
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Last name is required";
+                                          } else if (!GetUtils.isAlphabetOnly(value)){
+                                            return " The last name must only contain letters";
+                                          }
+                                          else {
+                                            return null;
+                                          }
+                                        },
+                                      )),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              // -----------------------Email Field---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.email.value,
+                                firstText: 'Email',
+                                hintText: 'Johndoe@gmail.com',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Email is required";
+                                  }else if(!GetUtils.isEmail(value)){
+                                    return "Email is invalid";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              // -----------------------Telephone Field---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.telephone.value,
+                                keyboardType: TextInputType.phone,
+                                firstText: 'Telephone',
+                                secondText: '',
+                                hintText: 'Please enter',
+                                // validator: (value) {
+                                //   if (value!.isEmpty) {
+                                //     return "T is required";
+                                //   } else if (value.length < 9 || value.length >13) {
+                                //     return "Phone must be between 9 and 13 digits";
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // }
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              // -----------------------Birth Date Field---------------------------->
+                              InkWell(
+                                onTap: () async {
+                                    controller.birthDate.value.text = await PickerCustom.datePicker('dd MMM yyyy');
+                                    debugPrint(controller.birthDate.value.text);
+                                  },
+                                child: TextFormFieldWithLabel(
+                                  controller: controller.birthDate.value,
+                                  enabled: false,
+                                  firstText: 'Birth Date',
+                                  hintText: 'dd-mm-yy',
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Birth Date is required";
+                                    }else {
+                                      return null;
+                                    }
+                                  },
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+
+                              Text(
+                                'Address',
+                                style: TextStylesCustom.textStyles_16
+                                    .apply(fontWeightDelta: 1),
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              // -----------------------C/o field---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.co.value,
+                                firstText: 'C/o',
+                                secondText: '',
+                                hintText: 'Please enter',
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              // -----------------------Street field---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.street.value,
+                                firstText: 'Street',
+                                hintText: 'Please enter',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Street is required";
+                                  }else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              // -----------------------City field---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.city.value,
+                                firstText: 'City',
+                                hintText: 'Please enter',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "City is required";
+                                  }else if (!GetUtils.isAlphabetOnly(value)){
+                                    return " City name must only contain letters";
+                                  }
+                                  else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              // -----------------------Postal field---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.postalCode.value,
+                                keyboardType: TextInputType.number,
+                                firstText: 'Postal Code',
+                                hintText: 'Please enter',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Postal code is required";
+                                  }else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              // -----------------------Country field---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.country.value,
+                                firstText: 'Country',
+                                hintText: 'Please enter',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Country is required";
+                                  } else if (!GetUtils.isAlphabetOnly(value)){
+                                    return " Country name must only contain letters";
+                                  }
+                                  else {
+                                    return null;
+                                  }
+                                },
+
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              //------------------------Change password button----------------------->
+                              ElevatedButtonCustoms(
+                                onTap: () {
+                                  ChangePassword().navigateToCustom(context);
+
+                                  // Navigator.push(context, MaterialPageRoute(
+                                  //     builder: (context) => const ChangePassword()
+                                  // ));
+                                  // Get.to(()=>const ChangePassword());
+                                },
+                                text: 'CHANGE PASSWORD',
+                                colorText: ColorStyle.primaryColor_1570A5,
+                                colorBG: Colors.white,
+                                width: Get.mediaQuery.size.width,
+                                colorBorder: ColorStyle.primaryColor_1570A5,
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 100,
+                        )
+                      ],
+                    ),
+                  )
+              )
+            ],
+          ),
+        )))
     );
+
   }
 }
