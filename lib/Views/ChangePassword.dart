@@ -17,134 +17,149 @@ import '../Components/TextRichCustom.dart';
 import '../Styles/ImageStyle.dart';
 import '../Styles/EffectStyle.dart';
 import '../Utils/Global.dart';
+import '../Controller/ChangePasswordController.dart';
 
 
 class ChangePassword extends StatelessWidget {
   ChangePassword({super.key});
   final fromkey = GlobalKey<FormState>();
+  final controller = Get.put(ChangePasswordController());
 
   @override
   Widget build(BuildContext context) {
     // final controller = LoginController();
-    return Scaffold(
-      // floatingActionButton: FloatingActionButton.extended(onPressed: (){}, label: Text('label'),),
+    return GetBuilder(
+      initState: (state){
 
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: ElevatedButtonCustoms(
-          onTap: (){
-            if(fromkey.currentState!.validate()){
-              debugPrint('yay you logged in successfully');
-              // controller.validation();
-            }
-          },
-          text: 'SAVE CHANGES',
-          styleText: TextStylesCustom.textStyles_16,
-          colorBG: ColorStyle.primaryColor_1570A5,
-        ),
-      ),
-      appBar: AppBarStyle(
-        title: 'Change Password',
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: ColorStyle.primaryColor_1570A5,
-          ),
-          onPressed: () {
-            // Get.back();
-            navigateToBack(context);
-          },
-        ),
-        styleTitle: TextStylesCustom.textStyles_16.apply(
-          color: ColorStyle.primaryColor_1570A5,
-          fontWeightDelta: 1,
-        ),
-        elevation: 1,
-      ),
-      body: Stack(
-        children: [
-          const BGImage(),
-          SingleChildScrollView(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 30),
-                  padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-                  decoration: boxDecorationAuthBox(),
-                  child: Form(
-                    key: fromkey,
-                    child:Column(
-                    children: [
+      },
+      init: controller,
+        builder: ((controller)=>Obx(() => Scaffold(
+          // floatingActionButton: FloatingActionButton.extended(onPressed: (){}, label: Text('label'),),
 
-                      SizedBox(
-                        height: 48,
-                      ),
-
-
-
-                      // -----------------------current password Field---------------------------->
-                      TextFormFieldWithLabel(
-
-                        firstText: 'Current Password',
-                        hintText: 'Please enter',
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Current password is required";
-                            } else if(value.length < 8){
-                              return "Current password must be at least 8 characters";
-                            }else {
-                              return null;
-                            }
-                          },
-                      ),
-                      SizedBox(height: 15,),
-                      // -----------------------New Password---------------------------->
-                      TextFormFieldWithLabel(
-                        firstText: 'New Password',
-                        hintText: 'Please enter',
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "New password is required";
-                          } else if(value.length < 8){
-                            return "New password must be at least 8 characters";
-                          }else {
-                            return null;
-                          }
-                        },
-                      ),
-                      SizedBox(height: 15,),
-                      // -----------------------confirm password Field---------------------------->
-                      TextFormFieldWithLabel(
-                        firstText: 'Confirm Password',
-                        hintText: 'Please enter',
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Confirm password is required";
-                          } else if(value.length < 8){
-                            return "Confirm password must be at least 8 characters";
-                          }else {
-                            return null;
-                          }
-                        },
-                      ),
-                      SizedBox(height: 14,),
-
-
-
-                    ],
-
-                  ),
-                  )
-                ),
-                const SizedBox(height: 100,),
-
-              ],
+          bottomNavigationBar: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: ElevatedButtonCustoms(
+              onTap: (){
+                if(fromkey.currentState!.validate()){
+                  debugPrint('yay you logged in successfully');
+                  controller.changePassword();
+                  // controller.validation();
+                }
+              },
+              text: 'SAVE CHANGES',
+              styleText: TextStylesCustom.textStyles_16,
+              colorBG: ColorStyle.primaryColor_1570A5,
             ),
-          )
-        ],
-      ),
+          ),
+          appBar: AppBarStyle(
+            title: 'Change Password',
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: ColorStyle.primaryColor_1570A5,
+              ),
+              onPressed: () {
+                // Get.back();
+                navigateToBack(context);
+              },
+            ),
+            styleTitle: TextStylesCustom.textStyles_16.apply(
+              color: ColorStyle.primaryColor_1570A5,
+              fontWeightDelta: 1,
+            ),
+            elevation: 1,
+          ),
+          body: Stack(
+            children: [
+              const BGImage(),
+              SingleChildScrollView(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Column(
+                  children: [
+                    Container(
+                        margin: const EdgeInsets.only(top: 30),
+                        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+                        decoration: boxDecorationAuthBox(),
+                        child: Form(
+                          key: fromkey,
+                          child:Column(
+                            children: [
+
+                              SizedBox(
+                                height: 48,
+                              ),
+
+
+
+                              // -----------------------current password Field---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.currentPassword.value,
+                                firstText: 'Current Password',
+                                hintText: 'Please enter',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Current password is required";
+                                  } else if(value.length < 8){
+                                    return "Current password must be at least 8 characters";
+                                  }else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                              SizedBox(height: 15,),
+                              // -----------------------New Password---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.newPassword.value,
+                                firstText: 'New Password',
+                                hintText: 'Please enter',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "New password is required";
+                                  } else if(value.length < 8){
+                                    return "New password must be at least 8 characters";
+                                  }else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                              SizedBox(height: 15,),
+                              // -----------------------confirm password Field---------------------------->
+                              TextFormFieldWithLabel(
+                                controller: controller.confirmPassword.value,
+                                firstText: 'Confirm Password',
+                                hintText: 'Please enter',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Confirm password is required";
+                                  } else if(value.length < 8){
+                                    return "Confirm password must be at least 8 characters";
+                                  } else if(value != controller.newPassword.value.text){
+                                    return "Confirm password must be same as new password";
+                                  }
+                                  else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                              SizedBox(height: 14,),
+
+
+
+                            ],
+
+                          ),
+                        )
+                    ),
+                    const SizedBox(height: 100,),
+
+                  ],
+                ),
+              )
+            ],
+          ),
+        )))
     );
+
   }
 }
 

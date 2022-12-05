@@ -81,7 +81,8 @@ class API {
       showLoaderGetX();
       final response = await http.post(url,
           headers: {
-        'Accept' : 'application/json',
+            'Accept' : 'application/json',
+            'Authorization': 'Bearer $kTOKENSAVED'
           },
           body: params);
       // hideLoader();
@@ -94,7 +95,62 @@ class API {
         return parsed;
       } else {
         hideLoader();
-        parsed["error"].toString().showError();
+        if(parsed["error"] != null){
+          parsed["error"].toString().showError();
+        }
+        else if(parsed["message"] != null){
+          parsed["message"].toString().showError();
+        }else {
+          parsed["error"].toString().showError();
+        }
+
+        return {};
+      }
+    } on Exception catch (exception) {
+      // hideLoader();
+      // debugPrint('Exception is:-' + exception.toString());
+      // return null;
+    } catch (error) {
+      hideLoader();
+      debugPrint('Error is:-' + error.toString());
+      return null;
+    }
+  }
+
+  Future<Map<String, dynamic>?> put(
+      {required String endPoint, required Map<String, dynamic> params}) async {
+    if (!await _checkInternet()) {
+      return null;
+    }
+
+    final url = Uri.parse('${_kBaseURL}${endPoint}');
+    try {
+      showLoaderGetX();
+      final response = await http.put(url,
+          headers: {
+            'Accept' : 'application/json',
+            'Authorization': 'Bearer $kTOKENSAVED'
+          },
+          body: params);
+      // hideLoader();
+      debugPrint('Response status: ${response.statusCode}');
+      debugPrint('Response status: ${response.body}');
+
+      Map<String, dynamic> parsed = json.decode(response.body);
+      if (response.statusCode == 200) {
+        hideLoader();
+        return parsed;
+      } else {
+        hideLoader();
+        if(parsed["error"] != null){
+          parsed["error"].toString().showError();
+        }
+        else if(parsed["message"] != null){
+          parsed["message"].toString().showError();
+        }else {
+          parsed["error"].toString().showError();
+        }
+
         return {};
       }
     } on Exception catch (exception) {
@@ -191,6 +247,8 @@ class API {
     }
   }
 }
+
+
 
 class APIEndPoints {
   APIEndPoints._privateConstructor();

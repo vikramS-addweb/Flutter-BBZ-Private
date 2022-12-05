@@ -137,9 +137,11 @@ class TextFormFieldOutline extends StatelessWidget {
   final double? radiusBorder;
   final int? maxLines;
   final String? Function(String?)? validator;
+  final bool? enabled;
 
   TextFormFieldOutline({
     Key? key,
+
     this.controller,
     this.padding = EdgeInsets.zero,
     this.hintText,
@@ -152,11 +154,13 @@ class TextFormFieldOutline extends StatelessWidget {
     this.radiusBorder = 8.0,
     this.maxLines = 1,
     this.validator,
+    this.enabled = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       controller: controller,
       keyboardType: keyboardType,
       maxLines: maxLines,
@@ -245,6 +249,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
       this.hintText = 'hintText',
         this.keyboardType = TextInputType.text,
       this.validator,
+        this.enabled = true,
       })
       : super(key: key);
   final TextEditingController? controller;
@@ -252,6 +257,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
   final String? secondText;
   final String? hintText;
   final TextInputType? keyboardType;
+  final bool? enabled;
   String? Function(String?)? validator;
 
   @override
@@ -275,6 +281,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
           height: 14,
         ),
         TextFormFieldOutline(
+          enabled: enabled,
           keyboardType: keyboardType,
           controller: controller,
           hintText: hintText!,
