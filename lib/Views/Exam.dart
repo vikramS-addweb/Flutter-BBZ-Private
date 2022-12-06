@@ -22,6 +22,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import '../Controller/WelcomeController.dart';
 import '../Controller/ExamController.dart';
 import '../Controller/ExamDetailController.dart';
+import '../Components/TextFieldCustom.dart';
 
 
 class Exam extends StatefulWidget {
@@ -105,7 +106,39 @@ class _ExamState extends State<Exam> {
       },
     );
   }
+  
+  datePicker(String title, {required bool isFrom}) {
+    return InkWell(
+      child: Container(
+        height: 40,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+              color: ColorStyle.grey_DAE1E7,
+              width: 1
+          ),
+        ),
+        child: Text(
+          title,
+          style: TextStylesCustom.textStyles_14.apply(
+            // color: ColorStyle.grey_A8B0B5,
+            color: (title == 'From' || title == 'To') ? ColorStyle.grey_A8B0B5 : Colors.black
+          ),
+        ),
+      ),
+      onTap: () async {
+        final date = await PickerCustom.datePicker('dd/MM/yyyy');
 
+        if (isFrom) {
+          controller.dateFrom.value = date.toString();
+        } else {
+          controller.dateTo.value = date.toString();
+        }
+      },
+    );
+  }
+  
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -195,7 +228,6 @@ class _ExamState extends State<Exam> {
                           boxShadow: [
                             BoxShadow(
                               color: ColorStyle.grey_DAE1E7,
-                              // spreadRadius: 1,
                               blurRadius: 4,
                               offset: const Offset(0, 0), // changes position of shadow
                             ),
@@ -230,11 +262,18 @@ class _ExamState extends State<Exam> {
                                   ),
                                 ),
                                 const SizedBox(height: 6,),
-                                Text(
-                                  'Search everything here...',
-                                  style: TextStylesCustom.textStyles_16.apply(
-                                    color: ColorStyle.primaryColor_1570A5.withOpacity(0.5),
-                                    fontWeightDelta: 1,
+                                SizedBox(
+                                  height: 30,
+                                  child: TextFormFieldOutline(
+                                    padding: const EdgeInsets.all(0),
+                                    colorBoder: Colors.transparent,
+                                    controller: controller.search,
+                                    hintText: 'Search everything here...',
+                                    colorHint: ColorStyle.primaryColor_1570A5.withOpacity(0.6),
+                                    textStyle: TextStylesCustom.textStyles_16.apply(
+                                      color: ColorStyle.primaryColor_1570A5.withOpacity(1),
+                                      fontWeightDelta: 1,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -251,12 +290,44 @@ class _ExamState extends State<Exam> {
                             colorIcon: ColorStyle.primaryColor_1570A5,
                             icon: Svg(ImageStyle.ticket_location, ),
                             textStyle: TextStylesCustom.textStyles_14,
+                            onChanged: (value) {
+                              print(value);
+                              controller.location.value = value!;
+                            },
                           ),
                           Container(
                             height: 1,
                             color: ColorStyle.grey_DAE1E7,
                           ),
-                          textIcon(AssetImage(ImageStyle.calendar), 'Your Exam Date (from - to)', true),
+                          Container(
+                            padding: const EdgeInsets.only(
+                              left: 16,
+                              right: 20,
+                              top: 10,
+                              bottom: 10,
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    color: ColorStyle.grey_DAE1E7,
+                                    width: 1
+                                )
+                              ),
+                            ),
+                              child: Row(
+                                children: [
+                                  Image.asset(ImageStyle.calendar, height: 20,),
+                                  const SizedBox(width: 10,),
+                                  Expanded(
+                                    child: datePicker(controller.dateFrom.value, isFrom: true)
+                                  ),
+                                  const SizedBox(width: 10,),
+                                  Expanded(
+                                    child: datePicker(controller.dateTo.value, isFrom: false)
+                                  ),
+                                ],
+                              ),
+                          ),
                           DropdownButtonCustom(
                             width: MediaQuery.of(context).size.width - 32,
                             height: 50,
@@ -268,8 +339,10 @@ class _ExamState extends State<Exam> {
                             colorIcon: ColorStyle.primaryColor_1570A5,
                             textStyle: TextStylesCustom.textStyles_14,
                             icon: Svg(ImageStyle.language),
+                            onChanged: (value) {
+                              controller.language.value = value!;
+                            },
                           ),
-                          // textIcon(Icons.g_translate_rounded, 'Select Your Language Level', false),
                         ],
                       ),
                     ),
@@ -282,6 +355,7 @@ class _ExamState extends State<Exam> {
                           text: 'SEARCH',
                           size: const Size(180, 46),
                           onTap: () {
+                            controller.searchExam();
                             // controller.userLogin();
                             // Get.to(const Login());
                           },

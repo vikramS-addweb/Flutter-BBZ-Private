@@ -1,3 +1,5 @@
+
+
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,8 @@ import '../Utils/Global.dart';
 import 'dart:io';
 import 'package:country_picker/country_picker.dart';
 
-class PickerCustom {
 
+class PickerCustom {
   static countryPicker() async {
     showCountryPicker(
       context: Get.context!,
@@ -20,7 +22,6 @@ class PickerCustom {
       },
     );
   }
-
 
   static datePicker(String dateFormat) async {
     DateTime selectedDate = DateTime.now();
