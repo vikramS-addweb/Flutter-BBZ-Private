@@ -84,17 +84,17 @@ class API {
             'Accept' : 'application/json',
             'Authorization': 'Bearer $kTOKENSAVED'
           },
-          body: params);
-      // hideLoader();
+          body: params
+      );
+      hideLoader();
+
       debugPrint('Response status: ${response.statusCode}');
       // debugPrint('Response status: ${response.body}');
 
       Map<String, dynamic> parsed = json.decode(response.body);
       if (response.statusCode == 200 || response.statusCode == 201) {
-        hideLoader();
         return parsed;
       } else {
-        hideLoader();
         if(parsed["error"] != null){
           parsed["error"].toString().showError();
         }
@@ -131,17 +131,17 @@ class API {
             'Accept' : 'application/json',
             'Authorization': 'Bearer $kTOKENSAVED'
           },
-          body: params);
+          body: params
+      );
       hideLoader();
       debugPrint('Response status: ${response.statusCode}');
       debugPrint('Response status: ${response.body}');
 
       Map<String, dynamic> parsed = json.decode(response.body);
+
       if (response.statusCode == 200) {
-        hideLoader();
         return parsed;
       } else {
-        hideLoader();
         if(parsed["error"] != null){
           parsed["error"].toString().showError();
         }
@@ -174,9 +174,13 @@ class API {
       return null;
     }
 
-    final url = Uri.parse('${_kBaseURL}${endPoint}');
+    print(_kBaseURL+endPoint);
+
+    final url = Uri.parse(_kBaseURL+endPoint);
     final request = http.MultipartRequest('POST', url);
+    request.headers['Accept'] = 'application/json';
     request.headers['Authorization'] = 'Bearer $kTOKENSAVED';
+    print(kTOKENSAVED);
 
     params.forEach((key, value) {
       request.fields[key] = value;
@@ -185,20 +189,29 @@ class API {
     try {
       showLoaderGetX();
 
-      request.files
-          .add(await http.MultipartFile.fromPath(fileParams, file.path));
+      request.files.add(await http.MultipartFile.fromPath(fileParams, file.path));
       final response = await request.send();
 
       hideLoader();
 
       // print(response.stream);
-      // print(response.statusCode);
 
       final res = await http.Response.fromStream(response);
-      print(res.body);
+      print(res.statusCode);
+      print("uploading ..."+res.body);
 
-      final Map parsed = json.decode(res.body);
-      return parsed as Map<String, dynamic>;
+      // final Map parsed = json.decode(res.body);
+      // return parsed as Map<String, dynamic>;
+
+      if (res.statusCode == 200) {
+        Map<String, dynamic> parsed = json.decode(res.body);
+        return parsed;
+      } else {
+        Map<String, dynamic> parsed = json.decode(res.body);
+        parsed["message"].toString().showError();
+
+        return {};
+      }
     } on Exception catch (exception) {
       hideLoader();
       debugPrint('Exception is:-' + exception.toString());
@@ -255,14 +268,14 @@ class APIEndPoints {
 
   static final APIEndPoints instance = APIEndPoints._privateConstructor();
 
-  final kTwilioSendCode = 'twilio/sendCode';
-  final kTwilioVerifyCode = 'twilio/verifyCode';
-  final kSetPIN = 'users/setmpin';
-
-  final kGetUser = 'users/getUser/';
-  final kLogin = 'users/login';
-  final kRealtimeExchangeRates = 'fixer/exr/';
-  final kFixerConvert = 'fixer/convert';
-  final kGetContent = 'contentApp/getContent/';
-  final kGetExr = 'fixer/getExr';
+  // final kTwilioSendCode = 'twilio/sendCode';
+  // final kTwilioVerifyCode = 'twilio/verifyCode';
+  // final kSetPIN = 'users/setmpin';
+  //
+  // final kGetUser = 'users/getUser/';
+  // final kLogin = 'users/login';
+  // final kRealtimeExchangeRates = 'fixer/exr/';
+  // final kFixerConvert = 'fixer/convert';
+  // final kGetContent = 'contentApp/getContent/';
+  // final kGetExr = 'fixer/getExr';
 }

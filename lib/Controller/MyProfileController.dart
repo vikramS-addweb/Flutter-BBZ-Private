@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,12 @@ import '../Views/WelcomeScreen.dart';
 import '../Views/Profile.dart';
 
 
-
 class MyProfileController extends GetxController {
 
   RxMap<dynamic, dynamic> profileData = {}.obs;
 
-  Rx<File> avatar_id = File('').obs;
+  Rx<File> image = File('').obs;
+  RxString imageURL = ''.obs;
 
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
@@ -31,19 +32,21 @@ class MyProfileController extends GetxController {
   Rx<TextEditingController> birthDate = TextEditingController().obs;
   Rx<TextEditingController> country = TextEditingController().obs;
 
+  RxString name = ''.obs;
 
-
-  void initMethods(){
-    Future.delayed(Duration(microseconds: 100), () {
+  void initMethods() {
+    Future.delayed(const Duration(microseconds: 100), () {
       getProfile();
     });
   }
 
   getProfile() async {
     final response = await API.instance.get(endPoint: 'api/profile');
+    // print(response);
 
     if (response!.isNotEmpty) {
-      debugPrint('getProfile response count ${response.length}');
+      dictUserSaved = response;
+
       profileData.value = response;
       firstName.value.text = profileData['first_name'] ?? '';
       lastName.value.text = profileData['last_name'] ?? '';
@@ -54,15 +57,15 @@ class MyProfileController extends GetxController {
       street.value.text = profileData['address2'] ?? '';
       telephone.value.text = profileData['phone'] ?? '';
       birthDate.value.text = profileData['birthday'] ?? '';
-      postalCode.value.text = profileData['zip_code'] ?? '';
-      avatar_id.value = profileData['avatar_id'] ?? File('');
+      postalCode.value.text = profileData['zip_code'].toString() ?? '';
 
+      final dictMedia = Map<String, dynamic>.from(profileData['media']);
+      print(dictMedia['file_name'].toString());
+      imageURL.value = kBaseURL_Image+dictMedia['file_name'].toString();
+      // https://bbzstage.addwebprojects.com/uploads/image_picker_E2DC2F7C-A3F9-4B59-8B19-C3C8CADF915B-2786-0000001BF293E94E.jpg
       update();
     }
   }
-
-
-
 
   editProfile() async {
     final params = {
@@ -70,52 +73,49 @@ class MyProfileController extends GetxController {
       'last_name': lastName.value.text,
       'email': email.value.text,
       'phone': telephone.value.text,
-      'birthday':birthDate.value.text,
+      'birthday': birthDate.value.text,
       'country': country.value.text,
-      'address':co.value.text,
-      'address2':street.value.text,
-      'city':city.value.text,
-      'zip_code': postalCode.value.text
+      'address': co.value.text,
+      'address2': street.value.text,
+      'city': city.value.text,
+      'zipCode': postalCode.value.text
     };
 
-    debugPrint(firstName.value.text);
-    debugPrint(lastName.value.text);
-    debugPrint(postalCode.value.text);
-
-    final response = await API.instance.put(endPoint: 'api/edit-profile', params: params);
+    final response = await API.instance.put(
+        endPoint: 'api/edit-profile', params: params);
+    print(response);
 
     if (response!.isNotEmpty) {
-      // 'profile updated'.showSuccess();
-      response['message'].toString().showSuccess();
+      final response = await API.instance.get(endPoint: 'api/profile');
+      print(response);
+
+      if (response!.isNotEmpty) {
+        dictUserSaved = response;
+      }
 
       navigateToBack(Get.context);
-
-      // PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
     }
   }
 
   editProfileImage() async {
+  final params = {
+    '_method': 'post'
+  };
 
-    // var fileContent = avatar_id.value.readAsBytesSync();
-    // var fileContentBase64 = base64.encode(fileContent);
+  final response = await API.instance.postImage(
+    endPoint: "api/profileImage",
+    params: params,
+    fileParams: "avatar",
+    file: image.value,
+  );
 
-    final params = {
-      // 'avatar_id': [fileContentBase64],
-      'avatar_id' : avatar_id.value
-    };
-
-    debugPrint('profile pic :  ${avatar_id.value.path}');
-
-    final response = await API.instance.post(endPoint: 'api/profileImage', params: params);
-    //
-    // if (response!.isNotEmpty) {
-    //   // 'profile updated'.showSuccess();
-    //   response['message'].toString().showSuccess();
-    //   debugPrint('profile updated');
-
-      // editProfile();
-    // }
+  if (response!.isNotEmpty) {
+    response['message'].toString().showSuccess();
   }
+}
 
+  updateOnMyProfile() {
+    name.value = dictUserSaved['name'].toString();
+  }
 
 }

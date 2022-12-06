@@ -32,9 +32,11 @@ showLoaderGetX() {
               Container(
                 width: 16,
               ),
-              Text("Loading ...",
+              Text(
+                  "Loading ...",
                   style: TextStylesCustom.textStyles_16
-                      .apply(color: Colors.white)),
+                      .apply(color: Colors.white)
+              ),
             ],
           ),
         ),

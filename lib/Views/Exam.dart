@@ -103,7 +103,12 @@ class _ExamState extends State<Exam> {
         ),
       ),
       onTap: () {
-        PickerCustom.datePicker('dd MMM yyyy');
+        PickerCustom.datePicker(
+          dateFormat: 'dd MMM yyyy',
+          selectedDate: DateTime.now(),
+          firstDate: DateTime.now(),
+          lastDate: DateTime(2030),
+        );
       },
     );
   }
@@ -127,7 +132,12 @@ class _ExamState extends State<Exam> {
         ),
       ),
       onTap: () async {
-        final date = await PickerCustom.datePicker('yyyy-mm-dd');
+        final date = await PickerCustom.datePicker(
+          dateFormat: 'dd MMM yyyy',
+          selectedDate: DateTime.now(),
+          firstDate: DateTime.now(),
+          lastDate: DateTime(2030),
+        );
 
         if (isFrom) {
           controller.dateFrom.value = date.toString();
@@ -385,29 +395,29 @@ class _ExamState extends State<Exam> {
                                   children: [
                                     ElevatedButtonCustom(
                                       text: 'SEARCH',
-                                      size: const Size(180, 46),
+                                      size: const Size(170, 46),
                                       onTap: () {
                                         controller.searchExam();
                                         // controller.userLogin();
                                         // Get.to(const Login());
                                       },
                                     ),
-                                    if(controller.showSearchData.value)
-                                    ElevatedButtonCustom(
-                                      text: 'CLEAR',
-                                      size: const Size(180, 46),
-                                      onTap: () {
-                                        controller.clear();
-                                        // controller.userLogin();
-                                        // Get.to(const Login());
-                                      },
-                                    ),
+                                    if (controller.showSearchData.value)
+                                      SizedBox(width: 5,),
+                                    if (controller.showSearchData.value)
+                                      ElevatedButtonCustom(
+                                        text: 'CLEAR',
+                                        size: const Size(170, 46),
+                                        onTap: () {
+                                          controller.clear();
+                                          // controller.userLogin();
+                                          // Get.to(const Login());
+                                        },
+                                      ),
                                   ],
                                 ),
                               ),
                             ),
-
-
                           ],
                         ),
                       ),
@@ -435,23 +445,28 @@ class _ExamState extends State<Exam> {
                             const SizedBox(
                               height: 6,
                             ),
-                            controller.showSearchData.value && controller.searchResultData.value.length == 0 ?
-                            Text(
-                              'Exam not found',
-                              style: TextStylesCustom.textStyles_16.apply(
-                                color: Colors.black,
-                              ),
-                            ):
-                            Text(
-                              'All the coming exams for you',
-                              style: TextStylesCustom.textStyles_14.apply(
-                                color: Colors.black,
-                              ),
-                            ),
+                            controller.showSearchData.value &&
+                                    controller.searchResultData.value.length ==
+                                        0
+                                ? Text(
+                                    'Exam not found',
+                                    style: TextStylesCustom.textStyles_16.apply(
+                                      color: Colors.black,
+                                    ),
+                                  )
+                                : Text(
+                                    'All the coming exams for you',
+                                    style: TextStylesCustom.textStyles_14.apply(
+                                      color: Colors.black,
+                                    ),
+                                  ),
                             const SizedBox(
                               height: 40,
                             ),
-                            ItemsList(items: controller.showSearchData.value ? controller.searchResultData.value : controller.upcomingExamData.value ),
+                            ItemsList(
+                                items: controller.showSearchData.value
+                                    ? controller.searchResultData.value
+                                    : controller.upcomingExamData.value),
                           ],
                         ),
                       ),
@@ -500,7 +515,7 @@ class ItemsList extends StatelessWidget {
                         (items[index]['image'] != null &&
                                 items[index]['image']['file_path'] != null)
                             ? Image.network(
-                                '${networkImage}${items[index]['image']['file_path']}')
+                                '${kBaseURL_Image}${items[index]['image']['file_path']}')
                             : Image.asset(
                                 ImageStyle.pixabay,
                                 height: 250,

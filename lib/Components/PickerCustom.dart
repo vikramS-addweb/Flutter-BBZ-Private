@@ -26,19 +26,24 @@ class PickerCustom {
     );
   }
 
-  static datePicker(String dateFormat) async {
-    DateTime selectedDate = DateTime.now();
+  static datePicker(
+      {required String dateFormat, required DateTime selectedDate, required DateTime firstDate, required DateTime lastDate,}) async {
+
+    // DateTime? selectedDate = DateTime(1919);
 
     final DateTime? picked = await showDatePicker(
         context: Get.context!,
         initialDate: selectedDate,
-        firstDate: DateTime.now(),
-        lastDate: DateTime(2500));
+        firstDate: firstDate,
+        lastDate: lastDate,
+    );
+
     if (picked != null && picked != selectedDate) {
       selectedDate = picked;
       final DateFormat format = DateFormat(dateFormat);
       return format.format(picked);
     }
+
   }
 
   static imagePicker(Function(File) onSelected) {
@@ -60,9 +65,8 @@ class PickerCustom {
                 leading: new Icon(Icons.camera_alt),
                 title: Text(
                   'From Camera',
-                  style: TextStyle(
-                    color: ColorStyle.black,
-                  ),
+                    style: TextStylesCustom.textStyles_16
+                        .apply(color: Colors.black)
                 ),
                 onTap: () async {
                   navigateToBack(Get.context);
@@ -80,9 +84,8 @@ class PickerCustom {
                 leading: new Icon(Icons.photo),
                 title: Text(
                   'From Photo',
-                  style: TextStyle(
-                    color: ColorStyle.black,
-                  ),
+                    style: TextStylesCustom.textStyles_16
+                        .apply(color: Colors.black)
                 ),
                 onTap: () async {
                   navigateToBack(Get.context);
@@ -102,21 +105,20 @@ class PickerCustom {
               Container(
                   margin: EdgeInsets.only(top: 16, bottom: 16),
                   height: 1,
-                  color: ColorStyle.secondryColor),
+                  color: ColorStyle.primaryColor_1570A5),
               InkWell(
                 child: Container(
-                  margin: EdgeInsets.only(left: 20, right: 20),
+                  margin: const EdgeInsets.only(left: 20, right: 20),
                   height: 44,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      color: ColorStyle.secondryColor,
+                      color: ColorStyle.primaryColor_1570A5,
                       borderRadius: BorderRadius.circular(25)),
                   alignment: Alignment.center,
                   child: Text(
                     'Cancel',
-                    style: TextStyle(
-                      color: ColorStyle.white,
-                    ),
+                      style: TextStylesCustom.textStyles_16
+                          .apply(color: Colors.white)
                   ),
                 ),
                 onTap: () {

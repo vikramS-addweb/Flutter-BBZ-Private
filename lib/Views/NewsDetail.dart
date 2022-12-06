@@ -50,7 +50,7 @@ class NewsDetail extends StatelessWidget {
               children: [
                 controller.newsDetailData['media'] != null && controller.newsDetailData['media']['file_path'] != null?
                 Image.network(
-                  '$networkImage${controller.newsDetailData['media']['file_path']}',
+                  '$kBaseURL_Image${controller.newsDetailData['media']['file_path']}',
                   height: 260,
                   width: double.infinity,
                   fit: BoxFit.fill,
