@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +17,8 @@ import '../Views/Profile.dart';
 class MyProfileController extends GetxController {
 
   RxMap<dynamic, dynamic> profileData = {}.obs;
+
+  Rx<File> avatar_id = File('').obs;
 
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
@@ -45,10 +50,12 @@ class MyProfileController extends GetxController {
       email.value.text = profileData['email'] ?? '';
       city.value.text = profileData['city'] ?? '';
       country.value.text = profileData['country'] ?? '';
-      street.value.text = profileData['street'] ?? '';
+      co.value.text = profileData['address'] ?? '';
+      street.value.text = profileData['address2'] ?? '';
       telephone.value.text = profileData['phone'] ?? '';
       birthDate.value.text = profileData['birthday'] ?? '';
       postalCode.value.text = profileData['zip_code'] ?? '';
+      avatar_id.value = profileData['avatar_id'] ?? File('');
 
       update();
     }
@@ -64,12 +71,16 @@ class MyProfileController extends GetxController {
       'email': email.value.text,
       'phone': telephone.value.text,
       'birthday':birthDate.value.text,
-      'country': country.value.text
+      'country': country.value.text,
+      'address':co.value.text,
+      'address2':street.value.text,
+      'city':city.value.text,
+      'zip_code': postalCode.value.text
     };
 
     debugPrint(firstName.value.text);
     debugPrint(lastName.value.text);
-    debugPrint(email.value.text);
+    debugPrint(postalCode.value.text);
 
     final response = await API.instance.put(endPoint: 'api/edit-profile', params: params);
 
@@ -81,6 +92,29 @@ class MyProfileController extends GetxController {
 
       // PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
     }
+  }
+
+  editProfileImage() async {
+
+    // var fileContent = avatar_id.value.readAsBytesSync();
+    // var fileContentBase64 = base64.encode(fileContent);
+
+    final params = {
+      // 'avatar_id': [fileContentBase64],
+      'avatar_id' : avatar_id.value
+    };
+
+    debugPrint('profile pic :  ${avatar_id.value.path}');
+
+    final response = await API.instance.post(endPoint: 'api/profileImage', params: params);
+    //
+    // if (response!.isNotEmpty) {
+    //   // 'profile updated'.showSuccess();
+    //   response['message'].toString().showSuccess();
+    //   debugPrint('profile updated');
+
+      // editProfile();
+    // }
   }
 
 
