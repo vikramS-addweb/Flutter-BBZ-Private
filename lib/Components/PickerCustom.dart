@@ -60,9 +60,8 @@ class PickerCustom {
                 leading: new Icon(Icons.camera_alt),
                 title: Text(
                   'From Camera',
-                  style: TextStyle(
-                    color: ColorStyle.black,
-                  ),
+                    style: TextStylesCustom.textStyles_16
+                        .apply(color: Colors.black)
                 ),
                 onTap: () async {
                   navigateToBack(Get.context);
@@ -80,9 +79,8 @@ class PickerCustom {
                 leading: new Icon(Icons.photo),
                 title: Text(
                   'From Photo',
-                  style: TextStyle(
-                    color: ColorStyle.black,
-                  ),
+                    style: TextStylesCustom.textStyles_16
+                        .apply(color: Colors.black)
                 ),
                 onTap: () async {
                   navigateToBack(Get.context);
@@ -102,21 +100,20 @@ class PickerCustom {
               Container(
                   margin: EdgeInsets.only(top: 16, bottom: 16),
                   height: 1,
-                  color: ColorStyle.secondryColor),
+                  color: ColorStyle.primaryColor_1570A5),
               InkWell(
                 child: Container(
-                  margin: EdgeInsets.only(left: 20, right: 20),
+                  margin: const EdgeInsets.only(left: 20, right: 20),
                   height: 44,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      color: ColorStyle.secondryColor,
+                      color: ColorStyle.primaryColor_1570A5,
                       borderRadius: BorderRadius.circular(25)),
                   alignment: Alignment.center,
                   child: Text(
                     'Cancel',
-                    style: TextStyle(
-                      color: ColorStyle.white,
-                    ),
+                      style: TextStylesCustom.textStyles_16
+                          .apply(color: Colors.white)
                   ),
                 ),
                 onTap: () {
