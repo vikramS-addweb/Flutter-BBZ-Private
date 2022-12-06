@@ -1,3 +1,5 @@
+
+
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +11,10 @@ import '../Utils/Global.dart';
 import 'dart:io';
 import 'package:country_picker/country_picker.dart';
 
-class PickerCustom {
 
+class PickerCustom {
   static countryPicker(Function(String) onSelected) async {
+
     showCountryPicker(
       context: Get.context!,
       showPhoneCode: true, // optional. Shows phone code before the country name.
@@ -22,7 +25,6 @@ class PickerCustom {
       },
     );
   }
-
 
   static datePicker(String dateFormat) async {
     DateTime selectedDate = DateTime.now();
