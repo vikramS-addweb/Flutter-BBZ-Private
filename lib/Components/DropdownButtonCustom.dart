@@ -15,6 +15,7 @@ class DropdownButtonCustom extends StatefulWidget {
   final ImageProvider? icon;
   final TextStyle? textStyle;
   final String? hintText;
+  final RxString? controllerValue;
 
   DropdownButtonCustom(
       {Key? key,
@@ -26,6 +27,7 @@ class DropdownButtonCustom extends StatefulWidget {
         this.colorIcon = Colors.red,
         this.textStyle = const TextStyle(color: Colors.red),
         this.hintText = 'Type your hint text here',
+        this.controllerValue,
         required this.icon
       }) : super(key: key);
 
@@ -63,7 +65,7 @@ class _DropdownButtonCustomState extends State<DropdownButtonCustom> {
                   size: 35,
                   color: widget.colorIcon,
                 ),
-                value: dropdownValue,
+                value: widget.controllerValue!.value == '' ? null : widget.controllerValue!.value,
                 isExpanded: true,
                 elevation: 16,
                 style: widget.textStyle,
@@ -76,7 +78,10 @@ class _DropdownButtonCustomState extends State<DropdownButtonCustom> {
                   height: 0,
                   color: Colors.deepPurpleAccent,
                 ),
-                onChanged: widget.onChanged,
+                onChanged: (value){
+                  setState(() { dropdownValue = value; });
+                  widget.controllerValue!.value = value!;
+                },
                 items: widget.list!.map((e) => DropdownMenuItem<String>(
                   value: e['name'],
                   child: Text(

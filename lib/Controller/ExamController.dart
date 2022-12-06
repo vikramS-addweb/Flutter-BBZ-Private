@@ -12,6 +12,9 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class ExamController extends GetxController {
   RxList upcomingExamData = [].obs;
+  RxList searchResultData = [].obs;
+  RxBool showSearchData = false.obs;
+
   RxMap searchDetails = {}.obs;
 
   TextEditingController search = TextEditingController();
@@ -19,6 +22,8 @@ class ExamController extends GetxController {
   RxString language = ''.obs;
   RxString dateFrom = 'From'.obs;
   RxString dateTo = 'To'.obs;
+  RxInt locationId = 0.obs;
+  RxInt languageId = 0.obs;
 
   void initMethods() {
     Future.delayed(Duration(microseconds: 100), () {
@@ -26,6 +31,48 @@ class ExamController extends GetxController {
       fetchSearchDetails();
     });
   }
+
+  getSearchResult() async {
+
+    if(language.value != ''){
+      final searchExamLevel =  searchDetails['exam_level'].firstWhere((element) => element['name'] == language.value);
+      languageId.value = searchExamLevel['id'];
+    }
+
+    if(location.value != ''){
+      final searchLocation =  searchDetails['locations'].firstWhere((element) => element['name'] == location.value);
+      locationId.value = searchLocation['id'];
+    }
+
+    // debugPrint(' exam level id : ${searchExamLevel}');
+    // debugPrint(' location id : ${searchLocation}');
+
+    final params = {
+      'location_id': location.value != '' ? '${locationId.value}' : ''  ,
+      'from_date': dateFrom.value == 'From' ? '' : dateFrom.value,
+      'to_date':  dateTo.value == 'To' ? '' : dateTo.value,
+      'exam_level_id' : language.value != '' ? '${languageId.value}' : ''
+    };
+
+    final response = await API.instance.post(endPoint: 'api/search', params: params);
+
+    if (response!.isNotEmpty) {
+      debugPrint('response count ${response['data'].toList().length}');
+      searchResultData.value = response['data'];
+      showSearchData.value = true;
+      update();
+    }
+  }
+
+  clear(){
+    showSearchData.value = false;
+    language.value = '';
+    location.value = '';
+    dateTo.value = 'To';
+    dateFrom.value = 'From';
+    update();
+  }
+
 
   Future fetchUpcomingExam() async {
 
@@ -43,23 +90,30 @@ class ExamController extends GetxController {
     final response = await API.instance.get(endPoint: 'api/exam-search-detail');
 
     if (response!.isNotEmpty) {
-      debugPrint('SearchDetails response count ${response['data'].toList().length}');
-      searchDetails.value = response['data'];
+      debugPrint('SearchDetails response count ${response.length}');
+      searchDetails.value = response;
       update();
     }
   }
 
+
+
+
+
+
   searchExam() {
     print("clicking ...");
+    // getSearchResult();
 
-    if (search.text.isEmpty && location.isEmpty && (dateFrom == 'From') && (dateTo == 'To') && language.isEmpty) {
+    if ( location.isEmpty && (dateFrom == 'From') && (dateTo == 'To') && language.isEmpty) {
       showAlertDialog(Get.context!);
     } else {
-      print(search.text);
-      print(location);
-      print(dateFrom.value);
-      print(dateTo.value);
-      print(language.value);
+      getSearchResult();
+      // print(search.text);
+      // print(location);
+      // print(dateFrom.value);
+      // print(dateTo.value);
+      // print(language.value);
     }
 
   }
