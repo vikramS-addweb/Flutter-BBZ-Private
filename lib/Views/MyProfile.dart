@@ -15,7 +15,7 @@ import '../Components/PickerCustom.dart';
 import '../Components/DropdownButtonCustom.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-
+import 'dart:io';
 
 
 class MyProfile extends StatelessWidget {
@@ -56,7 +56,7 @@ class MyProfile extends StatelessWidget {
             child: ElevatedButtonCustoms(
               onTap: () {
                 if(fromkey.currentState!.validate()){
-                  controller.editProfile();
+                  controller.editProfileImage();
                   debugPrint('yay you logged in successfully');
                 }
               },
@@ -108,7 +108,10 @@ class MyProfile extends StatelessWidget {
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
+                                      child:
+                                      controller.avatar_id.value.path != '' ?
+                                          Image.file(controller.avatar_id.value, height: 80, width: 80,fit: BoxFit.fill,):
+                                      Image.asset(
                                           ImageStyle.myProfilePhoto),
                                     ),
                                     const SizedBox(
@@ -116,7 +119,9 @@ class MyProfile extends StatelessWidget {
                                     ),
                                     Expanded(
                                         child: ElevatedButtonCustoms(
-                                          onTap: () {},
+                                          onTap: () {
+                                            PickerCustom.imagePicker((p0) => controller.avatar_id.value = p0);
+                                          },
                                           text: 'EDIT PICTURE',
                                           styleText: TextStylesCustom.textStyles_16.apply(
                                               color: ColorStyle.primaryColor_1570A5,
@@ -327,7 +332,9 @@ class MyProfile extends StatelessWidget {
                               // -----------------------Country field---------------------------->
                               InkWell(
                                 onTap: (){
-                                  PickerCustom.countryPicker();
+                                  PickerCustom.countryPicker((value){
+                                    controller.country.value.text = value;
+                                  });
                                 },
                                 child: TextFormFieldWithLabel(
                                   enabled: false,
