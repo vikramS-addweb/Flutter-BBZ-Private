@@ -73,8 +73,8 @@ class LoginController extends GetxController {
 
       if(check3.value) {
         GetStorage().write('user', jsonEncode(response));
-
       }
+
       dictUserSaved = response;
       kSavedUserID = dictUserSaved[kUserID].toString();
       kTOKENSAVED = dictUserSaved[kTOKEN];

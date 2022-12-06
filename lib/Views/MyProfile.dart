@@ -56,7 +56,7 @@ class MyProfile extends StatelessWidget {
             child: ElevatedButtonCustoms(
               onTap: () {
                 if(fromkey.currentState!.validate()){
-                  controller.editProfileImage();
+                  controller.editProfile();
                   debugPrint('yay you logged in successfully');
                 }
               },
@@ -97,30 +97,68 @@ class MyProfile extends StatelessWidget {
                                 height: 30,
                               ),
                               Container(
-                                // margin: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 5),
-                                height: 115,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(color: ColorStyle.grey_DAE1E7)),
+                                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 5),
+                                // height: 115,
+                                // decoration: BoxDecoration(
+                                //     borderRadius: BorderRadius.circular(5),
+                                //     // border: Border.all(color: ColorStyle.grey_DAE1E7)
+                                // ),
                                 child: Row(
                                   children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child:
-                                      controller.avatar_id.value.path != '' ?
-                                          Image.file(controller.avatar_id.value, height: 80, width: 80,fit: BoxFit.fill,):
-                                      Image.asset(
-                                          ImageStyle.myProfilePhoto),
-                                    ),
+                                    if (controller.image.value.path.isEmpty)
+                                      CircleAvatar(
+                                        backgroundColor: ColorStyle.primaryColor_1570A5,
+                                        radius: 50,
+                                        child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(60),
+                                            child: CircleAvatar(
+                                              radius: 50,
+                                              child: Image.network(
+                                                controller.profileData['avatar_id'].toString(),
+                                                height: 50,
+                                                width: 50,
+                                                fit: BoxFit.fill,
+                                                errorBuilder: (context,
+                                                    exception, stackTrace) {
+                                                  return const SizedBox(
+                                                    height: 50,
+                                                    width: 50,
+                                                    child: Icon(
+                                                      Icons.person,
+                                                      size: 50,
+                                                      color: Colors.white,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            )),
+                                      )
+                                    else
+                                      CircleAvatar(
+                                        backgroundColor: ColorStyle.primaryColor_1570A5,
+                                        radius: 50,
+                                        child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(50),
+                                            child: Image.file(
+                                              File(controller.image.value.path),
+                                              fit: BoxFit.fill,
+                                              height: 100,
+                                              width: 100,
+                                            )),
+                                      ),
+
                                     const SizedBox(
                                       width: 20,
                                     ),
                                     Expanded(
                                         child: ElevatedButtonCustoms(
                                           onTap: () {
-                                            PickerCustom.imagePicker((p0) => controller.avatar_id.value = p0);
+                                            PickerCustom.imagePicker((file) {
+                                              controller.image.value = file;
+
+                                              controller.editProfileImage();
+                                            });
+
                                           },
                                           text: 'EDIT PICTURE',
                                           styleText: TextStylesCustom.textStyles_16.apply(
@@ -138,23 +176,6 @@ class MyProfile extends StatelessWidget {
                               const SizedBox(
                                 height: 15,
                               ),
-
-                              // DropdownFormFieldCustom(
-                              //   padding: const EdgeInsets.only(
-                              //       // left: 16, right: 16
-                              //     top: 0, bottom: 30
-                              //   ),
-                              //   width: MediaQuery.of(context).size.width - 32,
-                              //   height: 60,
-                              //   hintText: 'send a value',
-                              //   icon: Icon(Icons.add),
-                              //   list: const ['One', 'Two', 'Three', 'Four'],
-                              //   colorIcon: ColorStyle.primaryColor_1570A5,
-                              //   textStyle: TextStylesCustom.textStyles_14,
-                              // ),
-
-
-
                               Row(
                                 children: [
                                   Expanded(

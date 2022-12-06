@@ -13,12 +13,11 @@ import '../Views/WelcomeScreen.dart';
 import '../Views/Profile.dart';
 
 
-
 class MyProfileController extends GetxController {
 
   RxMap<dynamic, dynamic> profileData = {}.obs;
 
-  Rx<File> avatar_id = File('').obs;
+  Rx<File> image = File('').obs;
 
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
@@ -31,18 +30,21 @@ class MyProfileController extends GetxController {
   Rx<TextEditingController> birthDate = TextEditingController().obs;
   Rx<TextEditingController> country = TextEditingController().obs;
 
+  RxString name = ''.obs;
 
-
-  void initMethods(){
-    Future.delayed(Duration(microseconds: 100), () {
+  void initMethods() {
+    Future.delayed(const Duration(microseconds: 100), () {
       getProfile();
     });
   }
 
   getProfile() async {
     final response = await API.instance.get(endPoint: 'api/profile');
+    print(response);
 
     if (response!.isNotEmpty) {
+      dictUserSaved = response;
+
       debugPrint('getProfile response count ${response.length}');
       profileData.value = response;
       firstName.value.text = profileData['first_name'] ?? '';
@@ -55,14 +57,11 @@ class MyProfileController extends GetxController {
       telephone.value.text = profileData['phone'] ?? '';
       birthDate.value.text = profileData['birthday'] ?? '';
       postalCode.value.text = profileData['zip_code'] ?? '';
-      avatar_id.value = profileData['avatar_id'] ?? File('');
+      image.value = profileData['avatar_id'] ?? File('');
 
       update();
     }
   }
-
-
-
 
   editProfile() async {
     final params = {
@@ -70,52 +69,51 @@ class MyProfileController extends GetxController {
       'last_name': lastName.value.text,
       'email': email.value.text,
       'phone': telephone.value.text,
-      'birthday':birthDate.value.text,
+      'birthday': birthDate.value.text,
       'country': country.value.text,
-      'address':co.value.text,
-      'address2':street.value.text,
-      'city':city.value.text,
+      'address': co.value.text,
+      'address2': street.value.text,
+      'city': city.value.text,
       'zip_code': postalCode.value.text
     };
 
-    debugPrint(firstName.value.text);
-    debugPrint(lastName.value.text);
-    debugPrint(postalCode.value.text);
-
-    final response = await API.instance.put(endPoint: 'api/edit-profile', params: params);
+    final response = await API.instance.put(
+        endPoint: 'api/edit-profile', params: params);
+    print(response);
 
     if (response!.isNotEmpty) {
-      // 'profile updated'.showSuccess();
-      response['message'].toString().showSuccess();
+      final response = await API.instance.get(endPoint: 'api/profile');
+      print(response);
+
+      if (response!.isNotEmpty) {
+        dictUserSaved = response;
+      }
 
       navigateToBack(Get.context);
-
-      // PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
     }
   }
 
   editProfileImage() async {
+  final params = {
+    '_method': 'post'
+  };
 
-    // var fileContent = avatar_id.value.readAsBytesSync();
-    // var fileContentBase64 = base64.encode(fileContent);
+  final response = await API.instance.postImage(
+    endPoint: "profileImage",
+    params: params,
+    fileParams: "avatar_id",
+    file: image.value,
+  );
 
-    final params = {
-      // 'avatar_id': [fileContentBase64],
-      'avatar_id' : avatar_id.value
-    };
+  print(response);
 
-    debugPrint('profile pic :  ${avatar_id.value.path}');
-
-    final response = await API.instance.post(endPoint: 'api/profileImage', params: params);
-    //
-    // if (response!.isNotEmpty) {
-    //   // 'profile updated'.showSuccess();
-    //   response['message'].toString().showSuccess();
-    //   debugPrint('profile updated');
-
-      // editProfile();
-    // }
+  if (response!.isNotEmpty) {
+    response['message'].toString().showSuccess();
   }
+}
 
+  updateOnMyProfile() {
+    name.value = dictUserSaved['name'].toString();
+  }
 
 }
