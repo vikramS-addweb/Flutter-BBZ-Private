@@ -11,12 +11,14 @@ import 'package:country_picker/country_picker.dart';
 
 class PickerCustom {
 
-  static countryPicker() async {
+  static countryPicker(Function(String) onSelected) async {
     showCountryPicker(
       context: Get.context!,
       showPhoneCode: true, // optional. Shows phone code before the country name.
       onSelect: (Country country) {
-        print('Select country: ${country.displayName}');
+        debugPrint('Select country: ${country.name}');
+        onSelected(country.name);
+        // return country.name;
       },
     );
   }
