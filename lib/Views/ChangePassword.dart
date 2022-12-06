@@ -94,6 +94,7 @@ class ChangePassword extends StatelessWidget {
                               // -----------------------current password Field---------------------------->
                               TextFormFieldWithLabel(
                                 controller: controller.currentPassword.value,
+                                obscureText: true,
                                 firstText: 'Current Password',
                                 hintText: 'Please enter',
                                 validator: (value) {
@@ -110,6 +111,7 @@ class ChangePassword extends StatelessWidget {
                               // -----------------------New Password---------------------------->
                               TextFormFieldWithLabel(
                                 controller: controller.newPassword.value,
+                                obscureText: true,
                                 firstText: 'New Password',
                                 hintText: 'Please enter',
                                 validator: (value) {
@@ -126,6 +128,7 @@ class ChangePassword extends StatelessWidget {
                               // -----------------------confirm password Field---------------------------->
                               TextFormFieldWithLabel(
                                 controller: controller.confirmPassword.value,
+                                obscureText: true,
                                 firstText: 'Confirm Password',
                                 hintText: 'Please enter',
                                 validator: (value) {

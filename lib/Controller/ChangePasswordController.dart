@@ -8,6 +8,7 @@ import '../Utils/Constant.dart';
 import 'package:get_storage/get_storage.dart';
 import '../Views/WelcomeScreen.dart';
 import '../Views/Profile.dart';
+import './LoginController.dart';
 
 
 
@@ -19,6 +20,7 @@ class ChangePasswordController extends GetxController {
   Rx<TextEditingController> newPassword = TextEditingController().obs;
   Rx<TextEditingController> confirmPassword = TextEditingController().obs;
 
+  final loginController = Get.put(LoginController());
 
 
 
@@ -36,6 +38,8 @@ class ChangePasswordController extends GetxController {
 
     if (response!.isNotEmpty) {
       'password changed successfully'.showSuccess();
+      loginController.logout();
+
 
       // PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
     }
