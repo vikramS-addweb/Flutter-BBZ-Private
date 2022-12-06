@@ -58,6 +58,7 @@ class Login extends StatelessWidget {
               decoration: boxDecorationAuthBox(),
               child: Form(
                 key: fromkey,
+                autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   children: [
                     // -----------------------Email Feild---------------------------->

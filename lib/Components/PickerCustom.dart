@@ -26,19 +26,24 @@ class PickerCustom {
     );
   }
 
-  static datePicker(String dateFormat) async {
-    DateTime selectedDate = DateTime.now();
+  static datePicker(
+      {required String dateFormat, required DateTime selectedDate, required DateTime firstDate, required DateTime lastDate,}) async {
+
+    // DateTime? selectedDate = DateTime(1919);
 
     final DateTime? picked = await showDatePicker(
         context: Get.context!,
         initialDate: selectedDate,
-        firstDate: DateTime.now(),
-        lastDate: DateTime(2500));
+        firstDate: firstDate,
+        lastDate: lastDate,
+    );
+
     if (picked != null && picked != selectedDate) {
       selectedDate = picked;
       final DateFormat format = DateFormat(dateFormat);
       return format.format(picked);
     }
+
   }
 
   static imagePicker(Function(File) onSelected) {

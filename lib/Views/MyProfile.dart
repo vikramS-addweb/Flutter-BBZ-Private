@@ -114,9 +114,9 @@ class MyProfile extends StatelessWidget {
                                             child: CircleAvatar(
                                               radius: 50,
                                               child: Image.network(
-                                                controller.profileData['avatar_id'].toString(),
-                                                height: 50,
-                                                width: 50,
+                                                controller.imageURL.value,
+                                                height: 100,
+                                                width: 100,
                                                 fit: BoxFit.fill,
                                                 errorBuilder: (context,
                                                     exception, stackTrace) {
@@ -223,6 +223,7 @@ class MyProfile extends StatelessWidget {
                                 controller: controller.email.value,
                                 firstText: 'Email',
                                 hintText: 'Johndoe@gmail.com',
+                                enabled: false,
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return "Email is required";
@@ -259,7 +260,14 @@ class MyProfile extends StatelessWidget {
                               // -----------------------Birth Date Field---------------------------->
                               InkWell(
                                 onTap: () async {
-                                    controller.birthDate.value.text = await PickerCustom.datePicker('dd MMM yyyy');
+                                    controller.birthDate.value.text = await PickerCustom.datePicker(
+                                        dateFormat: 'dd MMM yyyy',
+                                        // firstDate: DateTime(2006),
+                                        // lastDate: DateTime(1900),
+                                        selectedDate: DateTime(2006),
+                                        firstDate: DateTime(1900),
+                                        lastDate: DateTime(2006)
+                                    );
                                     debugPrint(controller.birthDate.value.text);
                                   },
                                 child: TextFormFieldWithLabel(

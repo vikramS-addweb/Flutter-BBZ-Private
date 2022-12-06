@@ -46,67 +46,6 @@ class _ExamState extends State<Exam> {
     });
   }
 
-  textIcon(ImageProvider IconImage, String text, bool isBorder) {
-    return InkWell(
-      child: Container(
-        padding: const EdgeInsets.only(
-          top: 16,
-          bottom: 10,
-          left: 16,
-          right: 16,
-        ),
-        decoration: BoxDecoration(
-            border: isBorder ? Border(
-                bottom: BorderSide(
-                  width: 1,
-                  color: ColorStyle.grey_DAE1E7,
-                )
-            ) : Border()
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image(image: IconImage, width: 15,),
-                    ],
-                  ),
-                ),
-
-                // Icon(
-                //   icon,
-                //   color: ColorStyle.primaryColor_1570A5,
-                //   size: 26,
-                // ),
-                const SizedBox(width: 6),
-                Expanded(child: Text(
-                  text,
-                  style: TextStylesCustom.textStyles_14.apply(
-                    color: ColorStyle.grey_A8B0B5,
-                    // fontWeightDelta: 1,
-                  ),
-                ),),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  color: ColorStyle.primaryColor_1570A5,
-                  size: 34,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      onTap: () {
-        PickerCustom.datePicker('dd MMM yyyy');
-      },
-    );
-  }
-  
   datePicker(String title, {required bool isFrom}) {
     return InkWell(
       child: Container(
@@ -128,7 +67,12 @@ class _ExamState extends State<Exam> {
         ),
       ),
       onTap: () async {
-        final date = await PickerCustom.datePicker('dd/MM/yyyy');
+        final date = await PickerCustom.datePicker(
+          dateFormat: 'dd MMM yyyy',
+          selectedDate: DateTime.now(),
+          firstDate: DateTime.now(),
+          lastDate: DateTime(2030),
+        );
 
         if (isFrom) {
           controller.dateFrom.value = date.toString();
@@ -424,7 +368,7 @@ class _ExamState extends State<Exam> {
                                 Stack(
                                   children: [
                                     (controller.upcomingExamData[index]['image'] != null && controller.upcomingExamData[index]['image']['file_path'] != null)?
-                                        Image.network('${networkImage}${controller.upcomingExamData[index]['image']['file_path']}'):
+                                        Image.network('${kBaseURL_Image}${controller.upcomingExamData[index]['image']['file_path']}'):
                                     Image.asset(
                                       ImageStyle.pixabay,
                                       height: 250,
