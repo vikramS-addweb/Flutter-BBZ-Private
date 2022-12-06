@@ -177,7 +177,9 @@ class API {
     print(_kBaseURL+endPoint);
 
     final url = Uri.parse(_kBaseURL+endPoint);
-    final request = http.MultipartRequest('HEAD', url);
+
+    final request = http.MultipartRequest('POST', url);
+
     request.headers['Accept'] = 'application/json';
     request.headers['Authorization'] = 'Bearer $kTOKENSAVED';
     print(kTOKENSAVED);

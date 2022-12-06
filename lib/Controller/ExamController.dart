@@ -51,7 +51,8 @@ class ExamController extends GetxController {
       'location_id': location.value != '' ? '${locationId.value}' : ''  ,
       'from_date': dateFrom.value == 'From' ? '' : dateFrom.value,
       'to_date':  dateTo.value == 'To' ? '' : dateTo.value,
-      'exam_level_id' : language.value != '' ? '${languageId.value}' : ''
+      'exam_level_id' : language.value != '' ? '${languageId.value}' : '',
+      'term' : search.text,
     };
 
     final response = await API.instance.post(endPoint: 'api/search', params: params);
@@ -70,6 +71,7 @@ class ExamController extends GetxController {
     location.value = '';
     dateTo.value = 'To';
     dateFrom.value = 'From';
+    search.text = '';
     update();
   }
 
@@ -105,7 +107,7 @@ class ExamController extends GetxController {
     print("clicking ...");
     // getSearchResult();
 
-    if ( location.isEmpty && (dateFrom == 'From') && (dateTo == 'To') && language.isEmpty) {
+    if ( search.text.isEmpty && location.isEmpty && (dateFrom == 'From') && (dateTo == 'To') && language.isEmpty) {
       showAlertDialog(Get.context!);
     } else {
       getSearchResult();

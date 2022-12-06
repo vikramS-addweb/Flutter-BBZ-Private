@@ -54,6 +54,8 @@ class News extends StatelessWidget {
         init: controller,
         builder: ((controller) =>
             Obx(() =>
+            controller.newsData.length == 0 ?
+                Center(child: Text('No News is Available!', style: TextStylesCustom.textStyles_18,)):
                 ListView.separated(
               padding: const EdgeInsets.only(
                   left: 16, right: 16, top: 32, bottom: 32),
@@ -75,7 +77,7 @@ class News extends StatelessWidget {
                     children: [
                       controller.newsData[index]['media'] != null && controller.newsData[index]['media']['file_path'] != null ?
                       Image.network(
-                        '$networkImage${controller.newsData[index]['media']['file_path']}',
+                        '$kBaseURL_Image${controller.newsData[index]['media']['file_path']}',
                         height: 250,
                         width: double.infinity,
                         fit: BoxFit.fill,

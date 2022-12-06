@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,9 @@ class MyProfileController extends GetxController {
   RxMap<dynamic, dynamic> profileData = {}.obs;
 
   Rx<File> image = File('').obs;
+
+  RxString imageURL = ''.obs;
+
 
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
@@ -40,12 +44,16 @@ class MyProfileController extends GetxController {
 
   getProfile() async {
     final response = await API.instance.get(endPoint: 'api/profile');
-    print(response);
+
+    // print(response);
+
 
     if (response!.isNotEmpty) {
       dictUserSaved = response;
 
+
       debugPrint('getProfile response count ${response.length}');
+
       profileData.value = response;
       firstName.value.text = profileData['first_name'] ?? '';
       lastName.value.text = profileData['last_name'] ?? '';
@@ -56,9 +64,14 @@ class MyProfileController extends GetxController {
       street.value.text = profileData['address2'] ?? '';
       telephone.value.text = profileData['phone'] ?? '';
       birthDate.value.text = profileData['birthday'] ?? '';
-      postalCode.value.text = profileData['zip_code'] ?? '';
-      image.value = profileData['avatar_id'] ?? File('');
 
+      postalCode.value.text = profileData['zip_code'].toString() ?? '';
+
+
+      final dictMedia = Map<String, dynamic>.from(profileData['media']);
+      print(dictMedia['file_name'].toString());
+      imageURL.value = kBaseURL_Image+dictMedia['file_name'].toString();
+      // https://bbzstage.addwebprojects.com/uploads/image_picker_E2DC2F7C-A3F9-4B59-8B19-C3C8CADF915B-2786-0000001BF293E94E.jpg
       update();
     }
   }
@@ -74,7 +87,9 @@ class MyProfileController extends GetxController {
       'address': co.value.text,
       'address2': street.value.text,
       'city': city.value.text,
-      'zip_code': postalCode.value.text
+
+      'zipCode': postalCode.value.text
+
     };
 
     final response = await API.instance.put(
@@ -99,13 +114,12 @@ class MyProfileController extends GetxController {
   };
 
   final response = await API.instance.postImage(
-    endPoint: "profileImage",
+
+    endPoint: "api/profileImage",
     params: params,
-    fileParams: "avatar_id",
+    fileParams: "avatar",
     file: image.value,
   );
-
-  print(response);
 
   if (response!.isNotEmpty) {
     response['message'].toString().showSuccess();
