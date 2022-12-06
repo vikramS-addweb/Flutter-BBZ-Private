@@ -2,6 +2,7 @@ import 'package:bbz/Components/BGImage.dart';
 import 'package:bbz/Controller/SignUpController.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:bbz/Utils/Constant.dart';
+import 'package:bbz/Views/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../Components/AppBarStyle.dart';
@@ -273,7 +274,7 @@ class SignUp extends StatelessWidget {
                           if(controller.check.value) {
                             controller.userSignUp();
                           } else {
-                            'Terms and Privacy Policy is Required'.showError();
+                            'The terms and conditions field is required'.showError();
                           }
                         }
                         return;
@@ -289,7 +290,8 @@ class SignUp extends StatelessWidget {
                       textFirst: 'Already have an account? ',
                       textSecond: 'Log in',
                       onTap: () {
-                        navigateToBack(context);
+                        Login().navigateToCustom(context);
+                        // navigateToBack(context);
                       },
                     ),
                     const SizedBox(

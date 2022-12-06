@@ -119,22 +119,28 @@ class News extends StatelessWidget {
                       const SizedBox(
                         height: 9,
                       ),
-                      controller.newsData[index]['content'] != null ?
-                      SizedBox(
-                        height: 48,
-                        child: Html(
-                            style: {
-
-                              "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,),
-                              '#': Style(
-                                maxLines: 3,
-                                textOverflow: TextOverflow.ellipsis,
-                              ),
-                              'p':Style.fromTextStyle(TextStylesCustom.textStyles_13.apply(
-                                color: ColorStyle.grey_5E6D77,
-                              )),
-                            },
-                            data: controller.newsData[index]['content']
+                      controller.newsData[index]['content_without_tag'] != null ?
+                      // SizedBox(
+                      //   height: 48,
+                      //   child: Html(
+                      //       style: {
+                      //
+                      //         "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,),
+                      //         '#': Style(
+                      //           maxLines: 3,
+                      //           textOverflow: TextOverflow.ellipsis,
+                      //         ),
+                      //         'p':Style.fromTextStyle(TextStylesCustom.textStyles_13.apply(
+                      //           color: ColorStyle.grey_5E6D77,
+                      //         )),
+                      //       },
+                      //       data: controller.newsData[index]['content']
+                      //   ),
+                      // ):
+                      Text(
+                        '${controller.newsData[index]['content_without_tag']}...',
+                        style: TextStylesCustom.textStyles_13.apply(
+                          color: ColorStyle.grey_5E6D77,
                         ),
                       ):
                       Text(
