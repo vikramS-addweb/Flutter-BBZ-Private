@@ -19,7 +19,9 @@ class MyProfileController extends GetxController {
   RxMap<dynamic, dynamic> profileData = {}.obs;
 
   Rx<File> image = File('').obs;
+
   RxString imageURL = ''.obs;
+
 
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
@@ -42,10 +44,15 @@ class MyProfileController extends GetxController {
 
   getProfile() async {
     final response = await API.instance.get(endPoint: 'api/profile');
+
     // print(response);
+
 
     if (response!.isNotEmpty) {
       dictUserSaved = response;
+
+
+      debugPrint('getProfile response count ${response.length}');
 
       profileData.value = response;
       firstName.value.text = profileData['first_name'] ?? '';
@@ -57,7 +64,9 @@ class MyProfileController extends GetxController {
       street.value.text = profileData['address2'] ?? '';
       telephone.value.text = profileData['phone'] ?? '';
       birthDate.value.text = profileData['birthday'] ?? '';
+
       postalCode.value.text = profileData['zip_code'].toString() ?? '';
+
 
       final dictMedia = Map<String, dynamic>.from(profileData['media']);
       print(dictMedia['file_name'].toString());
@@ -78,7 +87,9 @@ class MyProfileController extends GetxController {
       'address': co.value.text,
       'address2': street.value.text,
       'city': city.value.text,
+
       'zipCode': postalCode.value.text
+
     };
 
     final response = await API.instance.put(
@@ -103,6 +114,7 @@ class MyProfileController extends GetxController {
   };
 
   final response = await API.instance.postImage(
+
     endPoint: "api/profileImage",
     params: params,
     fileParams: "avatar",

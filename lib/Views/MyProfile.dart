@@ -114,9 +114,11 @@ class MyProfile extends StatelessWidget {
                                             child: CircleAvatar(
                                               radius: 50,
                                               child: Image.network(
+
                                                 controller.imageURL.value,
                                                 height: 100,
                                                 width: 100,
+
                                                 fit: BoxFit.fill,
                                                 errorBuilder: (context,
                                                     exception, stackTrace) {
