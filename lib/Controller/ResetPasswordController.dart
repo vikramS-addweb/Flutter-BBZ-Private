@@ -19,11 +19,19 @@ class ResetPasswordController extends GetxController {
     final response = await API.instance.post(endPoint: 'api/reset-password', params: params);
 
     if (response!.isNotEmpty) {
+      if (response['status'].toString() == 'error') {
+        response['message'].toString().showError();
+      } else {
+        response['message'].toString().showSuccess();
+        useremail.value.text = '';
+        Future.delayed(const Duration(seconds: 1), () {
+          Login().navigateToCustom(Get.context);
+        });
+      }
+
       "Password reset link is sent to your email.".showSuccess();
 
-      Future.delayed(const Duration(seconds: 1), () {
-        Login().navigateToCustom(Get.context);
-      });
+
     }
   }
 }
