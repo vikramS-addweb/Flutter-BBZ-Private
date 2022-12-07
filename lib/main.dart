@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
-      // home: ChangePassword(),
+      // home: BookingForm(),
       // home: TabbarScreen(),
       home: SplashScreen(),
     );

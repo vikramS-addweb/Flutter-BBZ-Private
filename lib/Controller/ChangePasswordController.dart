@@ -38,6 +38,9 @@ class ChangePasswordController extends GetxController {
 
     if (response!.isNotEmpty) {
       'password changed successfully'.showSuccess();
+      currentPassword.value.text = '';
+      newPassword.value.text = '';
+      confirmPassword.value.text = '';
       loginController.logout();
 
 
