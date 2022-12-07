@@ -18,7 +18,7 @@ class BookingFormController extends GetxController {
   //drowpdown variables
   RxString salutation = ''.obs;
   RxString motherToungue = ''.obs;
-  RxString country = ''.obs;
+  // RxString country = ''.obs;
 
   RxBool salutationError = false.obs;
   RxBool motherToungueError = false.obs;
@@ -28,7 +28,7 @@ class BookingFormController extends GetxController {
   RxBool agreementError = false.obs;
 
 
-  // Rx<TextEditingController> userName = TextEditingController().obs;
+  Rx<TextEditingController> country = TextEditingController().obs;
   // Rx<TextEditingController> userEmail = TextEditingController().obs;
   // Rx<TextEditingController> userMessage = TextEditingController().obs;
 

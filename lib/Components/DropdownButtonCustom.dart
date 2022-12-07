@@ -109,6 +109,23 @@ class DropdownWithLabel extends StatefulWidget {
     // this.dropdownValue = '',
     this.onChanged,
      this.controllerValue,
+     // required this.icon,
+     // this.onChanged,
+     // this.width = 150,
+     // this.height = 50,
+     // this.list = const ['One', 'Two', 'Three'],
+     this.padding = const EdgeInsets.all(0),
+     this.colorIcon = Colors.red,
+     this.textStyle = const TextStyle(color: Colors.red),
+     this.hintText = 'Type your hint text here',
+     this.validator,
+     this.colorFill = Colors.white,
+     this.colorBoder = Colors.black,
+     this.colorHint = Colors.grey,
+     this.colorText = Colors.black,
+     this.radiusBorder = 4.0,
+     this.maxLines = 1,
+     this.enabled = true,
   }) : super(key: key);
 
   final String? firstText;
@@ -124,6 +141,23 @@ class DropdownWithLabel extends StatefulWidget {
   final List? list;
   // final String? dropdownValue;
   void Function(String?)? onChanged;
+
+   String? Function(String?)? validator;
+   // final Function(String)? onChanged;
+
+   // final Widget? icon;
+   final EdgeInsets? padding;
+   final Color? colorIcon;
+   final TextStyle? textStyle;
+   final String? hintText;
+
+   final Color? colorFill;
+   final Color? colorBoder;
+   final Color? colorText;
+   final Color? colorHint;
+   final double? radiusBorder;
+   final int? maxLines;
+   final bool? enabled;
 
   @override
   State<DropdownWithLabel> createState() => _DropdownWithLabelState();
@@ -155,48 +189,93 @@ class _DropdownWithLabelState extends State<DropdownWithLabel> {
         SizedBox(
           width: widget.width,
           height: widget.height,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-                border: Border.all(color: ColorStyle.grey_DAE1E7),
-                //border of dropdown button
-                borderRadius: BorderRadius.circular(5)),
-            child: DropdownButton<String>(
-              // value: list!.first,
+          // child:
+          // Container(
+          //   padding: const EdgeInsets.all(8),
+          //   decoration: BoxDecoration(
+          //       border: Border.all(color: ColorStyle.grey_DAE1E7),
+          //       //border of dropdown button
+          //       borderRadius: BorderRadius.circular(5)),
+            child: DropdownButtonFormField<String>(
+              // icon: widget.icon,
               value: dropdownValue,
-              hint: Padding(
-                padding: const EdgeInsets.only(left:5.0),
-                child: Text('Please select', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_DAE1E7),),
-              ),
               isExpanded: true,
-              icon: Icon(
-                Icons.expand_more,
-                size: 35,
-                color: ColorStyle.primaryColor_1570A5,
-              ),
               elevation: 16,
-              style: TextStyle(color: ColorStyle.grey_DAE1E7),
-              underline: Container(
-                height: 0,
-                color: Colors.deepPurpleAccent,
+              style: widget.textStyle,
+              validator: widget.validator,
+              hint: Text(
+                widget.hintText!,
+                style: widget.textStyle!.apply(color: ColorStyle.grey_DAE1E7),
+                textAlign: TextAlign.center,
               ),
-              onChanged:
-                  (String? value) {
-                widget.controllerValue!.value = value!;
-                // This is called when the user selects an item.
+              decoration: InputDecoration(
+                  fillColor: widget.colorFill,
+                  contentPadding: widget.padding,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(widget.radiusBorder!),
+                      borderSide: BorderSide(color: widget.colorBoder!, width: 1)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(widget.radiusBorder!),
+                      borderSide: BorderSide(color: widget.colorBoder!, width: 1)
+                  ),
+                  errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(widget.radiusBorder!),
+                      borderSide: BorderSide(color: widget.colorBoder!, width: 1)
+                  ),
+                  hintText: widget.hintText,
+                  hintStyle: widget.textStyle!.apply(color: widget.colorHint)),
+              onChanged: (value) {
+                dropdownValue = value;
+
                 setState(() {
-                  dropdownValue = value!;
+
                 });
               },
-              items: widget.list!
-                  .map((e) => DropdownMenuItem<String>(
-                        value: e,
-                        child: Text(e),
-                      ))
-                  .toList(),
-            ),
+              items: widget.list!.map((e) => DropdownMenuItem<String>(
+                value: e,
+                child: Text(
+                  e,
+                  style: widget.textStyle!.apply(color: Colors.black),
+                ),
+              )).toList(),
+            )
+
+            // DropdownButton<String>(
+            //   // value: list!.first,
+            //   value: dropdownValue,
+            //   hint: Padding(
+            //     padding: const EdgeInsets.only(left:5.0),
+            //     child: Text('Please select', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_DAE1E7),),
+            //   ),
+            //   isExpanded: true,
+            //   icon: Icon(
+            //     Icons.expand_more,
+            //     size: 35,
+            //     color: ColorStyle.primaryColor_1570A5,
+            //   ),
+            //   elevation: 16,
+            //   style: TextStyle(color: ColorStyle.grey_DAE1E7),
+            //   underline: Container(
+            //     height: 0,
+            //     color: Colors.deepPurpleAccent,
+            //   ),
+            //   onChanged:
+            //       (String? value) {
+            //     widget.controllerValue!.value = value!;
+            //     // This is called when the user selects an item.
+            //     setState(() {
+            //       dropdownValue = value!;
+            //     });
+            //   },
+            //   items: widget.list!
+            //       .map((e) => DropdownMenuItem<String>(
+            //             value: e,
+            //             child: Text(e),
+            //           ))
+            //       .toList(),
+            // ),
           ),
-        )
+        // )
       ],
     );
   }

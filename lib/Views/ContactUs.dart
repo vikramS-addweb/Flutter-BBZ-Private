@@ -211,11 +211,9 @@ class ContactUs extends StatelessWidget {
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Message is required";
-                            }else if (!alphaSpace.hasMatch(value)) {
-                              return " Message must only contain letters";
                             }
                             else if(value![0] == ' '){
-                              // controller.userMessage.value.text = '';
+                              controller.userMessage.value.text = '';
                               return "Message cannot start with space";
                             }
                             else {

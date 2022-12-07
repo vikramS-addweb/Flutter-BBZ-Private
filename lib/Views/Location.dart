@@ -11,7 +11,7 @@ import '../Views/DrawerScreen.dart';
 
 class Location extends StatefulWidget {
   final String urlCustom;
-  const Location({Key? key, this.urlCustom = 'https://bbzstage.addwebprojects.com/page/locations'}) : super(key: key);
+  const Location({Key? key, this.urlCustom = 'https://www.sprachtestcenter.de/page/locations'}) : super(key: key);
 
 
   @override
