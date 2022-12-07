@@ -9,6 +9,8 @@ import '../Utils/Global.dart';
 import '../Controller/NewsDetailController.dart';
 import '../Utils/Constant.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:html/dom.dart' as dom;
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsDetail extends StatelessWidget {
   NewsDetail({Key? key, required this.id}) : super(key: key);
@@ -96,7 +98,11 @@ class NewsDetail extends StatelessWidget {
                         )),
                         "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,),
                       },
-                      data: controller.newsDetailData['content']
+                      data: controller.newsDetailData['content'],
+                      onLinkTap: (String? url, RenderContext context, Map<String, String> attributes, dom.Element? element)async {
+                    //open URL in webview, or launch URL in browser, or any other logic here
+                        await launchUrl(Uri.parse(url!));
+                      }
                   ):
                   Text(
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",

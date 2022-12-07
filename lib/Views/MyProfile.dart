@@ -261,7 +261,7 @@ class MyProfile extends StatelessWidget {
                               InkWell(
                                 onTap: () async {
                                     controller.birthDate.value.text = await PickerCustom.datePicker(
-                                        dateFormat: 'dd MMM yyyy',
+                                        dateFormat: 'yyyy-MM-dd',
                                         // firstDate: DateTime(2006),
                                         // lastDate: DateTime(1900),
                                         selectedDate: DateTime(2006),
@@ -350,7 +350,10 @@ class MyProfile extends StatelessWidget {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return "Postal code is required";
-                                  }else {
+                                  }else if(!value!.isNumericOnly){
+                                    return 'Postal code must contain only numbers';
+                                  }
+                                  else {
                                     return null;
                                   }
                                 },

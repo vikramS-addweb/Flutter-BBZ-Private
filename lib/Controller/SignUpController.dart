@@ -9,6 +9,13 @@ import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 
 
 class SignUpController extends GetxController {
+
+  void initMethods() {
+    Future.delayed(const Duration(microseconds: 100), () {
+      reset();
+    });
+  }
+
   final check = false.obs;
 
   Rx<TextEditingController> firstName = TextEditingController().obs;
@@ -67,6 +74,7 @@ class SignUpController extends GetxController {
         kSavedUserID = dictUserSaved[kUserID].toString();
         kTOKENSAVED = dictUserSaved[kTOKEN];
 
+
         PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context,);
       }
     }
@@ -75,6 +83,15 @@ class SignUpController extends GetxController {
 
   isTermsConditions() {
     check.value = !check.value;
+  }
+
+  reset(){
+    firstName.value.text = '';
+   lastName.value.text = '';
+    email.value.text = '';
+    password.value.text = '';
+    mobile.value.text = '';
+    check.value = false;
   }
 
 }

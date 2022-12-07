@@ -46,18 +46,18 @@ class LoginController extends GetxController {
     PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
   }
 
-  validation() async {
-    Get.focusScope!.unfocus();
-
-    if (useremail.value.text.isNotEmpty && userPassword.value.text.isNotEmpty) {
-      if (!GetUtils.isEmail(useremail.value.text))
-        'Enter a Valid Email !'.showError();
-      else {
-        userLogin();
-      }
-    } else
-      'Please Enter Your Email & Password !'.showError();
-  }
+  // validation() async {
+  //   Get.focusScope!.unfocus();
+  //
+  //   if (useremail.value.text.isNotEmpty && userPassword.value.text.isNotEmpty) {
+  //     if (!GetUtils.isEmail(useremail.value.text))
+  //       'Enter a Valid Email !'.showError();
+  //     else {
+  //       userLogin();
+  //     }
+  //   } else
+  //     'Please Enter Your Email & Password !'.showError();
+  // }
 
   userLogin() async {
     final params = {
@@ -78,6 +78,8 @@ class LoginController extends GetxController {
       dictUserSaved = response;
       kSavedUserID = dictUserSaved[kUserID].toString();
       kTOKENSAVED = dictUserSaved[kTOKEN];
+      useremail.value.text = '';
+      userPassword.value.text = '';
 
       // TabbarScreen().navigateToCustom(Get.context);
       PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context,);

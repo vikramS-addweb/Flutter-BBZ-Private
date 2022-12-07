@@ -16,25 +16,14 @@ class ResetPasswordController extends GetxController {
       'email': useremail.value.text,
     };
 
-    final response = await
-    API.instance.post(endPoint: 'api/reset-password', params: params);
+    final response = await API.instance.post(endPoint: 'api/reset-password', params: params);
 
-    if (response != null) {
-      // 'profile updated'.showSuccess();
-      // Future.delayed(Duration(seconds: 1), () {
-      //   showAlertDialog(Get.context!);
-      // });
+    if (response!.isNotEmpty) {
       "Password reset link is sent to your email.".showSuccess();
 
-      Future.delayed(Duration(seconds: 1), (){
+      Future.delayed(const Duration(seconds: 1), () {
         Login().navigateToCustom(Get.context);
       });
-
-      // navigateToBack(Get.context);
-
-      // PersistentBottomNavBarCustom(initialIndex: 1,).navigateToCustom(Get.context,);
-    }else {
-      'Please Enter Your Email!'.showError();
     }
   }
 }
