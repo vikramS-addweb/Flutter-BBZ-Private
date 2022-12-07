@@ -3,6 +3,7 @@ import 'package:bbz/Controller/SignUpController.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:bbz/Utils/Constant.dart';
 import 'package:bbz/Views/Login.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../Components/AppBarStyle.dart';
@@ -24,6 +25,7 @@ import '../../Components/TextRichCustom.dart';
 import '../../Utils/Global.dart';
 import '../../Components/BottomNavBarCustom.dart';
 import 'PersistentBottomNavBarCustom.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class SignUp extends StatelessWidget {
@@ -85,8 +87,12 @@ class SignUp extends StatelessWidget {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "First name is required";
-                              } else if (!GetUtils.isAlphabetOnly(value)){
-                                return " The first name must only contain letters";
+                              } else if (!alphaSpace.hasMatch(value)) {
+                                return " FN should have letters";
+                              }
+                              else if(value![0] == ' '){
+                                // controller.userMessage.value.text = '';
+                                return "Can't start with space";
                               }
                               else {
                                 return null;
@@ -111,7 +117,7 @@ class SignUp extends StatelessWidget {
                               if (value!.isEmpty) {
                                 return "Last name is required";
                               } else if (!GetUtils.isAlphabetOnly(value)){
-                                return " The last name must only contain letters";
+                                return " LN should have letters";
                               }
                               else {
                                 return null;
@@ -150,7 +156,7 @@ class SignUp extends StatelessWidget {
                     // -----------------------Mobile Feild---------------------------->
                     TextFormFieldOutline(
                       controller: controller.mobile.value,
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.number,
                       hintText: 'Mobile Number',
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
@@ -160,7 +166,10 @@ class SignUp extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Mobile number is required";
-                        } else if (value.length < 9 || value.length >13) {
+                        }else if(!value.isPhoneNumber){
+                          return "Phone must contain number only";
+                        }
+                        else if (value.length < 9 || value.length >13) {
                           return "Phone must be between 9 and 13 digits";
                         } else {
                           return null;
@@ -240,16 +249,37 @@ class SignUp extends StatelessWidget {
                         const SizedBox(
                           width: 8,
                         ),
+                        // Expanded(
+                        //   child: TextRichCustom(
+                        //     textFirst: 'I have read and accept the ',
+                        //     textSecond: 'Terms and Conditions',
+                        //     fontWeightdelta: 0,
+                        //     onTap: () {
+                        //       // Get.to(const SignUp());
+                        //     },
+                        //   ),
+                        // ),
                         Expanded(
-                          child: TextRichCustom(
-                            textFirst: 'I have read and accept the ',
-                            textSecond: 'Terms and Privacy Policy',
-                            fontWeightdelta: 0,
-                            onTap: () {
-                              // Get.to(const SignUp());
-                            },
+                          child: RichText(
+                            text: TextSpan(
+                              // text: 'I have read the ',
+                              // style: TextStylesCustom.textStyles_12,
+                              children:  <TextSpan>[
+                                TextSpan(text: 'I have read and accept the ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
+                                TextSpan(text: 'Terms and Conditions', style:TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5,),
+                                recognizer: TapGestureRecognizer()..onTap = ()async => {
+                                  await launchUrl(Uri.parse('https://www.sprachtestcenter.de/page/terms-and-conditions'))
+                                }),
+                                TextSpan(text: ' and ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
+                                TextSpan(text: 'Privacy Policy', style:TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5),
+                                    recognizer: TapGestureRecognizer()..onTap = ()async => {
+                                      await launchUrl(Uri.parse('https://www.sprachtestcenter.de/page/privacy-policy'))
+                                    }),
+                                // TextSpan(text: ' and agree to the storage of the above data. ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
+                              ],
+                            ),
                           ),
-                        ),
+                        )
                       ],
                     ),
 

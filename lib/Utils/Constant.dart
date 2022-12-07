@@ -24,6 +24,8 @@ Map<String, dynamic> dictUserSaved = {};
 
 const kBaseURL_Image = 'https://bbzstage.addwebprojects.com/uploads/';
 
+final alphaSpace = RegExp(r'^[a-zA-Z ]*$');
+
 bool isLoggedIn = false;
 RxInt indexSelectedTab = 1.obs;
 RxBool isBackOnAuth = false.obs;

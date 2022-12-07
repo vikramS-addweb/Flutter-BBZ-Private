@@ -75,17 +75,16 @@ class API {
       return null;
     }
 
-    final url = Uri.parse(_kBaseURL+endPoint);
+    final url = Uri.parse(_kBaseURL + endPoint);
 
     try {
       showLoaderGetX();
       final response = await http.post(url,
           headers: {
-            'Accept' : 'application/json',
+            'Accept': 'application/json',
             'Authorization': 'Bearer $kTOKENSAVED'
           },
-          body: params
-      );
+          body: params);
       hideLoader();
 
       debugPrint('Response status: ${response.statusCode}');
@@ -95,12 +94,11 @@ class API {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return parsed;
       } else {
-        if(parsed["error"] != null){
+        if (parsed["error"] != null) {
           parsed["error"].toString().showError();
-        }
-        else if(parsed["message"] != null){
+        } else if (parsed["message"] != null) {
           parsed["message"].toString().showError();
-        }else {
+        } else {
           parsed["error"].toString().showError();
         }
 
@@ -128,11 +126,10 @@ class API {
       showLoaderGetX();
       final response = await http.put(url,
           headers: {
-            'Accept' : 'application/json',
+            'Accept': 'application/json',
             'Authorization': 'Bearer $kTOKENSAVED'
           },
-          body: params
-      );
+          body: params);
       hideLoader();
       debugPrint('Response status: ${response.statusCode}');
       debugPrint('Response status: ${response.body}');
@@ -142,12 +139,11 @@ class API {
       if (response.statusCode == 200) {
         return parsed;
       } else {
-        if(parsed["error"] != null){
+        if (parsed["error"] != null) {
           parsed["error"].toString().showError();
-        }
-        else if(parsed["message"] != null){
+        } else if (parsed["message"] != null) {
           parsed["message"].toString().showError();
-        }else {
+        } else {
           parsed["error"].toString().showError();
         }
 
@@ -174,12 +170,10 @@ class API {
       return null;
     }
 
-    print(_kBaseURL+endPoint);
+    print(_kBaseURL + endPoint);
 
-    final url = Uri.parse(_kBaseURL+endPoint);
-
+    final url = Uri.parse(_kBaseURL + endPoint);
     final request = http.MultipartRequest('POST', url);
-
     request.headers['Accept'] = 'application/json';
     request.headers['Authorization'] = 'Bearer $kTOKENSAVED';
     print(kTOKENSAVED);
@@ -191,7 +185,8 @@ class API {
     try {
       showLoaderGetX();
 
-      request.files.add(await http.MultipartFile.fromPath(fileParams, file.path));
+      request.files
+          .add(await http.MultipartFile.fromPath(fileParams, file.path));
       final response = await request.send();
 
       hideLoader();
@@ -200,7 +195,7 @@ class API {
 
       final res = await http.Response.fromStream(response);
       print(res.statusCode);
-      print("uploading ..."+res.body);
+      print("uploading ..." + res.body);
 
       // final Map parsed = json.decode(res.body);
       // return parsed as Map<String, dynamic>;
@@ -262,8 +257,6 @@ class API {
     }
   }
 }
-
-
 
 class APIEndPoints {
   APIEndPoints._privateConstructor();

@@ -42,7 +42,14 @@ class DrawerScreen extends StatelessWidget {
     ),
   ];
 
-  final arrTitle = ['ABOUT US', 'HOW WE WORK', 'CONTACT', 'LOCATION', 'NEWS', 'LANGUAGE'];
+  final arrTitle = [
+    'ABOUT US',
+    'HOW WE WORK',
+    'CONTACT',
+    'LOCATION',
+    'NEWS',
+    'LANGUAGE'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -72,15 +79,17 @@ class DrawerScreen extends StatelessWidget {
                         //   size: 60,
                         //   color: ColorStyle.primaryColor_1570A5,
                         // ),
-                        Image.asset(ImageStyle.wavingHand, width: 45, height: 45,),
+                        Image.asset(
+                          ImageStyle.wavingHand,
+                          width: 45,
+                          height: 45,
+                        ),
                         const SizedBox(
                           width: 12,
                         ),
                         Expanded(
                           child: Text(
-
                             "Hello ${isLoggedIn ? dictUserSaved['first_name'].toString() : 'there'}!",
-
                             style: TextStylesCustom.textStyles_26.apply(
                               color: ColorStyle.primaryColor_1570A5,
                               fontWeightDelta: 1,

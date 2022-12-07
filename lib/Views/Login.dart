@@ -58,7 +58,7 @@ class Login extends StatelessWidget {
               decoration: boxDecorationAuthBox(),
               child: Form(
                 key: fromkey,
-                autovalidateMode: AutovalidateMode.always,
+                // autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   children: [
                     // -----------------------Email Feild---------------------------->
@@ -171,7 +171,7 @@ class Login extends StatelessWidget {
                       onTap: () {
                         if(fromkey.currentState!.validate()){
                           debugPrint('yay you logged in successfully');
-                          controller.validation();
+                          controller.userLogin();
                         }
                         // controller.validation();
                         // Get.to(const Login());

@@ -13,15 +13,11 @@ import 'package:get_storage/get_storage.dart';
 import '../Views/WelcomeScreen.dart';
 import '../Views/Profile.dart';
 
-
 class MyProfileController extends GetxController {
-
   RxMap<dynamic, dynamic> profileData = {}.obs;
 
   Rx<File> image = File('').obs;
-
   RxString imageURL = ''.obs;
-
 
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
@@ -44,15 +40,10 @@ class MyProfileController extends GetxController {
 
   getProfile() async {
     final response = await API.instance.get(endPoint: 'api/profile');
-
     // print(response);
-
 
     if (response!.isNotEmpty) {
       dictUserSaved = response;
-
-
-      debugPrint('getProfile response count ${response.length}');
 
       profileData.value = response;
       firstName.value.text = profileData['first_name'] ?? '';
@@ -64,13 +55,11 @@ class MyProfileController extends GetxController {
       street.value.text = profileData['address2'] ?? '';
       telephone.value.text = profileData['phone'] ?? '';
       birthDate.value.text = profileData['birthday'] ?? '';
-
       postalCode.value.text = profileData['zip_code'].toString() ?? '';
-
 
       final dictMedia = Map<String, dynamic>.from(profileData['media']);
       print(dictMedia['file_name'].toString());
-      imageURL.value = kBaseURL_Image+dictMedia['file_name'].toString();
+      imageURL.value = kBaseURL_Image + dictMedia['file_name'].toString();
       // https://bbzstage.addwebprojects.com/uploads/image_picker_E2DC2F7C-A3F9-4B59-8B19-C3C8CADF915B-2786-0000001BF293E94E.jpg
       update();
     }
@@ -87,13 +76,11 @@ class MyProfileController extends GetxController {
       'address': co.value.text,
       'address2': street.value.text,
       'city': city.value.text,
-
       'zipCode': postalCode.value.text
-
     };
 
-    final response = await API.instance.put(
-        endPoint: 'api/edit-profile', params: params);
+    final response =
+        await API.instance.put(endPoint: 'api/edit-profile', params: params);
     print(response);
 
     if (response!.isNotEmpty) {
@@ -109,25 +96,21 @@ class MyProfileController extends GetxController {
   }
 
   editProfileImage() async {
-  final params = {
-    '_method': 'post'
-  };
+    final params = {'_method': 'post'};
 
-  final response = await API.instance.postImage(
+    final response = await API.instance.postImage(
+      endPoint: "api/profileImage",
+      params: params,
+      fileParams: "avatar",
+      file: image.value,
+    );
 
-    endPoint: "api/profileImage",
-    params: params,
-    fileParams: "avatar",
-    file: image.value,
-  );
-
-  if (response!.isNotEmpty) {
-    response['message'].toString().showSuccess();
+    if (response!.isNotEmpty) {
+      response['message'].toString().showSuccess();
+    }
   }
-}
 
   updateOnMyProfile() {
     name.value = dictUserSaved['name'].toString();
   }
-
 }

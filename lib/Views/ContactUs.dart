@@ -34,7 +34,7 @@ class ContactUs extends StatelessWidget {
     const Icon(Icons.language),
   ];
   final arrTitle = [
-    'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen',
+    'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen',
     '02681 8797-0',
     '02681 8797-111',
     'www.bbz-altenkirchen.de'
@@ -155,11 +155,19 @@ class ContactUs extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 13),
                             validator: (value) {
+                              // var regex = /^ [a-zA-Z ]*$/;
+                              // final alphaSpace = RegExp(r'^[a-zA-Z ]*$');
                               if (value!.isEmpty) {
                                 return "Name is required";
-                              } else if (!GetUtils.isAlphabetOnly(value!)){
+                              } else if (!alphaSpace.hasMatch(value)){
                                 return " Name must only contain letters";
+                              }else if(value![0] == ' '){
+                                controller.userName.value.text = '';
+                                return "Name cannot start with space";
                               }
+                              // else if (value!.trim().isEmpty){
+                              //   return "Name must contain letters";
+                              // }
                               else {
                                 return null;
                               }
@@ -203,7 +211,14 @@ class ContactUs extends StatelessWidget {
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Message is required";
-                            }else {
+                            }else if (!alphaSpace.hasMatch(value)) {
+                              return " Message must only contain letters";
+                            }
+                            else if(value![0] == ' '){
+                              // controller.userMessage.value.text = '';
+                              return "Message cannot start with space";
+                            }
+                            else {
                               return null;
                             }
                           },
@@ -329,7 +344,7 @@ class ContactUs extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          'Deutschtest für Zuwanderer (DTZ / A2-B1)(PR-220409-HU-DTZ)',
+                          'Die BBZ Sprachschulen sind ein Angebot der BBZ Altenkirchen GmbH & Co. KG',
                           style: TextStylesCustom.textStyles_12,
                         ),
                         const SizedBox(
