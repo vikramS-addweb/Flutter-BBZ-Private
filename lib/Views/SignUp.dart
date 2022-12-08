@@ -166,12 +166,14 @@ class SignUp extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Mobile number is required";
-                        }else if(!value.isPhoneNumber){
+                        }else if(!value.isNum){
                           return "Phone must contain number only";
                         }
-                        else if (value.length < 9 || value.length >13) {
-                          return "Phone must be between 9 and 13 digits";
-                        } else {
+                        else if (value.length < 7) {
+                          return "Min digit should be 7";
+                        }else if (value.length > 15) {
+                          return "Max digit should be 15";
+                        }else {
                           return null;
                         }
                       },
