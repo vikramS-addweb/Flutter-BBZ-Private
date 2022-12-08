@@ -42,12 +42,23 @@ class ContainerWithLabel extends StatelessWidget {
         const SizedBox(
           height: 14,
         ),
+        !isError! ?
         Container(
           width: Get.size.width,
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           decoration: BoxDecoration(
-            border: Border.all(color: isError! ? colorBorder! :ColorStyle.grey_DAE1E7),
+            border: Border.all(color: ColorStyle.grey_DAE1E7),
             borderRadius: BorderRadius.circular(4)
+          ),
+          child:Text( hintText!, style: TextStylesCustom.textStyles_14.apply(color: colorhintText),)
+          ,
+        ):
+        Container(
+          width: Get.size.width,
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          decoration: BoxDecoration(
+              border: Border.all(color: ColorStyle.white_FAFAFA),
+              borderRadius: BorderRadius.circular(4)
           ),
           child:Text( hintText!, style: TextStylesCustom.textStyles_14.apply(color: colorhintText),)
           ,

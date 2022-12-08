@@ -14,6 +14,7 @@ import '../Controller/BookingFormController.dart';
 import '../Components/CustomError.dart';
 import '../Components/PickerCustom.dart';
 import '../Components/ContainerWithLabel.dart';
+import 'package:path/path.dart';
 
 class BookingForm extends StatelessWidget {
   BookingForm({Key? key}) : super(key: key);
@@ -89,45 +90,9 @@ class BookingForm extends StatelessWidget {
                       Expanded(
                           child: ElevatedButtonCustoms(
                         onTap: () {
-                          if (fromkey.currentState!.validate()) {
-                            // if(controller.salutation.value == ''){
-                            //
-                            // }else if(controller.motherToungue.value == ''){
-                            //   'Mother toungue is required'.showError();
-                            //   return;
-                            // }else if(controller.country.value == ''){
-                            //   'Country is required'.showError();
-                            //   return;
-                            // }else if(controller.paymentMethod.value == ''){
-                            //   'Select payment method'.showError();
-                            //   return;
-                            // }else if(!controller.termsAndCondition.value){
-                            //   'Terms and condition is required'.showError();
-                            //   return;
-                            // }else if(!controller.secondTerm.value){
-                            //   'Agreement checkbox is required'.showError();
-                            //   return;
-                            // }else {
-                            debugPrint('yay you logged in successfully');
-                            //   BookingConfirmation().navigateToCustom(context, withNavBar: false);
 
-                            // }
-                          }
 
-                          // if(controller.salutation.value == ''){
-                          //   controller.salutationError.value = true;
-                          // }else{
-                          //   controller.salutationError.value = false;
-                          // }
-                          //
-                          //
-                          // if(controller.motherToungue.value == ''){
-                          //   controller.motherToungueError.value = true;
-                          // }else{
-                          //   controller.motherToungueError.value = false;
-                          // }
-                          //
-                          //
+
                           if(controller.country.value == ''){
                             controller.countryError.value = true;
                           }else{
@@ -150,6 +115,15 @@ class BookingForm extends StatelessWidget {
                             controller.agreementError.value = true;
                           }else{
                             controller.agreementError.value = false;
+                          }
+
+                          if (fromkey.currentState!.validate() && !controller.countryError.value && !controller.agreementError.value && !controller.termsError.value && !controller.paymentError.value ) {
+
+                            debugPrint('yay you logged in successfully');
+                            controller.registerExam();
+
+                          }else{
+                            debugPrint('hello else');
                           }
 
                           // BookingConfirmation().navigateToCustom(context, withNavBar: false);
@@ -372,7 +346,7 @@ class BookingForm extends StatelessWidget {
 
                                   DropdownWithLabel(
                                     firstText: 'Salutation',
-                                    list: ['s1', 's2', 's3'],
+                                    list: ['Mr', 'Mrs', 'Ms'],
                                     width: Get.mediaQuery.size.width,
                                     controllerValue: controller.salutation,
                                     hintText: 'Please select',
@@ -384,6 +358,7 @@ class BookingForm extends StatelessWidget {
                                       if (value == null) {
                                         return 'Salutation is required';
                                       } else {
+                                        controller.salutation.value = value;
                                         return null;
                                       }
                                     },
@@ -392,25 +367,8 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
 
-                                  // salutation error message
-                                  // if(controller.salutationError.value)
-                                  //   CustomError(text: 'Salutation is required',),
-                                  // Container(
-                                  //   width: Get.size.width,
-                                  //   // height:
-                                  //   padding: const EdgeInsets.only(top: 10.0, bottom: 13, left: 13),
-                                  //   decoration: BoxDecoration(
-                                  //       // color: Colors.red,
-                                  //
-                                  //       border: Border(
-                                  //         top: BorderSide(color: Colors.red)
-                                  //       )
-                                  //   ),
-                                  //   child: Text('Salutation is Required', style: TextStylesCustom.textStyles_11.apply(color: Colors.red),),
-                                  //
-                                  // ),
-
                                   TextFormFieldWithLabel(
+                                    controller: controller.academic_title.value,
                                     firstText: 'Academic Title',
                                     secondText: '',
                                     hintText: 'Please enter',
@@ -429,6 +387,7 @@ class BookingForm extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: TextFormFieldWithLabel(
+                                          controller: controller.first_name.value,
                                           firstText: 'First Name',
                                           hintText: 'Please enter',
                                           validator: (value) {
@@ -448,6 +407,7 @@ class BookingForm extends StatelessWidget {
                                       ),
                                       Expanded(
                                         child: TextFormFieldWithLabel(
+                                          controller: controller.last_name.value,
                                           firstText: 'Last Name',
                                           hintText: 'Please enter',
                                           validator: (value) {
@@ -468,6 +428,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                    controller: controller.identification_number.value,
                                     firstText: 'Identification Number',
                                     hintText: 'Please enter',
                                     validator: (value) {
@@ -483,6 +444,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                    controller: controller.email.value,
                                     firstText: 'Email',
                                     hintText: 'Please enter',
                                     validator: (value) {
@@ -502,12 +464,14 @@ class BookingForm extends StatelessWidget {
                                   DateFieldCustom(
                                     firstText: 'Birth Date',
                                     hintText: 'dd-mm-yy',
+                                    controller: controller.birth_date.value,
                                   ),
 
                                   SizedBox(
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                    controller: controller.birth_place.value,
                                     firstText: 'Birth Place',
                                     hintText: 'Please enter',
                                     validator: (value) {
@@ -526,6 +490,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                    controller: controller.country_of_birth.value,
                                     firstText: 'Country Of Birth',
                                     hintText: 'Please enter',
                                     validator: (value) {
@@ -545,7 +510,7 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   DropdownWithLabel(
                                     firstText: 'Mother Tongue',
-                                    list: ['m1', 'm2', 'm3', 'm4'],
+                                    list: ['English', 'German', 'Spanish', 'French', 'Hindi'],
                                     width: Get.mediaQuery.size.width,
                                     controllerValue: controller.motherToungue,
                                     colorBoder: ColorStyle.grey_DAE1E7,
@@ -556,6 +521,7 @@ class BookingForm extends StatelessWidget {
                                       if (value == null) {
                                         return 'Mother tongue is required';
                                       } else {
+                                        controller.motherToungue.value = value;
                                         return null;
                                       }
                                     },
@@ -569,6 +535,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                    controller: controller.telephone.value,
                                     firstText: 'Telephone',
                                     secondText: '',
                                     hintText: 'Please enter',
@@ -589,6 +556,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                      controller: controller.mobile.value,
                                       firstText: 'Mobile',
                                       secondText: '*',
                                       hintText: 'Please enter',
@@ -607,43 +575,63 @@ class BookingForm extends StatelessWidget {
                                   SizedBox(
                                     height: 35,
                                   ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.add,
-                                        color: ColorStyle.primaryColor_1570A5,
-                                        size: 30,
-                                      ),
-                                      SizedBox(
-                                        width: 7,
-                                      ),
-                                      Text(
-                                        'Upload ID Proof',
-                                        style: TextStylesCustom.textStyles_15
-                                            .apply(
-                                                color: ColorStyle
-                                                    .primaryColor_1570A5,
-                                                fontWeightDelta: 2),
-                                      ),
-                                      Text(
-                                        ' *',
-                                        style: TextStylesCustom.textStyles_16
-                                            .apply(color: Colors.red),
-                                      ),
-                                      SizedBox(
-                                        width: 7,
-                                      ),
-                                      Expanded(
-                                          child: Text(
-                                        '(size up to 500 kb)',
-                                        style: TextStylesCustom.textStyles_12
-                                            .apply(
-                                                color: ColorStyle.grey_5E6D77),
-                                      )),
-                                    ],
+                                  InkWell(
+                                    onTap: () {
+                                      PickerCustom.imagePicker((file) {
+                                        controller.image.value = file;
+
+                                        controller.uploadImage();
+                                      });
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.add,
+                                          color: ColorStyle.primaryColor_1570A5,
+                                          size: 30,
+                                        ),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
+                                        Text(
+                                          'Upload ID Proof',
+                                          style: TextStylesCustom.textStyles_15
+                                              .apply(
+                                                  color: ColorStyle
+                                                      .primaryColor_1570A5,
+                                                  fontWeightDelta: 2),
+                                        ),
+                                        Text(
+                                          ' *',
+                                          style: TextStylesCustom.textStyles_16
+                                              .apply(color: Colors.red),
+                                        ),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
+                                        Expanded(
+                                            child: Text(
+                                          '(size up to 500 kb)',
+                                          style: TextStylesCustom.textStyles_12
+                                              .apply(
+                                                  color: ColorStyle.grey_5E6D77),
+                                        )),
+                                      ],
+                                    ),
                                   ),
                                   SizedBox(
-                                    height: 36,
+                                    height: 15,
+                                  ),
+                                  Container(
+                                    width: Get.size.width,
+                                    padding: EdgeInsets.all(15),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                        border: Border.all(color: ColorStyle.grey_DAE1E7),
+                                      ),
+                                      child: Text(basename(controller.image.value.path), style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_5E6D77),)),
+                                  SizedBox(
+                                    height: 33,
                                   ),
                                   Text(
                                     'Address',
@@ -658,6 +646,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                    controller: controller.co.value,
                                     firstText: 'C/o',
                                     secondText: '',
                                     hintText: 'Please enter',
@@ -667,6 +656,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                      controller: controller.street.value,
                                       firstText: 'Street',
                                       hintText: 'Please enter',
                                       validator: (value) {
@@ -681,6 +671,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                    controller: controller.city.value,
                                     firstText: 'City',
                                     hintText: 'Please enter',
                                     validator: (value) {
@@ -699,6 +690,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                    controller: controller.postal_code.value,
                                     firstText: 'Postal Code',
                                     hintText: 'Please enter',
                                     keyboardType: TextInputType.number,
@@ -735,7 +727,7 @@ class BookingForm extends StatelessWidget {
                                         controller.country.value = value;
                                       });
                                     },
-                                    child: controller.country.value == ''?
+                                    child: controller.country.value == '' || controller.country.value == null?
 
                                     ContainerWithLabel(
                                       firstText: 'Country',
