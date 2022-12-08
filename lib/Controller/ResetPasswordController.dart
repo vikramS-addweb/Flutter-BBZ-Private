@@ -29,7 +29,7 @@ class ResetPasswordController extends GetxController {
         });
       }
 
-      "Password reset link is sent to your email.".showSuccess();
+      // "Password reset link is sent to your email.".showSuccess();
 
 
     }

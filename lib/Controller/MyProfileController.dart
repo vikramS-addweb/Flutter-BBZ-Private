@@ -28,9 +28,11 @@ class MyProfileController extends GetxController {
   Rx<TextEditingController> telephone = TextEditingController().obs;
   Rx<TextEditingController> postalCode = TextEditingController().obs;
   Rx<TextEditingController> birthDate = TextEditingController().obs;
-  Rx<TextEditingController> country = TextEditingController().obs;
+  // Rx<TextEditingController> country = TextEditingController().obs;
+  RxString country = ''.obs;
 
   RxString name = ''.obs;
+  RxBool countryError = false.obs;
 
   void initMethods() {
     Future.delayed(const Duration(microseconds: 100), () {
@@ -50,16 +52,19 @@ class MyProfileController extends GetxController {
       lastName.value.text = profileData['last_name'] ?? '';
       email.value.text = profileData['email'] ?? '';
       city.value.text = profileData['city'] ?? '';
-      country.value.text = profileData['country'] ?? '';
+      country.value = profileData['country'] ?? '';
       co.value.text = profileData['address'] ?? '';
       street.value.text = profileData['address2'] ?? '';
       telephone.value.text = profileData['phone'] ?? '';
       birthDate.value.text = profileData['birthday'] ?? '';
-      postalCode.value.text = profileData['zip_code'].toString() ?? '';
+      postalCode.value.text = profileData['zip_code'] != null ? profileData['zip_code'].toString() : '';
 
-      final dictMedia = Map<String, dynamic>.from(profileData['media']);
-      print(dictMedia['file_name'].toString());
-      imageURL.value = kBaseURL_Image + dictMedia['file_name'].toString();
+      if (profileData['media'] != null) {
+        final dictMedia = Map<String, dynamic>.from(profileData['media']);
+        print(dictMedia['file_name'].toString());
+        imageURL.value = kBaseURL_Image + dictMedia['file_name'].toString();
+      }
+
       // https://bbzstage.addwebprojects.com/uploads/image_picker_E2DC2F7C-A3F9-4B59-8B19-C3C8CADF915B-2786-0000001BF293E94E.jpg
       update();
     }
@@ -72,7 +77,7 @@ class MyProfileController extends GetxController {
       'email': email.value.text,
       'phone': telephone.value.text,
       'birthday': birthDate.value.text,
-      'country': country.value.text,
+      'country': country.value,
       'address': co.value.text,
       'address2': street.value.text,
       'city': city.value.text,

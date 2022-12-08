@@ -16,6 +16,8 @@ import '../Components/DropdownButtonCustom.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'dart:io';
+import '../Components/ContainerWithLabel.dart';
+import '../Components/CustomError.dart';
 
 class MyProfile extends StatelessWidget {
   MyProfile({super.key});
@@ -55,7 +57,13 @@ class MyProfile extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: ElevatedButtonCustoms(
                   onTap: () {
-                    if (fromkey.currentState!.validate()) {
+                    if(controller.country.value == ''){
+                      controller.countryError.value = true;
+                    }else{
+                      controller.countryError.value = false;
+                    }
+                    if (fromkey.currentState!.validate() && !controller.countryError.value) {
+
                       controller.editProfile();
                       debugPrint('yay you logged in successfully');
                     }
@@ -248,19 +256,24 @@ class MyProfile extends StatelessWidget {
                                   // -----------------------Telephone Field---------------------------->
                                   TextFormFieldWithLabel(
                                     controller: controller.telephone.value,
-                                    keyboardType: TextInputType.phone,
+                                    keyboardType: TextInputType.number,
                                     firstText: 'Telephone',
-                                    secondText: '',
                                     hintText: 'Please enter',
-                                    // validator: (value) {
-                                    //   if (value!.isEmpty) {
-                                    //     return "T is required";
-                                    //   } else if (value.length < 9 || value.length >13) {
-                                    //     return "Phone must be between 9 and 13 digits";
-                                    //   } else {
-                                    //     return null;
-                                    //   }
-                                    // }
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Telephone is required";
+                                      }else if(!value.isNumericOnly){
+                                        return "Telephone must contain only number";
+                                      }
+                                      else if (value.length < 7) {
+                                        return "Min digit should be 7";
+                                      }else if (value.length > 15) {
+                                        return "Max digit should be 15";
+                                      }
+                                      else {
+                                        return null;
+                                      }
+                                    }
                                   ),
                                   const SizedBox(
                                     height: 15,
@@ -271,11 +284,10 @@ class MyProfile extends StatelessWidget {
                                       controller.birthDate.value.text =
                                           await PickerCustom.datePicker(
                                               dateFormat: 'yyyy-MM-dd',
-                                              // firstDate: DateTime(2006),
-                                              // lastDate: DateTime(1900),
-                                              selectedDate: DateTime(2006),
+                                            selectedDate: DateTime.parse('2006-12-31 20:18:04Z'),
                                               firstDate: DateTime(1900),
-                                              lastDate: DateTime(2006));
+                                              lastDate: DateTime.parse('2006-12-31'),
+                                          );
                                       debugPrint(
                                           controller.birthDate.value.text);
                                     },
@@ -285,6 +297,8 @@ class MyProfile extends StatelessWidget {
                                       firstText: 'Birth Date',
                                       hintText: 'dd-mm-yy',
                                       validator: (value) {
+                                        print(value);
+
                                         if (value!.isEmpty) {
                                           return "Birth Date is required";
                                         } else {
@@ -293,6 +307,10 @@ class MyProfile extends StatelessWidget {
                                       },
                                     ),
                                   ),
+                                  // if(controller.birthDate.value.text == '')
+                                  // CustomError(
+                                  //   text: "Birth date is required",
+                                  // ),
                                   const SizedBox(
                                     height: 40,
                                   ),
@@ -373,26 +391,35 @@ class MyProfile extends StatelessWidget {
                                   InkWell(
                                     onTap: () {
                                       PickerCustom.countryPicker((value) {
-                                        controller.country.value.text = value;
+                                        controller.country.value = value;
                                       });
                                     },
-                                    child: TextFormFieldWithLabel(
-                                      enabled: false,
-                                      controller: controller.country.value,
+                                    child: controller.country.value == ''?
+
+                                    ContainerWithLabel(
                                       firstText: 'Country',
-                                      hintText: 'Please enter',
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Country is required";
-                                        } else if (!GetUtils.isAlphabetOnly(
-                                            value)) {
-                                          return " Country name must only contain letters";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                    ),
+                                      hintText: 'Please Select',
+                                      isError: controller.countryError.value,
+                                      colorhintText: ColorStyle.grey_DAE1E7,
+                                      colorBorder: ColorStyle.white,
+                                      // selectedValue: controller.country.value.text,
+                                    ):
+                                    ContainerWithLabel(
+                                      firstText: 'Country',
+                                      hintText: controller.country.value,
+                                      isError: controller.countryError.value,
+                                      colorhintText: ColorStyle.grey_5E6D77,
+                                      colorBorder: ColorStyle.white,
+
+                                      // selectedValue: controller.country.value.text,
+                                    )
+                                    ,
                                   ),
+
+                                  if (controller.countryError.value)
+                                    CustomError(
+                                      text: 'Country is required',
+                                    ),
                                   const SizedBox(
                                     height: 40,
                                   ),

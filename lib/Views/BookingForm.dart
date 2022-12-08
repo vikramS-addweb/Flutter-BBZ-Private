@@ -13,6 +13,7 @@ import 'BookingConfirmation.dart';
 import '../Controller/BookingFormController.dart';
 import '../Components/CustomError.dart';
 import '../Components/PickerCustom.dart';
+import '../Components/ContainerWithLabel.dart';
 
 class BookingForm extends StatelessWidget {
   BookingForm({Key? key}) : super(key: key);
@@ -127,7 +128,7 @@ class BookingForm extends StatelessWidget {
                           // }
                           //
                           //
-                          if(controller.country.value.text == ''){
+                          if(controller.country.value == ''){
                             controller.countryError.value = true;
                           }else{
                             controller.countryError.value = false;
@@ -726,29 +727,34 @@ class BookingForm extends StatelessWidget {
                                   //     }
                                   //   },
                                   // ),
+
+
                                   InkWell(
                                     onTap: () {
                                       PickerCustom.countryPicker((value) {
-                                        controller.country.value.text = value;
+                                        controller.country.value = value;
                                       });
                                     },
-                                    child: TextFormFieldWithLabel(
-                                      enabled: false,
-                                      controller: controller.country.value,
+                                    child: controller.country.value == ''?
+
+                                    ContainerWithLabel(
                                       firstText: 'Country',
-                                      hintText: 'Please enter',
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Country is required";
-                                        } else if (!GetUtils.isAlphabetOnly(
-                                            value)) {
-                                          return " Country name must only contain letters";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                    ),
+                                      hintText: 'Please Select',
+                                      isError: controller.countryError.value,
+                                      colorhintText: ColorStyle.grey_DAE1E7,
+                                      // selectedValue: controller.country.value.text,
+                                    ):
+                                    ContainerWithLabel(
+                                      firstText: 'Country',
+                                      hintText: controller.country.value,
+                                      isError: controller.countryError.value,
+                                      colorhintText: Colors.black,
+
+                                      // selectedValue: controller.country.value.text,
+                                    )
+                                    ,
                                   ),
+
                                   if (controller.countryError.value)
                                     CustomError(
                                       text: 'Country is required',
