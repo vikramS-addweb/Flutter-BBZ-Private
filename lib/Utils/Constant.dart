@@ -18,7 +18,7 @@ String kSavedUserID = '';
 
 const kTOKEN = 'token';
 
-String kTOKENSAVED = '113|Quu6fxgJbJzAnlxLNLieY2nKDTt2Laqyczy0v8qN';
+String kTOKENSAVED = '';
 
 Map<String, dynamic> dictUserSaved = {};
 

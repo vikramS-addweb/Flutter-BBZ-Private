@@ -3,6 +3,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
+import '../Utils/Global.dart';
 
 class ProgressBarCustom extends StatelessWidget {
   double paid;
@@ -49,14 +50,14 @@ class ProgressBarCircularCustom extends StatelessWidget {
       animationDuration: 1000,
       circularStrokeCap: CircularStrokeCap.round,
       backgroundColor: ColorStyle.grey_DAE1E7,
-      progressColor: ColorStyle.brown_C16D00,
+      progressColor: circleColor((progress*100 / total).round()) ?? ColorStyle.brown_C16D00,
       percent: (progress / total > 1.0) ? 1.0 : progress / total,
       center: Text(
           '${(progress / total > 1.0) ? 100 : (progress * 100  / total).round()}%',
         // '240',
           style: TextStylesCustom.textStyles_13.apply(
               fontWeightDelta: 2,
-              color: ColorStyle.brown_C16D00
+              color: circleColor((progress*100 / total).round()) ??  ColorStyle.brown_C16D00
           )
       ),
     );

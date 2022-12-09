@@ -398,8 +398,6 @@ class _ExamState extends State<Exam> {
                                       size: const Size(170, 46),
                                       onTap: () {
                                         controller.searchExam();
-                                        // controller.userLogin();
-                                        // Get.to(const Login());
                                       },
                                     ),
                                     if (controller.showSearchData.value)
@@ -480,6 +478,9 @@ class _ExamState extends State<Exam> {
 
 class ItemsList extends StatelessWidget {
   ItemsList({Key? key, required this.items}) : super(key: key);
+  
+  final controller = Get.put(ExamController());
+  
   List items;
   @override
   Widget build(BuildContext context) {
@@ -668,7 +669,7 @@ class ItemsList extends StatelessWidget {
                                               style: TextStylesCustom
                                                   .textStyles_14
                                                   .apply(
-                                                color: ColorStyle.red_ED0925,
+                                                color: registrationColor(DateTime.parse('${items[index]['reg_until_date']}')),
                                               ),
                                             )
                                           : Text(

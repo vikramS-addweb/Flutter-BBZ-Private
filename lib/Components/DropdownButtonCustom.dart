@@ -198,7 +198,7 @@ class _DropdownWithLabelState extends State<DropdownWithLabel> {
           //       borderRadius: BorderRadius.circular(5)),
             child: DropdownButtonFormField<String>(
               // icon: widget.icon,
-              value: dropdownValue,
+              value: widget.controllerValue!.value ==''? null : dropdownValue,
               isExpanded: true,
               elevation: 16,
               style: widget.textStyle,

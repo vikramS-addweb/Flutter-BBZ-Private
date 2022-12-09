@@ -1,5 +1,7 @@
+import 'package:bbz/Controller/ExamDetailController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../Components/AppBarStyle.dart';
 import '../Styles/TextStyles.dart';
 import '../Styles/ColorStyle.dart';
@@ -15,15 +17,18 @@ import '../Components/CustomError.dart';
 import '../Components/PickerCustom.dart';
 import '../Components/ContainerWithLabel.dart';
 import 'package:path/path.dart';
+import '../Utils/Constant.dart';
 
 class BookingForm extends StatelessWidget {
-  BookingForm({Key? key}) : super(key: key);
+  BookingForm({Key? key, required this.examDetails}) : super(key: key);
   final fromkey = GlobalKey<FormState>();
+  Map examDetails = {};
 
   final controller = Get.put(BookingFormController());
+  // final examDetailController = Get.put(ExamDetailController());
 
   List examDetail = [
-    {'item': 'Exam Level:', 'value': 'A2-B1'},
+    {'item': 'Exam Level:', 'value': 'A2'},
     {'item': 'Exam date:', 'value': '03/31/2022 (SAT)'},
     {'item': 'Exam Time:', 'value': '09:30 AM'},
   ];
@@ -32,11 +37,12 @@ class BookingForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder(
         init: controller,
-        initState: (state) {},
+        initState: (state) {
+          controller.initMethods();
+        },
         builder: ((controller) => Obx(() => Scaffold(
               appBar: AppBarStyle(
-                title: '''       Deutschtest für Zuwanderer
-(DTZ / A2-B1) (PR-220409-HU-DTZ)''',
+                title: '${examDetails['title']}',
                 centerTitle: true,
                 leading: IconButton(
                   icon: Icon(
@@ -79,7 +85,7 @@ class BookingForm extends StatelessWidget {
                         width: 13,
                       ),
                       Text(
-                        '7,50 €',
+                        '${examDetails['price']} €',
                         style: TextStylesCustom.textStyles_22.apply(
                             color: ColorStyle.primaryColor_1570A5,
                             fontWeightDelta: 1),
@@ -90,39 +96,38 @@ class BookingForm extends StatelessWidget {
                       Expanded(
                           child: ElevatedButtonCustoms(
                         onTap: () {
-
-
-
-                          if(controller.country.value == ''){
+                          if (controller.country.value == '') {
                             controller.countryError.value = true;
-                          }else{
+                          } else {
                             controller.countryError.value = false;
                           }
                           //
-                          if(controller.paymentMethod.value == ''){
+                          if (controller.paymentMethod.value == '') {
                             controller.paymentError.value = true;
-                          }else{
+                          } else {
                             controller.paymentError.value = false;
                           }
 
-                          if(!controller.termsAndCondition.value){
+                          if (!controller.termsAndCondition.value) {
                             controller.termsError.value = true;
-                          }else{
+                          } else {
                             controller.termsError.value = false;
                           }
 
-                          if(!controller.secondTerm.value){
+                          if (!controller.secondTerm.value) {
                             controller.agreementError.value = true;
-                          }else{
+                          } else {
                             controller.agreementError.value = false;
                           }
 
-                          if (fromkey.currentState!.validate() && !controller.countryError.value && !controller.agreementError.value && !controller.termsError.value && !controller.paymentError.value ) {
-
+                          if (fromkey.currentState!.validate() &&
+                              !controller.countryError.value &&
+                              !controller.agreementError.value &&
+                              !controller.termsError.value &&
+                              !controller.paymentError.value) {
                             debugPrint('yay you logged in successfully');
                             controller.registerExam();
-
-                          }else{
+                          } else {
                             debugPrint('hello else');
                           }
 
@@ -167,7 +172,7 @@ class BookingForm extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 4.0),
                                     child: Text(
-                                      'A2-B1 Level',
+                                      '${examDetails['exam_level'] ?? 'A2-B1 level'}',
                                       style: TextStylesCustom.textStyles_21
                                           .apply(
                                               color: Colors.white,
@@ -188,11 +193,22 @@ class BookingForm extends StatelessWidget {
                                       ),
 
                                       Expanded(
-                                        child: Text(
-                                          'Brüder Grimm Bildungscentrum e. V. Langstr. 60 63452 Hanau',
-                                          style: TextStylesCustom.textStyles_14
-                                              .apply(color: Colors.white),
-                                        ),
+                                        child: examDetails['location'] != null
+                                            ? Text(
+                                                '${examDetails['location']['name'] ?? ''} '
+                                                '${examDetails['location']['street_name'] ?? ''} '
+                                                '${examDetails['location']['city'] ?? ''} '
+                                                '${examDetails['location']['zip_code'] ?? ''}',
+                                                style: TextStylesCustom
+                                                    .textStyles_14
+                                                    .apply(color: Colors.white),
+                                              )
+                                            : Text(
+                                                'Brüder Grimm Bildungscentrum e. V. Langstr. 60 63452 Hanau',
+                                                style: TextStylesCustom
+                                                    .textStyles_14
+                                                    .apply(color: Colors.white),
+                                              ),
                                       )
                                       // Icon(Icons.check_circle_sharp, color: Colors.green, size: 35,)
                                     ],
@@ -231,7 +247,11 @@ class BookingForm extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(15),
                                 child: ItemsList(
-                                  items: examDetail,
+                                  items: [
+                                    {'item': 'Exam Level:', 'value': '${examDetails['exam_level'] ?? 'A2-B1'}'},
+                                    {'item': 'Exam date:', 'value': examDetails['exam_date'] != null ? '${DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${examDetails['exam_date']}'))}':'25/03/2022 (SAT)'},
+                                    {'item': 'Exam Time:', 'value': examDetails['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${examDetails['exam_date']}T${examDetails['exam_time']}'))}':'09:30 AM'},
+                                  ],
                                   secondColor: Colors.black,
                                 ),
                               ),
@@ -252,7 +272,8 @@ class BookingForm extends StatelessWidget {
                                     Expanded(
                                       child: SizedBox(
                                         width: Get.mediaQuery.size.width * 0.5,
-                                        child: Text('7,50 €',
+                                        child: Text(
+                                            '${examDetails['price'] ?? '7,50'}  €',
                                             textAlign: TextAlign.end,
                                             style: TextStylesCustom
                                                 .textStyles_14
@@ -283,7 +304,7 @@ class BookingForm extends StatelessWidget {
                                     Expanded(
                                       child: SizedBox(
                                         width: Get.mediaQuery.size.width * 0.5,
-                                        child: Text('7,50 €',
+                                        child: Text('${examDetails['price'] ?? '7,50'} €',
                                             textAlign: TextAlign.end,
                                             style: TextStylesCustom
                                                 .textStyles_18
@@ -387,19 +408,24 @@ class BookingForm extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: TextFormFieldWithLabel(
-                                          controller: controller.first_name.value,
+                                          controller:
+                                              controller.first_name.value,
                                           firstText: 'First Name',
                                           hintText: 'Please enter',
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return "First name is required";
-                                            } else if (!GetUtils.isAlphabetOnly(
-                                                value)) {
-                                              return "First name must only contain letters";
-                                            } else {
-                                              return null;
-                                            }
-                                          },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return "First name is required";
+                                              } else if (!alphaSpace.hasMatch(value)) {
+                                                return " FN should have letters";
+                                              }
+                                              else if(value![0] == ' '){
+                                                // controller.userMessage.value.text = '';
+                                                return "Can't start with space";
+                                              }
+                                              else {
+                                                return null;
+                                              }
+                                            },
                                         ),
                                       ),
                                       SizedBox(
@@ -407,16 +433,21 @@ class BookingForm extends StatelessWidget {
                                       ),
                                       Expanded(
                                         child: TextFormFieldWithLabel(
-                                          controller: controller.last_name.value,
+                                          controller:
+                                              controller.last_name.value,
                                           firstText: 'Last Name',
                                           hintText: 'Please enter',
                                           validator: (value) {
                                             if (value!.isEmpty) {
                                               return "Last name is required";
-                                            } else if (!GetUtils.isAlphabetOnly(
-                                                value)) {
-                                              return "Last name must only contain letters";
-                                            } else {
+                                            } else if (!alphaSpace.hasMatch(value)) {
+                                              return " FN should have letters";
+                                            }
+                                            else if(value![0] == ' '){
+                                              // controller.userMessage.value.text = '';
+                                              return "Can't start with space";
+                                            }
+                                            else {
                                               return null;
                                             }
                                           },
@@ -428,7 +459,8 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
-                                    controller: controller.identification_number.value,
+                                    controller:
+                                        controller.identification_number.value,
                                     firstText: 'Identification Number',
                                     hintText: 'Please enter',
                                     validator: (value) {
@@ -490,7 +522,8 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
-                                    controller: controller.country_of_birth.value,
+                                    controller:
+                                        controller.country_of_birth.value,
                                     firstText: 'Country Of Birth',
                                     hintText: 'Please enter',
                                     validator: (value) {
@@ -510,7 +543,13 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   DropdownWithLabel(
                                     firstText: 'Mother Tongue',
-                                    list: ['English', 'German', 'Spanish', 'French', 'Hindi'],
+                                    list: [
+                                      'English',
+                                      'German',
+                                      'Spanish',
+                                      'French',
+                                      'Hindi'
+                                    ],
                                     width: Get.mediaQuery.size.width,
                                     controllerValue: controller.motherToungue,
                                     colorBoder: ColorStyle.grey_DAE1E7,
@@ -541,15 +580,21 @@ class BookingForm extends StatelessWidget {
                                     hintText: 'Please enter',
                                     keyboardType: TextInputType.phone,
 
-                                    // validator: (value) {
-                                    //   if (value!.isEmpty) {
-                                    //     return "T is required";
-                                    //   } else if (value.length < 9 || value.length >13) {
-                                    //     return "Phone must be between 9 and 13 digits";
-                                    //   } else {
-                                    //     return null;
-                                    //   }
-                                    // }
+                                      validator: (value) {
+                                        // if (value!.isEmpty) {
+                                        //   return "Mobile number is required";
+                                        // }else
+                                          if(!value!.isNum){
+                                          return "Phone must contain number only";
+                                        }
+                                        else if (value.length < 7) {
+                                          return "Min digit should be 7";
+                                        }else if (value.length > 15) {
+                                          return "Max digit should be 15";
+                                        }else {
+                                          return null;
+                                        }
+                                      }
                                   ),
 
                                   SizedBox(
@@ -563,11 +608,15 @@ class BookingForm extends StatelessWidget {
                                       keyboardType: TextInputType.phone,
                                       validator: (value) {
                                         if (value!.isEmpty) {
-                                          return "Mobile is required";
-                                        } else if (value.length < 9 ||
-                                            value.length > 13) {
-                                          return "Mobile must be between 9 and 13 digits";
-                                        } else {
+                                          return "Mobile number is required";
+                                        }else if(!value.isNum){
+                                          return "mobile must contain number only";
+                                        }
+                                        else if (value.length < 7) {
+                                          return "Min digit should be 7";
+                                        }else if (value.length > 15) {
+                                          return "Max digit should be 15";
+                                        }else {
                                           return null;
                                         }
                                       }),
@@ -614,7 +663,8 @@ class BookingForm extends StatelessWidget {
                                           '(size up to 500 kb)',
                                           style: TextStylesCustom.textStyles_12
                                               .apply(
-                                                  color: ColorStyle.grey_5E6D77),
+                                                  color:
+                                                      ColorStyle.grey_5E6D77),
                                         )),
                                       ],
                                     ),
@@ -623,13 +673,19 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   Container(
-                                    width: Get.size.width,
-                                    padding: EdgeInsets.all(15),
+                                      width: Get.size.width,
+                                      padding: EdgeInsets.all(15),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(color: ColorStyle.grey_DAE1E7),
+                                        border: Border.all(
+                                            color: ColorStyle.grey_DAE1E7),
                                       ),
-                                      child: Text(basename(controller.image.value.path), style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.grey_5E6D77),)),
+                                      child: Text(
+                                        basename(controller.image.value.path),
+                                        style: TextStylesCustom.textStyles_14
+                                            .apply(
+                                                color: ColorStyle.grey_5E6D77),
+                                      )),
                                   SizedBox(
                                     height: 33,
                                   ),
@@ -697,7 +753,9 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Postal code is required";
-                                      } else {
+                                      }else if(!value.isNum){
+                                        return "mobile must contain number only";
+                                      }  else {
                                         return null;
                                       }
                                     },
@@ -720,31 +778,32 @@ class BookingForm extends StatelessWidget {
                                   //   },
                                   // ),
 
-
                                   InkWell(
                                     onTap: () {
                                       PickerCustom.countryPicker((value) {
                                         controller.country.value = value;
                                       });
                                     },
-                                    child: controller.country.value == '' || controller.country.value == null?
+                                    child: controller.country.value == '' ||
+                                            controller.country.value == null
+                                        ? ContainerWithLabel(
+                                            firstText: 'Country',
+                                            hintText: 'Please Select',
+                                            isError:
+                                                controller.countryError.value,
+                                            colorhintText:
+                                                ColorStyle.grey_DAE1E7,
+                                            // selectedValue: controller.country.value.text,
+                                          )
+                                        : ContainerWithLabel(
+                                            firstText: 'Country',
+                                            hintText: controller.country.value,
+                                            isError:
+                                                controller.countryError.value,
+                                            colorhintText: Colors.black,
 
-                                    ContainerWithLabel(
-                                      firstText: 'Country',
-                                      hintText: 'Please Select',
-                                      isError: controller.countryError.value,
-                                      colorhintText: ColorStyle.grey_DAE1E7,
-                                      // selectedValue: controller.country.value.text,
-                                    ):
-                                    ContainerWithLabel(
-                                      firstText: 'Country',
-                                      hintText: controller.country.value,
-                                      isError: controller.countryError.value,
-                                      colorhintText: Colors.black,
-
-                                      // selectedValue: controller.country.value.text,
-                                    )
-                                    ,
+                                            // selectedValue: controller.country.value.text,
+                                          ),
                                   ),
 
                                   if (controller.countryError.value)
@@ -1050,6 +1109,3 @@ class ItemsList extends StatelessWidget {
     );
   }
 }
-
-
-

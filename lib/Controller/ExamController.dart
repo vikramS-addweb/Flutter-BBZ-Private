@@ -148,4 +148,10 @@ class ExamController extends GetxController {
     );
   }
 
+
+  // ----------------------------------------reg date difference----------------------------->
+
+
+
+
 }
