@@ -71,14 +71,16 @@ class ExamDetail extends StatelessWidget {
                   const SizedBox(width: 10,),
                   Text('Fee', style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.grey_5E6D77),),
                   const SizedBox(width: 13,),
-                  Text('7,50 €', style: TextStylesCustom.textStyles_22.apply(color: ColorStyle.primaryColor_1570A5),),
+                  Text('${controller.examDetailData['price']} €', style: TextStylesCustom.textStyles_22.apply(color: ColorStyle.primaryColor_1570A5),),
                   const SizedBox(width: 35,),
                   Expanded(
                       child: ElevatedButtonCustoms(
                         onTap: (){
-                          BookingForm().navigateToCustom(context, withNavBar: false);
+                          if(!(controller.isBooked.value || controller.examDetailData['available_seats'] == 0)){
+                            BookingForm(examDetails: controller.examDetailData.value,).navigateToCustom(context, withNavBar: false);
+                          }
                         },
-                        text: 'BOOK NOW',
+                        text: '${controller.isBooked.value ? 'ALREADY BOOKED' : (controller.examDetailData['available_seats'] != null && controller.examDetailData['available_seats'] == 0) ? 'SEATS NOT AVAILABLE' : 'BOOK NOW'}',
                         colorBG: ColorStyle.primaryColor_1570A5,
                       )
                   )
@@ -189,15 +191,15 @@ class ExamDetail extends StatelessWidget {
                                     SizedBox(
                                       width: 28,
                                       height: 28,
-                                      child: Image.asset(ImageStyle.user,fit: BoxFit.fill,),
+                                      child: Image.asset(ImageStyle.user,fit: BoxFit.fill, color: circleColor((controller.examDetailData['available_seats'] * 100/controller.examDetailData['total_seat']).round()) ?? Colors.green,),
                                     ),
                                     const SizedBox(width: 10,),
-                                    Text('Seats Available   ', style: TextStylesCustom.textStyles_14.apply(color: Colors.green, fontWeightDelta: 2),),
-                                    Text('|', style: TextStylesCustom.textStyles_14.apply( color: Colors.green, fontWeightDelta: 2),),
+                                    Text('Seats Available   ', style: TextStylesCustom.textStyles_14.apply(color: circleColor((controller.examDetailData['available_seats'] * 100/controller.examDetailData['total_seat']).round()) ?? Colors.green, fontWeightDelta: 2),),
+                                    Text('|', style: TextStylesCustom.textStyles_14.apply( color:circleColor((controller.examDetailData['available_seats'] * 100/controller.examDetailData['total_seat']).round()) ??  Colors.green, fontWeightDelta: 2),),
                                     const SizedBox(width: 10,),
                                     // Text('400/500', style: TextStylesCustom.textStyles_14.apply(color: Colors.green),)
 
-                                    Text('${controller.examDetailData['available_seats'] ?? '400'}/${controller.examDetailData['total_seat'] ?? '500'}', style: TextStylesCustom.textStyles_14.apply(color: Colors.green),)
+                                    Text('${controller.examDetailData['available_seats'] ?? '400'}/${controller.examDetailData['total_seat'] ?? '500'}', style: TextStylesCustom.textStyles_14.apply(color:circleColor((controller.examDetailData['available_seats'] * 100/controller.examDetailData['total_seat']).round()) ??  Colors.green),)
                                   ],
                                 ),
                                 const SizedBox(height: 30,),
@@ -230,7 +232,7 @@ class ExamDetail extends StatelessWidget {
                                     Text('|', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.orange_C16D00, fontWeightDelta: 2),),
                                     const SizedBox(width: 10,),
                                     // Text('25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00),)
-                                    Text(controller.examDetailData['reg_until_date'] != null ? '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.examDetailData['reg_until_date']}'))}':'25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00),)
+                                    Text(controller.examDetailData['reg_until_date'] != null ? '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.examDetailData['reg_until_date']}'))}':'25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: registrationColor(DateTime.parse('${controller.examDetailData['reg_until_date']}'))),)
 
                                   ],
                                 ),

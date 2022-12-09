@@ -43,6 +43,7 @@ class LoginController extends GetxController {
   logout(){
     isLoggedIn = false;
     GetStorage().remove(kUserDetails);
+    kTOKENSAVED = '';
     PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
   }
 

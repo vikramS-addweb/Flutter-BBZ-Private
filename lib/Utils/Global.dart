@@ -127,3 +127,35 @@ showAlertDialog(BuildContext context) {
     },
   );
 }
+
+registrationColor(DateTime from) {
+  // from = DateTime(from.year, from.month, from.day);
+  DateTime tenhrLater = from.add(Duration(hours: 10));
+  // to = DateTime.now();
+  int remainingMinutes = tenhrLater
+      .difference(DateTime.now())
+      .inMinutes;
+  print('${tenhrLater
+      .difference(DateTime.now())
+      .inMinutes}');
+  if (remainingMinutes <= (24 * 60)) {
+    return Colors.red;
+  } else
+  if (remainingMinutes > (24 * 60) && remainingMinutes <= (24 * 60 * 5)) {
+    return Colors.orange;
+  } else {
+    return Colors.green;
+  }
+}
+
+circleColor(value){
+  if(value <= 10){
+    return Colors.red;
+  }else if(value > 10 && value <= 30){
+    return Colors.orange;
+  }else{
+    return Colors.green;
+  }
+}
+
+
