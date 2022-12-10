@@ -42,76 +42,76 @@ class _ExamState extends State<Exam> {
     });
   }
 
-  textIcon(ImageProvider IconImage, String text, bool isBorder) {
-    return InkWell(
-      child: Container(
-        padding: const EdgeInsets.only(
-          top: 16,
-          bottom: 10,
-          left: 16,
-          right: 16,
-        ),
-        decoration: BoxDecoration(
-            border: isBorder
-                ? Border(
-                    bottom: BorderSide(
-                    width: 1,
-                    color: ColorStyle.grey_DAE1E7,
-                  ))
-                : Border()),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image(
-                        image: IconImage,
-                        width: 15,
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Icon(
-                //   icon,
-                //   color: ColorStyle.primaryColor_1570A5,
-                //   size: 26,
-                // ),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: Text(
-                    text,
-                    style: TextStylesCustom.textStyles_14.apply(
-                      color: ColorStyle.grey_A8B0B5,
-                      // fontWeightDelta: 1,
-                    ),
-                  ),
-                ),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  color: ColorStyle.primaryColor_1570A5,
-                  size: 34,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      onTap: () {
-        PickerCustom.datePicker(
-          dateFormat: 'dd MMM yyyy',
-          selectedDate: DateTime.now(),
-          firstDate: DateTime.now(),
-          lastDate: DateTime(2030),
-        );
-      },
-    );
-  }
+  // textIcon(ImageProvider IconImage, String text, bool isBorder) {
+  //   return InkWell(
+  //     child: Container(
+  //       padding: const EdgeInsets.only(
+  //         top: 16,
+  //         bottom: 10,
+  //         left: 16,
+  //         right: 16,
+  //       ),
+  //       decoration: BoxDecoration(
+  //           border: isBorder
+  //               ? Border(
+  //                   bottom: BorderSide(
+  //                   width: 1,
+  //                   color: ColorStyle.grey_DAE1E7,
+  //                 ))
+  //               : Border()),
+  //       child: Column(
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: [
+  //           Row(
+  //             children: [
+  //               SizedBox(
+  //                 width: 20,
+  //                 child: Row(
+  //                   mainAxisAlignment: MainAxisAlignment.start,
+  //                   children: [
+  //                     Image(
+  //                       image: IconImage,
+  //                       width: 15,
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //
+  //               // Icon(
+  //               //   icon,
+  //               //   color: ColorStyle.primaryColor_1570A5,
+  //               //   size: 26,
+  //               // ),
+  //               const SizedBox(width: 6),
+  //               Expanded(
+  //                 child: Text(
+  //                   text,
+  //                   style: TextStylesCustom.textStyles_14.apply(
+  //                     color: ColorStyle.grey_A8B0B5,
+  //                     // fontWeightDelta: 1,
+  //                   ),
+  //                 ),
+  //               ),
+  //               Icon(
+  //                 Icons.keyboard_arrow_down,
+  //                 color: ColorStyle.primaryColor_1570A5,
+  //                 size: 34,
+  //               ),
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //     onTap: () {
+  //       PickerCustom.datePicker(
+  //         dateFormat: 'dd MMM yyyy',
+  //         selectedDate: DateTime.now(),
+  //         firstDate: DateTime.now(),
+  //         lastDate: DateTime(2030),
+  //       );
+  //     },
+  //   );
+  // }
 
   datePicker(String title, {required bool isFrom}) {
     return InkWell(
@@ -134,15 +134,27 @@ class _ExamState extends State<Exam> {
       onTap: () async {
         final date = await PickerCustom.datePicker(
           dateFormat: 'dd MMM yyyy',
-          selectedDate: DateTime.now(),
-          firstDate: DateTime.now(),
+          selectedDate: isFrom ? DateTime.now() : controller.dateFromMinDateForTo.value,
+          firstDate: isFrom ? DateTime.now() : controller.dateFromMinDateForTo.value,
           lastDate: DateTime(2030),
         );
 
-        if (isFrom) {
-          controller.dateFrom.value = date.toString();
-        } else {
-          controller.dateTo.value = date.toString();
+        if (date != null) {
+          if (isFrom) {
+            controller.dateFrom.value = date.toString();
+            controller.dateFromMinDateForTo.value = DateFormat('dd MMM yyyy').parse(date.toString());
+
+            final dateFrom = DateFormat('dd MMM yyyy').parse(controller.dateFrom.value.toString());
+            final dateTo = DateFormat('dd MMM yyyy').parse(controller.dateTo.value.toString());
+
+            if (dateFrom.compareTo(dateTo) > 0) {
+              debugPrint("dateFrom is after dateTo");
+
+              controller.dateTo.value = 'To';
+            }
+          } else {
+            controller.dateTo.value = date.toString();
+          }
         }
       },
     );
