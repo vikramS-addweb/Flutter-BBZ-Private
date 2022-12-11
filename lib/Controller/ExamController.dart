@@ -25,6 +25,8 @@ class ExamController extends GetxController {
   RxInt locationId = 0.obs;
   RxInt languageId = 0.obs;
 
+  Rx<DateTime> dateFromMinDateForTo = DateTime.now().obs;
+
   void initMethods() {
     Future.delayed(Duration(microseconds: 100), () {
       fetchUpcomingExam();

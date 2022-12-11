@@ -281,15 +281,16 @@ class MyProfile extends StatelessWidget {
                                   // -----------------------Birth Date Field---------------------------->
                                   InkWell(
                                     onTap: () async {
-                                      controller.birthDate.value.text =
-                                          await PickerCustom.datePicker(
-                                              dateFormat: 'yyyy-MM-dd',
-                                            selectedDate: DateTime.parse('2006-12-31 20:18:04Z'),
-                                              firstDate: DateTime(1900),
-                                              lastDate: DateTime.parse('2006-12-31'),
-                                          );
-                                      debugPrint(
-                                          controller.birthDate.value.text);
+                                      final dateSelected = await PickerCustom.datePicker(
+                                        dateFormat: 'yyyy-MM-dd',
+                                        selectedDate: DateTime.parse('2006-12-31'),
+                                        firstDate: DateTime(1900),
+                                        lastDate: DateTime.parse('2006-12-31'),
+                                      );
+
+                                      if (dateSelected != null) {
+                                        controller.birthDate.value.text = dateSelected.toString();
+                                      }
                                     },
                                     child: TextFormFieldWithLabel(
                                       controller: controller.birthDate.value,
@@ -297,8 +298,6 @@ class MyProfile extends StatelessWidget {
                                       firstText: 'Birth Date',
                                       hintText: 'dd-mm-yy',
                                       validator: (value) {
-                                        print(value);
-
                                         if (value!.isEmpty) {
                                           return "Birth Date is required";
                                         } else {

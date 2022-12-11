@@ -1,3 +1,5 @@
+
+
 import 'package:bbz/Components/BGImage.dart';
 import 'package:bbz/Controller/SignUpController.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
@@ -5,27 +7,18 @@ import 'package:bbz/Utils/Constant.dart';
 import 'package:bbz/Views/Login.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import '../../Components/AppBarStyle.dart';
-import '../../Components/TextFieldBase.dart';
-import '../../Components/PasswordFieldBase.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import '../../Styles/ImageStyle.dart';
-import '../Views/Exam.dart';
-import '../Views/TabbarScreen.dart';
-import '../Views/WelcomeScreen.dart';
-import '../../Controller/LoginController.dart';
-import '../Views/SignUp.dart';
-import '../Views/ResetPassword.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/EffectStyle.dart';
 import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
 import '../../Utils/Global.dart';
-import '../../Components/BottomNavBarCustom.dart';
 import 'PersistentBottomNavBarCustom.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 
 
 class SignUp extends StatelessWidget {
@@ -33,7 +26,6 @@ class SignUp extends StatelessWidget {
 
   final controller = SignUpController();
   final fromkey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
