@@ -19,6 +19,8 @@ import './Views/Ticket.dart';
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:get_storage/get_storage.dart';
 
+
+
 void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +31,7 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -43,8 +45,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
       // home: BookingForm(),
-      // home: TabbarScreen(),
+      // home: PaymentScreen(),
       home: SplashScreen(),
     );
   }
 }
+
+
