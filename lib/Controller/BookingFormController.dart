@@ -159,25 +159,27 @@ class BookingFormController extends GetxController {
     print(response);
 
     if (response!.isNotEmpty) {
+      debugPrint(response.toString());
       // response['message'].toString().showSuccess();
-      if(response['message'] != null){
+      if(response['status'] == '1'){
 
         response['message'].toString().showSuccess();
         event_id.value = response['event_id'].toString();
         amount.value = response['amount'].toString();
         code.value = response['code'].toString();
+        print('hellow hterher');
 
         bookingConfirm();
       }else
-      if(response['errors'] != null){
-        response['errors'].toString().showSuccess();
+      if(response['message'] != null){
+        response['message'].toString().showError();
       }
-      final response1 = await API.instance.get(endPoint: 'api/profile');
-      print(response1);
-
-      if (response1!.isNotEmpty) {
-        dictUserSaved = response;
-      }
+      // final response1 = await API.instance.get(endPoint: 'api/profile');
+      // print(response1);
+      //
+      // if (response1!.isNotEmpty) {
+      //   dictUserSaved = response;
+      // }
 
       // navigateToBack(Get.context);
     }

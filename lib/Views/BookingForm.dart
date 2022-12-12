@@ -584,16 +584,21 @@ class BookingForm extends StatelessWidget {
                                         // if (value!.isEmpty) {
                                         //   return "Mobile number is required";
                                         // }else
+                                        if(!value!.isEmpty){
                                           if(!value!.isNum){
-                                          return "Phone must contain number only";
-                                        }
-                                        else if (value.length < 7) {
-                                          return "Min digit should be 7";
-                                        }else if (value.length > 15) {
-                                          return "Max digit should be 15";
-                                        }else {
+                                            return "Phone must contain number only";
+                                          }
+                                          else if (value.length < 7) {
+                                            return "Min digit should be 7";
+                                          }else if (value.length > 15) {
+                                            return "Max digit should be 15";
+                                          }else {
+                                            return null;
+                                          }
+                                        }else{
                                           return null;
                                         }
+
                                       }
                                   ),
 
