@@ -6,10 +6,21 @@ import '../Styles/ColorStyle.dart';
 import '../Utils/Global.dart';
 import '../Styles/ImageStyle.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../Controller/BookingConfirmationController.dart';
+import 'package:intl/intl.dart';
+import '../Controller/ExamDetailController.dart';
+
 
 
 class BookingConfirmation extends StatelessWidget {
-  BookingConfirmation({Key? key}) : super(key: key);
+  BookingConfirmation({
+    Key? key,
+    required this.code
+  }) : super(key: key);
+  String code;
+
+  final controller = Get.put(BookingConfirmationController());
+  final examDetalController = Get.put(ExamDetailController());
 
   List yourInformation = [
     {'item': 'First name', 'value': 'John'},
@@ -57,390 +68,437 @@ class BookingConfirmation extends StatelessWidget {
   // ),
   ];
   final arrTitle = [
-    'Brüder Grimm Bildungscentrum e. V. Langstr.60 63452 Hanau',
-    '+49 1234567',
+    'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen',
+    '02681 8797-0',
     'admin@gmail.com'
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarStyle(
-        title: 'Booking Confirmation',
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: ColorStyle.primaryColor_1570A5,
-            size: 30,
-          ),
-          onPressed: () {
-            navigateToBack(context);
-          },
-        ),
-        styleTitle: TextStylesCustom.textStyles_16.apply(
-          color: ColorStyle.primaryColor_1570A5,
-          fontWeightDelta: 1,
-        ),
-        elevation: 2,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left:20.0),
-              child: Center(
-                child: Image.asset(ImageStyle.bookingConfirmationBar, width: 250, height: 100,),
+    return GetBuilder(
+        initState: (state){
+          controller.initMethods(code);
+        },
+        init: controller,
+        builder: ((controller)=>Obx(() => Scaffold(
+          appBar: AppBarStyle(
+            title: 'Booking Confirmation',
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: ColorStyle.primaryColor_1570A5,
+                size: 30,
               ),
+              onPressed: () {
+                navigateToBack(context);
+              },
             ),
-// -------------------------------------------------------Booking Successful block-------------------------->
-            Stack(
+            styleTitle: TextStylesCustom.textStyles_16.apply(
+              color: ColorStyle.primaryColor_1570A5,
+              fontWeightDelta: 1,
+            ),
+            elevation: 2,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
               children: [
-                Column(
+                Padding(
+                  padding: const EdgeInsets.only(left:20.0),
+                  child: Center(
+                    child: Image.asset(ImageStyle.bookingConfirmationBar, width: 250, height: 100,),
+                  ),
+                ),
+// -------------------------------------------------------Booking Successful block-------------------------->
+                Stack(
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 150,
-                      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 13),
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(image: AssetImage(ImageStyle.examBG), fit: BoxFit.fill)
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            // decoration: const BoxDecoration(
-                            //   color: Colors.white,
-                            //   borderRadius: BorderRadius.all(Radius.circular(50))
-                            // ),
-                            margin: const EdgeInsets.only(top: 20),
-                            height: 46,
-                            width: 46,
-                            child: SvgPicture.asset(ImageStyle.bookingSuccessful_green),
-                            // child: Image.asset(ImageStyle.checkCircle, fit: BoxFit.fill,)
+                    Column(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: 150,
+                          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 13),
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(image: AssetImage(ImageStyle.examBG), fit: BoxFit.fill)
                           ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                // decoration: const BoxDecoration(
+                                //   color: Colors.white,
+                                //   borderRadius: BorderRadius.all(Radius.circular(50))
+                                // ),
+                                margin: const EdgeInsets.only(top: 20),
+                                height: 46,
+                                width: 46,
+                                child: SvgPicture.asset(ImageStyle.bookingSuccessful_green),
+                                // child: Image.asset(ImageStyle.checkCircle, fit: BoxFit.fill,)
+                              ),
 
-                          const SizedBox(width: 19,),
+                              const SizedBox(width: 19,),
 
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Booking successful!', style: TextStylesCustom.textStyles_22.apply(color: Colors.white),),
-                                SizedBox(height: 6,),
-                                Text('Booking details has been sent to: johndoe@gmail.com', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
-                              ],
-                            ),
-                          )
-                          // Icon(Icons.check_circle_sharp, color: Colors.green, size: 35,)
-                        ],
-                      ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Booking successful!', style: TextStylesCustom.textStyles_22.apply(color: Colors.white),),
+                                    SizedBox(height: 6,),
+                                    Text('Booking details has been sent to: johndoe@gmail.com', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
+                                  ],
+                                ),
+                              )
+                              // Icon(Icons.check_circle_sharp, color: Colors.green, size: 35,)
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          width: double.infinity,
+                          height: 145,
+                          color: ColorStyle.white_F3F3F3,
+                        ),
+                      ],
                     ),
+                    Positioned(
+                        top: 120,
+                        left: 16,
+                        right: 16,
+                        child: Container(
+                          padding: const EdgeInsets.all(15),
+                          // width: Get.mediaQuery.size.width*.5,
+                          // height: 200,
+                          // color: Colors.blue,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: ColorStyle.grey_DAE1E7,
+                                  // spreadRadius: 1,
+                                  blurRadius: 4,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ]),
+                          child: ItemsListCard(items: [
+                            {'item': 'Booking Number:', 'value': '${controller.bookingConfirmationData['id'] != null ? controller.bookingConfirmationData['id'] : '11'}'},
+                            {'item': 'Booking Date:', 'value': '${ controller.bookingConfirmationData['booked_event']['exam_date']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}')) : '03/30/2022'}'},
+                            {'item': 'Payment Method:', 'value': '${controller.bookingConfirmationData['gateway'] != null ? controller.bookingConfirmationData['gateway'] : 'Visa ending with 3334'}'},
+                            {'item': 'Booking Status:', 'value': 'Booked'}
+                          ],),
 
-                    Container(
-                      width: double.infinity,
-                      height: 145,
-                      color: ColorStyle.white_F3F3F3,
-                    ),
+                        ))
                   ],
                 ),
-                Positioned(
-                  top: 120,
-                    left: 16,
-                    right: 16,
-                    child: Container(
-                  padding: const EdgeInsets.all(15),
-                  // width: Get.mediaQuery.size.width*.5,
-                  // height: 200,
-                  // color: Colors.blue,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(4),
-                      boxShadow: [
-                        BoxShadow(
-                          color: ColorStyle.grey_DAE1E7,
-                          // spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: const Offset(
-                              0, 0), // changes position of shadow
-                        ),
-                      ]),
-                      child: ItemsListCard(items: bookingDetails,),
 
-                ))
-              ],
-            ),
+                // ------------------------------------------------Your Booking-------------------------------------------->
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
 
-            // ------------------------------------------------Your Booking-------------------------------------------->
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    Text(
-                      'Your Booking',
-                      style: TextStylesCustom.textStyles_18.apply(
-                          color: ColorStyle.primaryColor_1570A5,
-                          fontWeightDelta: 1),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    Text('''Deutschtest für Zuwanderer 
-(DTZ / A2-B1) (PR-220409-HU-DTZ)''', style: TextStylesCustom.textStyles_15.apply(fontWeightDelta: 1),),
-                    Row(
+                  child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top:4.0, right: 5),
-                          child: SvgPicture.asset(ImageStyle.bookingConfirmation_location),
+                        const SizedBox(
+                          height: 35,
                         ),
-                        // const Icon(Icons.location_on),
-                        Expanded(child: Text(
-                          'Brüder Grimm Bildungscentrum e. V.Langstr. 60 63452 Hanau',
-                          style: TextStylesCustom.textStyles_14.apply(
+                        Text(
+                          'Your Booking',
+                          style: TextStylesCustom.textStyles_18.apply(
                               color: ColorStyle.primaryColor_1570A5,
-                              fontWeightDelta: 1),))
-                      ],
-                    ),
-                    const SizedBox(height: 31,),
-                  ]),
-            ),
-            Container(
-              width: double.infinity,
-              height: 1,
-              color: ColorStyle.grey_DAE1E7,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    ItemsList(items: examDetail, secondColor: ColorStyle.black,),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                  ]),
-
-            ),
-            Container(
-              width: double.infinity,
-              height: 1,
-              color: ColorStyle.grey_DAE1E7,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Examination Fees:',
-                      style: TextStylesCustom.textStyles_14),
-                  SizedBox(
-                    width: Get.mediaQuery.size.width * 0.4,
-                    child: Text('7,50 €',
-                        textAlign: TextAlign.end,
-                        style: TextStylesCustom.textStyles_14
-                            .apply(color: ColorStyle.black)),
-                  ),
-                ],
-              ),
-            ),
-
-            Container(
-              width: double.infinity,
-              height: 1,
-              color: ColorStyle.grey_DAE1E7,
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(top:16.0, right: 16, left: 16, bottom: 35),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Total:',
-                      style: TextStylesCustom.textStyles_18.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1)),
-                  SizedBox(
-                    width: Get.mediaQuery.size.width * 0.4,
-                    child: Text('7,50 €',
-                        textAlign: TextAlign.end,
-                        style: TextStylesCustom.textStyles_18.apply(fontWeightDelta: 2)),
-                  ),
-                ],
-              ),
-            ),
-
-
-            // ---------------------------------------------Your Information---------------------------------------->
-
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              color: ColorStyle.lightBlue_F2F2F2,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    Text(
-                      'Your Information',
-                      style: TextStylesCustom.textStyles_18.apply(
-                          color: ColorStyle.primaryColor_1570A5,
-                          fontWeightDelta: 1),
-                    ),
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    ItemsList(items: yourInformation),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                  ]),
-            ),
-
-            // ---------------------------------------------------Contact us container ----------------------------->
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                children: [
-                  const SizedBox(height: 27,),
-                  Container(
-                    width: Get.mediaQuery.size.width,
-                    height: 5,
-                    color: ColorStyle.primaryColor_1570A5,
-                  ),
-                  Container(
-                    // height: 300,
-                    width: Get.mediaQuery.size.width,
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    color: ColorStyle.primaryColor_1570A5.withOpacity(0.16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                              fontWeightDelta: 1),
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        controller.bookingConfirmationData['booked_event']['title'] != null ?
+                        Text(controller.bookingConfirmationData['booked_event']['title'], style: TextStylesCustom.textStyles_15.apply(fontWeightDelta: 1),):
+                        Text('''Deutschtest für Zuwanderer 
+(DTZ / A2-B1) (PR-220409-HU-DTZ)''', style: TextStylesCustom.textStyles_15.apply(fontWeightDelta: 1),),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image.asset(
-                              ImageStyle.lightbulb,
-                              height: 60,
-                              width: 45,
-                              fit: BoxFit.fill,
+                            Padding(
+                              padding: const EdgeInsets.only(top:4.0, right: 5),
+                              child: SvgPicture.asset(ImageStyle.bookingConfirmation_location),
                             ),
-                            // Icon(Icons.lightbulb, size: 70, color: ColorStyle.orange_C16D00),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                // const SizedBox(
-                                //   height: 10,
-                                // ),
-                                Text(
-                                  'Do you have a query?',
-                                  style: TextStylesCustom.textStyles_16.apply(
-                                      color: ColorStyle.primaryColor_1570A5,
-                                      fontWeightDelta: 1),
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                Text(
-                                    'You can connect with us anytime!',
-                                    style: TextStylesCustom.textStyles_14
-                                        .apply(fontWeightDelta: 1)),
-                              ],
-                            )
+                            // const Icon(Icons.location_on),
+                            Expanded(child:
+                            examDetalController.examDetailData['location'] != null ? Text(
+                              '${examDetalController.examDetailData['location']['name'] ?? '' } '
+                                  '${examDetalController.examDetailData['location']['street_name'] ?? '' } '
+                                  '${examDetalController.examDetailData['location']['city'] ?? '' } '
+                                  '${examDetalController.examDetailData['location']['zip_code'] ?? '' }',
+                              style: TextStylesCustom.textStyles_14.apply(
+                            color: ColorStyle.primaryColor_1570A5,
+                                fontWeightDelta: 1),
+                            ) :
+                            Text(
+                              'Brüder Grimm Bildungscentrum e. V.Langstr. 60 63452 Hanau',
+                              style: TextStylesCustom.textStyles_14.apply(
+                                  color: ColorStyle.primaryColor_1570A5,
+                                  fontWeightDelta: 1),))
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: Get.mediaQuery.size.width,
-                    height: 1,
-                    color: ColorStyle.primaryColor_1570A5,
-                  ),
-                  Container(
-                    // height: 300,
-                    width: Get.mediaQuery.size.width,
-                    padding: const EdgeInsets.all(20),
-                    color: ColorStyle.primaryColor_1570A5.withOpacity(0.16),
-                    child: Column(
+                        const SizedBox(height: 31,),
+                      ]),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 1,
+                  color: ColorStyle.grey_DAE1E7,
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+
+                  child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        ItemsList(items: [{'item': 'Exam Level:', 'value': '${controller.bookingConfirmationData['booked_event']['term'][0]['name'] ?? 'A2-B1'}  '},
+                          {'item': 'Exam date:', 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}')):'25/03/2022 (SAT)'},
+                          {'item': 'Exam Time:', 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_time'] != null ? DateFormat.jm().format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}T${controller.bookingConfirmationData['booked_event']['exam_time']}')):'09:30 AM'},
+                          ], secondColor: ColorStyle.black,),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                      ]),
+
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 1,
+                  color: ColorStyle.grey_DAE1E7,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Examination Fees:',
+                          style: TextStylesCustom.textStyles_14),
+                      SizedBox(
+                        width: Get.mediaQuery.size.width * 0.4,
+                        child: Text('${controller.bookingConfirmationData['booked_event']['price'] ?? '7,50'} €',
+                            textAlign: TextAlign.end,
+                            style: TextStylesCustom.textStyles_14
+                                .apply(color: ColorStyle.black)),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Container(
+                  width: double.infinity,
+                  height: 1,
+                  color: ColorStyle.grey_DAE1E7,
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top:16.0, right: 16, left: 16, bottom: 35),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Total:',
+                          style: TextStylesCustom.textStyles_18.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1)),
+                      SizedBox(
+                        width: Get.mediaQuery.size.width * 0.4,
+                        child:
+                        Text('${controller.bookingConfirmationData['total'] ?? '7,50'} €',
+                            textAlign: TextAlign.end,
+                            style: TextStylesCustom.textStyles_18.apply(fontWeightDelta: 2)),
+                      ),
+                    ],
+                  ),
+                ),
+
+
+                // ---------------------------------------------Your Information---------------------------------------->
+
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  color: ColorStyle.lightBlue_F2F2F2,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 35,
+                        ),
                         Text(
-                          'Contact Us',
-                          style: TextStylesCustom.textStyles_16
-                              .apply(fontWeightDelta: 1),
+                          'Your Information',
+                          style: TextStylesCustom.textStyles_18.apply(
+                              color: ColorStyle.primaryColor_1570A5,
+                              fontWeightDelta: 1),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 35,
                         ),
-                        Text(
-                          'Deutschtest für Zuwanderer (DTZ / A2-B1)(PR-220409-HU-DTZ)',
-                          style: TextStylesCustom.textStyles_12,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        ListView.separated(
-                          itemCount: arrTitle.length,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(
-                              height: 10,
-                            );
+                        ItemsList(items: [
+                          {'item': 'First name', 'value': controller.bookingConfirmationData['first_name'] ?? 'John'},
+                          {'item': 'Last name', 'value': controller.bookingConfirmationData['last_name'] ?? 'Doe'},
+                          {'item': 'Identification No.', 'value': controller.bookingConfirmationData['identification_number'] ?? 'Lorem'},
+                          {'item': 'Email', 'value': controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'},
+                          {'item': 'Salutation', 'value': controller.bookingConfirmationData['salutation'] ?? 'Lorem'},
+                          {'item': 'Academic title', 'value': controller.bookingConfirmationData['academic_title'] ?? 'Lorem ipsum'},
+                          {'item': 'Birth date', 'value': '22/03/1995'},
+                          {'item': 'Birth place', 'value': controller.bookingConfirmationData['birth_place'] ?? ''},
+                          {'item': 'Country of birth', 'value': controller.bookingConfirmationData['country_Of_birth'] ?? ''},
+                          {'item': 'Mother Tongue', 'value': controller.bookingConfirmationData['mother_tongue'] ?? ''},
+                          {'item': 'Telephone', 'value': controller.bookingConfirmationData['tele_phone'] ?? ''},
+                          {'item': 'Mobile', 'value': controller.bookingConfirmationData['phone'] ?? ''},
+                          {
+                            'item': 'Address',
+                            'value': '${controller.bookingConfirmationData['address_line_1'] ?? ''}, ${controller.bookingConfirmationData['street'] ?? ''}, ${controller.bookingConfirmationData['city'] ?? ''}, ${controller.bookingConfirmationData['zip_code'] ?? ''}'
                           },
-                          itemBuilder: (context, index) {
-                            return Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        ]),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                      ]),
+                ),
+
+                // ---------------------------------------------------Contact us container ----------------------------->
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 27,),
+                      Container(
+                        width: Get.mediaQuery.size.width,
+                        height: 5,
+                        color: ColorStyle.primaryColor_1570A5,
+                      ),
+                      Container(
+                        // height: 300,
+                        width: Get.mediaQuery.size.width,
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        color: ColorStyle.primaryColor_1570A5.withOpacity(0.16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 25,
-                                  padding: EdgeInsets.only(top: 4),
-                                  child: Row(
-                                    children: [
-                                      arrIcons[index],
-                                      Expanded(
-                                        child: SizedBox(
-                                          width: 10,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                Image.asset(
+                                  ImageStyle.lightbulb,
+                                  height: 60,
+                                  width: 45,
+                                  fit: BoxFit.fill,
+                                ),
+                                // Icon(Icons.lightbulb, size: 70, color: ColorStyle.orange_C16D00),
+                                const SizedBox(
+                                  width: 20,
                                 ),
                                 Expanded(
-                                    child: Text(
-                                      arrTitle[index],
-                                      style: TextStylesCustom.textStyles_12.apply(
-                                          color: ColorStyle.primaryColor_1570A5),
-                                    ))
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      // const SizedBox(
+                                      //   height: 10,
+                                      // ),
+                                      Text(
+                                        'Do you have a query?',
+                                        style: TextStylesCustom.textStyles_16.apply(
+                                            color: ColorStyle.primaryColor_1570A5,
+                                            fontWeightDelta: 1),
+                                      ),
+                                      const SizedBox(
+                                        height: 4,
+                                      ),
+                                      Text(
+                                          'You can connect with us anytime!',
+                                          style: TextStylesCustom.textStyles_14
+                                              .apply(fontWeightDelta: 1)),
+                                    ],
+                                  ),
+                                )
                               ],
-                            );
-                          },
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      Container(
+                        width: Get.mediaQuery.size.width,
+                        height: 1,
+                        color: ColorStyle.primaryColor_1570A5,
+                      ),
+                      Container(
+                        // height: 300,
+                        width: Get.mediaQuery.size.width,
+                        padding: const EdgeInsets.all(20),
+                        color: ColorStyle.primaryColor_1570A5.withOpacity(0.16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Contact Us',
+                              style: TextStylesCustom.textStyles_16
+                                  .apply(fontWeightDelta: 1),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Die BBZ Sprachschulen sind ein Angebot der BBZ Altenkirchen GmbH & Co. KG',
+                              style: TextStylesCustom.textStyles_12,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            ListView.separated(
+                              itemCount: arrTitle.length,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              separatorBuilder: (context, index) {
+                                return const SizedBox(
+                                  height: 10,
+                                );
+                              },
+                              itemBuilder: (context, index) {
+                                return Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 25,
+                                      padding: EdgeInsets.only(top: 4),
+                                      child: Row(
+                                        children: [
+                                          arrIcons[index],
+                                          Expanded(
+                                            child: SizedBox(
+                                              width: 10,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                        child: Text(
+                                          arrTitle[index],
+                                          style: TextStylesCustom.textStyles_12.apply(
+                                              color: ColorStyle.primaryColor_1570A5),
+                                        ))
+                                  ],
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 91,)
+              ],
             ),
-            const SizedBox(height: 91,)
-          ],
-        ),
-      ),
+          ),
+        )))
     );
+
   }
 }
 
@@ -471,8 +529,8 @@ class ItemsList extends StatelessWidget {
               children: [
                 Text(items[index]['item'],
                     style: TextStylesCustom.textStyles_14),
-                SizedBox(
-                  width: Get.mediaQuery.size.width * 0.6,
+                Expanded(
+                  // width: Get.mediaQuery.size.width * 0.6,
                   child: Text(items[index]['value'],
                       textAlign: TextAlign.end,
                       style: TextStylesCustom.textStyles_14

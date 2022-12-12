@@ -16,6 +16,7 @@ import '../Views/BookingConfirmation.dart';
 class BookingFormController extends GetxController {
 
   void initMethods() {
+    reset();
     Future.delayed(const Duration(microseconds: 100), () {
       getUserDetails();
     });
@@ -263,7 +264,7 @@ class BookingFormController extends GetxController {
       // response['message'].toString().showSuccess();
       if(response['message'] != null){
         response['message'].toString().showSuccess();
-        BookingConfirmation().navigateToCustom(Get.context);
+        BookingConfirmation(code: code.value,).navigateToCustom(Get.context);
       }else
       if(response['errors'] != null){
         response['errors'].toString().showSuccess();

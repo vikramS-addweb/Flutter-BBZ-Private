@@ -17,6 +17,7 @@ import '../Utils/Constant.dart';
 import '../Utils/Global.dart';
 import 'Location.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import './language.dart';
 
 class DrawerScreen extends StatelessWidget {
   DrawerScreen({Key? key}) : super(key: key);
@@ -143,6 +144,9 @@ class DrawerScreen extends StatelessWidget {
                               break;
                             case 4:
                               News().navigateToCustom(context);
+                              break;
+                            case 5:
+                              Language().navigateToCustom(context);
                               break;
                             default:
                               break;

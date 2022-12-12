@@ -18,6 +18,7 @@ import '../Components/BottomNavBarCustom.dart';
 import '../Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../Controller/WelcomeController.dart';
+import './language.dart';
 // isBackOnAuth.value = true;
 
 
@@ -61,6 +62,7 @@ class WelcomeScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             // Add your onPressed code here!
+            Language().navigateToCustom(context);
           },
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(topLeft: Radius.circular(50), bottomLeft: Radius.circular(50))

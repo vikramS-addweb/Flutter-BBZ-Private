@@ -13,6 +13,8 @@ import '../Components/DateFieldCustom.dart';
 import 'BookingForm.dart';
 import '../Controller/ExamDetailController.dart';
 import 'package:flutter_html/flutter_html.dart';
+import '../Utils/Constant.dart';
+
 
 class ExamDetail extends StatelessWidget {
   ExamDetail({Key? key, required this.id}) : super(key: key);
@@ -28,7 +30,7 @@ class ExamDetail extends StatelessWidget {
         },
         builder: ((controller) =>
         Obx(() =>
-            Scaffold(
+        controller.examDetailData.isEmpty ? Container(color: Colors.white,) : Scaffold(
           appBar: AppBarStyle(
             title:
                 controller.examDetailData['title'] != null ? '${controller.examDetailData['title']}':
@@ -77,7 +79,12 @@ class ExamDetail extends StatelessWidget {
                       child: ElevatedButtonCustoms(
                         onTap: (){
                           if(!(controller.isBooked.value || controller.examDetailData['available_seats'] == 0)){
-                            BookingForm(examDetails: controller.examDetailData.value,).navigateToCustom(context, withNavBar: false);
+
+                            if(kTOKENSAVED!=""){
+                              controller.bookNowVerityEmail();
+                            }else{
+                              BookingForm(examDetails: controller.examDetailData.value,).navigateToCustom(context, withNavBar: false);
+                            }
                           }
                         },
                         text: '${controller.isBooked.value ? 'ALREADY BOOKED' : (controller.examDetailData['available_seats'] != null && controller.examDetailData['available_seats'] == 0) ? 'SEATS NOT AVAILABLE' : 'BOOK NOW'}',

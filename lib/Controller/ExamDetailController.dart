@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Utils/API.dart';
 import '../Utils/Global.dart';
+import '../Views/BookingForm.dart';
 
 
 
@@ -12,6 +13,8 @@ class ExamDetailController extends GetxController {
 
   void initMethods(id){
     Future.delayed(Duration(microseconds: 100), () {
+      examDetailData.clear();
+
       fetchExamDetails(id);
       if(kTOKENSAVED.isNotEmpty)
       fetchBookingStatus(id);
@@ -47,6 +50,26 @@ class ExamDetailController extends GetxController {
       }else{
         response['message'].toString().showError();
       }
+      update();
+    }
+  }
+
+  //-----------------------------------------------verify email api---------------------------->
+
+  Future bookNowVerityEmail() async {
+    final response = await API.instance.get(endPoint: 'api/user-verify');
+
+    if (response!.isNotEmpty) {
+      if(response['flag'] != null){
+        if(response['flag'] == 0){
+          BookingForm(examDetails: examDetailData.value,).navigateToCustom(Get.context, withNavBar: false);
+        }else{
+          'verification mail sent on your email, please verify first'.showError();
+        }
+      }else{
+        response.toString().showError();
+      }
+
       update();
     }
   }
