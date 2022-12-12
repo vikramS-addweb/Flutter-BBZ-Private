@@ -2,6 +2,7 @@ import 'package:bbz/Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
+import 'package:intl/intl.dart';
 import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
@@ -10,61 +11,73 @@ import 'BookingDetails.dart';
 import 'Invoice.dart';
 import 'Ticket.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../Controller/BookingHistoryController.dart';
 
 class BookingHistory extends StatelessWidget {
-  const BookingHistory({Key? key}) : super(key: key);
+  BookingHistory({Key? key}) : super(key: key);
+  final controller = Get.put(BookingHistoryController());
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorStyle.white,
-      appBar: AppBarStyle(
-        title: 'Booking History',
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: ColorStyle.primaryColor_1570A5,
-            size: 30,
-          ),
-          onPressed: () {
-            navigateToBack(context);
-          },
-        ),
-        styleTitle: TextStylesCustom.textStyles_16.apply(
-          color: ColorStyle.primaryColor_1570A5,
-          fontWeightDelta: 1,
-        ),
-        elevation: 2,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // ----------------------------------UPCOMING EXAMS------------------------------------->
-              Exams(
-                title: 'Upcoming Exams',
-                itemCount: 1,
+    return GetBuilder(
+      init: controller,
+        initState: (state){
+          controller.initMethods();
+        },
+        builder: ((controller)=>Obx(() => Scaffold(
+          backgroundColor: ColorStyle.white,
+          appBar: AppBarStyle(
+            title: 'Booking History',
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: ColorStyle.primaryColor_1570A5,
+                size: 30,
               ),
+              onPressed: () {
+                navigateToBack(context);
+              },
+            ),
+            styleTitle: TextStylesCustom.textStyles_16.apply(
+              color: ColorStyle.primaryColor_1570A5,
+              fontWeightDelta: 1,
+            ),
+            elevation: 2,
+          ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // ----------------------------------UPCOMING EXAMS------------------------------------->
+                  Exams(
+                    title: 'Upcoming Exams',
+                    itemCount: 1,
+                    items: controller.upcomingExamHistoryData.value
+                  ),
 
-              // ----------------------------------PAST EXAMS------------------------------------->
-              Exams(
-                title: 'Past Exams',
-                itemCount: 3,
+                  // ----------------------------------PAST EXAMS------------------------------------->
+                  Exams(
+                    title: 'Past Exams',
+                    itemCount: 3,
+                    items: controller.pastExamHistoryData.value,
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        )))
     );
+
   }
 }
 
 class Exams extends StatelessWidget {
-  Exams({Key? key, this.title, this.itemCount}) : super(key: key);
+  Exams({Key? key, this.title, this.itemCount, this.items}) : super(key: key);
   final String? title;
   int? itemCount = 1;
+  List? items;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -79,17 +92,18 @@ class Exams extends StatelessWidget {
           height: 19,
         ),
         ListView.separated(
-          itemCount: itemCount!,
+          itemCount: items!.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           separatorBuilder: (context, index) {
             return const SizedBox(
               // color: Colors.red,
-              height: 40,
+              // height: 40,
             );
           },
           itemBuilder: (context, index) {
-            return Column(
+            return items![index]['booked_event'].length != 0?
+              Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -146,7 +160,7 @@ class Exams extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            '25/03/2022 | 03:30 PM',
+                            '${ items![index]['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['booked_event']['exam_date']}')) : '25/03/2022'} | ${ items![index]['booked_event']['exam_time'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['booked_event']['exam_date']}T${items![index]['booked_event']['exam_time']}')):'03:30 PM'}',
                             style: TextStylesCustom.textStyles_12
                                 .apply(color: ColorStyle.primaryColor_1570A5),
                           ),
@@ -180,16 +194,17 @@ class Exams extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Zusatzleistung: Postversand- Zertifikate / Ergebnisbogen',
+                                    '${items![index]['booked_event']['title'] ??  'Zusatzleistung: Postversand- Zertifikate / Ergebnisbogen'}',
                                     style: TextStylesCustom.textStyles_12
                                         .apply(fontWeightDelta: 1),
                                   ),
-                                  Text(
-                                    'A2-B1',
-                                    style: TextStylesCustom.textStyles_14.apply(
-                                        color: ColorStyle.primaryColor_1570A5,
-                                        fontWeightDelta: 2),
-                                  ),
+                                  SizedBox(height: 30,),
+                                  // Text(
+                                  //   '${items![index]['booked_event']['title'] ??  'A2-B1'}',
+                                  //   style: TextStylesCustom.textStyles_14.apply(
+                                  //       color: ColorStyle.primaryColor_1570A5,
+                                  //       fontWeightDelta: 2),
+                                  // ),
                                   Row(
                                     children: [
                                       Text(
@@ -198,7 +213,7 @@ class Exams extends StatelessWidget {
                                             .apply(fontWeightDelta: 3),
                                       ),
                                       Text(
-                                        '7,50 €',
+                                        '${items![index]['paid'] ??  '7,50'} €',
                                         style: TextStylesCustom.textStyles_14
                                             .apply(
                                                 color: Colors.green,
@@ -256,8 +271,9 @@ class Exams extends StatelessWidget {
                     ],
                   ),
                 ),
+                SizedBox(height: 40,)
               ],
-            );
+            ) : SizedBox(height: 0);
           },
         ),
         const SizedBox(
