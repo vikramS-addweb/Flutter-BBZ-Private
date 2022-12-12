@@ -27,8 +27,6 @@ class NewsDetail extends StatelessWidget {
         builder: ((controller)=> Obx(() => Scaffold(
           backgroundColor: ColorStyle.white,
           appBar: AppBarStyle(
-
-
             title: controller.newsDetailData['title'] ?? 'Lorem ipsum dolor',
             leading: IconButton(
               icon: Icon(
@@ -99,6 +97,13 @@ class NewsDetail extends StatelessWidget {
                         "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,),
                       },
                       data: controller.newsDetailData['content'],
+//                       data: """
+// <u><em><strong>You can do HTML too!</strong></em></u><br />
+// <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" style="float: left">
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+// <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" style="float: right">
+// Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+//               """,
                       onLinkTap: (String? url, RenderContext context, Map<String, String> attributes, dom.Element? element)async {
                     //open URL in webview, or launch URL in browser, or any other logic here
                         await launchUrl(Uri.parse(url!));
