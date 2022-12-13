@@ -248,7 +248,7 @@ class ExamDetail extends StatelessWidget {
                                     Text('|', style: TextStylesCustom.textStyles_14.apply( color: controller.examDetailData['reg_until_date'] != null ? registrationColor(DateTime.parse('${controller.examDetailData['reg_until_date']}')) : ColorStyle.orange_C16D00, fontWeightDelta: 2),),
                                     const SizedBox(width: 10,),
                                     // Text('25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.orange_C16D00),)
-                                    Text(controller.examDetailData['reg_until_date'] != null ? '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.examDetailData['reg_until_date']}'))}':'25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: registrationColor(DateTime.parse('${controller.examDetailData['reg_until_date']}'))),)
+                                    Text(controller.examDetailData['reg_until_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.examDetailData['reg_until_date']}')):'25/03/2022', style: TextStylesCustom.textStyles_14.apply(color: registrationColor(DateTime.parse('${controller.examDetailData['reg_until_date']}'))),)
 
                                   ],
                                 ),

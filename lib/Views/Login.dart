@@ -87,7 +87,7 @@ class _LoginState extends State<Login> {
                 decoration: boxDecorationAuthBox(),
                 child: Form(
                   key: fromkey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  // autovalidateMode: AutovalidateMode.onUserInteraction,
                   onChanged: () {
 
                   },

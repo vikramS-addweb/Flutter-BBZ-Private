@@ -108,8 +108,12 @@ class SignUp extends StatelessWidget {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Last name is required";
-                              } else if (!GetUtils.isAlphabetOnly(value)){
+                              } else if (!alphaSpace.hasMatch(value)) {
                                 return " LN should have letters";
+                              }
+                              else if(value![0] == ' '){
+                                // controller.userMessage.value.text = '';
+                                return "Can't start with space";
                               }
                               else {
                                 return null;

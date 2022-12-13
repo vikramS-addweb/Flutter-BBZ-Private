@@ -60,7 +60,8 @@ class Profile extends StatelessWidget {
               height: 29,
             ),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+
               children: [
                 const SizedBox(
                   width: 19,

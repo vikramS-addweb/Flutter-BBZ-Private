@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/AppBarStyle.dart';
 import 'package:get/get.dart';
 import '../Utils/Global.dart';
+import '../Controller/BookingHistoryController.dart';
+
 
 class BookingDetails extends StatelessWidget {
-  BookingDetails({Key? key}) : super(key: key);
+  BookingDetails({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
+
+  int id;
+
+  final controller = Get.put(BookingHistoryController());
+
 
   List bookingDetails = [
     {'item': 'Booking status', 'value': 'Paid'},
@@ -39,11 +50,17 @@ class BookingDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GetBuilder(
+      init: controller,
+      initState: (state) {
+        Future.delayed(Duration(microseconds: 100), () {
+          controller.fetchBookingDetail(id);
+        });
+      },
+      builder: ((controller) => Obx(() => controller.bookingDetails.isEmpty ? Container(color: Colors.white,) :  Scaffold(
       backgroundColor: ColorStyle.white,
       appBar: AppBarStyle(
-        title: '''      Deutschtest für Zuwanderer 
-(DTZ / A2-B1) (PR-220409-HU-DTZ)''',
+        title: controller.bookingDetails['booked_event']['title'] ?? '',
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -120,7 +137,15 @@ class BookingDetails extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  ItemsList(items: bookingDetails),
+                  ItemsList(items: [
+                    {'item': 'Booking status', 'value': '${controller.bookingDetails['status'] ?? ''}'},
+                    {'item': 'Booking date', 'value': controller.bookingDetails['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['created_at']}')):''},
+                    {'item': 'Payment method', 'value': '${controller.bookingDetails['gateway'] ?? ''}'},
+                    {'item': 'Exam type', 'value': '${controller.bookingDetails['examLevel'] ?? ''}'},
+                    {'item': 'Exam date', 'value': controller.bookingDetails['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}')):''},
+                    {'item': 'Exam time', 'value': controller.bookingDetails['booked_event']['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}T${controller.bookingDetails['booked_event']['exam_time']}'))}':''},
+                    {'item': 'Exam fees', 'value': '${controller.bookingDetails['booked_event']['price'] ?? ''} €'},
+                  ]),
                   SizedBox(
                     height: 10,
                   ),
@@ -131,7 +156,7 @@ class BookingDetails extends StatelessWidget {
                           style: TextStylesCustom.textStyles_14.apply(
                             color: ColorStyle.primaryColor_1570A5,
                           )),
-                      Text('7,50 €',
+                      Text('${controller.bookingDetails['total'] ?? ''} €',
                           style: TextStylesCustom.textStyles_14.apply(
                             color: ColorStyle.primaryColor_1570A5,
                           ))
@@ -164,7 +189,24 @@ class BookingDetails extends StatelessWidget {
                     SizedBox(
                       height: 35,
                     ),
-                    ItemsList(items: yourInformation),
+                    ItemsList(items: [
+                      {'item': 'First name', 'value': '${controller.bookingDetails['first_name'] ?? ''}'},
+                      {'item': 'Last name', 'value': '${controller.bookingDetails['last_name'] ?? ''}'},
+                      {'item': 'Identification No.', 'value': '${controller.bookingDetails['identification_number'] ?? ''}'},
+                      {'item': 'Email', 'value': '${controller.bookingDetails['email'] ?? ''}'},
+                      {'item': 'Salutation', 'value': '${controller.bookingDetails['salutation'] ?? ''}'},
+                      {'item': 'Academic title', 'value': '${controller.bookingDetails['academic_title'] ?? ''}'},
+                      {'item': 'Birth date', 'value': controller.bookingDetails['birth_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['birth_date']}')):''},
+                      {'item': 'Birth place', 'value': '${controller.bookingDetails['birth_place'] ?? ''}'},
+                      {'item': 'Country of birth', 'value': '${controller.bookingDetails['country_Of_birth'] ?? ''}'},
+                      {'item': 'Mother tongue', 'value': '${controller.bookingDetails['mother_tongue'] ?? ''}'},
+                      {'item': 'Telephone', 'value': '${controller.bookingDetails['tele_phone'] ?? ''}'},
+                      {'item': 'Mobile', 'value': '${controller.bookingDetails['phone'] ?? ''}'},
+                      {
+                        'item': 'Address',
+                        'value': '${controller.bookingDetails['address'] != null ? '${controller.bookingDetails['address']}, ': ''}${controller.bookingDetails['address2'] != null ? '${controller.bookingDetails['address2']}, ': ''}${controller.bookingDetails['city'] != null ? '${controller.bookingDetails['city']}, ': ''}${controller.bookingDetails['zip_code'] != null ? '${controller.bookingDetails['zip_code']}, ': ''}${controller.bookingDetails['country'] != null ? '${controller.bookingDetails['country']}': ''}'
+                      },
+                    ]),
                     SizedBox(
                       height: 40,
                     ),
@@ -173,7 +215,9 @@ class BookingDetails extends StatelessWidget {
           ],
         ),
       ),
-    );
+    )
+    )
+    ));
   }
 }
 

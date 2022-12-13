@@ -1,3 +1,4 @@
+import 'package:bbz/Components/ElevatedButtonCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Components/AppBarStyle.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../Controller/BookingConfirmationController.dart';
 import 'package:intl/intl.dart';
 import '../Controller/ExamDetailController.dart';
+import './PersistentBottomNavBarCustom.dart';
 
 
 
@@ -80,7 +82,7 @@ class BookingConfirmation extends StatelessWidget {
           controller.initMethods(code);
         },
         init: controller,
-        builder: ((controller)=>Obx(() => Scaffold(
+        builder: ((controller)=>Obx(() => controller.bookingConfirmationData.isEmpty ? Container(color: Colors.white,) : Scaffold(
           appBar: AppBarStyle(
             title: 'Booking Confirmation',
             leading: IconButton(
@@ -489,6 +491,13 @@ class BookingConfirmation extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(height: 20,),
+                      ElevatedButtonCustoms(text: 'Go back to Home page', onTap: (){
+                        PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
+                      },
+                      width: Get.size.width,
+                        colorBG: ColorStyle.primaryColor_1570A5,
+                      )
                     ],
                   ),
                 ),

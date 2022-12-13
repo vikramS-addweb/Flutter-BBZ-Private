@@ -8,6 +8,7 @@ import '../Utils/Constant.dart';
 class BookingHistoryController extends GetxController {
   RxList upcomingExamHistoryData = [].obs;
   RxList pastExamHistoryData = [].obs;
+  RxMap bookingDetails = {}.obs;
 
   void initMethods() {
     Future.delayed(Duration(microseconds: 100), () {
@@ -32,6 +33,16 @@ class BookingHistoryController extends GetxController {
     if (response!.isNotEmpty) {
       debugPrint('Past history response count ${response['data'].length}');
       pastExamHistoryData.value = response['data'];
+      update();
+    }
+  }
+
+  Future fetchBookingDetail(id) async {
+    bookingDetails.clear();
+    final response = await API.instance.get(endPoint: 'api/booking-detail/$id');
+    if (response!.isNotEmpty) {
+      debugPrint('booking details response count ${response.length}');
+      bookingDetails.value = response;
       update();
     }
   }

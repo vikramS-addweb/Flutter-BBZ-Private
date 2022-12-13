@@ -60,6 +60,7 @@ class ChangePassword extends StatelessWidget {
               ),
               onPressed: () {
                 // Get.back();
+                controller.reset();
                 navigateToBack(context);
               },
             ),

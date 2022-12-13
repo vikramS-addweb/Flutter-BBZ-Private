@@ -160,7 +160,7 @@ class Exams extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            '${ items![index]['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['booked_event']['exam_date']}')) : '25/03/2022'} | ${ items![index]['booked_event']['exam_time'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['booked_event']['exam_date']}T${items![index]['booked_event']['exam_time']}')):'03:30 PM'}',
+                            '${ items![index]['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['created_at']}')) : '25/03/2022'} | ${ items![index]['created_at'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['created_at']}')):'03:30 PM'}',
                             style: TextStylesCustom.textStyles_12
                                 .apply(color: ColorStyle.primaryColor_1570A5),
                           ),
@@ -172,7 +172,7 @@ class Exams extends StatelessWidget {
                       // --------------------------------IMAGE AND DETAILS--------------------->
                       InkWell(
                         onTap: (){
-                          BookingDetails().navigateToCustom(context, withNavBar: false);
+                          BookingDetails(id: items![index]['id'],).navigateToCustom(context, withNavBar: false);
                         },
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,7 +244,7 @@ class Exams extends StatelessWidget {
                           Expanded(
                             child: ElevatedButtonCustoms(
                               onTap: () {
-                                Invoice().navigateToCustom(context, withNavBar: false);
+                                Invoice(id: items![index]['id'],).navigateToCustom(context, withNavBar: false);
                               },
                               text: 'GET INVOICE',
                               colorText: ColorStyle.primaryColor_1570A5,
@@ -257,7 +257,7 @@ class Exams extends StatelessWidget {
                           Expanded(
                             child: ElevatedButtonCustoms(
                               onTap: () {
-                                Ticket().navigateToCustom(context, withNavBar: false);
+                                Ticket(id: items![index]['id'],).navigateToCustom(context, withNavBar: false);
                               },
                               text: 'PRINT TICKET',
                               radiusBorder: 0,

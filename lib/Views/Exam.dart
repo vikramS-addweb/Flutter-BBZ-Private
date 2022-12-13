@@ -134,7 +134,8 @@ class _ExamState extends State<Exam> {
       onTap: () async {
         final date = await PickerCustom.datePicker(
           dateFormat: 'dd MMM yyyy',
-          selectedDate: isFrom ? DateTime.now() : controller.dateFromMinDateForTo.value,
+          // selectedDate: isFrom ? title == 'From' ? DateTime.now() : DateFormat('dd MMM yyyy').parse(controller.dateFrom.value) : title == 'To'? (title == 'Form'? DateTime.now():DateFormat('dd MMM yyyy').parse(controller.dateFrom.value)) : DateFormat('dd MMM yyyy').parse(controller.dateFrom.value),
+          selectedDate: (title == 'From') ? DateTime.now() : controller.dateFromMinDateForTo.value,
           firstDate: isFrom ? DateTime.now() : controller.dateFromMinDateForTo.value,
           lastDate: DateTime(2030),
         );
@@ -455,7 +456,7 @@ class _ExamState extends State<Exam> {
                             const SizedBox(
                               height: 6,
                             ),
-                            controller.showSearchData.value &&
+                            controller.showSearchData.value ?
                                     controller.searchResultData.value.length ==
                                         0
                                 ? Text(
@@ -464,12 +465,28 @@ class _ExamState extends State<Exam> {
                                       color: Colors.black,
                                     ),
                                   )
-                                : Text(
+                                :
+                            Text(
                                     'All the coming exams for you',
                                     style: TextStylesCustom.textStyles_14.apply(
                                       color: Colors.black,
                                     ),
-                                  ),
+                                  ) :
+                            controller.upcomingExamData.value.length ==
+                                0
+                                ? Text(
+                              'Exam not found',
+                              style: TextStylesCustom.textStyles_16.apply(
+                                color: Colors.black,
+                              ),
+                            )
+                                :
+                            Text(
+                              'All the coming exams for you',
+                              style: TextStylesCustom.textStyles_14.apply(
+                                color: Colors.black,
+                              ),
+                            ),
                             const SizedBox(
                               height: 40,
                             ),
