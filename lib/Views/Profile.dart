@@ -12,6 +12,7 @@ import '../Views/DrawerScreen.dart';
 import '../Controller/LoginController.dart';
 import '../Controller/MyProfileController.dart';
 import '../Utils/Global.dart';
+import '../Controller/ExamDetailController.dart';
 
 
 class Profile extends StatelessWidget {
@@ -23,6 +24,7 @@ class Profile extends StatelessWidget {
   final arrTitle = ['My Profile', 'Booking History', 'Change Password'];
   final loginController = Get.put(LoginController());
   final controllerMyProfile = Get.put(MyProfileController());
+  final examDetailController = Get.put(ExamDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -116,24 +118,8 @@ class Profile extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    switch (index) {
-                      case 0:
-                      // MyProfile().navigateToCustom(context, withNavBar: false);
 
-                        Get.to(MyProfile())!.then((value) {
-                          controllerMyProfile.updateOnMyProfile();
-                        });
-
-                        break;
-                      case 1:
-                        BookingHistory().navigateToCustom(context);
-                        break;
-                      case 2:
-                        ChangePassword().navigateToCustom(context, withNavBar: false);
-                        break;
-                      default:
-                        break;
-                    }
+                    examDetailController.isVerityEmail(index);
                   },
                   child: Row(
                     children: [

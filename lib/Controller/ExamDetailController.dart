@@ -4,10 +4,18 @@ import 'package:get/get.dart';
 import '../Utils/API.dart';
 import '../Utils/Global.dart';
 import '../Views/BookingForm.dart';
+import './MyProfileController.dart';
+import '../Views/MyProfile.dart';
+import '../Views/BookingHistory.dart';
+import '../Views/ChangePassword.dart';
+
 
 
 
 class ExamDetailController extends GetxController {
+
+  final controllerMyProfile = Get.put(MyProfileController());
+
   RxMap examDetailData = {}.obs;
   RxBool isBooked = false.obs;
 
@@ -64,7 +72,43 @@ class ExamDetailController extends GetxController {
         if(response['flag'] == 0){
           BookingForm(examDetails: examDetailData.value,).navigateToCustom(Get.context, withNavBar: false);
         }else{
-          'verification mail sent on your email, please verify first'.showError();
+          'verification mail sent on your email, please verify first'.showSuccess();
+        }
+      }else{
+        response.toString().showError();
+      }
+
+      update();
+    }
+  }
+
+  Future isVerityEmail(index) async {
+    final response = await API.instance.get(endPoint: 'api/user-verify');
+
+    if (response!.isNotEmpty) {
+      if(response['flag'] != null){
+        if(response['flag'] == 0){
+          switch (index) {
+            case 0:
+            // MyProfile().navigateToCustom(context, withNavBar: false);
+
+              Get.to(MyProfile())!.then((value) {
+                  controllerMyProfile.updateOnMyProfile();
+              });
+
+              break;
+            case 1:
+              BookingHistory().navigateToCustom(Get.context);
+              break;
+            case 2:
+              ChangePassword().navigateToCustom(Get.context, withNavBar: false);
+              break;
+            default:
+              break;
+          }
+          // BookingForm(examDetails: examDetailData.value,).navigateToCustom(Get.context, withNavBar: false);
+        }else{
+          'verification mail sent on your email, please verify first'.showSuccess();
         }
       }else{
         response.toString().showError();
