@@ -51,6 +51,7 @@ class BookingForm extends StatelessWidget {
                     size: 30,
                   ),
                   onPressed: () {
+                    controller.reset();
                     navigateToBack(context);
                   },
                 ),
@@ -393,13 +394,13 @@ class BookingForm extends StatelessWidget {
                                     firstText: 'Academic Title',
                                     secondText: '',
                                     hintText: 'Please enter',
-                                    // validator: (value) {
-                                    //   if (value!.isEmpty) {
-                                    //     return "Academic title is required";
-                                    //   }else {
-                                    //     return null;
-                                    //   }
-                                    // },
+                                    validator: (value) {
+                                      if (value!.isNotEmpty && value![0] == ' ') {
+                                        return "Academic title can't start with space";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
                                   ),
                                   SizedBox(
                                     height: 15,
@@ -466,6 +467,9 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Identification number is required";
+                                      }else
+                                      if (value!.isNotEmpty && value![0] == ' ') {
+                                        return "Identification number can't start with space";
                                       } else {
                                         return null;
                                       }
@@ -484,7 +488,11 @@ class BookingForm extends StatelessWidget {
                                         return "Email is required";
                                       } else if (!GetUtils.isEmail(value)) {
                                         return "Email is invalid";
-                                      } else {
+                                      }
+                                      // else if (!emailRegexWithoutSpecial.hasMatch(value)) {
+                                      //   return "Email can't have special characters";
+                                      // }
+                                      else {
                                         return null;
                                       }
                                     },
@@ -509,7 +517,10 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Birth place is required";
-                                      } else if (!GetUtils.isAlphabetOnly(
+                                      }else if(value![0] == ' '){
+                                        return "Birth place can't start with space";
+                                      }
+                                      else if (!alphaSpace.hasMatch(
                                           value)) {
                                         return "Birth place must only contain letters";
                                       } else {
@@ -529,9 +540,13 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Country of birth is required";
-                                      } else if (!GetUtils.isAlphabetOnly(
+                                      }else if(value![0] == ' '){
+                                        return "Country of birth place can't start with space";
+                                      }
+                                      else if (!alphaSpace.hasMatch(
                                           value)) {
-                                        return "Country of birth must only contain letters";
+                                        return "Country of birth place must only contain letters";
+                                        return "Country of birth place must only contain letters";
                                       } else {
                                         return null;
                                       }
@@ -586,7 +601,7 @@ class BookingForm extends StatelessWidget {
                                         // }else
                                         if(!value!.isEmpty){
                                           if(!value!.isNum){
-                                            return "Phone must contain number only";
+                                            return "Telephone must contain number only";
                                           }
                                           else if (value.length < 7) {
                                             return "Min digit should be 7";
@@ -711,6 +726,13 @@ class BookingForm extends StatelessWidget {
                                     firstText: 'C/o',
                                     secondText: '',
                                     hintText: 'Please enter',
+                                      validator: (value) {
+                                        if (value!.isNotEmpty && value![0] == ' ') {
+                                          return "C/o can't start with space";
+                                        } else {
+                                          return null;
+                                        }
+                                      }
                                   ),
 
                                   SizedBox(
@@ -721,8 +743,11 @@ class BookingForm extends StatelessWidget {
                                       firstText: 'Street',
                                       hintText: 'Please enter',
                                       validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Street is required";
+                                        if(value!.isEmpty){
+                                          return 'Street is required';
+                                        }else
+                                        if (value!.isNotEmpty && value![0] == ' ') {
+                                          return "Street can't start with space";
                                         } else {
                                           return null;
                                         }
@@ -738,9 +763,9 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "City is required";
-                                      } else if (!GetUtils.isAlphabetOnly(
-                                          value)) {
-                                        return " City name must only contain letters";
+                                      } else
+                                      if (value!.isNotEmpty && value![0] == ' ') {
+                                        return "City can't start with space";
                                       } else {
                                         return null;
                                       }
@@ -758,8 +783,10 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Postal code is required";
-                                      }else if(!value.isNum){
-                                        return "mobile must contain number only";
+                                      }else if(!value.isNumericOnly){
+                                        return "Postal code must contain number only";
+                                      }else if(value.length > 6){
+                                        return "Postal code can't have more than 6 digits";
                                       }  else {
                                         return null;
                                       }
@@ -858,7 +885,7 @@ class BookingForm extends StatelessWidget {
                                                         Icons
                                                             .radio_button_checked,
                                                         color: ColorStyle
-                                                            .grey_DAE1E7,
+                                                            .grey_5E6D77,
                                                       )
                                                     : Icon(
                                                         Icons.circle_outlined,
@@ -901,7 +928,7 @@ class BookingForm extends StatelessWidget {
                                                         Icons
                                                             .radio_button_checked,
                                                         color: ColorStyle
-                                                            .grey_DAE1E7,
+                                                            .grey_5E6D77,
                                                       )
                                                     : Icon(
                                                         Icons.circle_outlined,
@@ -945,7 +972,7 @@ class BookingForm extends StatelessWidget {
                                                   .termsAndCondition.value
                                               ? Icon(
                                                   Icons.check_box,
-                                                  color: ColorStyle.grey_DAE1E7,
+                                                  color: ColorStyle.grey_5E6D77,
                                                 )
                                               : Icon(
                                                   Icons.check_box_outline_blank,
@@ -1028,7 +1055,7 @@ class BookingForm extends StatelessWidget {
                                           child: controller.secondTerm.value
                                               ? Icon(
                                                   Icons.check_box,
-                                                  color: ColorStyle.grey_DAE1E7,
+                                                  color: ColorStyle.grey_5E6D77,
                                                 )
                                               : Icon(
                                                   Icons.check_box_outline_blank,

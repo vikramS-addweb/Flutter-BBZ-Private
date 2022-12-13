@@ -18,6 +18,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'dart:io';
 import '../Components/ContainerWithLabel.dart';
 import '../Components/CustomError.dart';
+import '../Utils/Constant.dart';
 
 class MyProfile extends StatelessWidget {
   MyProfile({super.key});
@@ -202,10 +203,14 @@ class MyProfile extends StatelessWidget {
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return "First name is required";
-                                          } else if (!GetUtils.isAlphabetOnly(
-                                              value)) {
-                                            return " The first name must only contain letters";
-                                          } else {
+                                          } else if (!alphaSpace.hasMatch(value)) {
+                                            return " FN should have letters";
+                                          }
+                                          else if(value![0] == ' '){
+                                            // controller.userMessage.value.text = '';
+                                            return "Can't start with space";
+                                          }
+                                          else {
                                             return null;
                                           }
                                         },
@@ -221,10 +226,14 @@ class MyProfile extends StatelessWidget {
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return "Last name is required";
-                                          } else if (!GetUtils.isAlphabetOnly(
-                                              value)) {
-                                            return " The last name must only contain letters";
-                                          } else {
+                                          } else if (!alphaSpace.hasMatch(value)) {
+                                            return " LN should have letters";
+                                          }
+                                          else if(value![0] == ' '){
+                                            // controller.userMessage.value.text = '';
+                                            return "Can't start with space";
+                                          }
+                                          else {
                                             return null;
                                           }
                                         },

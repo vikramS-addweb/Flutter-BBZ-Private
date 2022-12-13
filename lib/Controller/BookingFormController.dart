@@ -161,13 +161,14 @@ class BookingFormController extends GetxController {
     if (response!.isNotEmpty) {
       debugPrint(response.toString());
       // response['message'].toString().showSuccess();
-      if(response['status'] == '1'){
+      if(response['status'] == 1){
 
         response['message'].toString().showSuccess();
         event_id.value = response['event_id'].toString();
         amount.value = response['amount'].toString();
         code.value = response['code'].toString();
         print('hellow hterher');
+        reset();
 
         bookingConfirm();
       }else
