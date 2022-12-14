@@ -256,7 +256,10 @@ class MyProfile extends StatelessWidget {
                                         return "Email is required";
                                       } else if (!GetUtils.isEmail(value)) {
                                         return "Email is invalid";
-                                      } else {
+                                      } else if(value![0] == ' '){
+                                        // controller.userMessage.value.text = '';
+                                        return "email can't start with space";
+                                      }else {
                                         return null;
                                       }
                                     },
@@ -290,37 +293,45 @@ class MyProfile extends StatelessWidget {
                                     height: 15,
                                   ),
                                   // -----------------------Birth Date Field---------------------------->
-                                  TextFormFieldWithLabel(
-                                    controller: controller.birthDate.value,
-                                    enabled: true,
-                                    showCursor: false,
-                                    readOnly: true,
-                                    firstText: 'Birth Date',
-                                    hintText: 'YYYY-MM-DD',
-                                    onTap: () async {
-                                      final dateSelected = await PickerCustom.datePicker(
-                                        dateFormat: 'yyyy-MM-dd',
-                                        selectedDate: DateTime.parse('2006-12-31'),
-                                        firstDate: DateTime(1900),
-                                        lastDate: DateTime.parse('2006-12-31'),
-                                      );
+                                  Stack(
+                                    children: [
+                                      TextFormFieldWithLabel(
+                                        controller: controller.birthDate.value,
+                                        enabled: true,
+                                        showCursor: false,
+                                        readOnly: true,
+                                        firstText: 'Birth Date',
+                                        hintText: 'YYYY-MM-DD',
+                                        onTap: () async {
+                                          final dateSelected = await PickerCustom.datePicker(
+                                            dateFormat: 'yyyy-MM-dd',
+                                            selectedDate: DateTime.parse('2006-12-31'),
+                                            firstDate: DateTime(1900),
+                                            lastDate: DateTime.parse('2006-12-31'),
+                                          );
 
-                                      if (dateSelected != null) {
-                                        controller.birthDate.value.text = dateSelected.toString();
-                                        em ="";
-                                      }else {
-                                        print("Date is not selected");
-                                        em ="Birth Date is required";
-                                      }
-                                    },
-                                    validator: (value) {
-                                      debugPrint(value);
-                                      if (value!.isEmpty || value == "") {
-                                        return "Birth Date is required";
-                                      } else {
-                                        return null;
-                                      }
-                                    },
+                                          if (dateSelected != null) {
+                                            controller.birthDate.value.text = dateSelected.toString();
+                                            em ="";
+                                          }else {
+                                            print("Date is not selected");
+                                            em ="Birth Date is required";
+                                          }
+                                        },
+                                        validator: (value) {
+                                          debugPrint(value);
+                                          if (value!.isEmpty || value == "") {
+                                            return "Birth Date is required";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      ),
+                                      Positioned(
+                                        right: 15,
+                                          bottom: 15,
+                                          child: Image.asset(ImageStyle.calendar, height: 20,))
+                                    ],
                                   ),
 
                                   // if(controller.birthDate.value.text == '')
@@ -376,6 +387,14 @@ class MyProfile extends StatelessWidget {
                                     firstText: 'C/o',
                                     secondText: '',
                                     hintText: 'Please enter',
+                                      validator: (value) {
+                                      if( value!.isNotEmpty && value![0] == ' '){
+                                          // controller.userMessage.value.text = '';
+                                          return "C/o can't start with space";
+                                        }else {
+                                          return null;
+                                        }
+                                      }
                                   ),
                                   const SizedBox(
                                     height: 15,
@@ -388,7 +407,10 @@ class MyProfile extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Street is required";
-                                      } else {
+                                      } else if(value![0] == ' '){
+                                        return "Street can't start with space";
+                                      }
+                                      else {
                                         return null;
                                       }
                                     },
@@ -407,7 +429,10 @@ class MyProfile extends StatelessWidget {
                                       } else if (!GetUtils.isAlphabetOnly(
                                           value)) {
                                         return " City name must only contain letters";
-                                      } else {
+                                      }else if(value![0] == ' '){
+                                        return "City can't start with space";
+                                      }
+                                      else {
                                         return null;
                                       }
                                     },
