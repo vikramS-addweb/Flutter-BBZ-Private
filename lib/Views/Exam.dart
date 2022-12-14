@@ -134,8 +134,7 @@ class _ExamState extends State<Exam> {
       onTap: () async {
         final date = await PickerCustom.datePicker(
           dateFormat: 'dd MMM yyyy',
-          // selectedDate: isFrom ? title == 'From' ? DateTime.now() : DateFormat('dd MMM yyyy').parse(controller.dateFrom.value) : title == 'To'? (title == 'Form'? DateTime.now():DateFormat('dd MMM yyyy').parse(controller.dateFrom.value)) : DateFormat('dd MMM yyyy').parse(controller.dateFrom.value),
-          selectedDate: (title == 'From') ? DateTime.now() : controller.dateFromMinDateForTo.value,
+          selectedDate: (title == 'From') ? DateTime.now() : isFrom ? controller.dateFromMinDateForTo.value : (controller.dateTo.value == 'To' ? controller.dateFromMinDateForTo.value : DateFormat('dd MMM yyyy').parse(controller.dateTo.value)),
           firstDate: isFrom ? DateTime.now() : controller.dateFromMinDateForTo.value,
           lastDate: DateTime(2030),
         );

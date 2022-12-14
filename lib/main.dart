@@ -21,6 +21,7 @@ import 'package:get_storage/get_storage.dart';
 import './Views/language.dart';
 
 void main() async {
+
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -44,7 +45,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),
       // home: BookingConfirmation(code: '65F4B64C97C67DEC33AA3354304818',),
-      // home: Language(),
       home: SplashScreen(),
     );
   }

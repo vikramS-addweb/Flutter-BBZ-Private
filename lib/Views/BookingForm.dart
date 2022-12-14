@@ -511,31 +511,39 @@ class BookingForm extends StatelessWidget {
                                   //   controller: controller.birth_date.value,
                                   // ),
 
-                                  TextFormFieldWithLabel(
-                                    controller: controller.birth_date.value,
-                                    enabled: true,
-                                    showCursor: false,
-                                    readOnly: true,
-                                    firstText: 'Birth Date',
-                                    hintText: 'YYYY-MM-DD',
-                                    onTap: () async {
-                                      final dateSelected = await PickerCustom.datePicker(
-                                        dateFormat: 'yyyy-MM-dd',
-                                        selectedDate: DateTime.parse('2006-12-31'),
-                                        firstDate: DateTime(1900),
-                                        lastDate: DateTime.parse('2006-12-31'),
-                                      );
-                                      if (dateSelected != null) {
-                                        controller.birth_date.value.text = dateSelected.toString();
-                                      }
-                                    },
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Birth Date is required";
-                                      } else {
-                                        return null;
-                                      }
-                                    },
+                                  Stack(
+                                    children: [
+                                      TextFormFieldWithLabel(
+                                        controller: controller.birth_date.value,
+                                        enabled: true,
+                                        showCursor: false,
+                                        readOnly: true,
+                                        firstText: 'Birth Date',
+                                        hintText: 'YYYY-MM-DD',
+                                        onTap: () async {
+                                          final dateSelected = await PickerCustom.datePicker(
+                                            dateFormat: 'yyyy-MM-dd',
+                                            selectedDate: DateTime.parse('2006-12-31'),
+                                            firstDate: DateTime(1900),
+                                            lastDate: DateTime.parse('2006-12-31'),
+                                          );
+                                          if (dateSelected != null) {
+                                            controller.birth_date.value.text = dateSelected.toString();
+                                          }
+                                        },
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Birth Date is required";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      ),
+                                      Positioned(
+                                          right: 15,
+                                          bottom: 15,
+                                          child: Image.asset(ImageStyle.calendar, height: 20,))
+                                    ],
                                   ),
                                   SizedBox(
                                     height: 15,
