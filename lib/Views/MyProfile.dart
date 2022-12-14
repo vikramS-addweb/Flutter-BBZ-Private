@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import '../Components/BGImage.dart';
 import '../Styles/ColorStyle.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,7 @@ class MyProfile extends StatelessWidget {
 
   final fromkey = GlobalKey<FormState>();
   final controller = Get.put(MyProfileController());
-
+  String em = "";
   @override
   Widget build(BuildContext context) {
     // final controller = LoginController();
@@ -288,7 +290,13 @@ class MyProfile extends StatelessWidget {
                                     height: 15,
                                   ),
                                   // -----------------------Birth Date Field---------------------------->
-                                  InkWell(
+                                  TextFormFieldWithLabel(
+                                    controller: controller.birthDate.value,
+                                    enabled: true,
+                                    showCursor: false,
+                                    readOnly: true,
+                                    firstText: 'Birth Date',
+                                    hintText: 'YYYY-MM-DD',
                                     onTap: () async {
                                       final dateSelected = await PickerCustom.datePicker(
                                         dateFormat: 'yyyy-MM-dd',
@@ -299,26 +307,57 @@ class MyProfile extends StatelessWidget {
 
                                       if (dateSelected != null) {
                                         controller.birthDate.value.text = dateSelected.toString();
+                                        em ="";
+                                      }else {
+                                        print("Date is not selected");
+                                        em ="Birth Date is required";
                                       }
                                     },
-                                    child: TextFormFieldWithLabel(
-                                      controller: controller.birthDate.value,
-                                      enabled: false,
-                                      firstText: 'Birth Date',
-                                      hintText: 'dd-mm-yy',
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Birth Date is required";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                    ),
+                                    validator: (value) {
+                                      debugPrint(value);
+                                      if (value!.isEmpty || value == "") {
+                                        return "Birth Date is required";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
                                   ),
+
                                   // if(controller.birthDate.value.text == '')
-                                  // CustomError(
-                                  //   text: "Birth date is required",
+                                  //   Text(em,style: TextStyle(color: Colors.red),),
+
+                                  // TextFormField(
+                                  //   controller: controller.birthDate.value,
+                                  //     showCursor: true,
+                                  //     readOnly: true,
+                                  //   decoration: const InputDecoration(
+                                  //
+                                  //       radiusBorder: 4,
+                                  //       colorBoder: ColorStyle.grey_DAE1E7,
+                                  //       padding: const EdgeInsets.only(left: 14),
+                                  //       colorHint: ColorStyle.grey_DAE1E7,
+                                  //       textStyle: TextStylesCustom.textStyles_14
+                                  //           .apply(color: ColorStyle.grey_5E6D77),
+                                  //       hintText: 'dd-mm-yy',
+                                  //       labelText: "Birth Date"),
+                                  //   onTap: () async {
+                                  //     DateTime? pickedDate = await showDatePicker(
+                                  //         context: context,
+                                  //         firstDate: DateTime(1900),
+                                  //         lastDate: DateTime.parse('2006-12-31'),
+                                  //         initialDate:DateTime.parse('2006-12-31'),
+                                  //     );
+                                  //     if (pickedDate != null) {
+                                  //       String formattedDate =
+                                  //       DateFormat('yyyy-MM-dd').format(pickedDate);
+                                  //       controller.birthDate.value.text = formattedDate;
+                                  //     } else {}
+                                  //   },
+                                  //   validator: (value) {
+                                  //     return controller.requiredFieldValidator(value);
+                                  //   },
                                   // ),
+
                                   const SizedBox(
                                     height: 40,
                                   ),

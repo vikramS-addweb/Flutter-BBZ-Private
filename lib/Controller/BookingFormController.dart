@@ -125,73 +125,78 @@ class BookingFormController extends GetxController {
 
     //----------------------------------------------Booking form api----------------------------->
 
-    final params = {
-      '_method': 'post',
-      'id_proof': image.value.path,
-      'email': email.value.text,
-      'event_id': '${examDetailController.examDetailData.value['id']}',
-      'salutation': salutation.value,
-      'academic_title': academic_title.value.text,
-      'first_name': first_name.value.text,
-      'last_name': last_name.value.text,
-      'identification_number': identification_number.value.text,
-      'birth_date': birth_date.value.text,
-      'birth_place': birth_place.value.text,
-      'country_of_birth': country_of_birth.value.text,
-      'mother_tongue': motherToungue.value,
-      'telephone': telephone.value.text,
-      'phone': mobile.value.text,
-      'c/o': co.value.text,
-      'address_line_1': first_name.value.text,
-      'street': street.value.text,
-      'city': city.value.text,
-      'zip_code': postal_code.value.text,
-      'country': country.value,
-      'payment_gateway': paymentMethod.value,
-      'term_conditions_1': '${termsAndCondition.value}',
-      'term_conditions': '${secondTerm.value}',
-      'term_conditions_2': 'true'
-    };
-
-
-    final response =
-        await API.instance.post(endPoint: endpoint, params: params);
-    print(response);
-
-    if (response!.isNotEmpty) {
-      debugPrint(response.toString());
-      // response['message'].toString().showSuccess();
-      if(response['status'] == 1){
-
-        response['message'].toString().showSuccess();
-        event_id.value = response['event_id'].toString();
-        amount.value = response['amount'].toString();
-        code.value = response['code'].toString();
-        print('hellow hterher');
-        reset();
-
-        bookingConfirm();
-      }else
-      if(response['message'] != null){
-        response['message'].toString().showError();
-      }
-      // final response1 = await API.instance.get(endPoint: 'api/profile');
-      // print(response1);
-      //
-      // if (response1!.isNotEmpty) {
-      //   dictUserSaved = response;
-      // }
-
-      // navigateToBack(Get.context);
+    if(image.value.path.isEmpty){
+      "ID Proof Image is required".showError();
     }
+    else {
+      uploadImage();
 
+      final params = {
+        '_method': 'post',
+        'id_proof': image.value.path,
+        'email': email.value.text,
+        'event_id': '${examDetailController.examDetailData.value['id']}',
+        'salutation': salutation.value,
+        'academic_title': academic_title.value.text,
+        'first_name': first_name.value.text,
+        'last_name': last_name.value.text,
+        'identification_number': identification_number.value.text,
+        'birth_date': birth_date.value.text,
+        'birth_place': birth_place.value.text,
+        'country_of_birth': country_of_birth.value.text,
+        'mother_tongue': motherToungue.value,
+        'telephone': telephone.value.text,
+        'phone': mobile.value.text,
+        'c/o': co.value.text,
+        'address_line_1': first_name.value.text,
+        'street': street.value.text,
+        'city': city.value.text,
+        'zip_code': postal_code.value.text,
+        'country': country.value,
+        'payment_gateway': paymentMethod.value,
+        'term_conditions_1': '${termsAndCondition.value}',
+        'term_conditions': '${secondTerm.value}',
+        'term_conditions_2': 'true'
+      };
+
+
+      final response =
+      await API.instance.post(endPoint: endpoint, params: params);
+      print(response);
+
+      if (response!.isNotEmpty) {
+        debugPrint(response.toString());
+        // response['message'].toString().showSuccess();
+        if (response['status'] == 1) {
+          response['message'].toString().showSuccess();
+          event_id.value = response['event_id'].toString();
+          amount.value = response['amount'].toString();
+          code.value = response['code'].toString();
+          print('hellow hterher');
+          reset();
+
+          bookingConfirm();
+        } else if (response['message'] != null) {
+          response['message'].toString().showError();
+        }
+        // final response1 = await API.instance.get(endPoint: 'api/profile');
+        // print(response1);
+        //
+        // if (response1!.isNotEmpty) {
+        //   dictUserSaved = response;
+        // }
+
+        // navigateToBack(Get.context);
+      }
+    }
 
   }
 
   // -------------------------------------------upload image------------------------------------->
 
   uploadImage() async {
-    debugPrint(image.value.path);
+    print("img print");
+    print(image.value.path.isEmpty);
     final params = {
       '_method': 'post',
     };
