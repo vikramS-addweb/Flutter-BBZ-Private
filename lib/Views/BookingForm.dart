@@ -97,6 +97,9 @@ class BookingForm extends StatelessWidget {
                       Expanded(
                           child: ElevatedButtonCustoms(
                         onTap: () {
+                          if(controller.image.value.path.isEmpty){
+                            "ID Proof Image is required".showError();
+                          }
                           if (controller.country.value == '') {
                             controller.countryError.value = true;
                           } else {
@@ -486,7 +489,8 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Email is required";
-                                      } else if (!GetUtils.isEmail(value)) {
+                                      }
+                                      else if (!GetUtils.isEmail(value)) {
                                         return "Email is invalid";
                                       }
                                       // else if (!emailRegexWithoutSpecial.hasMatch(value)) {
@@ -501,12 +505,38 @@ class BookingForm extends StatelessWidget {
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  DateFieldCustom(
-                                    firstText: 'Birth Date',
-                                    hintText: 'dd-mm-yy',
-                                    controller: controller.birth_date.value,
-                                  ),
+                                  // DateFieldCustom(
+                                  //   firstText: 'Birth Date',
+                                  //   hintText: 'dd-mm-yy',
+                                  //   controller: controller.birth_date.value,
+                                  // ),
 
+                                  TextFormFieldWithLabel(
+                                    controller: controller.birth_date.value,
+                                    enabled: true,
+                                    showCursor: false,
+                                    readOnly: true,
+                                    firstText: 'Birth Date',
+                                    hintText: 'YYYY-MM-DD',
+                                    onTap: () async {
+                                      final dateSelected = await PickerCustom.datePicker(
+                                        dateFormat: 'yyyy-MM-dd',
+                                        selectedDate: DateTime.parse('2006-12-31'),
+                                        firstDate: DateTime(1900),
+                                        lastDate: DateTime.parse('2006-12-31'),
+                                      );
+                                      if (dateSelected != null) {
+                                        controller.birth_date.value.text = dateSelected.toString();
+                                      }
+                                    },
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Birth Date is required";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                  ),
                                   SizedBox(
                                     height: 15,
                                   ),
@@ -646,10 +676,9 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      PickerCustom.imagePicker((file) {
+                                      final xx = PickerCustom.imagePicker((file) {
                                         controller.image.value = file;
-
-                                        controller.uploadImage();
+                                        //controller.uploadImage();
                                       });
                                     },
                                     child: Row(
@@ -686,6 +715,7 @@ class BookingForm extends StatelessWidget {
                                                   color:
                                                       ColorStyle.grey_5E6D77),
                                         )),
+
                                       ],
                                     ),
                                   ),
@@ -816,8 +846,7 @@ class BookingForm extends StatelessWidget {
                                         controller.country.value = value;
                                       });
                                     },
-                                    child: controller.country.value == '' ||
-                                            controller.country.value == null
+                                    child: controller.country.value == ''
                                         ? ContainerWithLabel(
                                             firstText: 'Country',
                                             hintText: 'Please Select',

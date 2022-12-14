@@ -79,7 +79,8 @@ class SignUp extends StatelessWidget {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "First name is required";
-                              } else if (!alphaSpace.hasMatch(value)) {
+                              }
+                              else if (!alphaSpace.hasMatch(value)) {
                                 return " FN should have letters";
                               }
                               else if(value![0] == ' '){
@@ -139,9 +140,11 @@ class SignUp extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Email is required";
-                        } if (!GetUtils.isEmail(value)) {
+                        }
+                        else if (!GetUtils.isEmail(value)) {
                           return "Email is invalid";
-                        } else {
+                        }
+                        else {
                           return null;
                         }
                       },

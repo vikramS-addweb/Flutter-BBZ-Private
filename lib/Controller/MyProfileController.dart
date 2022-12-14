@@ -118,4 +118,10 @@ class MyProfileController extends GetxController {
   updateOnMyProfile() {
     name.value = dictUserSaved['name'].toString();
   }
+  String? requiredFieldValidator(input) {
+    if (input == null || input.isEmpty) {
+      return "this field is required";
+    }
+    return null;
+  }
 }
