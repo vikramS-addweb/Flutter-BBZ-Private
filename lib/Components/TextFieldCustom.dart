@@ -139,6 +139,9 @@ class TextFormFieldOutline extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool? enabled;
   final bool? obscureText;
+  final Function()? onTap;
+  final bool? showCursor;
+  final bool readOnly;
 
   TextFormFieldOutline({
     Key? key,
@@ -157,6 +160,9 @@ class TextFormFieldOutline extends StatelessWidget {
     this.validator,
     this.enabled = true,
     this.obscureText = false,
+    this.onTap,
+    this.showCursor = true,
+    this.readOnly = false,
   }) : super(key: key);
 
   @override
@@ -180,6 +186,9 @@ class TextFormFieldOutline extends StatelessWidget {
           hintStyle: textStyle!.apply(color: colorHint)),
       style: textStyle!,
       validator: validator,
+      onTap: onTap,
+      showCursor:showCursor,
+      readOnly:readOnly,
     );
   }
 }
@@ -244,6 +253,7 @@ class _TextFormFieldPWDOutlineState extends State<TextFormFieldPWDOutline> {
 // ....................................text Field wit label..................................
 
 class TextFormFieldWithLabel extends StatelessWidget {
+
   TextFormFieldWithLabel(
       {Key? key,
         this.controller,
@@ -254,6 +264,9 @@ class TextFormFieldWithLabel extends StatelessWidget {
       this.validator,
         this.enabled = true,
         this.obscureText = false,
+        this.onTap,
+        this.showCursor = true,
+        this.readOnly = false
       })
       : super(key: key);
   final TextEditingController? controller;
@@ -264,6 +277,9 @@ class TextFormFieldWithLabel extends StatelessWidget {
   final bool? enabled;
   final bool? obscureText;
   String? Function(String?)? validator;
+  final Function()? onTap;
+  final bool? showCursor;
+  final bool readOnly ;
 
   @override
   Widget build(BuildContext context) {
@@ -288,6 +304,8 @@ class TextFormFieldWithLabel extends StatelessWidget {
         TextFormFieldOutline(
           obscureText: obscureText,
           enabled: enabled,
+            showCursor:showCursor,
+            readOnly:readOnly,
           keyboardType: keyboardType,
           controller: controller,
           hintText: hintText!,
@@ -298,6 +316,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
           textStyle: TextStylesCustom.textStyles_14
               .apply(color: ColorStyle.grey_5E6D77),
           validator: validator,
+          onTap: onTap
         )
       ],
     );
