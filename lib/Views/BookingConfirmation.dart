@@ -92,7 +92,7 @@ class BookingConfirmation extends StatelessWidget {
                 size: 30,
               ),
               onPressed: () {
-                navigateToBack(context);
+                PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
               },
             ),
             styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -145,7 +145,7 @@ class BookingConfirmation extends StatelessWidget {
                                   children: [
                                     Text('Booking successful!', style: TextStylesCustom.textStyles_22.apply(color: Colors.white),),
                                     SizedBox(height: 6,),
-                                    Text('Booking details has been sent to: johndoe@gmail.com', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
+                                    Text('Booking details has been sent to: ${controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'}', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
                                   ],
                                 ),
                               )
@@ -184,7 +184,7 @@ class BookingConfirmation extends StatelessWidget {
                               ]),
                           child: ItemsListCard(items: [
                             {'item': 'Booking Number:', 'value': '${controller.bookingConfirmationData['id'] != null ? controller.bookingConfirmationData['id'] : '11'}'},
-                            {'item': 'Booking Date:', 'value': '${ controller.bookingConfirmationData['booked_event']['exam_date']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}')) : '03/30/2022'}'},
+                            {'item': 'Booking Date:', 'value': '${ controller.bookingConfirmationData['created_at']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['created_at']}')) : '03/30/2022'}'},
                             {'item': 'Payment Method:', 'value': '${controller.bookingConfirmationData['gateway'] != null ? controller.bookingConfirmationData['gateway'] : 'Visa ending with 3334'}'},
                             {'item': 'Booking Status:', 'value': 'Booked'}
                           ],),
@@ -345,7 +345,7 @@ class BookingConfirmation extends StatelessWidget {
                           {'item': 'Email', 'value': controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'},
                           {'item': 'Salutation', 'value': controller.bookingConfirmationData['salutation'] ?? 'Lorem'},
                           {'item': 'Academic title', 'value': controller.bookingConfirmationData['academic_title'] ?? 'Lorem ipsum'},
-                          {'item': 'Birth date', 'value': '22/03/1995'},
+                          {'item': 'Birth date', 'value': controller.bookingConfirmationData['birth_date']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['birth_date']}')) : ''},
                           {'item': 'Birth place', 'value': controller.bookingConfirmationData['birth_place'] ?? ''},
                           {'item': 'Country of birth', 'value': controller.bookingConfirmationData['country_Of_birth'] ?? ''},
                           {'item': 'Mother Tongue', 'value': controller.bookingConfirmationData['mother_tongue'] ?? ''},
@@ -353,7 +353,7 @@ class BookingConfirmation extends StatelessWidget {
                           {'item': 'Mobile', 'value': controller.bookingConfirmationData['phone'] ?? ''},
                           {
                             'item': 'Address',
-                            'value': '${controller.bookingConfirmationData['address_line_1'] ?? ''}, ${controller.bookingConfirmationData['street'] ?? ''}, ${controller.bookingConfirmationData['city'] ?? ''}, ${controller.bookingConfirmationData['zip_code'] ?? ''}'
+                            'value': '${controller.bookingConfirmationData['street'] ?? ''}, ${controller.bookingConfirmationData['city'] ?? ''}, ${controller.bookingConfirmationData['zip_code'] ?? ''}'
                           },
                         ]),
                         const SizedBox(

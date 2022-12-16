@@ -19,6 +19,7 @@ import './Views/Ticket.dart';
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:get_storage/get_storage.dart';
 import './Views/language.dart';
+import './Utils/LocaleString.dart';
 
 void main() async {
 
@@ -41,6 +42,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      translations: LocaleString(),
+      locale: Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ColorStyle.primaryColor_1570A5.toMaterialColor()),

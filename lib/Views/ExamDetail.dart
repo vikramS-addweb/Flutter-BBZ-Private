@@ -105,6 +105,7 @@ class ExamDetail extends StatelessWidget {
             ),
           ),
           body: SingleChildScrollView(
+
             child: Column(
               children: [
 
@@ -279,6 +280,7 @@ class ExamDetail extends StatelessWidget {
                 ),
                 // --------------------------------------------Booking Submission ------------------------------>
                 Container(
+                  color: Colors.white,
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
@@ -297,11 +299,7 @@ class ExamDetail extends StatelessWidget {
                       ):
                       Text('Libero sem vitae sed donec conubia integer nisi integer rhoncus imperdiet orci odio libero est integer a integer tincidunt sollicitudin blandit fusce nibh leo vulputate lobortis egestas dapibus faucibus metus conubia maecenas cras potenti cum hac arcu rhoncus nullam eros dictum torquent integer cursus bibendum sem sociis molestie tellus purus Quam fusce convallis ipsum malesuada amet velit aliquam urna nullam vehicula fermentum id morbi dis magnis porta sagittis euismod etiam',style: TextStylesCustom.textStyles_14,),
                       // Text(controller.examDetailData['content'] != null ? '${controller.examDetailData['content']}' :'Libero sem vitae sed donec conubia integer nisi integer rhoncus imperdiet orci odio libero est integer a integer tincidunt sollicitudin blandit fusce nibh leo vulputate lobortis egestas dapibus faucibus metus conubia maecenas cras potenti cum hac arcu rhoncus nullam eros dictum torquent integer cursus bibendum sem sociis molestie tellus purus Quam fusce convallis ipsum malesuada amet velit aliquam urna nullam vehicula fermentum id morbi dis magnis porta sagittis euismod etiam',style: TextStylesCustom.textStyles_14,),
-                      const SizedBox(height: 33,),
-                      Text('Was müssen Sie für diese Prüfungkönnen?', style: TextStylesCustom.textStyles_17.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
-                      const SizedBox(height: 6,),
-                      Text('Sie können sich spontan und fließend ausdrücken. Mit umgangssprachlichen Wendungen sind Sie vertraut und können den Sprachstil gezielt variieren. Sie behalten ein hohes Maß an grammatischer Korrektheit bei.',style: TextStylesCustom.textStyles_14,),
-                      const SizedBox(height: 72,)
+                      const SizedBox(height: 30,)
 
                     ],
                   ),
