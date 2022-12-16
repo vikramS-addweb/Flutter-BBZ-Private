@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
         builder: (controller) {
       return Obx(() => Scaffold(
         appBar: AppBarStyle(
-          title: 'Log In/Sign Up',
+          title: 'Log In/Sign Up'.tr,
           styleTitle: TextStylesCustom.textStyles_14.apply(
             color: ColorStyle.primaryColor_1570A5,
             fontWeightDelta: 2,
@@ -67,7 +67,7 @@ class WelcomeScreen extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(topLeft: Radius.circular(50), bottomLeft: Radius.circular(50))
           ),
-          label:Text(' Choose language', style: TextStylesCustom.textStyles_14,),
+          label:Text(' Choose language'.tr, style: TextStylesCustom.textStyles_14,),
           icon: SvgPicture.asset(ImageStyle.welcomeLanguage, height: 30,),
           backgroundColor: ColorStyle.primaryColor_1570A5,
         ),
@@ -102,7 +102,7 @@ class WelcomeScreen extends StatelessWidget {
                   //   ),
                   // ),
                   Text(
-                      'Welcome To BBZ!',
+                      'Welcome To BBZ!'.tr,
                       style: TextStylesCustom.textStyles_26.apply(
                           color: ColorStyle.primaryColor_1570A5,
                           fontWeightDelta: 1)
@@ -112,7 +112,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   Text(
                       textAlign: TextAlign.center,
-                      'Login/Sign Up to get your profile and stayupdated with the upcoming exams and news.',
+                      'Login/Sign Up to get your profile and stay updated with the upcoming exams and news.'.tr,
                       style: TextStylesCustom.textStyles_13.apply(
                         color: ColorStyle.grey_5E6D77,
                       )),
@@ -120,7 +120,7 @@ class WelcomeScreen extends StatelessWidget {
                     height: 50,
                   ),
                   ElevatedButtonCustom(
-                    text: 'LOGIN',
+                    text: 'LOGIN'.tr,
                     styleText: TextStylesCustom.textStyles_15.apply(
                         fontWeightDelta: 4
                     ),
@@ -134,8 +134,8 @@ class WelcomeScreen extends StatelessWidget {
                     height: 16,
                   ),
                   TextRichCustom(
-                    textFirst: 'Do not have an account? ',
-                    textSecond: 'Sign Up',
+                    textFirst: 'Do not have an account? '.tr,
+                    textSecond: 'Sign Up'.tr,
                     fontWeightdelta: 0,
                     onTap: () {
                       controller.isBackVisible.value = true;
@@ -151,7 +151,7 @@ class WelcomeScreen extends StatelessWidget {
                       children: [
 
                         Text(
-                            'Continue as a Guest',
+                            'Continue as a Guest'.tr,
                             style: TextStylesCustom.textStyles_14
                                 .apply(color: ColorStyle.primaryColor_1570A5)
                         ),

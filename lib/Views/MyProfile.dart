@@ -278,6 +278,8 @@ class MyProfile extends StatelessWidget {
                                         return "Telephone is required";
                                       }else if(!value.isNumericOnly){
                                         return "Telephone must contain only number";
+                                      }else if(value[0] == '0'){
+                                        return "Telephone can't start with zero";
                                       }
                                       else if (value.length < 7) {
                                         return "Min digit should be 7";

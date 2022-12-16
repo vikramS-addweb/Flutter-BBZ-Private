@@ -19,7 +19,7 @@ class Language extends StatelessWidget {
         key: keyDrawer,
         drawer: DrawerScreen(),
                   appBar: AppBarStyle(
-                    title: 'languages',
+                    title: 'languages'.tr,
 
                     leading: IconButton(
                       icon: Icon(
@@ -43,9 +43,15 @@ class Language extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: 50,),
-                        ElevatedButtonCustoms(text: 'English',onTap: (){},width: Get.size.width, colorBG: ColorStyle.primaryColor_1570A5,),
+                        ElevatedButtonCustoms(text: 'English',onTap: (){
+                          var local = Locale('en','US');
+                          Get.updateLocale(local);
+                        },width: Get.size.width, colorBG: ColorStyle.primaryColor_1570A5,),
                         SizedBox(height: 20,),
-                        ElevatedButtonCustoms(text: 'Deutsch',onTap: (){},width: Get.size.width, colorBG: Colors.white, colorText: Colors.black,),
+                        ElevatedButtonCustoms(text: 'Deutsch',onTap: (){
+                          var local = Locale('de');
+                          Get.updateLocale(local);
+                        },width: Get.size.width, colorBG: Colors.white, colorText: Colors.black,),
                       ],
                     ),
                   ));

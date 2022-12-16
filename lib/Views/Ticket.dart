@@ -123,6 +123,7 @@ JohnDoe@gmail.com
                           'title': 'Student',
                           'secondText': '''${controller.bookingDetails['first_name'] ?? ''} ${controller.bookingDetails['last_name'] ?? ''}
 ${controller.bookingDetails['email'] ?? ''}
+johnnyharpertesting03@gmail.com
 ${controller.bookingDetails['phone'] ?? ''}''',
                         },
                       ]),
@@ -209,7 +210,7 @@ class ItemsList extends StatelessWidget {
                         children: [
                           Text(
                             items[index]['title'],
-                            style: TextStylesCustom.textStyles_16.apply(
+                            style: TextStylesCustom.textStyles_14.apply(
                                 color: ColorStyle.primaryColor_1570A5,
                                 fontWeightDelta: 1),
                           ),
@@ -218,7 +219,7 @@ class ItemsList extends StatelessWidget {
                           ),
                           Text(
                             items[index]['secondText'],
-                            style: TextStylesCustom.textStyles_14,
+                            style: TextStylesCustom.textStyles_10,
                           )
                         ],
                       ),
