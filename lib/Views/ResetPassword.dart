@@ -28,7 +28,7 @@ class ResetPassword extends StatelessWidget {
     final controller = ResetPasswordController();
     return Scaffold(
       appBar: AppBarStyle(
-        title: 'Reset Your Password',
+        title: 'Reset Your Password'.tr,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -63,7 +63,7 @@ class ResetPassword extends StatelessWidget {
                     height: 30,
                   ),
                   Text(
-                    'Kindly enter your registered E-mail Address to continue to Reset your password.',
+                    'Kindly enter your registered E-mail Address to continue to Reset your password.'.tr,
                     style: TextStylesCustom.textStyles_14
                         .apply(fontWeightDelta: -1),
                   ),
@@ -75,7 +75,7 @@ class ResetPassword extends StatelessWidget {
                   TextFormFieldOutline(
                     controller: controller.useremail.value,
                     keyboardType: TextInputType.emailAddress,
-                    hintText: 'Email address',
+                    hintText: 'Email address'.tr,
                     textStyle: TextStylesCustom.textStyles_14
                         .apply(fontWeightDelta: -1),
                     padding: const EdgeInsets.only(left: 16, right: 16),
@@ -83,9 +83,9 @@ class ResetPassword extends StatelessWidget {
                     radiusBorder: 4,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Email is required";
+                        return "Email is required".tr;
                       }else if(!GetUtils.isEmail(value)){
-                        return "Email is invalid";
+                        return "Email is invalid".tr;
                       } else {
                         return null;
                       }
@@ -97,7 +97,7 @@ class ResetPassword extends StatelessWidget {
                   ),
                   // -----------------------Login button---------------------------->
                   ElevatedButtonCustom(
-                    text: 'SEND PASSWORD RESET LINK',
+                    text: 'SEND PASSWORD RESET LINK'.tr,
                     size: Size(MediaQuery.of(context).size.width - 30, 50),
                     styleText: TextStylesCustom.textStyles_15.apply(
                       fontWeightDelta: 2,

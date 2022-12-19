@@ -53,13 +53,13 @@ class ChangePassword extends StatelessWidget {
                     // controller.validation();
                   }
                 },
-                text: 'SAVE CHANGES',
+                text: 'SAVE CHANGES'.tr,
                 styleText: TextStylesCustom.textStyles_16,
                 colorBG: ColorStyle.primaryColor_1570A5,
               ),
             ),
             appBar: AppBarStyle(
-              title: 'Change Password',
+              title: 'Change Password'.tr,
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back,
@@ -103,13 +103,13 @@ class ChangePassword extends StatelessWidget {
                                 TextFormFieldWithLabel(
                                   controller: controller.currentPassword.value,
                                   obscureText: true,
-                                  firstText: 'Current Password',
-                                  hintText: 'Please enter',
+                                  firstText: 'Current Password'.tr,
+                                  hintText: 'Please enter'.tr,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Current password is required";
+                                      return "Current password is required".tr;
                                     } else if(value.trim().length < 8){
-                                      return "Current password must be at least 8 characters";
+                                      return "Current password must be at least 8 characters".tr;
                                     }else {
                                       return null;
                                     }
@@ -120,13 +120,13 @@ class ChangePassword extends StatelessWidget {
                                 TextFormFieldWithLabel(
                                   controller: controller.newPassword.value,
                                   obscureText: true,
-                                  firstText: 'New Password',
-                                  hintText: 'Please enter',
+                                  firstText: 'New Password'.tr,
+                                  hintText: 'Please enter'.tr,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "New password is required";
+                                      return "New password is required".tr;
                                     } else if(value.trim().length < 8){
-                                      return "New password must be at least 8 characters";
+                                      return "New password must be at least 8 characters".tr;
                                     }else {
                                       return null;
                                     }
@@ -137,15 +137,15 @@ class ChangePassword extends StatelessWidget {
                                 TextFormFieldWithLabel(
                                   controller: controller.confirmPassword.value,
                                   obscureText: true,
-                                  firstText: 'Confirm Password',
-                                  hintText: 'Please enter',
+                                  firstText: 'Confirm Password'.tr,
+                                  hintText: 'Please enter'.tr,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Confirm password is required";
+                                      return "Confirm password is required".tr;
                                     } else if(value.trim().length < 8){
-                                      return "Confirm password must be at least 8 characters";
+                                      return "Confirm password must be at least 8 characters".tr;
                                     } else if(value != controller.newPassword.value.text){
-                                      return "Confirm password must be same as new password";
+                                      return "Confirm password must be same as new password".tr;
                                     }
                                     else {
                                       return null;

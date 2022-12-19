@@ -38,7 +38,7 @@ class MyProfile extends StatelessWidget {
         init: controller,
         builder: ((controller) => Obx(() => Scaffold(
               appBar: AppBarStyle(
-                title: 'My Profile',
+                title: 'My Profile'.tr,
                 leading: IconButton(
                   icon: Icon(
                     Icons.arrow_back,
@@ -72,7 +72,7 @@ class MyProfile extends StatelessWidget {
                     }
                   },
                   styleText: TextStylesCustom.textStyles_16,
-                  text: 'SAVE CHANGES',
+                  text: 'SAVE CHANGES'.tr,
                   colorBG: ColorStyle.primaryColor_1570A5,
                 ),
               ),
@@ -175,7 +175,7 @@ class MyProfile extends StatelessWidget {
                                               controller.editProfileImage();
                                             });
                                           },
-                                          text: 'EDIT PICTURE',
+                                          text: 'EDIT PICTURE'.tr,
                                           styleText: TextStylesCustom
                                               .textStyles_16
                                               .apply(
@@ -200,17 +200,17 @@ class MyProfile extends StatelessWidget {
                                       Expanded(
                                           child: TextFormFieldWithLabel(
                                         controller: controller.firstName.value,
-                                        firstText: 'First Name',
-                                        hintText: 'John',
+                                        firstText: 'First Name'.tr,
+                                        hintText: 'John'.tr,
                                         validator: (value) {
                                           if (value!.isEmpty) {
-                                            return "First name is required";
+                                            return "First name is required".tr;
                                           } else if (!alphaSpace.hasMatch(value)) {
-                                            return " FN should have letters";
+                                            return " FN should have letters".tr;
                                           }
                                           else if(value![0] == ' '){
                                             // controller.userMessage.value.text = '';
-                                            return "Can't start with space";
+                                            return "Can't start with space".tr;
                                           }
                                           else {
                                             return null;
@@ -223,17 +223,17 @@ class MyProfile extends StatelessWidget {
                                       Expanded(
                                           child: TextFormFieldWithLabel(
                                         controller: controller.lastName.value,
-                                        firstText: 'Last Name',
-                                        hintText: 'Doe',
+                                        firstText: 'Last Name'.tr,
+                                        hintText: 'Doe'.tr,
                                         validator: (value) {
                                           if (value!.isEmpty) {
-                                            return "Last name is required";
+                                            return "Last name is required".tr;
                                           } else if (!alphaSpace.hasMatch(value)) {
-                                            return " LN should have letters";
+                                            return " LN should have letters".tr;
                                           }
                                           else if(value![0] == ' '){
                                             // controller.userMessage.value.text = '';
-                                            return "Can't start with space";
+                                            return "Can't start with space".tr;
                                           }
                                           else {
                                             return null;
@@ -248,17 +248,17 @@ class MyProfile extends StatelessWidget {
                                   // -----------------------Email Field---------------------------->
                                   TextFormFieldWithLabel(
                                     controller: controller.email.value,
-                                    firstText: 'Email',
+                                    firstText: 'Email'.tr,
                                     hintText: 'Johndoe@gmail.com',
                                     enabled: false,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Email is required";
+                                        return "Email is required".tr;
                                       } else if (!GetUtils.isEmail(value)) {
-                                        return "Email is invalid";
+                                        return "Email is invalid".tr;
                                       } else if(value![0] == ' '){
                                         // controller.userMessage.value.text = '';
-                                        return "email can't start with space";
+                                        return "email can't start with space".tr;
                                       }else {
                                         return null;
                                       }
@@ -271,20 +271,20 @@ class MyProfile extends StatelessWidget {
                                   TextFormFieldWithLabel(
                                     controller: controller.telephone.value,
                                     keyboardType: TextInputType.number,
-                                    firstText: 'Telephone',
-                                    hintText: 'Please enter',
+                                    firstText: 'Telephone'.tr,
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Telephone is required";
+                                        return "Telephone is required".tr;
                                       }else if(!value.isNumericOnly){
-                                        return "Telephone must contain only number";
+                                        return "Telephone must contain only number".tr;
                                       }else if(value[0] == '0'){
-                                        return "Telephone can't start with zero";
+                                        return "Telephone can't start with zero".tr;
                                       }
                                       else if (value.length < 7) {
-                                        return "Min digit should be 7";
+                                        return "Min digit should be 7".tr;
                                       }else if (value.length > 15) {
-                                        return "Max digit should be 15";
+                                        return "Max digit should be 15".tr;
                                       }
                                       else {
                                         return null;
@@ -302,7 +302,7 @@ class MyProfile extends StatelessWidget {
                                         enabled: true,
                                         showCursor: false,
                                         readOnly: true,
-                                        firstText: 'Birth Date',
+                                        firstText: 'Birth Date'.tr,
                                         hintText: 'YYYY-MM-DD',
                                         onTap: () async {
                                           final dateSelected = await PickerCustom.datePicker(
@@ -316,14 +316,14 @@ class MyProfile extends StatelessWidget {
                                             controller.birthDate.value.text = dateSelected.toString();
                                             em ="";
                                           }else {
-                                            print("Date is not selected");
-                                            em ="Birth Date is required";
+                                            print("Date is not selected".tr);
+                                            em ="Birth Date is required".tr;
                                           }
                                         },
                                         validator: (value) {
                                           debugPrint(value);
                                           if (value!.isEmpty || value == "") {
-                                            return "Birth Date is required";
+                                            return "Birth Date is required".tr;
                                           } else {
                                             return null;
                                           }
@@ -376,7 +376,7 @@ class MyProfile extends StatelessWidget {
                                   ),
 
                                   Text(
-                                    'Address',
+                                    'Address'.tr,
                                     style: TextStylesCustom.textStyles_16
                                         .apply(fontWeightDelta: 1),
                                   ),
@@ -386,13 +386,13 @@ class MyProfile extends StatelessWidget {
                                   // -----------------------C/o field---------------------------->
                                   TextFormFieldWithLabel(
                                     controller: controller.co.value,
-                                    firstText: 'C/o',
+                                    firstText: 'C/o'.tr,
                                     secondText: '',
-                                    hintText: 'Please enter',
+                                    hintText: 'Please enter'.tr,
                                       validator: (value) {
                                       if( value!.isNotEmpty && value![0] == ' '){
                                           // controller.userMessage.value.text = '';
-                                          return "C/o can't start with space";
+                                          return "C/o can't start with space".tr;
                                         }else {
                                           return null;
                                         }
@@ -404,13 +404,13 @@ class MyProfile extends StatelessWidget {
                                   // -----------------------Street field---------------------------->
                                   TextFormFieldWithLabel(
                                     controller: controller.street.value,
-                                    firstText: 'Street',
-                                    hintText: 'Please enter',
+                                    firstText: 'Street'.tr,
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Street is required";
+                                        return "Street is required".tr;
                                       } else if(value![0] == ' '){
-                                        return "Street can't start with space";
+                                        return "Street can't start with space".tr;
                                       }
                                       else {
                                         return null;
@@ -423,16 +423,16 @@ class MyProfile extends StatelessWidget {
                                   // -----------------------City field---------------------------->
                                   TextFormFieldWithLabel(
                                     controller: controller.city.value,
-                                    firstText: 'City',
-                                    hintText: 'Please enter',
+                                    firstText: 'City'.tr,
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "City is required";
+                                        return "City is required".tr;
                                       } else if (!GetUtils.isAlphabetOnly(
                                           value)) {
-                                        return " City name must only contain letters";
+                                        return " City name must only contain letters".tr;
                                       }else if(value![0] == ' '){
-                                        return "City can't start with space";
+                                        return "City can't start with space".tr;
                                       }
                                       else {
                                         return null;
@@ -446,13 +446,13 @@ class MyProfile extends StatelessWidget {
                                   TextFormFieldWithLabel(
                                     controller: controller.postalCode.value,
                                     keyboardType: TextInputType.number,
-                                    firstText: 'Postal Code',
-                                    hintText: 'Please enter',
+                                    firstText: 'Postal Code'.tr,
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Postal code is required";
+                                        return "Postal code is required".tr;
                                       } else if (!value!.isNumericOnly) {
-                                        return 'Postal code must contain only numbers';
+                                        return 'Postal code must contain only numbers'.tr;
                                       } else {
                                         return null;
                                       }
@@ -471,15 +471,15 @@ class MyProfile extends StatelessWidget {
                                     child: controller.country.value == ''?
 
                                     ContainerWithLabel(
-                                      firstText: 'Country',
-                                      hintText: 'Please Select',
+                                      firstText: 'Country'.tr,
+                                      hintText: 'Please Select'.tr,
                                       isError: controller.countryError.value,
                                       colorhintText: ColorStyle.grey_DAE1E7,
                                       colorBorder: ColorStyle.white,
                                       // selectedValue: controller.country.value.text,
                                     ):
                                     ContainerWithLabel(
-                                      firstText: 'Country',
+                                      firstText: 'Country'.tr,
                                       hintText: controller.country.value,
                                       isError: controller.countryError.value,
                                       colorhintText: ColorStyle.grey_5E6D77,
@@ -492,7 +492,7 @@ class MyProfile extends StatelessWidget {
 
                                   if (controller.countryError.value)
                                     CustomError(
-                                      text: 'Country is required',
+                                      text: 'Country is required'.tr,
                                     ),
                                   const SizedBox(
                                     height: 40,
@@ -508,7 +508,7 @@ class MyProfile extends StatelessWidget {
                                       // ));
                                       // Get.to(()=>const ChangePassword());
                                     },
-                                    text: 'CHANGE PASSWORD',
+                                    text: 'CHANGE PASSWORD'.tr,
                                     colorText: ColorStyle.primaryColor_1570A5,
                                     colorBG: Colors.white,
                                     width: Get.mediaQuery.size.width,

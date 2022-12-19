@@ -78,7 +78,7 @@ class BookingForm extends StatelessWidget {
                     children: [
                       // SizedBox(width: 10,),
                       Text(
-                        'Total',
+                        'Total'.tr,
                         style: TextStylesCustom.textStyles_16
                             .apply(color: ColorStyle.grey_5E6D77),
                       ),
@@ -98,7 +98,7 @@ class BookingForm extends StatelessWidget {
                           child: ElevatedButtonCustoms(
                         onTap: () {
                           if(controller.image.value.path.isEmpty){
-                            "ID Proof Image is required".showError();
+                            "ID Proof Image is required".tr.showError();
                           }
                           if (controller.country.value == '') {
                             controller.countryError.value = true;
@@ -118,6 +118,12 @@ class BookingForm extends StatelessWidget {
                             controller.termsError.value = false;
                           }
 
+                          if (!controller.privacyPolicy.value) {
+                            controller.privacyError.value = true;
+                          } else {
+                            controller.privacyError.value = false;
+                          }
+
                           if (!controller.secondTerm.value) {
                             controller.agreementError.value = true;
                           } else {
@@ -128,6 +134,7 @@ class BookingForm extends StatelessWidget {
                               !controller.countryError.value &&
                               !controller.agreementError.value &&
                               !controller.termsError.value &&
+                              !controller.privacyError.value &&
                               !controller.paymentError.value) {
                             debugPrint('yay you logged in successfully');
                             controller.registerExam();
@@ -137,7 +144,7 @@ class BookingForm extends StatelessWidget {
 
                           // BookingConfirmation().navigateToCustom(context, withNavBar: false);
                         },
-                        text: 'PAY NOW',
+                        text: 'PAY NOW'.tr,
                         colorBG:
                             ColorStyle.primaryColor_1570A5.withOpacity(0.5),
                       ))
@@ -252,9 +259,9 @@ class BookingForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(15),
                                 child: ItemsList(
                                   items: [
-                                    {'item': 'Exam Level:', 'value': '${examDetails['exam_level'] ?? 'A2-B1'}'},
-                                    {'item': 'Exam date:', 'value': examDetails['exam_date'] != null ? '${DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${examDetails['exam_date']}'))}':'25/03/2022 (SAT)'},
-                                    {'item': 'Exam Time:', 'value': examDetails['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${examDetails['exam_date']}T${examDetails['exam_time']}'))}':'09:30 AM'},
+                                    {'item': 'Exam Level'.tr + ':', 'value': '${examDetails['exam_level'] ?? 'A2-B1'}'},
+                                    {'item': 'Exam Date'.tr + ':', 'value': examDetails['exam_date'] != null ? '${DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${examDetails['exam_date']}'))}':'25/03/2022 (SAT)'},
+                                    {'item': 'Exam Time'.tr + ':', 'value': examDetails['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${examDetails['exam_date']}T${examDetails['exam_time']}'))}':'09:30 AM'},
                                   ],
                                   secondColor: Colors.black,
                                 ),
@@ -271,7 +278,7 @@ class BookingForm extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Examination Fees',
+                                    Text('Examination Fees'.tr,
                                         style: TextStylesCustom.textStyles_14),
                                     Expanded(
                                       child: SizedBox(
@@ -299,7 +306,7 @@ class BookingForm extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Total:',
+                                    Text('Total:'.tr,
                                         style: TextStylesCustom.textStyles_18
                                             .apply(
                                                 color: ColorStyle
@@ -335,7 +342,7 @@ class BookingForm extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text(
-                            'Booking Submission',
+                            'Booking Submission'.tr,
                             style: TextStylesCustom.textStyles_16.apply(
                                 color: ColorStyle.primaryColor_1570A5,
                                 fontWeightDelta: 1),
@@ -361,7 +368,7 @@ class BookingForm extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Contact Information',
+                                    'Contact Information'.tr,
                                     style: TextStylesCustom.textStyles_15
                                         .apply(fontWeightDelta: 2),
                                   ),
@@ -370,18 +377,18 @@ class BookingForm extends StatelessWidget {
                                   ),
 
                                   DropdownWithLabel(
-                                    firstText: 'Salutation',
-                                    list: ['Mr', 'Mrs', 'Ms'],
+                                    firstText: 'Salutation'.tr,
+                                    list: ['Mr'.tr, 'Mrs'.tr, 'Ms'.tr],
                                     width: Get.mediaQuery.size.width,
                                     controllerValue: controller.salutation,
-                                    hintText: 'Please select',
+                                    hintText: 'Please select'.tr,
                                     colorBoder: ColorStyle.grey_DAE1E7,
                                     padding:
                                         EdgeInsets.only(left: 15, right: 15),
                                     textStyle: TextStylesCustom.textStyles_14,
                                     validator: (value) {
                                       if (value == null) {
-                                        return 'Salutation is required';
+                                        return 'Salutation is required'.tr;
                                       } else {
                                         controller.salutation.value = value;
                                         return null;
@@ -394,12 +401,12 @@ class BookingForm extends StatelessWidget {
 
                                   TextFormFieldWithLabel(
                                     controller: controller.academic_title.value,
-                                    firstText: 'Academic Title',
+                                    firstText: 'Academic Title'.tr,
                                     secondText: '',
-                                    hintText: 'Please enter',
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isNotEmpty && value![0] == ' ') {
-                                        return "Academic title can't start with space";
+                                        return "Academic title can't start with space".tr;
                                       } else {
                                         return null;
                                       }
@@ -414,17 +421,17 @@ class BookingForm extends StatelessWidget {
                                         child: TextFormFieldWithLabel(
                                           controller:
                                               controller.first_name.value,
-                                          firstText: 'First Name',
-                                          hintText: 'Please enter',
+                                          firstText: 'First Name'.tr,
+                                          hintText: 'Please enter'.tr,
                                             validator: (value) {
                                               if (value!.isEmpty) {
-                                                return "First name is required";
+                                                return "First name is required".tr;
                                               } else if (!alphaSpace.hasMatch(value)) {
-                                                return " FN should have letters";
+                                                return " FN should have letters".tr;
                                               }
                                               else if(value![0] == ' '){
                                                 // controller.userMessage.value.text = '';
-                                                return "Can't start with space";
+                                                return "Can't start with space".tr;
                                               }
                                               else {
                                                 return null;
@@ -439,17 +446,17 @@ class BookingForm extends StatelessWidget {
                                         child: TextFormFieldWithLabel(
                                           controller:
                                               controller.last_name.value,
-                                          firstText: 'Last Name',
-                                          hintText: 'Please enter',
+                                          firstText: 'Last Name'.tr,
+                                          hintText: 'Please enter'.tr,
                                           validator: (value) {
                                             if (value!.isEmpty) {
-                                              return "Last name is required";
+                                              return "Last name is required".tr;
                                             } else if (!alphaSpace.hasMatch(value)) {
-                                              return " FN should have letters";
+                                              return " FN should have letters".tr;
                                             }
                                             else if(value![0] == ' '){
                                               // controller.userMessage.value.text = '';
-                                              return "Can't start with space";
+                                              return "Can't start with space".tr;
                                             }
                                             else {
                                               return null;
@@ -465,14 +472,14 @@ class BookingForm extends StatelessWidget {
                                   TextFormFieldWithLabel(
                                     controller:
                                         controller.identification_number.value,
-                                    firstText: 'Identification Number',
-                                    hintText: 'Please enter',
+                                    firstText: 'Identification Number'.tr,
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Identification number is required";
+                                        return "Identification number is required".tr;
                                       }else
-                                      if (value!.isNotEmpty && value![0] == ' ') {
-                                        return "Identification number can't start with space";
+                                      if (!alphaNumeric.hasMatch(value)) {
+                                        return "Identification number contains only numbers and letters.".tr;
                                       } else {
                                         return null;
                                       }
@@ -484,14 +491,14 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                     controller: controller.email.value,
-                                    firstText: 'Email',
-                                    hintText: 'Please enter',
+                                    firstText: 'Email'.tr,
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Email is required";
+                                        return "Email is required".tr;
                                       }
                                       else if (!GetUtils.isEmail(value)) {
-                                        return "Email is invalid";
+                                        return "Email is invalid".tr;
                                       }
                                       // else if (!emailRegexWithoutSpecial.hasMatch(value)) {
                                       //   return "Email can't have special characters";
@@ -518,8 +525,8 @@ class BookingForm extends StatelessWidget {
                                         enabled: true,
                                         showCursor: false,
                                         readOnly: true,
-                                        firstText: 'Birth Date',
-                                        hintText: 'YYYY-MM-DD',
+                                        firstText: 'Birth Date'.tr,
+                                        hintText: 'YYYY-MM-DD'.tr,
                                         onTap: () async {
                                           final dateSelected = await PickerCustom.datePicker(
                                             dateFormat: 'yyyy-MM-dd',
@@ -533,7 +540,7 @@ class BookingForm extends StatelessWidget {
                                         },
                                         validator: (value) {
                                           if (value!.isEmpty) {
-                                            return "Birth Date is required";
+                                            return "Birth Date is required".tr;
                                           } else {
                                             return null;
                                           }
@@ -550,17 +557,17 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                     controller: controller.birth_place.value,
-                                    firstText: 'Birth Place',
-                                    hintText: 'Please enter',
+                                    firstText: 'Birth Place'.tr,
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Birth place is required";
+                                        return "Birth place is required".tr;
                                       }else if(value![0] == ' '){
-                                        return "Birth place can't start with space";
+                                        return "Birth place can't start with space".tr;
                                       }
                                       else if (!alphaSpace.hasMatch(
                                           value)) {
-                                        return "Birth place must only contain letters";
+                                        return "Birth place must only contain letters".tr;
                                       } else {
                                         return null;
                                       }
@@ -573,17 +580,20 @@ class BookingForm extends StatelessWidget {
                                   TextFormFieldWithLabel(
                                     controller:
                                         controller.country_of_birth.value,
-                                    firstText: 'Country Of Birth',
-                                    hintText: 'Please enter',
+                                    firstText: 'Country Of Birth'.tr,
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Country of birth is required";
-                                      }else if(value![0] == ' '){
-                                        return "Country of birth place can't start with space";
+                                        return "Country of birth is required".tr;
+                                      }else if(!alphaSpace.hasMatch(value)){
+                                        return "Country of birth contains letters only".tr;
+                                      }
+                                      else if(value![0] == ' '){
+                                        return "Country of birth place can't start with space".tr;
                                       }
                                       else if (!alphaSpace.hasMatch(
                                           value)) {
-                                        return "Country of birth place must only contain letters";
+                                        return "Country of birth place must only contain letters".tr;
                                         return "Country of birth place must only contain letters";
                                       } else {
                                         return null;
@@ -595,23 +605,23 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   DropdownWithLabel(
-                                    firstText: 'Mother Tongue',
+                                    firstText: 'Mother Tongue'.tr,
                                     list: [
-                                      'English',
-                                      'German',
-                                      'Spanish',
-                                      'French',
-                                      'Hindi'
+                                      'English'.tr,
+                                      'German'.tr,
+                                      'Spanish'.tr,
+                                      'French'.tr,
+                                      'Hindi'.tr
                                     ],
                                     width: Get.mediaQuery.size.width,
                                     controllerValue: controller.motherToungue,
                                     colorBoder: ColorStyle.grey_DAE1E7,
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 15),
-                                    hintText: 'Please Select',
+                                    hintText: 'Please Select'.tr,
                                     validator: (value) {
                                       if (value == null) {
-                                        return 'Mother tongue is required';
+                                        return 'Mother tongue is required'.tr;
                                       } else {
                                         controller.motherToungue.value = value;
                                         return null;
@@ -620,7 +630,7 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   if (controller.motherToungueError.value)
                                     CustomError(
-                                      text: 'Mother toungue is required',
+                                      text: 'Mother toungue is required'.tr,
                                     ),
 
                                   SizedBox(
@@ -628,9 +638,9 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                     controller: controller.telephone.value,
-                                    firstText: 'Telephone',
+                                    firstText: 'Telephone'.tr,
                                     secondText: '',
-                                    hintText: 'Please enter',
+                                    hintText: 'Please enter'.tr,
                                     keyboardType: TextInputType.phone,
 
                                       validator: (value) {
@@ -639,12 +649,12 @@ class BookingForm extends StatelessWidget {
                                         // }else
                                         if(!value!.isEmpty){
                                           if(!value!.isNum){
-                                            return "Telephone must contain number only";
+                                            return "Telephone must contain number only".tr;
                                           }
                                           else if (value.length < 7) {
-                                            return "Min digit should be 7";
+                                            return "Min digit should be 7".tr;
                                           }else if (value.length > 15) {
-                                            return "Max digit should be 15";
+                                            return "Max digit should be 15".tr;
                                           }else {
                                             return null;
                                           }
@@ -660,20 +670,20 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                       controller: controller.mobile.value,
-                                      firstText: 'Mobile',
+                                      firstText: 'Mobile'.tr,
                                       secondText: '*',
-                                      hintText: 'Please enter',
+                                      hintText: 'Please enter'.tr,
                                       keyboardType: TextInputType.phone,
                                       validator: (value) {
                                         if (value!.isEmpty) {
-                                          return "Mobile number is required";
+                                          return "Mobile number is required".tr;
                                         }else if(!value.isNum){
-                                          return "mobile must contain number only";
+                                          return "mobile must contain number only".tr;
                                         }
                                         else if (value.length < 7) {
-                                          return "Min digit should be 7";
+                                          return "Min digit should be 7".tr;
                                         }else if (value.length > 15) {
-                                          return "Max digit should be 15";
+                                          return "Max digit should be 15".tr;
                                         }else {
                                           return null;
                                         }
@@ -689,7 +699,8 @@ class BookingForm extends StatelessWidget {
                                         //controller.uploadImage();
                                       });
                                     },
-                                    child: Row(
+                                    child:
+                                    Row(
                                       children: [
                                         Icon(
                                           Icons.add,
@@ -699,34 +710,85 @@ class BookingForm extends StatelessWidget {
                                         SizedBox(
                                           width: 7,
                                         ),
-                                        Text(
-                                          'Upload ID Proof',
-                                          style: TextStylesCustom.textStyles_15
-                                              .apply(
-                                                  color: ColorStyle
-                                                      .primaryColor_1570A5,
-                                                  fontWeightDelta: 2),
-                                        ),
-                                        Text(
-                                          ' *',
-                                          style: TextStylesCustom.textStyles_16
-                                              .apply(color: Colors.red),
-                                        ),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Expanded(
-                                            child: Text(
-                                          '(size up to 500 kb)',
-                                          style: TextStylesCustom.textStyles_12
-                                              .apply(
-                                                  color:
-                                                      ColorStyle.grey_5E6D77),
-                                        )),
+                                        Expanded(child: Text.rich(
+                                            TextSpan(
+                                                text: '',
+                                                children: <InlineSpan>[
+                                                  TextSpan(
+                                                    text: 'Upload ID Proof'.tr,
+                                                    style: TextStylesCustom.textStyles_15
+                                                        .apply(
+                                                        color: ColorStyle
+                                                            .primaryColor_1570A5,
+                                                        fontWeightDelta: 2),
+                                                  ),TextSpan(
+                                                    text: ' *',
+                                                      style: TextStylesCustom.textStyles_16
+                                                          .apply(color: Colors.red)
+                                                  ),
+                                                  TextSpan(
+                                                    text: '(size up to 500 kb)'.tr,
+                                                    style: TextStylesCustom.textStyles_12
+                                                        .apply(
+                                                        color:
+                                                        ColorStyle.grey_5E6D77),
+                                                  )
+                                                ]
+                                            )
+                                        ),)
 
                                       ],
                                     ),
                                   ),
+                                  // InkWell(
+                                  //   onTap: () {
+                                  //     final xx = PickerCustom.imagePicker((file) {
+                                  //       controller.image.value = file;
+                                  //       //controller.uploadImage();
+                                  //     });
+                                  //   },
+                                  //   child:
+                                  //   Row(
+                                  //     children: [
+                                  //       Icon(
+                                  //         Icons.add,
+                                  //         color: ColorStyle.primaryColor_1570A5,
+                                  //         size: 30,
+                                  //       ),
+                                  //       SizedBox(
+                                  //         width: 7,
+                                  //       ),
+                                  //       Expanded(
+                                  //         child: Text(
+                                  //           'Upload ID Proof'.tr,
+                                  //           style: TextStylesCustom.textStyles_15
+                                  //               .apply(
+                                  //                   color: ColorStyle
+                                  //                       .primaryColor_1570A5,
+                                  //                   fontWeightDelta: 2),
+                                  //         ),
+                                  //       ),
+                                  //       Text(
+                                  //         ' *',
+                                  //         style: TextStylesCustom.textStyles_16
+                                  //             .apply(color: Colors.red),
+                                  //       ),
+                                  //       SizedBox(
+                                  //         width: 7,
+                                  //       ),
+                                  //       Expanded(
+                                  //         child: Text(
+                                  //           '(size up to 500 kb)'.tr,
+                                  //           style: TextStylesCustom.textStyles_12
+                                  //           .apply(
+                                  //               color:
+                                  //                   ColorStyle.grey_5E6D77),
+                                  //         ),
+                                  //       ),
+                                  //
+                                  //     ],
+                                  //   ),
+                                  // ),
                                   SizedBox(
                                     height: 15,
                                   ),
@@ -748,7 +810,7 @@ class BookingForm extends StatelessWidget {
                                     height: 33,
                                   ),
                                   Text(
-                                    'Address',
+                                    'Address'.tr,
                                     style: TextStylesCustom.textStyles_16
                                         .apply(fontWeightDelta: 2),
                                   ),
@@ -761,12 +823,12 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                     controller: controller.co.value,
-                                    firstText: 'C/o',
+                                    firstText: 'C/o'.tr,
                                     secondText: '',
-                                    hintText: 'Please enter',
+                                    hintText: 'Please enter'.tr,
                                       validator: (value) {
                                         if (value!.isNotEmpty && value![0] == ' ') {
-                                          return "C/o can't start with space";
+                                          return "C/o can't start with space".tr;
                                         } else {
                                           return null;
                                         }
@@ -778,14 +840,14 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                       controller: controller.street.value,
-                                      firstText: 'Street',
-                                      hintText: 'Please enter',
+                                      firstText: 'Street'.tr,
+                                      hintText: 'Please enter'.tr,
                                       validator: (value) {
                                         if(value!.isEmpty){
-                                          return 'Street is required';
+                                          return 'Street is required'.tr;
                                         }else
                                         if (value!.isNotEmpty && value![0] == ' ') {
-                                          return "Street can't start with space";
+                                          return "Street can't start with space".tr;
                                         } else {
                                           return null;
                                         }
@@ -796,14 +858,17 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                     controller: controller.city.value,
-                                    firstText: 'City',
-                                    hintText: 'Please enter',
+                                    firstText: 'City'.tr,
+                                    hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "City is required";
-                                      } else
+                                        return "City is required".tr;
+                                      }else if(!alphaSpace.hasMatch(value)){
+                                        return "City contains only letters.".tr;
+                                      }
+                                      else
                                       if (value!.isNotEmpty && value![0] == ' ') {
-                                        return "City can't start with space";
+                                        return "City can't start with space".tr;
                                       } else {
                                         return null;
                                       }
@@ -815,16 +880,16 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                     controller: controller.postal_code.value,
-                                    firstText: 'Postal Code',
-                                    hintText: 'Please enter',
+                                    firstText: 'Postal Code'.tr,
+                                    hintText: 'Please enter'.tr,
                                     keyboardType: TextInputType.number,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Postal code is required";
+                                        return "Postal code is required".tr;
                                       }else if(!value.isNumericOnly){
-                                        return "Postal code must contain number only";
+                                        return "Postal code must contain number only".tr;
                                       }else if(value.length > 6){
-                                        return "Postal code can't have more than 6 digits";
+                                        return "Postal code can't have more than 6 digits".tr;
                                       }  else {
                                         return null;
                                       }
@@ -856,8 +921,8 @@ class BookingForm extends StatelessWidget {
                                     },
                                     child: controller.country.value == ''
                                         ? ContainerWithLabel(
-                                            firstText: 'Country',
-                                            hintText: 'Please Select',
+                                            firstText: 'Country'.tr,
+                                            hintText: 'Please Select'.tr,
                                             isError:
                                                 controller.countryError.value,
                                             colorhintText:
@@ -865,7 +930,7 @@ class BookingForm extends StatelessWidget {
                                             // selectedValue: controller.country.value.text,
                                           )
                                         : ContainerWithLabel(
-                                            firstText: 'Country',
+                                            firstText: 'Country'.tr,
                                             hintText: controller.country.value,
                                             isError:
                                                 controller.countryError.value,
@@ -877,20 +942,20 @@ class BookingForm extends StatelessWidget {
 
                                   if (controller.countryError.value)
                                     CustomError(
-                                      text: 'Country is required',
+                                      text: 'Country is required'.tr,
                                     ),
 
                                   SizedBox(
                                     height: 35,
                                   ),
                                   Text(
-                                    'Select Payment Method',
+                                    'Select Payment Method'.tr,
                                     style: TextStylesCustom.textStyles_16
                                         .apply(fontWeightDelta: 2),
                                   ),
                                   if (controller.paymentError.value)
                                     CustomError(
-                                      text: 'Select payment method is required',
+                                      text: 'Select payment method is required'.tr,
                                     ),
                                   SizedBox(
                                     height: 23,
@@ -951,7 +1016,7 @@ class BookingForm extends StatelessWidget {
                                         InkWell(
                                           onTap: () {
                                             controller.paymentMethod.value =
-                                                'visa/master card';
+                                                'stripe';
                                           },
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -960,7 +1025,7 @@ class BookingForm extends StatelessWidget {
                                               children: [
                                                 controller.paymentMethod
                                                             .value ==
-                                                        'visa/master card'
+                                                        'stripe'
                                                     ? Icon(
                                                         Icons
                                                             .radio_button_checked,
@@ -977,7 +1042,7 @@ class BookingForm extends StatelessWidget {
                                                 ),
                                                 Expanded(
                                                     child: Text(
-                                                  'VISA/Master Card',
+                                                  'Stripe',
                                                   style: TextStylesCustom
                                                       .textStyles_16
                                                       .apply(
@@ -1026,7 +1091,7 @@ class BookingForm extends StatelessWidget {
                                               // style: TextStylesCustom.textStyles_12,
                                               children: <TextSpan>[
                                                 TextSpan(
-                                                    text: 'I have read the ',
+                                                    text: 'I have read and accept the '.tr,
                                                     style: TextStylesCustom
                                                         .textStyles_15
                                                         .apply(
@@ -1034,34 +1099,12 @@ class BookingForm extends StatelessWidget {
                                                                 Colors.black)),
                                                 TextSpan(
                                                     text:
-                                                        'General Terms and Conditions',
+                                                        'General Terms and Conditions'.tr,
                                                     style: TextStylesCustom
                                                         .textStyles_15
                                                         .apply(
                                                             color: ColorStyle
                                                                 .primaryColor_1570A5)),
-                                                TextSpan(
-                                                    text: ' and ',
-                                                    style: TextStylesCustom
-                                                        .textStyles_15
-                                                        .apply(
-                                                            color:
-                                                                Colors.black)),
-                                                TextSpan(
-                                                    text: 'Privacy Policy',
-                                                    style: TextStylesCustom
-                                                        .textStyles_15
-                                                        .apply(
-                                                            color: ColorStyle
-                                                                .primaryColor_1570A5)),
-                                                TextSpan(
-                                                    text:
-                                                        ' and agree to the storage of the above data. ',
-                                                    style: TextStylesCustom
-                                                        .textStyles_15
-                                                        .apply(
-                                                            color:
-                                                                Colors.black)),
                                               ],
                                             ),
                                           ),
@@ -1071,12 +1114,85 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   if (controller.termsError.value)
                                     CustomError(
-                                      text: 'Terms and conditions is required',
+                                      text: 'Terms and conditions is required'.tr,
                                     ),
 
                                   SizedBox(
                                     height: 10,
                                   ),
+
+
+                                  InkWell(
+                                    onTap: () {
+                                      controller.privacyPolicy.value =
+                                      !controller.privacyPolicy.value;
+                                    },
+                                    child: Row(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.only(top: 2.0),
+                                          child: controller
+                                              .privacyPolicy.value
+                                              ? Icon(
+                                            Icons.check_box,
+                                            color: ColorStyle.grey_5E6D77,
+                                          )
+                                              : Icon(
+                                            Icons.check_box_outline_blank,
+                                            color: ColorStyle.grey_A8B0B5,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                        Expanded(
+                                          child: RichText(
+                                            text: TextSpan(
+                                              // text: 'I have read the ',
+                                              // style: TextStylesCustom.textStyles_12,
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                    text: 'I have read and accept the '.tr,
+                                                    style: TextStylesCustom
+                                                        .textStyles_15
+                                                        .apply(
+                                                        color:
+                                                        Colors.black)),
+
+                                                TextSpan(
+                                                    text: 'Privacy Policy'.tr,
+                                                    style: TextStylesCustom
+                                                        .textStyles_15
+                                                        .apply(
+                                                        color: ColorStyle
+                                                            .primaryColor_1570A5)),
+                                                TextSpan(
+                                                    text:
+                                                    ' and agree to the storage of the above data. '.tr,
+                                                    style: TextStylesCustom
+                                                        .textStyles_15
+                                                        .apply(
+                                                        color:
+                                                        Colors.black)),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  if (controller.privacyError.value)
+                                    CustomError(
+                                      text: 'Privacy policy is required'.tr,
+                                    ),
+
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+
                                   InkWell(
                                     onTap: () {
                                       controller.secondTerm.value =
@@ -1104,7 +1220,7 @@ class BookingForm extends StatelessWidget {
                                         ),
                                         Expanded(
                                           child: Text(
-                                              'I agree that the service can be performed before the end of the right of withdrawal and I am aware that the right of withdrawal ends with the specified withdrawal period.',
+                                              'I agree that the service can be performed before the end of the right of withdrawal and I am aware that the right of withdrawal ends with the specified withdrawal period.'.tr,
                                               style: TextStylesCustom
                                                   .textStyles_15
                                                   .apply(color: Colors.black)),
@@ -1114,7 +1230,7 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   if (controller.agreementError.value)
                                     CustomError(
-                                      text: 'Agreement checkbox is required',
+                                      text: 'Agreement checkbox is required'.tr,
                                     ),
 
                                   SizedBox(

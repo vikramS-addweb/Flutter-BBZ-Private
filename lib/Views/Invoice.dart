@@ -79,7 +79,7 @@ class Invoice extends StatelessWidget {
         },
         builder: ((controller)=> Obx(() => controller.bookingDetails.isEmpty ? Container(color: Colors.white,) :  Scaffold(
           appBar: AppBarStyle(
-            title: 'Invoice',
+            title: 'Invoice'.tr,
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
@@ -116,7 +116,7 @@ class Invoice extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Billing To',
+                          'Billing To'.tr,
                           style: TextStylesCustom.textStyles_18.apply(
                               color: ColorStyle.primaryColor_1570A5,
                               fontWeightDelta: 1),
@@ -144,19 +144,19 @@ class Invoice extends StatelessWidget {
                         const SizedBox(height: 10,),
                         ItemsList(items: [
                           {
-                            'item': 'Full Name:',
+                            'item': 'Full Name'.tr+':',
                             'value': '${controller.bookingDetails['first_name'] ?? ''} ${controller.bookingDetails['last_name'] ?? ''}'
                           },
                           {
-                            'item':'Email:',
+                            'item':'Email'.tr+':',
                             'value':'${controller.bookingDetails['email'] ?? ''}'
                           },
                           {
-                            'item':'Phone:',
+                            'item':'Phone'.tr+':',
                             'value':'${controller.bookingDetails['phone'] ?? ''}'
                           },
                           {
-                            'item':'Address:',
+                            'item':'Address'.tr+':',
                             'value':'${controller.bookingDetails['address'] != null ? '${controller.bookingDetails['address']}, ': ''}${controller.bookingDetails['address2'] != null ? '${controller.bookingDetails['address2']}, ': ''}${controller.bookingDetails['city'] != null ? '${controller.bookingDetails['city']}, ': ''}${controller.bookingDetails['zip_code'] != null ? '${controller.bookingDetails['zip_code']}, ': ''}${controller.bookingDetails['country'] != null ? '${controller.bookingDetails['country']}': ''}'
                           },
                         ],),
@@ -176,31 +176,31 @@ class Invoice extends StatelessWidget {
                         const SizedBox(height: 10,),
                         ItemsList(items: [
                           {
-                            'item':'Booking Number',
+                            'item':'Booking Number'.tr,
                             'value':'${controller.bookingDetails['id'] ?? ''}'
                           },
                           {
-                            'item':'Booking Status',
+                            'item':'Booking Status'.tr,
                             'value':'${controller.bookingDetails['status'] ?? ''}'
                           },
                           {
-                            'item':'Payment Method',
+                            'item':'Payment Method'.tr,
                             'value':'${controller.bookingDetails['gateway'] ?? ''}'
                           },
                           {
-                            'item':'Exam Name',
+                            'item':'Exam Name'.tr,
                             'value':'${controller.bookingDetails['booked_event']['title'] ?? ''}'
                           },
                           {
-                            'item':'Exam Type',
+                            'item':'Exam Type'.tr,
                             'value':'${controller.bookingDetails['examLevel'] ?? ''}'
                           },
                           {
-                            'item':'Exam Time And Date',
+                            'item':'Exam Time And Date'.tr,
                             'value':'${controller.bookingDetails['booked_event']['exam_date'] != null ? DateFormat('dd.MM.yyyy').format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}')):''}(${controller.bookingDetails['booked_event']['exam_time'] ?? ''})'
                           },
                           {
-                            'item':'Fee',
+                            'item':'Fee'.tr,
                             'value':'${controller.bookingDetails['booked_event']['price'] ?? ''} €'
                           }
                         ],),
@@ -209,7 +209,7 @@ class Invoice extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Total', style: TextStylesCustom.textStyles_16.apply(color:ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
+                            Text('Total'.tr, style: TextStylesCustom.textStyles_16.apply(color:ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
                             const SizedBox(width: 20,),
                             Expanded(child: Text('${controller.bookingDetails['total'] ?? ''} €', style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.red_ED0925, fontWeightDelta: 1),textAlign: TextAlign.end,)),
                           ],

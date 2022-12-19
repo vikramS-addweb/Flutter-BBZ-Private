@@ -113,7 +113,7 @@ class BookingDetails extends StatelessWidget {
                   ),
                   // -----------------------------------Booking Details---------------------->
                   Text(
-                    'Booking Details',
+                    'Booking Details'.tr,
                     style: TextStylesCustom.textStyles_18.apply(
                         color: ColorStyle.primaryColor_1570A5,
                         fontWeightDelta: 1),
@@ -124,11 +124,11 @@ class BookingDetails extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Booking ID',
+                      Text('Booking ID'.tr,
                           style: TextStylesCustom.textStyles_14.apply(
                             color: ColorStyle.primaryColor_1570A5,
                           )),
-                      Text('86',
+                      Text('${controller.bookingDetails['id'] ?? ''}',
                           style: TextStylesCustom.textStyles_14.apply(
                             color: ColorStyle.primaryColor_1570A5,
                           ))
@@ -138,13 +138,13 @@ class BookingDetails extends StatelessWidget {
                     height: 10,
                   ),
                   ItemsList(items: [
-                    {'item': 'Booking status', 'value': '${controller.bookingDetails['status'] ?? ''}'},
-                    {'item': 'Booking date', 'value': controller.bookingDetails['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['created_at']}')):''},
-                    {'item': 'Payment method', 'value': '${controller.bookingDetails['gateway'] ?? ''}'},
-                    {'item': 'Exam type', 'value': '${controller.bookingDetails['examLevel'] ?? ''}'},
-                    {'item': 'Exam date', 'value': controller.bookingDetails['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}')):''},
-                    {'item': 'Exam time', 'value': controller.bookingDetails['booked_event']['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}T${controller.bookingDetails['booked_event']['exam_time']}'))}':''},
-                    {'item': 'Exam fees', 'value': '${controller.bookingDetails['booked_event']['price'] ?? ''} €'},
+                    {'item': 'Booking Status'.tr, 'value': '${controller.bookingDetails['status'] ?? ''}'},
+                    {'item': 'Booking Date'.tr, 'value': controller.bookingDetails['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['created_at']}')):''},
+                    {'item': 'Payment Method'.tr, 'value': '${controller.bookingDetails['gateway'] ?? ''}'},
+                    {'item': 'Exam Type'.tr, 'value': '${controller.bookingDetails['examLevel'] ?? ''}'},
+                    {'item': 'Exam Date'.tr, 'value': controller.bookingDetails['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}')):''},
+                    {'item': 'Exam Time'.tr, 'value': controller.bookingDetails['booked_event']['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}T${controller.bookingDetails['booked_event']['exam_time']}'))}':''},
+                    {'item': 'Exam Fees'.tr, 'value': '${controller.bookingDetails['booked_event']['price'] ?? ''} €'},
                   ]),
                   SizedBox(
                     height: 10,
@@ -152,7 +152,7 @@ class BookingDetails extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Total',
+                      Text('Total'.tr,
                           style: TextStylesCustom.textStyles_14.apply(
                             color: ColorStyle.primaryColor_1570A5,
                           )),
@@ -181,7 +181,7 @@ class BookingDetails extends StatelessWidget {
                       height: 35,
                     ),
                     Text(
-                      'Your Information',
+                      'Your Information'.tr,
                       style: TextStylesCustom.textStyles_18.apply(
                           color: ColorStyle.primaryColor_1570A5,
                           fontWeightDelta: 1),
@@ -190,20 +190,20 @@ class BookingDetails extends StatelessWidget {
                       height: 35,
                     ),
                     ItemsList(items: [
-                      {'item': 'First name', 'value': '${controller.bookingDetails['first_name'] ?? ''}'},
-                      {'item': 'Last name', 'value': '${controller.bookingDetails['last_name'] ?? ''}'},
-                      {'item': 'Identification No.', 'value': '${controller.bookingDetails['identification_number'] ?? ''}'},
-                      {'item': 'Email', 'value': '${controller.bookingDetails['email'] ?? ''}'},
-                      {'item': 'Salutation', 'value': '${controller.bookingDetails['salutation'] ?? ''}'},
-                      {'item': 'Academic title', 'value': '${controller.bookingDetails['academic_title'] ?? ''}'},
-                      {'item': 'Birth date', 'value': controller.bookingDetails['birth_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['birth_date']}')):''},
-                      {'item': 'Birth place', 'value': '${controller.bookingDetails['birth_place'] ?? ''}'},
-                      {'item': 'Country of birth', 'value': '${controller.bookingDetails['country_Of_birth'] ?? ''}'},
-                      {'item': 'Mother tongue', 'value': '${controller.bookingDetails['mother_tongue'] ?? ''}'},
-                      {'item': 'Telephone', 'value': '${controller.bookingDetails['tele_phone'] ?? ''}'},
-                      {'item': 'Mobile', 'value': '${controller.bookingDetails['phone'] ?? ''}'},
+                      {'item': 'First Name'.tr, 'value': '${controller.bookingDetails['first_name'] ?? ''}'},
+                      {'item': 'Last Name'.tr, 'value': '${controller.bookingDetails['last_name'] ?? ''}'},
+                      {'item': 'Identification No.'.tr, 'value': '${controller.bookingDetails['identification_number'] ?? ''}'},
+                      {'item': 'Email'.tr, 'value': '${controller.bookingDetails['email'] ?? ''}'},
+                      {'item': 'Salutation'.tr, 'value': '${controller.bookingDetails['salutation'] ?? ''}'},
+                      {'item': 'Academic Title'.tr, 'value': '${controller.bookingDetails['academic_title'] ?? ''}'},
+                      {'item': 'Birth Date'.tr, 'value': controller.bookingDetails['birth_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['birth_date']}')):''},
+                      {'item': 'Birth Place'.tr, 'value': '${controller.bookingDetails['birth_place'] ?? ''}'},
+                      {'item': 'Country Of Birth'.tr, 'value': '${controller.bookingDetails['country_Of_birth'] ?? ''}'},
+                      {'item': 'Mother Tongue'.tr, 'value': '${controller.bookingDetails['mother_tongue'] ?? ''}'},
+                      {'item': 'Telephone'.tr, 'value': '${controller.bookingDetails['tele_phone'] ?? ''}'},
+                      {'item': 'Mobile'.tr, 'value': '${controller.bookingDetails['phone'] ?? ''}'},
                       {
-                        'item': 'Address',
+                        'item': 'Address'.tr,
                         'value': '${controller.bookingDetails['address'] != null ? '${controller.bookingDetails['address']}, ': ''}${controller.bookingDetails['address2'] != null ? '${controller.bookingDetails['address2']}, ': ''}${controller.bookingDetails['city'] != null ? '${controller.bookingDetails['city']}, ': ''}${controller.bookingDetails['zip_code'] != null ? '${controller.bookingDetails['zip_code']}, ': ''}${controller.bookingDetails['country'] != null ? '${controller.bookingDetails['country']}': ''}'
                       },
                     ]),

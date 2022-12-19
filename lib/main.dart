@@ -20,6 +20,7 @@ import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:get_storage/get_storage.dart';
 import './Views/language.dart';
 import './Utils/LocaleString.dart';
+import 'package:devicelocale/devicelocale.dart';
 
 void main() async {
 
@@ -35,10 +36,41 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+
+  Future<void> _getCurrentLocale() async {
+    try {
+      final currentLocale = await Devicelocale.currentLocale;
+      print((currentLocale != null)
+          ? currentLocale
+          : "Unable to get currentLocale");
+      if(currentLocale!.contains('de')){
+        var local = Locale('de');
+        Get.updateLocale(local);
+      }else {
+        var local = Locale('en','US');
+        Get.updateLocale(local);
+      }
+      // setState(() => _currentLocale = currentLocale);
+    } on PlatformException {
+      print("Error obtaining current locale");
+    }
+  }
+
+  @override
+  initState()  {
+    print("initState Called");
+    _getCurrentLocale();
+
+  }
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

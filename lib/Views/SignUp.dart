@@ -32,7 +32,7 @@ class SignUp extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBarStyle(
-        title: 'Sign Up',
+        title: 'Sign Up'.tr,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -71,21 +71,21 @@ class SignUp extends StatelessWidget {
                           // -----------------------First Name Feild---------------------------->
                           child: TextFormFieldOutline(
                             controller: controller.firstName.value,
-                            hintText: 'First Name',
+                            hintText: 'First Name'.tr,
                             textStyle: TextStylesCustom.textStyles_14.apply(fontWeightDelta: -1),
                             padding: const EdgeInsets.only(left: 16, right: 16),
                             colorBoder: ColorStyle.grey_DAE1E7,
                             radiusBorder: 4,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "First name is required";
+                                return "First name is required".tr;
                               }
                               else if (!alphaSpace.hasMatch(value)) {
-                                return " FN should have letters";
+                                return " FN should have letters".tr;
                               }
                               else if(value![0] == ' '){
                                 // controller.userMessage.value.text = '';
-                                return "Can't start with space";
+                                return "Can't start with space".tr;
                               }
                               else {
                                 return null;
@@ -100,7 +100,7 @@ class SignUp extends StatelessWidget {
                         Expanded(
                           child: TextFormFieldOutline(
                             controller: controller.lastName.value,
-                            hintText: 'Last Name',
+                            hintText: 'Last Name'.tr,
                             textStyle: TextStylesCustom.textStyles_14
                                 .apply(fontWeightDelta: -1),
                             padding: const EdgeInsets.only(left: 16, right: 16),
@@ -108,13 +108,13 @@ class SignUp extends StatelessWidget {
                             radiusBorder: 4,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Last name is required";
+                                return "Last name is required".tr;
                               } else if (!alphaSpace.hasMatch(value)) {
-                                return " LN should have letters";
+                                return " LN should have letters".tr;
                               }
                               else if(value![0] == ' '){
                                 // controller.userMessage.value.text = '';
-                                return "Can't start with space";
+                                return "Can't start with space".tr;
                               }
                               else {
                                 return null;
@@ -131,7 +131,7 @@ class SignUp extends StatelessWidget {
                     TextFormFieldOutline(
                       controller: controller.email.value,
                       keyboardType: TextInputType.emailAddress,
-                      hintText: 'Email address',
+                      hintText: 'Email address'.tr,
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
                       padding: const EdgeInsets.only(left: 16, right: 16),
@@ -139,10 +139,10 @@ class SignUp extends StatelessWidget {
                       radiusBorder: 4,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Email is required";
+                          return "Email is required".tr;
                         }
                         else if (!GetUtils.isEmail(value)) {
-                          return "Email is invalid";
+                          return "Email is invalid".tr;
                         }
                         else {
                           return null;
@@ -156,7 +156,7 @@ class SignUp extends StatelessWidget {
                     TextFormFieldOutline(
                       controller: controller.mobile.value,
                       keyboardType: TextInputType.number,
-                      hintText: 'Mobile Number',
+                      hintText: 'Mobile Number'.tr,
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
                       padding: const EdgeInsets.only(left: 16, right: 16),
@@ -164,14 +164,14 @@ class SignUp extends StatelessWidget {
                       radiusBorder: 4,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Mobile number is required";
+                          return "Mobile number is required".tr;
                         }else if(!value.isNum){
-                          return "Phone must contain number only";
+                          return "Phone must contain number only".tr;
                         }
                         else if (value.length < 7) {
-                          return "Min digit should be 7";
+                          return "Min digit should be 7".tr;
                         }else if (value.length > 15) {
-                          return "Max digit should be 15";
+                          return "Max digit should be 15".tr;
                         }else {
                           return null;
                         }
@@ -185,7 +185,7 @@ class SignUp extends StatelessWidget {
                     // -----------------------Password Feild---------------------------->
                     TextFormFieldPWDOutline(
                       controller: controller.password.value,
-                      hintText: 'Password',
+                      hintText: 'Password'.tr,
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
                       padding: const EdgeInsets.only(left: 16, right: 16),
@@ -195,9 +195,9 @@ class SignUp extends StatelessWidget {
                         RegExp regex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
                         if (value!.isEmpty) {
-                          return "Password is required.";
+                          return "Password is required.".tr;
                         } else if (value.length < 8){
-                          return "Password should have atleast 8 characters";
+                          return "Password should have atleast 8 characters".tr;
                         }
                         // else if (!regex.hasMatch(value)) {
                         //   return "Password should have atleast 8 characters.";
@@ -214,7 +214,7 @@ class SignUp extends StatelessWidget {
                     // -----------------------Password Feild---------------------------->
                     TextFormFieldPWDOutline(
                       controller: controller.cPassword.value,
-                      hintText: 'Confirm Password',
+                      hintText: 'Confirm Password'.tr,
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
                       padding: const EdgeInsets.only(left: 16, right: 16),
@@ -222,9 +222,9 @@ class SignUp extends StatelessWidget {
                       radiusBorder: 4,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Confirm password is required.";
+                          return "Confirm password is required.".tr;
                         } else if (controller.password.value.text != controller.cPassword.value.text) {
-                          return "Password and confirm password must be same.";
+                          return "Password and confirm password must be same.".tr;
                         } else {
                           return null;
                         }
@@ -266,13 +266,13 @@ class SignUp extends StatelessWidget {
                               // text: 'I have read the ',
                               // style: TextStylesCustom.textStyles_12,
                               children:  <TextSpan>[
-                                TextSpan(text: 'I have read and accept the ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
-                                TextSpan(text: 'Terms and Conditions', style:TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5,),
+                                TextSpan(text: 'I have read and accept the'.tr + ' ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
+                                TextSpan(text: 'Terms and Conditions'.tr, style:TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5,),
                                 recognizer: TapGestureRecognizer()..onTap = ()async => {
                                   await launchUrl(Uri.parse('https://www.sprachtestcenter.de/page/terms-and-conditions'))
                                 }),
-                                TextSpan(text: ' and ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
-                                TextSpan(text: 'Privacy Policy', style:TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5),
+                                TextSpan(text: ' '+'and'.tr +' ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
+                                TextSpan(text: 'Privacy Policy'.tr, style:TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5),
                                     recognizer: TapGestureRecognizer()..onTap = ()async => {
                                       await launchUrl(Uri.parse('https://www.sprachtestcenter.de/page/privacy-policy'))
                                     }),
@@ -290,7 +290,7 @@ class SignUp extends StatelessWidget {
                       height: 30,
                     ),
                     ElevatedButtonCustom(
-                      text: 'SIGN UP',
+                      text: 'SIGN UP'.tr,
                       styleText: TextStylesCustom.textStyles_15.apply(
                           fontWeightDelta: 4
                       ),
@@ -305,7 +305,7 @@ class SignUp extends StatelessWidget {
                           if(controller.check.value) {
                             controller.userSignUp();
                           } else {
-                            'The terms and conditions field is required'.showError();
+                            'The terms and conditions field is required'.tr.showError();
                           }
                         }
                         return;
@@ -318,8 +318,8 @@ class SignUp extends StatelessWidget {
                     ),
 
                     TextRichCustom(
-                      textFirst: 'Already have an account? ',
-                      textSecond: 'Log in',
+                      textFirst: 'Already have an account?'.tr +' ',
+                      textSecond: 'Log in'.tr,
                       onTap: () {
                         Login().navigateToCustom(context);
                         // navigateToBack(context);
@@ -332,7 +332,7 @@ class SignUp extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Continue as a Guest',
+                          Text('Continue as a Guest'.tr,
                               style: TextStylesCustom.textStyles_15
                                   .apply(color: ColorStyle.primaryColor_1570A5)),
                           const SizedBox(

@@ -47,7 +47,7 @@ class ContactUs extends StatelessWidget {
       key: keyDrawer,
       drawer: DrawerScreen(),
       appBar: AppBarStyle(
-        title: 'Contact Us',
+        title: 'Contact Us'.tr,
         leading: IconButton(
           icon: Icon(
             Icons.menu,
@@ -100,14 +100,14 @@ class ContactUs extends StatelessWidget {
                           height: 37,
                         ),
                         Text(
-                          "We'd love to hear from you",
+                          "We'd love to hear from you".tr,
                           style: TextStylesCustom.textStyles_22.apply(
                             color: Colors.white,
                             // fontWeightDelta: 1,
                           ),
                         ),
                         Text(
-                          "Send us a message and we'll respond as soon as possible",
+                          "Send us a message and we'll respond as soon as possible".tr,
                           style: TextStylesCustom.textStyles_14.apply(
                             color: Colors.white,
                           ),
@@ -147,7 +147,7 @@ class ContactUs extends StatelessWidget {
                       children: [
                         TextFormFieldOutline(
                           controller: controller.userName.value,
-                          hintText: 'Your Name',
+                          hintText: 'Your Name'.tr,
                           textStyle: TextStylesCustom.textStyles_14,
                           colorText: ColorStyle.grey_DAE1E7,
                           colorBoder: ColorStyle.grey_DAE1E7,
@@ -158,12 +158,12 @@ class ContactUs extends StatelessWidget {
                               // var regex = /^ [a-zA-Z ]*$/;
                               // final alphaSpace = RegExp(r'^[a-zA-Z ]*$');
                               if (value!.isEmpty) {
-                                return "Name is required";
+                                return "Name is required".tr;
                               } else if (!alphaSpace.hasMatch(value)){
-                                return " Name must only contain letters";
+                                return " Name must only contain letters".tr;
                               }else if(value![0] == ' '){
                                 controller.userName.value.text = '';
-                                return "Name cannot start with space";
+                                return "Name cannot start with space".tr;
                               }
                               // else if (value!.trim().isEmpty){
                               //   return "Name must contain letters";
@@ -178,7 +178,7 @@ class ContactUs extends StatelessWidget {
                         ),
                         TextFormFieldOutline(
                           controller: controller.userEmail.value,
-                          hintText: 'Email address',
+                          hintText: 'Email address'.tr,
                           textStyle: TextStylesCustom.textStyles_14,
                           colorText: ColorStyle.grey_DAE1E7,
                           colorBoder: ColorStyle.grey_DAE1E7,
@@ -187,9 +187,9 @@ class ContactUs extends StatelessWidget {
                               horizontal: 14, vertical: 13),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Email is required";
+                              return "Email is required".tr;
                             }else if(!GetUtils.isEmail(value)){
-                              return "Email is invalid";
+                              return "Email is invalid".tr;
                             } else {
                               return null;
                             }
@@ -200,7 +200,7 @@ class ContactUs extends StatelessWidget {
                         ),
                         TextFormFieldOutline(
                           controller: controller.userMessage.value,
-                          hintText: 'Message',
+                          hintText: 'Message'.tr,
                           textStyle: TextStylesCustom.textStyles_14,
                           colorText: ColorStyle.grey_DAE1E7,
                           colorBoder: ColorStyle.grey_DAE1E7,
@@ -210,11 +210,11 @@ class ContactUs extends StatelessWidget {
                               horizontal: 14, vertical: 13),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Message is required";
+                              return "Message is required".tr;
                             }
                             else if(value![0] == ' '){
                               controller.userMessage.value.text = '';
-                              return "Message cannot start with space";
+                              return "Message cannot start with space".tr;
                             }
                             else {
                               return null;
@@ -234,7 +234,7 @@ class ContactUs extends StatelessWidget {
                     right: 0,
                     child: Center(
                       child: ElevatedButtonCustom(
-                        text: 'SEND MESSAGE',
+                        text: 'SEND MESSAGE'.tr,
                         size: const Size(200, 46),
                         onTap: () {
 
@@ -299,7 +299,7 @@ class ContactUs extends StatelessWidget {
                                   height: 10,
                                 ),
                                 Text(
-                                  'BBZ Language Schools',
+                                  'BBZ Language Schools'.tr,
                                   style: TextStylesCustom.textStyles_16.apply(
                                       color: ColorStyle.primaryColor_1570A5,
                                       fontWeightDelta: 1),
@@ -308,7 +308,7 @@ class ContactUs extends StatelessWidget {
                                   height: 4,
                                 ),
                                 Text(
-                                    'are a subsidiary of BBZ Altenkirchen GmbH & Co. KG',
+                                    'are a subsidiary of BBZ Altenkirchen GmbH & Co. KG'.tr,
                                     style: TextStylesCustom.textStyles_14
                                         .apply(fontWeightDelta: 1)),
                               ],
@@ -334,7 +334,7 @@ class ContactUs extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Contact Us',
+                          'Contact Us'.tr,
                           style: TextStylesCustom.textStyles_16
                               .apply(fontWeightDelta: 1),
                         ),

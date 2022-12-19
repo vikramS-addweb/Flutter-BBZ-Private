@@ -44,12 +44,12 @@ class DrawerScreen extends StatelessWidget {
   ];
 
   final arrTitle = [
-    'ABOUT US',
-    'HOW WE WORK',
-    'CONTACT',
-    'LOCATION',
-    'NEWS',
-    'LANGUAGE'
+    'ABOUT US'.tr,
+    'HOW WE WORK'.tr,
+    'CONTACT'.tr,
+    'LOCATION'.tr,
+    'NEWS'.tr,
+    'LANGUAGE'.tr
   ];
 
   @override
@@ -90,7 +90,7 @@ class DrawerScreen extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "Hello ${isLoggedIn ? dictUserSaved['first_name'].toString() : 'there'}!",
+                            "${"Hello".tr} ${isLoggedIn ? dictUserSaved['first_name'].toString() : 'there'.tr}!",
                             style: TextStylesCustom.textStyles_26.apply(
                               color: ColorStyle.primaryColor_1570A5,
                               fontWeightDelta: 1,

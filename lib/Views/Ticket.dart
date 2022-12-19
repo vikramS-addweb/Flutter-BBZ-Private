@@ -60,7 +60,7 @@ JohnDoe@gmail.com
         },
         builder: ((controller) => Obx(() => controller.bookingDetails.isEmpty ? Container(color: Colors.white,) :  Scaffold(
               appBar: AppBarStyle(
-                title: 'Ticket',
+                title: 'Ticket'.tr,
                 leading: IconButton(
                   icon: Icon(
                     Icons.arrow_back,
@@ -99,28 +99,28 @@ JohnDoe@gmail.com
                       ItemsList(items: [
                         {
                           'icon': ImageStyle.ticket_location,
-                          'title': 'Location',
+                          'title': 'Location'.tr,
                           'secondText':
                           '${controller.bookingDetails['address'] != null ? '${controller.bookingDetails['address']}, ': ''}${controller.bookingDetails['address2'] != null ? '${controller.bookingDetails['address2']}, ': ''}${controller.bookingDetails['city'] != null ? '${controller.bookingDetails['city']}, ': ''}${controller.bookingDetails['zip_code'] != null ? '${controller.bookingDetails['zip_code']}, ': ''}${controller.bookingDetails['country'] != null ? '${controller.bookingDetails['country']}': ''}',
                         },
                         {
                           'icon': ImageStyle.ticket_calendar,
-                          'title': 'Date',
+                          'title': 'Date'.tr,
                           'secondText': controller.bookingDetails['booked_event']['exam_date'] != null ? DateFormat('dd.MM.yyyy').format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}')):'',
                         },
                         {
                           'icon': ImageStyle.ticket_100_percent,
-                          'title': 'Price',
+                          'title': 'Price'.tr,
                           'secondText': '${controller.bookingDetails['booked_event']['price'] ?? ''} €',
                         },
                         {
                           'icon': ImageStyle.ticket_time,
-                          'title': 'Exam Time',
+                          'title': 'Exam Time'.tr,
                           'secondText': '${controller.bookingDetails['booked_event']['exam_time'] ?? ''}',
                         },
                         {
                           'icon': ImageStyle.ticket_person,
-                          'title': 'Student',
+                          'title': 'Student'.tr,
                           'secondText': '''${controller.bookingDetails['first_name'] ?? ''} ${controller.bookingDetails['last_name'] ?? ''}
 ${controller.bookingDetails['email'] ?? ''}
 johnnyharpertesting03@gmail.com

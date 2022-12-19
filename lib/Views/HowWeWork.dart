@@ -20,23 +20,23 @@ class HowWeWork extends StatelessWidget {
   final demoData = [
     {
       'assetImageWidget': ImageStyle.registration,
-      'title':'Registration',
+      'title':'Registration'.tr,
     },
     {
       'assetImageWidget': ImageStyle.gradingTest,
-      'title':'Grading Test',
+      'title':'Grading Test'.tr,
     },
     {
       'assetImageWidget': ImageStyle.education,
-      'title':'Education',
+      'title':'Education'.tr,
     },
     {
       'assetImageWidget': ImageStyle.examTraining,
-      'title':'Exam Training',
+      'title':'Exam Training'.tr,
     },
     {
       'assetImageWidget': ImageStyle.exam,
-      'title':'Exam',
+      'title':'Exam'.tr,
     }
   ];
 
@@ -48,7 +48,7 @@ class HowWeWork extends StatelessWidget {
       drawer: DrawerScreen(),
       // bottomNavigationBar: bottomNavBarCustom(),
       appBar: AppBarStyle(
-        title: 'How We Work',
+        title: 'How We Work'.tr,
         leading: IconButton(
           icon: Icon(
             Icons.menu,
@@ -86,7 +86,7 @@ class HowWeWork extends StatelessWidget {
                     children: [
                       const SizedBox(height: 20,),
                       Text(
-                        'Our process for your better understanding',
+                        'Our process for your better understanding'.tr,
                         style: TextStylesCustom.textStyles_24.apply(
                           color: Colors.white,
                           heightDelta: 1,
