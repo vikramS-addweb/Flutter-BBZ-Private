@@ -8,10 +8,29 @@ import '../Components/ElevatedButtonCustom.dart';
 import './DrawerScreen.dart';
 import '../Utils/Global.dart';
 
-class Language extends StatelessWidget {
+class Language extends StatefulWidget {
   Language({Key? key}) : super(key: key);
+
+  @override
+  State<Language> createState() => _LanguageState();
+}
+
+class _LanguageState extends State<Language> {
   GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
+  String language = 'english';
+
+  @override
+  void initState(){
+    setState(() {
+      // print('langungae : ' + Get.locale.toString());
+      if(Get.locale.toString().contains('de')){
+        setState(() {
+          this.language = 'deutsch';
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +38,7 @@ class Language extends StatelessWidget {
         key: keyDrawer,
         drawer: DrawerScreen(),
                   appBar: AppBarStyle(
-                    title: 'languages'.tr,
+                    title: 'Language'.tr,
 
                     leading: IconButton(
                       icon: Icon(
@@ -43,15 +62,23 @@ class Language extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: 50,),
-                        ElevatedButtonCustoms(text: 'English',onTap: (){
+                        ElevatedButtonCustoms(text: 'English'.tr,onTap: (){
                           var local = Locale('en','US');
+                          print(Get.locale);
                           Get.updateLocale(local);
-                        },width: Get.size.width, colorBG: ColorStyle.primaryColor_1570A5,),
+                          setState(() {
+                            this.language = 'english';
+                          });
+                        },width: Get.size.width, colorBG: this.language == 'english' ? ColorStyle.primaryColor_1570A5 : Colors.white, colorText: this.language == 'english' ? Colors.white : Colors.black,),
                         SizedBox(height: 20,),
-                        ElevatedButtonCustoms(text: 'Deutsch',onTap: (){
+                        ElevatedButtonCustoms(text: 'Deutsch'.tr,onTap: (){
                           var local = Locale('de');
+                          print(Get.locale);
                           Get.updateLocale(local);
-                        },width: Get.size.width, colorBG: Colors.white, colorText: Colors.black,),
+                          setState(() {
+                            this.language = 'deutsch';
+                          });
+                        },width: Get.size.width, colorBG: this.language == 'deutsch' ? ColorStyle.primaryColor_1570A5 : Colors.white, colorText: this.language == 'deutsch' ? Colors.white : Colors.black,),
                       ],
                     ),
                   ));

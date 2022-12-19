@@ -27,7 +27,7 @@ class BookingHistory extends StatelessWidget {
         builder: ((controller)=>Obx(() => Scaffold(
           backgroundColor: ColorStyle.white,
           appBar: AppBarStyle(
-            title: 'Booking History',
+            title: 'Booking History'.tr,
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
@@ -52,14 +52,14 @@ class BookingHistory extends StatelessWidget {
                 children: [
                   // ----------------------------------UPCOMING EXAMS------------------------------------->
                   Exams(
-                    title: 'Upcoming Exams',
+                    title: 'Upcoming Exams'.tr,
                     itemCount: 1,
                     items: controller.upcomingExamHistoryData.value
                   ),
 
                   // ----------------------------------PAST EXAMS------------------------------------->
                   Exams(
-                    title: 'Past Exams',
+                    title: 'Past Exams'.tr,
                     itemCount: 3,
                     items: controller.pastExamHistoryData.value,
                   ),
@@ -140,29 +140,40 @@ class Exams extends StatelessWidget {
                           const SizedBox(
                             width: 14,
                           ),
-                          Text(
-                            'Full Amount Paid',
-                            style: TextStylesCustom.textStyles_12
-                                .apply(fontWeightDelta: 3),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                              height: 6,
-                              width: 6,
-                              margin: const EdgeInsets.only(top: 6),
-                              decoration: BoxDecoration(
-                                color: ColorStyle.grey_5E6D77,
-                                borderRadius: BorderRadius.circular(50),
-                              )),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            '${ items![index]['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['created_at']}')) : '25/03/2022'} | ${ items![index]['created_at'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['created_at']}')):'03:30 PM'}',
-                            style: TextStylesCustom.textStyles_12
-                                .apply(color: ColorStyle.primaryColor_1570A5),
+
+                          Expanded(
+                              child: FittedBox(
+                                child: Text.rich(
+                                    TextSpan(
+                                        text: '',
+                                        children: <InlineSpan>[
+                                          TextSpan(
+                                            text: 'Full Amount Paid'.tr,
+                                            style: TextStylesCustom.textStyles_14
+                                                .apply(
+                                                color: Colors.black,
+                                                fontWeightDelta: 2),
+                                          ),
+                                          TextSpan(
+                                            text: '  •  ',
+                                            style: TextStylesCustom
+                                                .textStyles_14
+                                                .apply(
+                                              color: ColorStyle
+                                                  .grey_5E6D77,
+                                            ),
+                                          ),
+
+                                          TextSpan(
+                                            text: '${ items![index]['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['created_at']}')) : '25/03/2022'} | ${ items![index]['created_at'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['created_at']}')):'03:30 PM'}  ',
+                                            style: TextStylesCustom.textStyles_12
+                                                .apply(color: ColorStyle.primaryColor_1570A5),
+                                          ),
+
+                                        ]
+                                    )
+                                ),
+                              )
                           ),
                         ],
                       ),
@@ -207,18 +218,42 @@ class Exams extends StatelessWidget {
                                   // ),
                                   Row(
                                     children: [
-                                      Text(
-                                        'Amount Paid:',
-                                        style: TextStylesCustom.textStyles_14
-                                            .apply(fontWeightDelta: 3),
+                                      Expanded(
+                                        child: FittedBox(
+                                          child: Text.rich(
+                                              TextSpan(
+                                                  text: '',
+                                                  children: <InlineSpan>[
+                                                    TextSpan(
+                                                      text: 'Amount Paid'.tr + ' : ',
+                                                      style: TextStylesCustom.textStyles_14
+                                                          .apply(fontWeightDelta: 3),
+                                                    ),
+                                                    TextSpan(
+                                                      text: '${items![index]['paid'] ??  '7,50'} €',
+                                                      style: TextStylesCustom.textStyles_14
+                                                          .apply(
+                                                          color: Colors.green,
+                                                          fontWeightDelta: 1),
+                                                    ),
+
+                                                  ]
+                                              )
+                                          ),
+                                        ),
                                       ),
-                                      Text(
-                                        '${items![index]['paid'] ??  '7,50'} €',
-                                        style: TextStylesCustom.textStyles_14
-                                            .apply(
-                                                color: Colors.green,
-                                                fontWeightDelta: 1),
-                                      ),
+                                      // Text(
+                                      //   'Amount Paid:'.tr,
+                                      //   style: TextStylesCustom.textStyles_14
+                                      //       .apply(fontWeightDelta: 3),
+                                      // ),
+                                      // Text(
+                                      //   '${items![index]['paid'] ??  '7,50'} €',
+                                      //   style: TextStylesCustom.textStyles_14
+                                      //       .apply(
+                                      //           color: Colors.green,
+                                      //           fontWeightDelta: 1),
+                                      // ),
                                     ],
                                   )
                                 ],
@@ -246,7 +281,7 @@ class Exams extends StatelessWidget {
                               onTap: () {
                                 Invoice(id: items![index]['id'],).navigateToCustom(context, withNavBar: false);
                               },
-                              text: 'GET INVOICE',
+                              text: 'GET INVOICE'.tr,
                               colorText: ColorStyle.primaryColor_1570A5,
                               colorBG: ColorStyle.white,
                               colorBorder: ColorStyle.primaryColor_1570A5,
@@ -259,7 +294,7 @@ class Exams extends StatelessWidget {
                               onTap: () {
                                 Ticket(id: items![index]['id'],).navigateToCustom(context, withNavBar: false);
                               },
-                              text: 'PRINT TICKET',
+                              text: 'PRINT TICKET'.tr,
                               radiusBorder: 0,
                               fontWeight: 1,
                               colorBG: ColorStyle.primaryColor_1570A5,

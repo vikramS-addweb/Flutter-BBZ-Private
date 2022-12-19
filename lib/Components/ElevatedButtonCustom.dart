@@ -89,9 +89,11 @@ class ElevatedButtonCustoms extends StatelessWidget {
         ),
       ),
       onPressed: onTap,
-      child: Text(
-        text!,
-        style: styleText != null? styleText : TextStylesCustom.textStyles_14.apply(color: colorText, fontWeightDelta: 1),
+      child: FittedBox(
+        child: Text(
+          text!,
+          style: styleText != null? styleText : TextStylesCustom.textStyles_14.apply(color: colorText, fontWeightDelta: 1),
+        ),
       ),
     );
   }

@@ -59,7 +59,7 @@ class _LoginState extends State<Login> {
       onFocusLost: viewWillDisappear,
       child: Scaffold(
         appBar: AppBarStyle(
-          title: 'Log In',
+          title: 'Log In'.tr,
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
@@ -101,7 +101,7 @@ class _LoginState extends State<Login> {
                       TextFormFieldOutline(
                         controller: controller.useremail.value,
                         keyboardType: TextInputType.emailAddress,
-                        hintText: 'Email address',
+                        hintText: 'Email address'.tr,
                         textStyle: TextStylesCustom.textStyles_14
                             .apply(fontWeightDelta: -1),
                         padding: const EdgeInsets.only(left: 16, right: 16),
@@ -109,9 +109,9 @@ class _LoginState extends State<Login> {
                         radiusBorder: 4,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Email is required";
+                            return "Email is required".tr;
                           }else if(!GetUtils.isEmail(value)){
-                            return "Email is invalid";
+                            return "Email is invalid".tr;
                           } else {
                             return null;
                           }
@@ -125,7 +125,7 @@ class _LoginState extends State<Login> {
                       // -----------------------Password Feild---------------------------->
                       TextFormFieldPWDOutline(
                         controller: controller.userPassword.value,
-                        hintText: 'Password',
+                        hintText: 'Password'.tr,
                         textStyle: TextStylesCustom.textStyles_14
                             .apply(fontWeightDelta: -1),
                         padding: const EdgeInsets.only(left: 16, right: 16),
@@ -133,9 +133,9 @@ class _LoginState extends State<Login> {
                         radiusBorder: 4,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Password is required";
+                            return "Password is required".tr;
                           }else if(value.length < 8){
-                            return "Password must be at least 8 characters";
+                            return "Password must be at least 8 characters".tr;
                           }
                           else {
                             return null;
@@ -163,7 +163,7 @@ class _LoginState extends State<Login> {
                                 width: 8,
                               ),
                               Text(
-                                'Remember Me',
+                                'Remember Me'.tr,
                                 style: TextStylesCustom.textStyles_12,
                               ),
                             ],
@@ -179,7 +179,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             child: Text(
-                              'Forgot Password ?',
+                              'Forgot Password ?'.tr,
                               textAlign: TextAlign.right,
                               style: TextStylesCustom.textStyles_12,
                             ),
@@ -195,7 +195,7 @@ class _LoginState extends State<Login> {
                         height: 30,
                       ),
                       ElevatedButtonCustom(
-                        text: 'LOGIN',
+                        text: 'LOGIN'.tr,
                         styleText: TextStylesCustom.textStyles_15.apply(
                             fontWeightDelta: 4
                         ),
@@ -217,8 +217,8 @@ class _LoginState extends State<Login> {
                       ),
 
                       TextRichCustom(
-                        textFirst: 'Do not have an account? ',
-                        textSecond: 'Sign Up',
+                        textFirst: 'Do not have an account?'.tr+' ',
+                        textSecond: 'Sign Up'.tr,
                         onTap: () {
                           SignUp().navigateToCustom(context);
                         },
@@ -231,7 +231,7 @@ class _LoginState extends State<Login> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                                'Continue as a Guest',
+                                'Continue as a Guest'.tr,
                                 style: TextStylesCustom.textStyles_15
                                     .apply(color: ColorStyle.primaryColor_1570A5)
                             ),

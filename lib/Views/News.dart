@@ -30,7 +30,7 @@ class News extends StatelessWidget {
       drawer: DrawerScreen(),
       // bottomNavigationBar: bottomNavBarCustom(),
       appBar: AppBarStyle(
-        title: 'News',
+        title: 'News'.tr,
         leading: IconButton(
           icon: Icon(
             Icons.menu,
@@ -55,7 +55,7 @@ class News extends StatelessWidget {
         builder: ((controller) =>
             Obx(() =>
             controller.newsData.length == 0 ?
-                Center(child: Text('No News is Available!', style: TextStylesCustom.textStyles_18,)):
+                Center(child: Text('No News is Available!'.tr, style: TextStylesCustom.textStyles_18,)):
                 ListView.separated(
               padding: const EdgeInsets.only(
                   left: 16, right: 16, top: 32, bottom: 32),

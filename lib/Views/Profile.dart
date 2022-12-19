@@ -21,7 +21,7 @@ class Profile extends StatelessWidget {
   GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
   final arrIconData = [Icons.mood, Icons.history, Icons.lock];
-  final arrTitle = ['My Profile', 'Booking History', 'Change Password'];
+  final arrTitle = ['My Profile'.tr, 'Booking History'.tr, 'Change Password'.tr];
   final loginController = Get.put(LoginController());
   final controllerMyProfile = Get.put(MyProfileController());
   final examDetailController = Get.put(ExamDetailController());
@@ -32,7 +32,7 @@ class Profile extends StatelessWidget {
       key: keyDrawer,
       drawer: DrawerScreen(),
       appBar: AppBarStyle(
-        title: 'Profile',
+        title: 'Profile'.tr,
         styleTitle: TextStylesCustom.textStyles_23
             .apply(fontWeightDelta: 1, color: ColorStyle.primaryColor_1570A5),
         leading: IconButton(
@@ -174,7 +174,7 @@ class Profile extends StatelessWidget {
                     width: 18,
                   ),
                   Text(
-                    'Log Out',
+                    'Log Out'.tr,
                     style: TextStylesCustom.textStyles_14.apply(
                       color: ColorStyle.red_ED0925,
                     ),

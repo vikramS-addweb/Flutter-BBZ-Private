@@ -35,7 +35,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
               color: (indexSelectedTab.value == 0) ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_A8B0B5,
             )
         ),
-        title: ("Exam"),
+        title: ("Exam".tr),
         activeColorPrimary: ColorStyle.primaryColor_1570A5,
         inactiveColorPrimary: ColorStyle.grey_5E6D77,
       ),
@@ -48,7 +48,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
             color: (indexSelectedTab.value == 1) ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_A8B0B5,
           ),
         ),
-        title: ("Profile"),
+        title: ("Profile".tr),
         activeColorPrimary: ColorStyle.primaryColor_1570A5,
         inactiveColorPrimary: ColorStyle.grey_5E6D77,
       ),

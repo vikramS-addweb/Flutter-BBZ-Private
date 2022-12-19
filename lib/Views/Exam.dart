@@ -123,7 +123,7 @@ class _ExamState extends State<Exam> {
           border: Border.all(color: ColorStyle.grey_DAE1E7, width: 1),
         ),
         child: Text(
-          title,
+          title == 'From' ? 'From'.tr : title == 'To' ? 'To'.tr : title,
           style: TextStylesCustom.textStyles_14.apply(
               // color: ColorStyle.grey_A8B0B5,
               color: (title == 'From' || title == 'To')
@@ -173,7 +173,7 @@ class _ExamState extends State<Exam> {
                 backgroundColor: ColorStyle.white_F3F3F3,
                 drawer: DrawerScreen(),
                 appBar: AppBarStyle(
-                  title: 'Exams',
+                  title: 'Exams'.tr,
                   leading: IconButton(
                     icon: Icon(
                       Icons.menu,
@@ -214,14 +214,14 @@ class _ExamState extends State<Exam> {
                                     height: 20,
                                   ),
                                   Text(
-                                    'Book Your Exam Now!',
+                                    'Book Your Exam Now!'.tr,
                                     style: TextStylesCustom.textStyles_26.apply(
                                       color: Colors.white,
                                       // fontWeightDelta: 1,
                                     ),
                                   ),
                                   Text(
-                                    'Use the search filters to find specific courses faster and easier',
+                                    'Use the search filters to find specific courses faster and easier'.tr,
                                     style: TextStylesCustom.textStyles_14.apply(
                                       color: Colors.white,
                                     ),
@@ -269,7 +269,7 @@ class _ExamState extends State<Exam> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Location, Date or Level',
+                                          'Location, Date or Level'.tr,
                                           style: TextStylesCustom.textStyles_16
                                               .apply(
                                             color: ColorStyle.grey_5E6D77,
@@ -286,7 +286,7 @@ class _ExamState extends State<Exam> {
                                             colorBoder: Colors.transparent,
                                             controller: controller.search,
                                             hintText:
-                                                'Search everything here...',
+                                                'Search everything here...'.tr,
                                             colorHint: ColorStyle
                                                 .primaryColor_1570A5
                                                 .withOpacity(0.6),
@@ -308,7 +308,7 @@ class _ExamState extends State<Exam> {
                                     width:
                                         MediaQuery.of(context).size.width - 32,
                                     height: 50,
-                                    hintText: 'Select Your Center Location',
+                                    hintText: 'Select Your Center Location'.tr,
                                     list: controller
                                                 .searchDetails['locations'] !=
                                             null
@@ -375,7 +375,7 @@ class _ExamState extends State<Exam> {
                                     width:
                                         MediaQuery.of(context).size.width - 32,
                                     height: 50,
-                                    hintText: 'Select Your Language Level',
+                                    hintText: 'Select Your Language Level'.tr,
                                     list: controller
                                                 .searchDetails['exam_level'] !=
                                             null
@@ -406,7 +406,7 @@ class _ExamState extends State<Exam> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     ElevatedButtonCustom(
-                                      text: 'SEARCH',
+                                      text: 'SEARCH'.tr,
                                       size: const Size(170, 46),
                                       onTap: () {
                                         controller.searchExam();
@@ -416,7 +416,7 @@ class _ExamState extends State<Exam> {
                                       SizedBox(width: 5,),
                                     if (controller.showSearchData.value)
                                       ElevatedButtonCustom(
-                                        text: 'CLEAR',
+                                        text: 'CLEAR'.tr,
                                         size: const Size(170, 46),
                                         onTap: () {
                                           controller.clear();
@@ -446,7 +446,7 @@ class _ExamState extends State<Exam> {
                               height: 40,
                             ),
                             Text(
-                              '${!controller.showSearchData.value ? 'Upcoming Exams' : 'Search Results'}',
+                              '${!controller.showSearchData.value ? 'Upcoming Exams'.tr : 'Search Results'.tr}',
                               style: TextStylesCustom.textStyles_18.apply(
                                 color: ColorStyle.primaryColor_1570A5,
                                 fontWeightDelta: 1,
@@ -459,14 +459,14 @@ class _ExamState extends State<Exam> {
                                     controller.searchResultData.value.length ==
                                         0
                                 ? Text(
-                                    'Exam not found',
+                                    'Exam not found'.tr,
                                     style: TextStylesCustom.textStyles_16.apply(
                                       color: Colors.black,
                                     ),
                                   )
                                 :
                             Text(
-                                    'All the coming exams for you',
+                                    'All the coming exams for you'.tr,
                                     style: TextStylesCustom.textStyles_14.apply(
                                       color: Colors.black,
                                     ),
@@ -474,14 +474,14 @@ class _ExamState extends State<Exam> {
                             controller.upcomingExamData.value.length ==
                                 0
                                 ? Text(
-                              'Exam not found',
+                              'Exam not found'.tr,
                               style: TextStylesCustom.textStyles_16.apply(
                                 color: Colors.black,
                               ),
                             )
                                 :
                             Text(
-                              'All the coming exams for you',
+                              'All the coming exams for you'.tr,
                               style: TextStylesCustom.textStyles_14.apply(
                                 color: Colors.black,
                               ),
@@ -632,27 +632,24 @@ class ItemsList extends StatelessWidget {
                           const SizedBox(
                             height: 12,
                           ),
+
                           Row(
                             children: [
                               Expanded(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: FittedBox(
-                                        child: Text(
-                                          'Exam Date: ',
-                                          style: TextStylesCustom.textStyles_14
-                                              .apply(
-                                                  color: Colors.black,
-                                                  fontWeightDelta: 2),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: FittedBox(
-                                        child: items[index]['exam_date'] != null
-                                            ? Text(
-                                                '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${items[index]['exam_date']}'))}',
+                                  child: FittedBox(
+                                    child: Text.rich(
+                                        TextSpan(
+                                            text: '',
+                                            children: <InlineSpan>[
+                                              TextSpan(
+                                                text: 'Exam Date'.tr+': ',
+                                                style: TextStylesCustom.textStyles_14
+                                                    .apply(
+                                                    color: Colors.black,
+                                                    fontWeightDelta: 2),
+                                              ),
+                                              TextSpan(
+                                                text: '${items[index]['exam_date'] != null ?  DateFormat('dd/MM/yyyy').format(DateTime.parse('${items[index]['exam_date']}')) : ''}',
                                                 style: TextStylesCustom
                                                     .textStyles_14
                                                     .apply(
@@ -660,60 +657,116 @@ class ItemsList extends StatelessWidget {
                                                       .primaryColor_1570A5,
                                                 ),
                                               )
-                                            : Text(
-                                                '22/06/2022',
+                                              ,
+                                              TextSpan(
+                                                text: '   '+'Reg. Until'.tr+': ',
+                                                style: TextStylesCustom.textStyles_14
+                                                    .apply(
+                                                    color: Colors.black,
+                                                    fontWeightDelta: 2),
+                                              ),
+                                              TextSpan(
+                                                text: '${items[index]['reg_until_date'] !=
+                                                    null
+                                                    ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items[index]['reg_until_date']}')) : ''}',
                                                 style: TextStylesCustom
                                                     .textStyles_14
                                                     .apply(
-                                                  color: ColorStyle
-                                                      .primaryColor_1570A5,
+                                                  color: registrationColor(DateTime.parse('${items[index]['reg_until_date']}')),
                                                 ),
-                                              ),
-                                      ),
+                                              )
+                                            ]
+                                        )
                                     ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Reg Until: ',
-                                      style: TextStylesCustom.textStyles_14
-                                          .apply(
-                                              color: Colors.black,
-                                              fontWeightDelta: 2),
-                                    ),
-                                    FittedBox(
-                                      // fit: BoxFit.fitWidth,
-                                      child: items[index]['reg_until_date'] !=
-                                              null
-                                          ? Text(
-                                              '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${items[index]['reg_until_date']}'))}',
-                                              style: TextStylesCustom
-                                                  .textStyles_14
-                                                  .apply(
-                                                color: registrationColor(DateTime.parse('${items[index]['reg_until_date']}')),
-                                              ),
-                                            )
-                                          : Text(
-                                              '25/06/2022',
-                                              style: TextStylesCustom
-                                                  .textStyles_14
-                                                  .apply(
-                                                color: ColorStyle.red_ED0925,
-                                              ),
-                                            ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                  )
+                              )
                             ],
                           ),
+
+
+
+                          // Row(
+                          //   children: [
+                          //     Expanded(
+                          //       child: Row(
+                          //         children: [
+                          //           Expanded(
+                          //             child: FittedBox(
+                          //               child: Text(
+                          //                 'Exam Date'.tr+': ',
+                          //                 style: TextStylesCustom.textStyles_14
+                          //                     .apply(
+                          //                         color: Colors.black,
+                          //                         fontWeightDelta: 2),
+                          //               ),
+                          //             ),
+                          //           ),
+                          //           Expanded(
+                          //             child: FittedBox(
+                          //               child: items[index]['exam_date'] != null
+                          //                   ? Text(
+                          //                       '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${items[index]['exam_date']}'))}',
+                          //                       style: TextStylesCustom
+                          //                           .textStyles_14
+                          //                           .apply(
+                          //                         color: ColorStyle
+                          //                             .primaryColor_1570A5,
+                          //                       ),
+                          //                     )
+                          //                   : Text(
+                          //                       '22/06/2022',
+                          //                       style: TextStylesCustom
+                          //                           .textStyles_14
+                          //                           .apply(
+                          //                         color: ColorStyle
+                          //                             .primaryColor_1570A5,
+                          //                       ),
+                          //                     ),
+                          //             ),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //     const SizedBox(
+                          //       width: 10,
+                          //     ),
+                          //     Expanded(
+                          //       child: Row(
+                          //         mainAxisAlignment: MainAxisAlignment.start,
+                          //         children: [
+                          //           Text(
+                          //             'Reg. Until'.tr+': ',
+                          //             style: TextStylesCustom.textStyles_14
+                          //                 .apply(
+                          //                     color: Colors.black,
+                          //                     fontWeightDelta: 2),
+                          //           ),
+                          //           FittedBox(
+                          //             // fit: BoxFit.fitWidth,
+                          //             child: items[index]['reg_until_date'] !=
+                          //                     null
+                          //                 ? Text(
+                          //                     '${DateFormat('dd/MM/yyyy').format(DateTime.parse('${items[index]['reg_until_date']}'))}',
+                          //                     style: TextStylesCustom
+                          //                         .textStyles_14
+                          //                         .apply(
+                          //                       color: registrationColor(DateTime.parse('${items[index]['reg_until_date']}')),
+                          //                     ),
+                          //                   )
+                          //                 : Text(
+                          //                     '25/06/2022',
+                          //                     style: TextStylesCustom
+                          //                         .textStyles_14
+                          //                         .apply(
+                          //                       color: ColorStyle.red_ED0925,
+                          //                     ),
+                          //                   ),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           const SizedBox(
                             height: 30,
                           ),
@@ -770,7 +823,7 @@ class ItemsList extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Available Seats',
+                                'Available Seats'.tr,
                                 style: TextStylesCustom.textStyles_14.apply(
                                   color: Colors.black,
                                 ),

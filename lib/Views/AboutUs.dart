@@ -114,7 +114,7 @@ class AboutUs extends StatelessWidget {
       drawer: DrawerScreen(),
       // bottomNavigationBar: bottomNavBarCustom(),
       appBar: AppBarStyle(
-        title: 'About Us',
+        title: 'About Us'.tr,
         leading: IconButton(
           icon: Icon(
             Icons.menu,
@@ -208,15 +208,15 @@ class AboutUs extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '''The BBZ Language Schools are part of the Kiry Group of Companies, which has been working continuously and successfully in the areas of training, coaching and implementation of activation and placement measures since 1987. As an integration course provider recognized by the Federal Office for Migration and Refugees (BAMF), we offer courses at all levels at our locations in Koblenz, Bonn, Gelsenkirchen and Frankfurt am Main. Our services also include job-related German language support."
+                              '''${'The BBZ Language Schools are part of the Kiry Group of Companies, which has been working continuously and successfully in the areas of training, coaching and implementation of activation and placement measures since 1987. As an integration course provider recognized by the Federal Office for Migration and Refugees (BAMF), we offer courses at all levels at our locations in Koblenz, Bonn, Gelsenkirchen and Frankfurt am Main. Our services also include job-related German language support.'.tr}"
 
 
 
-Whether it's a classic integration course with or without literacy or specifically for second language learners, or job-related German language support - our focus is always on the language learner. With our needs-based German courses, experienced German language specialists specifically promote the basic skills of reading, listening, writing, and speaking.
+${"Whether it's a classic integration course with or without literacy or specifically for second language learners, or job-related German language support - our focus is always on the language learner. With our needs-based German courses, experienced German language specialists specifically promote the basic skills of reading, listening, writing, and speaking.".tr}
 
 
 
-In addition, we deploy language support staff within various placement-oriented measures, e.g. KomBer (job-related language course with certificate), PerF or Aktivcenter as well as other offers in which the practical use of the German language in a professional context is trained or an initial assessment of German language skills takes place.''',
+${"In addition, we deploy language support staff within various placement-oriented measures, e.g. KomBer (job-related language course with certificate), PerF or Aktivcenter as well as other offers in which the practical use of the German language in a professional context is trained or an initial assessment of German language skills takes place.".tr}''',
                               style: TextStylesCustom.textStyles_12.apply(
                                 color: ColorStyle.black,
                               ),

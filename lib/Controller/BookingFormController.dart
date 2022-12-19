@@ -31,12 +31,14 @@ class BookingFormController extends GetxController {
 
   RxString paymentMethod = ''.obs;
   RxBool termsAndCondition = false.obs;
+  RxBool privacyPolicy = false.obs;
   RxBool secondTerm = false.obs;
   RxBool salutationError = false.obs;
   RxBool motherToungueError = false.obs;
   RxBool countryError = false.obs;
   RxBool paymentError = false.obs;
   RxBool termsError = false.obs;
+  RxBool privacyError = false.obs;
   RxBool agreementError = false.obs;
 
   //drowpdown variables
@@ -93,6 +95,7 @@ class BookingFormController extends GetxController {
     print(country.value);
     print(paymentMethod.value);
     print(termsAndCondition.value);
+    print(privacyPolicy.value);
     print(secondTerm.value);
 
     // reset();
@@ -155,8 +158,8 @@ class BookingFormController extends GetxController {
         'country': country.value,
         'payment_gateway': paymentMethod.value,
         'term_conditions_1': '${termsAndCondition.value}',
-        'term_conditions': '${secondTerm.value}',
-        'term_conditions_2': 'true'
+        'term_conditions': '${privacyPolicy.value}',
+        'term_conditions_2': '${secondTerm.value}'
       };
 
 
@@ -252,6 +255,7 @@ class BookingFormController extends GetxController {
     country.value='';
     paymentMethod.value='';
     termsAndCondition.value=false;
+    privacyPolicy.value=false;
     secondTerm.value=false;
   }
 

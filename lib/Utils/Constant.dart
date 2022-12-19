@@ -25,6 +25,7 @@ Map<String, dynamic> dictUserSaved = {};
 const kBaseURL_Image = 'https://bbzstage.addwebprojects.com/uploads/';
 
 final alphaSpace = RegExp(r'^[a-zA-Z ]*$');
+final alphaNumeric = RegExp(r'^[a-zA-Z0-9]*$');
 final message = RegExp(r'^[a-zA-Z ]*$');
 final emailRegexWithoutSpecial = RegExp(r'^[a-zA-Z0-9 @]*$');
 

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../Styles/TextStyles.dart';
 import '../Utils/Global.dart';
@@ -31,7 +32,7 @@ class _LocationState extends State<Location> {
       backgroundColor: Colors.transparent,
       // extendBodyBehindAppBar: true,
       appBar: AppBarStyle(
-        title: 'Location',
+        title: 'Location'.tr,
         leading: IconButton(
           icon: Icon(
             Icons.menu,

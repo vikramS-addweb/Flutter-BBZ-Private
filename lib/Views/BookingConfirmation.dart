@@ -70,9 +70,9 @@ class BookingConfirmation extends StatelessWidget {
   // ),
   ];
   final arrTitle = [
-    'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen',
-    '02681 8797-0',
-    'admin@gmail.com'
+    'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen'.tr,
+    '02681 8797-0'.tr,
+    'admin@gmail.com'.tr
   ];
 
   @override
@@ -84,7 +84,7 @@ class BookingConfirmation extends StatelessWidget {
         init: controller,
         builder: ((controller)=>Obx(() => controller.bookingConfirmationData.isEmpty ? Container(color: Colors.white,) : Scaffold(
           appBar: AppBarStyle(
-            title: 'Booking Confirmation',
+            title: 'Booking Confirmation'.tr,
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
@@ -143,9 +143,9 @@ class BookingConfirmation extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Booking successful!', style: TextStylesCustom.textStyles_22.apply(color: Colors.white),),
+                                    Text('Booking successful!'.tr, style: TextStylesCustom.textStyles_22.apply(color: Colors.white),),
                                     SizedBox(height: 6,),
-                                    Text('Booking details has been sent to: ${controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'}', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
+                                    Text('Booking details has been sent to:'.tr +' ${controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'}', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
                                   ],
                                 ),
                               )
@@ -183,10 +183,10 @@ class BookingConfirmation extends StatelessWidget {
                                 ),
                               ]),
                           child: ItemsListCard(items: [
-                            {'item': 'Booking Number:', 'value': '${controller.bookingConfirmationData['id'] != null ? controller.bookingConfirmationData['id'] : '11'}'},
-                            {'item': 'Booking Date:', 'value': '${ controller.bookingConfirmationData['created_at']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['created_at']}')) : '03/30/2022'}'},
-                            {'item': 'Payment Method:', 'value': '${controller.bookingConfirmationData['gateway'] != null ? controller.bookingConfirmationData['gateway'] : 'Visa ending with 3334'}'},
-                            {'item': 'Booking Status:', 'value': 'Booked'}
+                            {'item': 'Booking Number:'.tr, 'value': '${controller.bookingConfirmationData['id'] != null ? controller.bookingConfirmationData['id'] : '11'}'},
+                            {'item': 'Booking Date:'.tr, 'value': '${ controller.bookingConfirmationData['created_at']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['created_at']}')) : '03/30/2022'}'},
+                            {'item': 'Payment Method:'.tr, 'value': '${controller.bookingConfirmationData['gateway'] != null ? controller.bookingConfirmationData['gateway'] : 'Visa ending with 3334'}'},
+                            {'item': 'Booking Status:'.tr, 'value': 'Booked'.tr}
                           ],),
 
                         ))
@@ -204,7 +204,7 @@ class BookingConfirmation extends StatelessWidget {
                           height: 35,
                         ),
                         Text(
-                          'Your Booking',
+                          'Your Booking'.tr,
                           style: TextStylesCustom.textStyles_18.apply(
                               color: ColorStyle.primaryColor_1570A5,
                               fontWeightDelta: 1),
@@ -258,9 +258,9 @@ class BookingConfirmation extends StatelessWidget {
                         const SizedBox(
                           height: 16,
                         ),
-                        ItemsList(items: [{'item': 'Exam Level:', 'value': '${controller.bookingConfirmationData['booked_event']['term'][0]['name'] ?? 'A2-B1'}  '},
-                          {'item': 'Exam date:', 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}')):'25/03/2022 (SAT)'},
-                          {'item': 'Exam Time:', 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_time'] != null ? DateFormat.jm().format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}T${controller.bookingConfirmationData['booked_event']['exam_time']}')):'09:30 AM'},
+                        ItemsList(items: [{'item': 'Exam Level:'.tr, 'value': '${controller.bookingConfirmationData['booked_event']['term'][0]['name'] ?? 'A2-B1'}  '},
+                          {'item': 'Exam Date:'.tr, 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}')):'25/03/2022 (SAT)'},
+                          {'item': 'Exam Time:'.tr, 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_time'] != null ? DateFormat.jm().format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}T${controller.bookingConfirmationData['booked_event']['exam_time']}')):'09:30 AM'},
                           ], secondColor: ColorStyle.black,),
                         const SizedBox(
                           height: 16,
@@ -279,7 +279,7 @@ class BookingConfirmation extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Examination Fees:',
+                      Text('Examination Fees:'.tr,
                           style: TextStylesCustom.textStyles_14),
                       SizedBox(
                         width: Get.mediaQuery.size.width * 0.4,
@@ -304,7 +304,7 @@ class BookingConfirmation extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Total:',
+                      Text('Total'.tr +':',
                           style: TextStylesCustom.textStyles_18.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1)),
                       SizedBox(
                         width: Get.mediaQuery.size.width * 0.4,
@@ -330,7 +330,7 @@ class BookingConfirmation extends StatelessWidget {
                           height: 35,
                         ),
                         Text(
-                          'Your Information',
+                          'Your Information'.tr,
                           style: TextStylesCustom.textStyles_18.apply(
                               color: ColorStyle.primaryColor_1570A5,
                               fontWeightDelta: 1),
@@ -339,20 +339,20 @@ class BookingConfirmation extends StatelessWidget {
                           height: 35,
                         ),
                         ItemsList(items: [
-                          {'item': 'First name', 'value': controller.bookingConfirmationData['first_name'] ?? 'John'},
-                          {'item': 'Last name', 'value': controller.bookingConfirmationData['last_name'] ?? 'Doe'},
-                          {'item': 'Identification No.', 'value': controller.bookingConfirmationData['identification_number'] ?? 'Lorem'},
-                          {'item': 'Email', 'value': controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'},
-                          {'item': 'Salutation', 'value': controller.bookingConfirmationData['salutation'] ?? 'Lorem'},
-                          {'item': 'Academic title', 'value': controller.bookingConfirmationData['academic_title'] ?? 'Lorem ipsum'},
-                          {'item': 'Birth date', 'value': controller.bookingConfirmationData['birth_date']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['birth_date']}')) : ''},
-                          {'item': 'Birth place', 'value': controller.bookingConfirmationData['birth_place'] ?? ''},
-                          {'item': 'Country of birth', 'value': controller.bookingConfirmationData['country_Of_birth'] ?? ''},
-                          {'item': 'Mother Tongue', 'value': controller.bookingConfirmationData['mother_tongue'] ?? ''},
-                          {'item': 'Telephone', 'value': controller.bookingConfirmationData['tele_phone'] ?? ''},
-                          {'item': 'Mobile', 'value': controller.bookingConfirmationData['phone'] ?? ''},
+                          {'item': 'First name'.tr, 'value': controller.bookingConfirmationData['first_name'] ?? 'John'},
+                          {'item': 'Last name'.tr, 'value': controller.bookingConfirmationData['last_name'] ?? 'Doe'},
+                          {'item': 'Identification No.'.tr, 'value': controller.bookingConfirmationData['identification_number'] ?? 'Lorem'},
+                          {'item': 'Email'.tr, 'value': controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'},
+                          {'item': 'Salutation'.tr, 'value': controller.bookingConfirmationData['salutation'] ?? 'Lorem'},
+                          {'item': 'Academic title'.tr, 'value': controller.bookingConfirmationData['academic_title'] ?? 'Lorem ipsum'},
+                          {'item': 'Birth date'.tr, 'value': controller.bookingConfirmationData['birth_date']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['birth_date']}')) : ''},
+                          {'item': 'Birth place'.tr, 'value': controller.bookingConfirmationData['birth_place'] ?? ''},
+                          {'item': 'Country of birth'.tr, 'value': controller.bookingConfirmationData['country_Of_birth'] ?? ''},
+                          {'item': 'Mother Tongue'.tr, 'value': controller.bookingConfirmationData['mother_tongue'] ?? ''},
+                          {'item': 'Telephone'.tr, 'value': controller.bookingConfirmationData['tele_phone'] ?? ''},
+                          {'item': 'Mobile'.tr, 'value': controller.bookingConfirmationData['phone'] ?? ''},
                           {
-                            'item': 'Address',
+                            'item': 'Address'.tr,
                             'value': '${controller.bookingConfirmationData['street'] ?? ''}, ${controller.bookingConfirmationData['city'] ?? ''}, ${controller.bookingConfirmationData['zip_code'] ?? ''}'
                           },
                         ]),
@@ -403,7 +403,7 @@ class BookingConfirmation extends StatelessWidget {
                                       //   height: 10,
                                       // ),
                                       Text(
-                                        'Do you have a query?',
+                                        'Do you have a query?'.tr,
                                         style: TextStylesCustom.textStyles_16.apply(
                                             color: ColorStyle.primaryColor_1570A5,
                                             fontWeightDelta: 1),
@@ -412,7 +412,7 @@ class BookingConfirmation extends StatelessWidget {
                                         height: 4,
                                       ),
                                       Text(
-                                          'You can connect with us anytime!',
+                                          'You can connect with us anytime!'.tr,
                                           style: TextStylesCustom.textStyles_14
                                               .apply(fontWeightDelta: 1)),
                                     ],
@@ -437,7 +437,7 @@ class BookingConfirmation extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Contact Us',
+                              'Contact Us'.tr,
                               style: TextStylesCustom.textStyles_16
                                   .apply(fontWeightDelta: 1),
                             ),
@@ -445,7 +445,7 @@ class BookingConfirmation extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              'Die BBZ Sprachschulen sind ein Angebot der BBZ Altenkirchen GmbH & Co. KG',
+                              'Die BBZ Sprachschulen sind ein Angebot der BBZ Altenkirchen GmbH & Co. KG'.tr,
                               style: TextStylesCustom.textStyles_12,
                             ),
                             const SizedBox(
@@ -492,7 +492,7 @@ class BookingConfirmation extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20,),
-                      ElevatedButtonCustoms(text: 'Go back to Home page', onTap: (){
+                      ElevatedButtonCustoms(text: 'Go back to Home page'.tr, onTap: (){
                         PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
                       },
                       width: Get.size.width,

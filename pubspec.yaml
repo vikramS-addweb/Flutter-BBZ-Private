@@ -54,6 +54,7 @@ dependencies:
   country_picker: ^2.0.18
   url_launcher: ^6.1.7
   focus_detector: ^2.0.1
+  devicelocale: ^0.5.5
 
 dev_dependencies:
   flutter_test:
