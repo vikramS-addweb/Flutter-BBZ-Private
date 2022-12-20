@@ -5,6 +5,10 @@ import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import '../Controller/PersistentNavBarController.dart';
+import 'package:get/get.dart';
+
+final controller = Get.put(PersistentNavBarController());
 
 
 showLoaderGetX() {
@@ -81,8 +85,8 @@ goToAnotherScreen(Widget page) {
 }
 
 extension NavigateCustom on Widget {
-  navigateToCustom(context, { bool withNavBar = true}) {
-
+  navigateToCustom(context, { bool withNavBar = true, bool isNavBarActive = false}) {
+    // controller.isNavBarActive.value = isNavBarActive;
     PersistentNavBarNavigator.pushNewScreen(
       context,
       screen: this,
@@ -97,6 +101,7 @@ extension NavigateCustom on Widget {
 }
 
 navigateToBack(context) {
+
   Navigator.pop(context!);
 }
 

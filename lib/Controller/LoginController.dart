@@ -69,6 +69,7 @@ class LoginController extends GetxController {
     final response = await API.instance.post(endPoint: 'api/login', params: params);
     // log(response.toString());
 
+    print(response);
     if (response!.isNotEmpty) {
       isLoggedIn = true;
 

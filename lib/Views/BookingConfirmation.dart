@@ -82,7 +82,14 @@ class BookingConfirmation extends StatelessWidget {
           controller.initMethods(code);
         },
         init: controller,
-        builder: ((controller)=>Obx(() => controller.bookingConfirmationData.isEmpty ? Container(color: Colors.white,) : Scaffold(
+        builder: ((controller)=>Obx(() => controller.bookingConfirmationData.isEmpty ? Container(color: Colors.white,) : WillPopScope(
+    onWillPop: () async {
+    // Do something here
+    print("After clicking the Android Back Button");
+    PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
+    return true;
+    },
+    child:Scaffold(
           appBar: AppBarStyle(
             title: 'Booking Confirmation'.tr,
             leading: IconButton(
@@ -339,15 +346,15 @@ class BookingConfirmation extends StatelessWidget {
                           height: 35,
                         ),
                         ItemsList(items: [
-                          {'item': 'First name'.tr, 'value': controller.bookingConfirmationData['first_name'] ?? 'John'},
-                          {'item': 'Last name'.tr, 'value': controller.bookingConfirmationData['last_name'] ?? 'Doe'},
+                          {'item': 'First Name'.tr, 'value': controller.bookingConfirmationData['first_name'] ?? 'John'},
+                          {'item': 'Last Name'.tr, 'value': controller.bookingConfirmationData['last_name'] ?? 'Doe'},
                           {'item': 'Identification No.'.tr, 'value': controller.bookingConfirmationData['identification_number'] ?? 'Lorem'},
                           {'item': 'Email'.tr, 'value': controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'},
                           {'item': 'Salutation'.tr, 'value': controller.bookingConfirmationData['salutation'] ?? 'Lorem'},
-                          {'item': 'Academic title'.tr, 'value': controller.bookingConfirmationData['academic_title'] ?? 'Lorem ipsum'},
-                          {'item': 'Birth date'.tr, 'value': controller.bookingConfirmationData['birth_date']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['birth_date']}')) : ''},
-                          {'item': 'Birth place'.tr, 'value': controller.bookingConfirmationData['birth_place'] ?? ''},
-                          {'item': 'Country of birth'.tr, 'value': controller.bookingConfirmationData['country_Of_birth'] ?? ''},
+                          {'item': 'Academic Title'.tr, 'value': controller.bookingConfirmationData['academic_title'] ?? 'Lorem ipsum'},
+                          {'item': 'Birth Date'.tr, 'value': controller.bookingConfirmationData['birth_date']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['birth_date']}')) : ''},
+                          {'item': 'Birth Place'.tr, 'value': controller.bookingConfirmationData['birth_place'] ?? ''},
+                          {'item': 'Country Of Birth'.tr, 'value': controller.bookingConfirmationData['country_Of_birth'] ?? ''},
                           {'item': 'Mother Tongue'.tr, 'value': controller.bookingConfirmationData['mother_tongue'] ?? ''},
                           {'item': 'Telephone'.tr, 'value': controller.bookingConfirmationData['tele_phone'] ?? ''},
                           {'item': 'Mobile'.tr, 'value': controller.bookingConfirmationData['phone'] ?? ''},
@@ -506,7 +513,7 @@ class BookingConfirmation extends StatelessWidget {
             ),
           ),
         )))
-    );
+        ) );
 
   }
 }

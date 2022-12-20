@@ -195,12 +195,13 @@ class _ExamState extends State<Exam> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 475,
+                        // height: 475,
                         child: Stack(
+                          clipBehavior: Clip.none,
                           children: [
                             Image.asset(
                               ImageStyle.examBG,
-                              height: 170,
+                              height: 200,
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),
@@ -233,10 +234,10 @@ class _ExamState extends State<Exam> {
                               ),
                             ),
                             Container(
-                              height: 320,
+                              // height: 320,
                               width: Get.mediaQuery.size.width,
                               margin: const EdgeInsets.only(
-                                  top: 130, left: 16, right: 16),
+                                  top: 150, left: 16, right: 16),
                               padding: const EdgeInsets.only(
                                 top: 20,
                               ),
@@ -394,11 +395,12 @@ class _ExamState extends State<Exam> {
                                       controller.language.value = value!;
                                     },
                                   ),
+                                  SizedBox(height: 50,)
                                 ],
                               ),
                             ),
                             Positioned(
-                              bottom: 0,
+                              bottom: -23,
                               left: 0,
                               right: 0,
                               child: Center(
@@ -430,9 +432,10 @@ class _ExamState extends State<Exam> {
                             ),
                           ],
                         ),
+
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 50,
                       ),
                       Container(
                         color: Colors.white,

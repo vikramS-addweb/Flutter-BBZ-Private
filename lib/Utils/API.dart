@@ -105,9 +105,9 @@ class API {
         return {};
       }
     } on Exception catch (exception) {
-      // hideLoader();
-      // debugPrint('Exception is:-' + exception.toString());
-      // return null;
+      hideLoader();
+      debugPrint('Exception is:-' + exception.toString());
+      return null;
     } catch (error) {
       hideLoader();
       debugPrint('Error is:-' + error.toString());

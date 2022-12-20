@@ -69,6 +69,7 @@ class _LanguageState extends State<Language> {
                           setState(() {
                             this.language = 'english';
                           });
+                          navigateToBack(context);
                         },width: Get.size.width, colorBG: this.language == 'english' ? ColorStyle.primaryColor_1570A5 : Colors.white, colorText: this.language == 'english' ? Colors.white : Colors.black,),
                         SizedBox(height: 20,),
                         ElevatedButtonCustoms(text: 'Deutsch'.tr,onTap: (){
@@ -78,6 +79,7 @@ class _LanguageState extends State<Language> {
                           setState(() {
                             this.language = 'deutsch';
                           });
+                          navigateToBack(context);
                         },width: Get.size.width, colorBG: this.language == 'deutsch' ? ColorStyle.primaryColor_1570A5 : Colors.white, colorText: this.language == 'deutsch' ? Colors.white : Colors.black,),
                       ],
                     ),

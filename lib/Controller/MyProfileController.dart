@@ -89,11 +89,12 @@ class MyProfileController extends GetxController {
     print(response);
 
     if (response!.isNotEmpty) {
-      final response = await API.instance.get(endPoint: 'api/profile');
-      print(response);
+      response['message'].toString().showSuccess();
+      final response1 = await API.instance.get(endPoint: 'api/profile');
+      print(response1);
 
-      if (response!.isNotEmpty) {
-        dictUserSaved = response;
+      if (response1!.isNotEmpty) {
+        dictUserSaved = response1;
       }
 
       navigateToBack(Get.context);
