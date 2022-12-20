@@ -217,7 +217,9 @@ class LocaleString extends Translations {
       "Search everything here...": "Hier alles durchsuchen...",
       "Terms and conditions is required": "Allgemeine Geschäftsbedingungen erforderlich",
       "Privacy policy is required": "Datenschutzerklärung ist erforderlich",
-      "Agreement checkbox is required": "Das Kontrollkästchen für die Vereinbarung ist erforderlich"
+      "Agreement checkbox is required": "Das Kontrollkästchen für die Vereinbarung ist erforderlich",
+
+  "Identification No.": "Identifikationsnummer."
 
 
       // "Log In/Sign Up": "Einloggen Anmelden",
