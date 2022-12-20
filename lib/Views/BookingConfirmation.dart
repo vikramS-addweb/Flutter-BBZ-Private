@@ -152,7 +152,7 @@ class BookingConfirmation extends StatelessWidget {
                                   children: [
                                     Text('Booking successful!'.tr, style: TextStylesCustom.textStyles_22.apply(color: Colors.white),),
                                     SizedBox(height: 6,),
-                                    Text('Booking details has been sent to:'.tr +' ${controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'}', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
+                                    Text('Booking details has been sent to'.tr+':' +' ${controller.bookingConfirmationData['email'] ?? 'johndoe@gmail.com'}', style: TextStylesCustom.textStyles_14.apply(color: Colors.white),)
                                   ],
                                 ),
                               )
@@ -190,10 +190,10 @@ class BookingConfirmation extends StatelessWidget {
                                 ),
                               ]),
                           child: ItemsListCard(items: [
-                            {'item': 'Booking Number:'.tr, 'value': '${controller.bookingConfirmationData['id'] != null ? controller.bookingConfirmationData['id'] : '11'}'},
-                            {'item': 'Booking Date:'.tr, 'value': '${ controller.bookingConfirmationData['created_at']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['created_at']}')) : '03/30/2022'}'},
-                            {'item': 'Payment Method:'.tr, 'value': '${controller.bookingConfirmationData['gateway'] != null ? controller.bookingConfirmationData['gateway'] : 'Visa ending with 3334'}'},
-                            {'item': 'Booking Status:'.tr, 'value': 'Booked'.tr}
+                            {'item': 'Booking Number'.tr+':', 'value': '${controller.bookingConfirmationData['id'] != null ? controller.bookingConfirmationData['id'] : '11'}'},
+                            {'item': 'Booking Date'.tr+':', 'value': '${ controller.bookingConfirmationData['created_at']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['created_at']}')) : '03/30/2022'}'},
+                            {'item': 'Payment Method'.tr+':', 'value': '${controller.bookingConfirmationData['gateway'] != null ? controller.bookingConfirmationData['gateway'] : 'Visa ending with 3334'}'},
+                            {'item': 'Booking Status'.tr+':', 'value': 'Booked'.tr}
                           ],),
 
                         ))
@@ -265,9 +265,9 @@ class BookingConfirmation extends StatelessWidget {
                         const SizedBox(
                           height: 16,
                         ),
-                        ItemsList(items: [{'item': 'Exam Level:'.tr, 'value': '${controller.bookingConfirmationData['booked_event']['term'][0]['name'] ?? 'A2-B1'}  '},
-                          {'item': 'Exam Date:'.tr, 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}')):'25/03/2022 (SAT)'},
-                          {'item': 'Exam Time:'.tr, 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_time'] != null ? DateFormat.jm().format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}T${controller.bookingConfirmationData['booked_event']['exam_time']}')):'09:30 AM'},
+                        ItemsList(items: [{'item': 'Exam Level'.tr+':', 'value': '${controller.bookingConfirmationData['booked_event']['term'][0]['name'] ?? 'A2-B1'}  '},
+                          {'item': 'Exam Date'.tr+':', 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}')):'25/03/2022 (SAT)'},
+                          {'item': 'Exam Time'.tr+':', 'value': controller.bookingConfirmationData['booked_event'] != null && controller.bookingConfirmationData['booked_event']['exam_time'] != null ? DateFormat.jm().format(DateTime.parse('${controller.bookingConfirmationData['booked_event']['exam_date']}T${controller.bookingConfirmationData['booked_event']['exam_time']}')):'09:30 AM'},
                           ], secondColor: ColorStyle.black,),
                         const SizedBox(
                           height: 16,
@@ -286,7 +286,7 @@ class BookingConfirmation extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Examination Fees:'.tr,
+                      Text('Examination Fees'.tr+':',
                           style: TextStylesCustom.textStyles_14),
                       SizedBox(
                         width: Get.mediaQuery.size.width * 0.4,

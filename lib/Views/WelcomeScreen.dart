@@ -19,7 +19,7 @@ import '../Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../Controller/WelcomeController.dart';
 import './language.dart';
-import '../Controller/PersistentNavBarController.dart';
+// import '../Controller/PersistentNavBarController.dart';
 // isBackOnAuth.value = true;
 
 
@@ -30,13 +30,13 @@ class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});
 
   final controller = Get.put(WelcomeController());
-  final navBarController = Get.put(PersistentNavBarController());
+  // final navBarController = Get.put(PersistentNavBarController());
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
         initState: (state){
-          navBarController.isNavBarActive.value = true;
+          // navBarController.isNavBarActive.value = true;
         },
         init: controller,
         builder: (controller) {

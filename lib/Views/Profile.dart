@@ -26,7 +26,7 @@ class Profile extends StatelessWidget {
   final loginController = Get.put(LoginController());
   final controllerMyProfile = Get.put(MyProfileController());
   final examDetailController = Get.put(ExamDetailController());
-  final navBarController = Get.put(PersistentNavBarController());
+  // final navBarController = Get.put(PersistentNavBarController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class Profile extends StatelessWidget {
         init: MyProfileController(),
         initState: (_) {
           controllerMyProfile.updateOnMyProfile();
-          navBarController.isNavBarActive.value = true;
+          // navBarController.isNavBarActive.value = true;
         },
         builder: (_) {
           return Obx(() => Column(children: [

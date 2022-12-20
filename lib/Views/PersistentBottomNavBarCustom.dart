@@ -88,7 +88,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
 
       onItemSelected: (index) {
         print(index);
-        controller.isNavBarActive.value = true;
+        // controller.isNavBarActive.value = true;
         indexSelectedTab.value = index;
       },
       navBarStyle: NavBarStyle.style3, // Choose the nav bar style with this property.
