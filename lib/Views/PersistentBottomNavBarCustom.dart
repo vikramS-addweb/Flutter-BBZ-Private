@@ -7,7 +7,7 @@ import 'package:bbz/Views/Profile.dart';
 import 'package:bbz/Views/WelcomeScreen.dart';
 import 'package:get/get.dart';
 import 'package:bbz/Styles/ImageStyle.dart';
-
+import '../Controller/PersistentNavBarController.dart';
 import '../Utils/Constant.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -16,6 +16,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
 
   final int initialIndex;
   PersistentBottomNavBarCustom({Key? key,  this.initialIndex = 1}) : super(key: key);
+  final controller = Get.put(PersistentNavBarController());
 
   List<Widget> _buildScreens() {
     return [
@@ -32,11 +33,11 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
             height: 18,
             child: Image.asset(
               ImageStyle.test, fit: BoxFit.fill,
-              color: (indexSelectedTab.value == 0) ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_A8B0B5,
+              color: (indexSelectedTab.value == 0) && controller.isNavBarActive.value ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_A8B0B5,
             )
         ),
         title: ("Exam".tr),
-        activeColorPrimary: ColorStyle.primaryColor_1570A5,
+        activeColorPrimary: controller.isNavBarActive.value ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_5E6D77,
         inactiveColorPrimary: ColorStyle.grey_5E6D77,
       ),
       PersistentBottomNavBarItem(
@@ -45,19 +46,22 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
           height: 18,
           child: Image.asset(
             ImageStyle.account, fit: BoxFit.fill,
-            color: (indexSelectedTab.value == 1) ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_A8B0B5,
+            color: (indexSelectedTab.value == 1) && controller.isNavBarActive.value ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_A8B0B5,
           ),
         ),
         title: ("Profile".tr),
-        activeColorPrimary: ColorStyle.primaryColor_1570A5,
+        activeColorPrimary: controller.isNavBarActive.value ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_5E6D77,
         inactiveColorPrimary: ColorStyle.grey_5E6D77,
+
       ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => PersistentTabView(
+    return GetBuilder(
+      init: controller,
+    builder: ((controller)=>Obx(() => PersistentTabView(
       context,
       controller: PersistentTabController(initialIndex: initialIndex),
       screens: _buildScreens(),
@@ -80,12 +84,18 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
+      popAllScreensOnTapAnyTabs: true,
+
       onItemSelected: (index) {
         print(index);
+        controller.isNavBarActive.value = true;
         indexSelectedTab.value = index;
       },
       navBarStyle: NavBarStyle.style3, // Choose the nav bar style with this property.
-    ));
+    ))),
+    );
+
+
   }
 }
 

@@ -8,9 +8,13 @@ import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import '../Controller/PersistentNavBarController.dart';
 
 
 class ExamController extends GetxController {
+
+  final navBarController = Get.put(PersistentNavBarController());
+
   RxList upcomingExamData = [].obs;
   RxList searchResultData = [].obs;
   RxBool showSearchData = false.obs;
@@ -29,6 +33,7 @@ class ExamController extends GetxController {
 
   void initMethods() {
     Future.delayed(Duration(microseconds: 100), () {
+      navBarController.isNavBarActive.value = true;
       fetchUpcomingExam();
       fetchSearchDetails();
     });

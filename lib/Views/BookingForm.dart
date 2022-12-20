@@ -384,13 +384,14 @@ class BookingForm extends StatelessWidget {
                                     hintText: 'Please select'.tr,
                                     colorBoder: ColorStyle.grey_DAE1E7,
                                     padding:
-                                        EdgeInsets.only(left: 15, right: 15),
+                                        EdgeInsets.only(left: 15, right: 15, bottom: 10),
                                     textStyle: TextStylesCustom.textStyles_14,
                                     validator: (value) {
                                       if (value == null) {
                                         return 'Salutation is required'.tr;
                                       } else {
                                         controller.salutation.value = value;
+                                        FocusScope.of(context).unfocus();
                                         return null;
                                       }
                                     },
@@ -617,7 +618,7 @@ class BookingForm extends StatelessWidget {
                                     controllerValue: controller.motherToungue,
                                     colorBoder: ColorStyle.grey_DAE1E7,
                                     padding:
-                                        EdgeInsets.symmetric(horizontal: 15),
+                                    EdgeInsets.only(left: 15, right: 15, bottom: 10),
                                     hintText: 'Please Select'.tr,
                                     validator: (value) {
                                       if (value == null) {

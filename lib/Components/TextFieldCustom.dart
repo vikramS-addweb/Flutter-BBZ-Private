@@ -176,6 +176,7 @@ class TextFormFieldOutline extends StatelessWidget {
       decoration: InputDecoration(
           fillColor: colorFill,
           contentPadding: padding,
+          errorMaxLines: 2,
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radiusBorder!),
               borderSide: BorderSide(color: colorBoder!, width: 1)),

@@ -211,6 +211,7 @@ class _DropdownWithLabelState extends State<DropdownWithLabel> {
               decoration: InputDecoration(
                   fillColor: widget.colorFill,
                   contentPadding: widget.padding,
+                  // isDense: true,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(widget.radiusBorder!),
                       borderSide: BorderSide(color: widget.colorBoder!, width: 1)),
@@ -228,7 +229,7 @@ class _DropdownWithLabelState extends State<DropdownWithLabel> {
                 dropdownValue = value;
 
                 setState(() {
-
+                  this.dropdownValue = value;
                 });
               },
               items: widget.list!.map((e) => DropdownMenuItem<String>(

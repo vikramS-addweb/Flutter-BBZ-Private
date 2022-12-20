@@ -307,7 +307,7 @@ class MyProfile extends StatelessWidget {
                                         onTap: () async {
                                           final dateSelected = await PickerCustom.datePicker(
                                             dateFormat: 'yyyy-MM-dd',
-                                            selectedDate: DateTime.parse('2006-12-31'),
+                                            selectedDate: controller.birthDate.value.text == '' || controller.birthDate.value.text == '0000-00-00' ? DateTime.parse('2006-12-31') : DateTime.parse(controller.birthDate.value.text),
                                             firstDate: DateTime(1900),
                                             lastDate: DateTime.parse('2006-12-31'),
                                           );
@@ -332,7 +332,24 @@ class MyProfile extends StatelessWidget {
                                       Positioned(
                                         right: 15,
                                           bottom: 15,
-                                          child: Image.asset(ImageStyle.calendar, height: 20,))
+                                          child: InkWell(
+                                            onTap: () async{
+                                              final dateSelected = await PickerCustom.datePicker(
+                                                dateFormat: 'yyyy-MM-dd',
+                                                selectedDate: controller.birthDate.value.text == '' || controller.birthDate.value.text == '0000-00-00' ? DateTime.parse('2006-12-31') : DateTime.parse(controller.birthDate.value.text),
+                                                firstDate: DateTime(1900),
+                                                lastDate: DateTime.parse('2006-12-31'),
+                                              );
+
+                                              if (dateSelected != null) {
+                                                controller.birthDate.value.text = dateSelected.toString();
+                                                em ="";
+                                              }else {
+                                                print("Date is not selected".tr);
+                                                em ="Birth Date is required".tr;
+                                              }
+                                            },
+                                              child: Image.asset(ImageStyle.calendar, height: 20,)))
                                     ],
                                   ),
 
@@ -453,6 +470,8 @@ class MyProfile extends StatelessWidget {
                                         return "Postal code is required".tr;
                                       } else if (!value!.isNumericOnly) {
                                         return 'Postal code must contain only numbers'.tr;
+                                      }else if(value.length > 6){
+                                        return "Postal code can't have more than 6 digits".tr;
                                       } else {
                                         return null;
                                       }
