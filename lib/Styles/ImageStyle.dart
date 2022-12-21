@@ -31,6 +31,8 @@ class ImageStyle {
   static const String wavingHand = baseImage + "waving_hand.png";
   static const String myProfilePhoto = baseImage + "MyProfilePhoto.png";
   static const String myProfileBackground = baseImage + "MyProfile_background.png";
+  static const String bookingFormBarGerman = baseImage + "bookingFormBar_german.png";
+  static const String bookingConfirmationBarGerman = baseImage + "bookingConfimationBar_german.png";
 
   static const String call = baseImage + "call.svg";
   static const String group = baseImage + "Group.svg";

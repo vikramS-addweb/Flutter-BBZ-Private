@@ -78,16 +78,6 @@
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
-
 // ------------------------------------------------------old about us screen---------------------------->
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +89,6 @@ import '../../Styles/ImageStyle.dart';
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
 import '../Components/BottomNavBarCustom.dart';
-
 
 class AboutUs extends StatelessWidget {
   AboutUs({Key? key}) : super(key: key);
@@ -143,34 +132,30 @@ class AboutUs extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
                 Container(
-                  padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16
-                  ),
+                  padding: const EdgeInsets.only(left: 16, right: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 27,),
+                      const SizedBox(
+                        height: 27,
+                      ),
                       Text(
-                        'Know Who we are!',
+                        'Know Who we are!'.tr,
                         style: TextStylesCustom.textStyles_26.apply(
                           color: Colors.white,
                           // fontWeightDelta: 1,
                         ),
                       ),
-
-                      const SizedBox(height: 40,),
+                      const SizedBox(
+                        height: 40,
+                      ),
                     ],
                   ),
                 ),
                 Container(
                   // height: 320,
                   width: Get.mediaQuery.size.width,
-                  margin: const EdgeInsets.only(
-                      top: 95,
-                      left: 16,
-                      right: 16
-                  ),
+                  margin: const EdgeInsets.only(top: 95, left: 16, right: 16),
                   padding: const EdgeInsets.only(
                     top: 20,
                   ),
@@ -182,28 +167,23 @@ class AboutUs extends StatelessWidget {
                           color: ColorStyle.grey_DAE1E7,
                           // spreadRadius: 1,
                           blurRadius: 4,
-                          offset: const Offset(0, 0), // changes position of shadow
+                          offset:
+                              const Offset(0, 0), // changes position of shadow
                         ),
-                      ]
-                  ),
+                      ]),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         padding: const EdgeInsets.only(
-                            left: 16,
-                            right: 16,
-                            bottom: 16
-                        ),
+                            left: 16, right: 16, bottom: 16),
                         width: Get.mediaQuery.size.width,
                         decoration: BoxDecoration(
                             border: Border(
                                 bottom: BorderSide(
-                                  width: 2,
-                                  color: ColorStyle.grey_DAE1E7,
-                                )
-                            )
-                        ),
+                          width: 2,
+                          color: ColorStyle.grey_DAE1E7,
+                        ))),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -221,21 +201,17 @@ ${"In addition, we deploy language support staff within various placement-orient
                                 color: ColorStyle.black,
                               ),
                             ),
-
                           ],
                         ),
                       ),
-
                     ],
                   ),
                 ),
-
               ],
             ),
             const SizedBox(
               height: 20,
             ),
-
           ],
         ),
       ),

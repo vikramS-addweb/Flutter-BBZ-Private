@@ -1,4 +1,3 @@
-
 import 'package:bbz/Components/BGImage.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:bbz/Utils/Constant.dart';
@@ -18,7 +17,6 @@ import '../Styles/EffectStyle.dart';
 import '../Utils/Global.dart';
 import 'package:focus_detector/focus_detector.dart';
 
-
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -27,13 +25,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
   final fromkey = GlobalKey<FormState>();
   final controller = LoginController();
 
   void viewWillAppear() {
     print("onResume / viewWillAppear / onFocusGained");
-    
   }
 
   void viewWillDisappear() {
@@ -48,12 +44,8 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
-
     return FocusDetector(
       onFocusGained: viewWillAppear,
       onFocusLost: viewWillDisappear,
@@ -88,9 +80,7 @@ class _LoginState extends State<Login> {
                 child: Form(
                   key: fromkey,
                   // autovalidateMode: AutovalidateMode.onUserInteraction,
-                  onChanged: () {
-
-                  },
+                  onChanged: () {},
                   child: Column(
                     children: [
                       // -----------------------Email Feild---------------------------->
@@ -110,7 +100,7 @@ class _LoginState extends State<Login> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Email is required".tr;
-                          }else if(!GetUtils.isEmail(value)){
+                          } else if (!GetUtils.isEmail(value)) {
                             return "Email is invalid".tr;
                           } else {
                             return null;
@@ -134,10 +124,9 @@ class _LoginState extends State<Login> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Password is required".tr;
-                          }else if(value.length < 8){
+                          } else if (value.length < 8) {
                             return "Password must be at least 8 characters".tr;
-                          }
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -152,18 +141,20 @@ class _LoginState extends State<Login> {
                               InkWell(
                                   onTap: () => controller.RememberMe(),
                                   child: Obx(
-                                        () => Icon(
+                                    () => Icon(
                                       controller.check3.value
                                           ? Icons.check_box
                                           : Icons.check_box_outline_blank,
-                                      color: controller.check3.value ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_DAE1E7,
+                                      color: controller.check3.value
+                                          ? ColorStyle.primaryColor_1570A5
+                                          : ColorStyle.grey_DAE1E7,
                                     ),
                                   )),
                               const SizedBox(
                                 width: 8,
                               ),
                               Text(
-                                'Remember Me'.tr,
+                                'Remember me'.tr,
                                 style: TextStylesCustom.textStyles_12,
                               ),
                             ],
@@ -179,7 +170,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             child: Text(
-                              'Forgot Password ?'.tr,
+                              'Forgot Password?'.tr,
                               textAlign: TextAlign.right,
                               style: TextStylesCustom.textStyles_12,
                             ),
@@ -196,14 +187,13 @@ class _LoginState extends State<Login> {
                       ),
                       ElevatedButtonCustom(
                         text: 'LOGIN'.tr,
-                        styleText: TextStylesCustom.textStyles_15.apply(
-                            fontWeightDelta: 4
-                        ),
+                        styleText: TextStylesCustom.textStyles_15
+                            .apply(fontWeightDelta: 4),
                         size: Size(MediaQuery.of(context).size.width - 30, 50),
                         onTap: () {
                           // fromkey.currentState!.reset();
 
-                          if(fromkey.currentState!.validate()) {
+                          if (fromkey.currentState!.validate()) {
                             debugPrint('yay you logged in successfully');
                             controller.userLogin();
                           }
@@ -216,12 +206,14 @@ class _LoginState extends State<Login> {
                         height: 16,
                       ),
 
-                      TextRichCustom(
-                        textFirst: 'Do not have an account?'.tr+' ',
-                        textSecond: 'Sign Up'.tr,
-                        onTap: () {
-                          SignUp().navigateToCustom(context);
-                        },
+                      FittedBox(
+                        child: TextRichCustom(
+                          textFirst: 'Do not have an account?'.tr + ' ',
+                          textSecond: 'Sign Up'.tr,
+                          onTap: () {
+                            SignUp().navigateToCustom(context);
+                          },
+                        ),
                       ),
                       const SizedBox(
                         height: 10,
@@ -230,11 +222,9 @@ class _LoginState extends State<Login> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                                'Continue as a Guest'.tr,
-                                style: TextStylesCustom.textStyles_15
-                                    .apply(color: ColorStyle.primaryColor_1570A5)
-                            ),
+                            Text('Continue as a Guest'.tr,
+                                style: TextStylesCustom.textStyles_15.apply(
+                                    color: ColorStyle.primaryColor_1570A5)),
                             const SizedBox(
                               width: 10,
                             ),
@@ -246,7 +236,9 @@ class _LoginState extends State<Login> {
                         ),
                         onTap: () {
                           indexSelectedTab.value = 0;
-                          PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
+                          PersistentBottomNavBarCustom(
+                            initialIndex: 0,
+                          ).navigateToCustom(context, withNavBar: false);
                         },
                       )
                     ],

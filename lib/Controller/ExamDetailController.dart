@@ -9,29 +9,22 @@ import '../Views/MyProfile.dart';
 import '../Views/BookingHistory.dart';
 import '../Views/ChangePassword.dart';
 
-
-
-
 class ExamDetailController extends GetxController {
-
   final controllerMyProfile = Get.put(MyProfileController());
 
   RxMap examDetailData = {}.obs;
   RxBool isBooked = false.obs;
 
-  void initMethods(id){
+  void initMethods(id) {
     Future.delayed(Duration(microseconds: 100), () {
       examDetailData.clear();
 
       fetchExamDetails(id);
-      if(kTOKENSAVED.isNotEmpty)
-      fetchBookingStatus(id);
+      if (kTOKENSAVED.isNotEmpty) fetchBookingStatus(id);
     });
   }
 
   Future fetchExamDetails(id) async {
-
-
     final response = await API.instance.get(endPoint: 'api/exam-detail/$id');
 
     if (response!.isNotEmpty) {
@@ -42,20 +35,18 @@ class ExamDetailController extends GetxController {
   }
 
   Future fetchBookingStatus(id) async {
-
-
     final response = await API.instance.get(endPoint: 'api/bookedExam/$id');
 
     if (response!.isNotEmpty) {
-      if(response['status'] != null){
-        if(response['status'] == 'Not'){
+      if (response['status'] != null) {
+        if (response['status'] == 'Not') {
           isBooked.value = false;
-        }else if(response['status'] == 'booked'){
+        } else if (response['status'] == 'booked') {
           isBooked.value = true;
-        }else{
+        } else {
           response['status'].toString().showError();
         }
-      }else{
+      } else {
         response['message'].toString().showError();
       }
       update();
@@ -68,13 +59,17 @@ class ExamDetailController extends GetxController {
     final response = await API.instance.get(endPoint: 'api/user-verify');
 
     if (response!.isNotEmpty) {
-      if(response['flag'] != null){
-        if(response['flag'] == 0){
-          BookingForm(examDetails: examDetailData.value,).navigateToCustom(Get.context, withNavBar: false);
-        }else{
-          'verification mail sent on your email, please verify first'.showSuccess();
+      if (response['flag'] != null) {
+        if (response['flag'] == 0) {
+          BookingForm(
+            examDetails: examDetailData.value,
+          ).navigateToCustom(Get.context, withNavBar: false);
+        } else {
+          'verification mail sent on your email, please verify first'
+              .tr
+              .showSuccess();
         }
-      }else{
+      } else {
         response.toString().showError();
       }
 
@@ -86,14 +81,14 @@ class ExamDetailController extends GetxController {
     final response = await API.instance.get(endPoint: 'api/user-verify');
 
     if (response!.isNotEmpty) {
-      if(response['flag'] != null){
-        if(response['flag'] == 0){
+      if (response['flag'] != null) {
+        if (response['flag'] == 0) {
           switch (index) {
             case 0:
-            // MyProfile().navigateToCustom(context, withNavBar: false);
+              // MyProfile().navigateToCustom(context, withNavBar: false);
 
               Get.to(MyProfile())!.then((value) {
-                  controllerMyProfile.updateOnMyProfile();
+                controllerMyProfile.updateOnMyProfile();
               });
 
               break;
@@ -107,17 +102,15 @@ class ExamDetailController extends GetxController {
               break;
           }
           // BookingForm(examDetails: examDetailData.value,).navigateToCustom(Get.context, withNavBar: false);
-        }else{
-          'verification mail sent on your email, please verify first'.showSuccess();
+        } else {
+          'verification mail sent on your email, please verify first'
+              .showSuccess();
         }
-      }else{
+      } else {
         response.toString().showError();
       }
 
       update();
     }
   }
-
-
-
 }

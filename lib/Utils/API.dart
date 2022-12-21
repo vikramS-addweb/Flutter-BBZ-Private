@@ -7,6 +7,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import '../Utils/Constant.dart';
 import '../Utils/Global.dart';
 import 'dart:typed_data';
+import 'package:get/get.dart';
 
 class API {
   API._privateConstructor();
@@ -95,9 +96,22 @@ class API {
         return parsed;
       } else {
         if (parsed["error"] != null) {
-          parsed["error"].toString().showError();
+          if(parsed["error"].toString() == 'Email not found'){
+            "Email not found".tr.showError();
+          }else if(parsed["error"].toString() == 'No changes made'){
+            "No changes made".tr.showError();
+          }
+          else{
+            parsed["error"].toString().showError();
+          }
         } else if (parsed["message"] != null) {
-          parsed["message"].toString().showError();
+          if(parsed["message"].toString() == 'Email not found'){
+            "Email not found".tr.showError();
+          }else if(parsed["error"].toString() == 'No changes made'){
+            "No changes made".tr.showError();
+          }else{
+            parsed["message"].toString().showError();
+          }
         } else {
           parsed["error"].toString().showError();
         }

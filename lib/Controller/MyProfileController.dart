@@ -57,7 +57,9 @@ class MyProfileController extends GetxController {
       street.value.text = profileData['address2'] ?? '';
       telephone.value.text = profileData['phone'] ?? '';
       birthDate.value.text = profileData['birthday'] ?? '';
-      postalCode.value.text = profileData['zip_code'] != null ? profileData['zip_code'].toString() : '';
+      postalCode.value.text = profileData['zip_code'] != null
+          ? profileData['zip_code'].toString()
+          : '';
 
       if (profileData['media'] != null) {
         final dictMedia = Map<String, dynamic>.from(profileData['media']);
@@ -89,9 +91,9 @@ class MyProfileController extends GetxController {
     print(response);
 
     if (response!.isNotEmpty) {
-      response['message'].toString().showSuccess();
+      print(response['message']);
+
       final response1 = await API.instance.get(endPoint: 'api/profile');
-      print(response1);
 
       if (response1!.isNotEmpty) {
         dictUserSaved = response1;
@@ -112,13 +114,18 @@ class MyProfileController extends GetxController {
     );
 
     if (response!.isNotEmpty) {
-      response['message'].toString().showSuccess();
+      if (response['message'].toString() == 'Image Uploaded') {
+        "Image Uploaded".tr.showSuccess();
+      } else {
+        response['message'].toString().showSuccess();
+      }
     }
   }
 
   updateOnMyProfile() {
     name.value = dictUserSaved['name'].toString();
   }
+
   String? requiredFieldValidator(input) {
     if (input == null || input.isEmpty) {
       return "this field is required";

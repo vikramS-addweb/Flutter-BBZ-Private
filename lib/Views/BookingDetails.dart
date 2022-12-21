@@ -144,7 +144,7 @@ class BookingDetails extends StatelessWidget {
                     {'item': 'Exam Type'.tr, 'value': '${controller.bookingDetails['examLevel'] ?? ''}'},
                     {'item': 'Exam Date'.tr, 'value': controller.bookingDetails['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}')):''},
                     {'item': 'Exam Time'.tr, 'value': controller.bookingDetails['booked_event']['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}T${controller.bookingDetails['booked_event']['exam_time']}'))}':''},
-                    {'item': 'Exam Fees'.tr, 'value': '${controller.bookingDetails['booked_event']['price'] ?? ''} €'},
+                    {'item': 'Exam Fee'.tr, 'value': '${controller.bookingDetails['booked_event']['price'] ?? ''} €'},
                   ]),
                   SizedBox(
                     height: 10,

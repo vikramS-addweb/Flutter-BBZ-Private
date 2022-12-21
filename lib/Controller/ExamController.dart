@@ -10,9 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../Controller/PersistentNavBarController.dart';
 
-
 class ExamController extends GetxController {
-
   final navBarController = Get.put(PersistentNavBarController());
 
   RxList upcomingExamData = [].obs;
@@ -40,14 +38,15 @@ class ExamController extends GetxController {
   }
 
   getSearchResult() async {
-
-    if(language.value != ''){
-      final searchExamLevel =  searchDetails['exam_level'].firstWhere((element) => element['name'] == language.value);
+    if (language.value != '') {
+      final searchExamLevel = searchDetails['exam_level']
+          .firstWhere((element) => element['name'] == language.value);
       languageId.value = searchExamLevel['id'];
     }
 
-    if(location.value != ''){
-      final searchLocation =  searchDetails['locations'].firstWhere((element) => element['name'] == location.value);
+    if (location.value != '') {
+      final searchLocation = searchDetails['locations']
+          .firstWhere((element) => element['name'] == location.value);
       locationId.value = searchLocation['id'];
     }
 
@@ -55,14 +54,15 @@ class ExamController extends GetxController {
     // debugPrint(' location id : ${searchLocation}');
 
     final params = {
-      'location_id': location.value != '' ? '${locationId.value}' : ''  ,
+      'location_id': location.value != '' ? '${locationId.value}' : '',
       'from_date': dateFrom.value == 'From' ? '' : dateFrom.value,
-      'to_date':  dateTo.value == 'To' ? '' : dateTo.value,
-      'exam_level_id' : language.value != '' ? '${languageId.value}' : '',
-      'term' : search.text,
+      'to_date': dateTo.value == 'To' ? '' : dateTo.value,
+      'exam_level_id': language.value != '' ? '${languageId.value}' : '',
+      'term': search.text,
     };
 
-    final response = await API.instance.post(endPoint: 'api/search', params: params);
+    final response =
+        await API.instance.post(endPoint: 'api/search', params: params);
 
     if (response!.isNotEmpty) {
       debugPrint('response count ${response['data'].toList().length}');
@@ -72,7 +72,7 @@ class ExamController extends GetxController {
     }
   }
 
-  clear(){
+  clear() {
     showSearchData.value = false;
     language.value = '';
     location.value = '';
@@ -82,10 +82,7 @@ class ExamController extends GetxController {
     update();
   }
 
-
   Future fetchUpcomingExam() async {
-
-
     final response = await API.instance.get(endPoint: 'api/exams');
 
     if (response!.isNotEmpty) {
@@ -105,16 +102,15 @@ class ExamController extends GetxController {
     }
   }
 
-
-
-
-
-
   searchExam() {
     print("clicking ...");
     // getSearchResult();
 
-    if ( search.text.isEmpty && location.isEmpty && (dateFrom == 'From') && (dateTo == 'To') && language.isEmpty) {
+    if (search.text.isEmpty &&
+        location.isEmpty &&
+        (dateFrom == 'From') &&
+        (dateTo == 'To') &&
+        language.isEmpty) {
       showAlertDialog(Get.context!);
     } else {
       getSearchResult();
@@ -124,13 +120,15 @@ class ExamController extends GetxController {
       // print(dateTo.value);
       // print(language.value);
     }
-
   }
 
   showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
-      child: Text("Ok", style: TextStylesCustom.textStyles_20.apply(fontWeightDelta: 1),),
+      child: Text(
+        "Ok",
+        style: TextStylesCustom.textStyles_20.apply(fontWeightDelta: 1),
+      ),
       onPressed: () {
         Get.back();
       },
@@ -138,8 +136,14 @@ class ExamController extends GetxController {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Error!", style: TextStylesCustom.textStyles_18.apply(fontWeightDelta: 1),),
-      content: Text("Please choose at least one option.", style: TextStylesCustom.textStyles_16,),
+      title: Text(
+        "Error!",
+        style: TextStylesCustom.textStyles_18.apply(fontWeightDelta: 1),
+      ),
+      content: Text(
+        "Please choose at least one option".tr,
+        style: TextStylesCustom.textStyles_16,
+      ),
       actions: [
         okButton,
       ],
@@ -155,10 +159,6 @@ class ExamController extends GetxController {
     );
   }
 
-
   // ----------------------------------------reg date difference----------------------------->
-
-
-
 
 }

@@ -156,7 +156,7 @@ class BookingForm extends StatelessWidget {
                 child: Column(
                   children: [
                     Center(
-                      child: Image.asset(
+                      child: Get.locale.toString().contains('de') ? Image.asset(ImageStyle.bookingFormBarGerman, width: 250, height: 100,) : Image.asset(
                         ImageStyle.bookingFormBar,
                         width: 250,
                         height: 100,
@@ -306,7 +306,7 @@ class BookingForm extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Total:'.tr,
+                                    Text('Total'.tr+':',
                                         style: TextStylesCustom.textStyles_18
                                             .apply(
                                                 color: ColorStyle
@@ -428,7 +428,7 @@ class BookingForm extends StatelessWidget {
                                               if (value!.isEmpty) {
                                                 return "First name is required".tr;
                                               } else if (!alphaSpace.hasMatch(value)) {
-                                                return " FN should have letters".tr;
+                                                return "FN should have letters".tr;
                                               }
                                               else if(value![0] == ' '){
                                                 // controller.userMessage.value.text = '';
@@ -453,7 +453,7 @@ class BookingForm extends StatelessWidget {
                                             if (value!.isEmpty) {
                                               return "Last name is required".tr;
                                             } else if (!alphaSpace.hasMatch(value)) {
-                                              return " FN should have letters".tr;
+                                              return "LN should have letters".tr;
                                             }
                                             else if(value![0] == ' '){
                                               // controller.userMessage.value.text = '';
@@ -497,6 +497,8 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Email is required".tr;
+                                      }else if(value![0] == ' '){
+                                        return "Email can't start with space".tr;
                                       }
                                       else if (!GetUtils.isEmail(value)) {
                                         return "Email is invalid".tr;
@@ -525,6 +527,7 @@ class BookingForm extends StatelessWidget {
                                         controller: controller.birth_date.value,
                                         enabled: true,
                                         showCursor: false,
+                                        showDateIcon: true,
                                         readOnly: true,
                                         firstText: 'Birth Date'.tr,
                                         hintText: 'YYYY-MM-DD'.tr,
@@ -547,10 +550,10 @@ class BookingForm extends StatelessWidget {
                                           }
                                         },
                                       ),
-                                      Positioned(
-                                          right: 15,
-                                          bottom: 15,
-                                          child: Image.asset(ImageStyle.calendar, height: 20,))
+                                      // Positioned(
+                                      //     right: 15,
+                                      //     bottom: 15,
+                                      //     child: Image.asset(ImageStyle.calendar, height: 20,))
                                     ],
                                   ),
                                   SizedBox(
@@ -1172,7 +1175,7 @@ class BookingForm extends StatelessWidget {
                                                             .primaryColor_1570A5)),
                                                 TextSpan(
                                                     text:
-                                                    ' and agree to the storage of the above data. '.tr,
+                                                    ' and agree to the storage of the above data.'.tr,
                                                     style: TextStylesCustom
                                                         .textStyles_15
                                                         .apply(

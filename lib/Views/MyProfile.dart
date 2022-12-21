@@ -60,13 +60,13 @@ class MyProfile extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: ElevatedButtonCustoms(
                   onTap: () {
-                    if(controller.country.value == ''){
+                    if (controller.country.value == '') {
                       controller.countryError.value = true;
-                    }else{
+                    } else {
                       controller.countryError.value = false;
                     }
-                    if (fromkey.currentState!.validate() && !controller.countryError.value) {
-
+                    if (fromkey.currentState!.validate() &&
+                        !controller.countryError.value) {
                       controller.editProfile();
                       debugPrint('yay you logged in successfully');
                     }
@@ -205,14 +205,13 @@ class MyProfile extends StatelessWidget {
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return "First name is required".tr;
-                                          } else if (!alphaSpace.hasMatch(value)) {
+                                          } else if (!alphaSpace
+                                              .hasMatch(value)) {
                                             return " FN should have letters".tr;
-                                          }
-                                          else if(value![0] == ' '){
+                                          } else if (value![0] == ' ') {
                                             // controller.userMessage.value.text = '';
                                             return "Can't start with space".tr;
-                                          }
-                                          else {
+                                          } else {
                                             return null;
                                           }
                                         },
@@ -228,14 +227,13 @@ class MyProfile extends StatelessWidget {
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return "Last name is required".tr;
-                                          } else if (!alphaSpace.hasMatch(value)) {
+                                          } else if (!alphaSpace
+                                              .hasMatch(value)) {
                                             return " LN should have letters".tr;
-                                          }
-                                          else if(value![0] == ' '){
+                                          } else if (value![0] == ' ') {
                                             // controller.userMessage.value.text = '';
                                             return "Can't start with space".tr;
-                                          }
-                                          else {
+                                          } else {
                                             return null;
                                           }
                                         },
@@ -256,10 +254,11 @@ class MyProfile extends StatelessWidget {
                                         return "Email is required".tr;
                                       } else if (!GetUtils.isEmail(value)) {
                                         return "Email is invalid".tr;
-                                      } else if(value![0] == ' '){
+                                      } else if (value![0] == ' ') {
                                         // controller.userMessage.value.text = '';
-                                        return "email can't start with space".tr;
-                                      }else {
+                                        return "email can't start with space"
+                                            .tr;
+                                      } else {
                                         return null;
                                       }
                                     },
@@ -269,28 +268,27 @@ class MyProfile extends StatelessWidget {
                                   ),
                                   // -----------------------Telephone Field---------------------------->
                                   TextFormFieldWithLabel(
-                                    controller: controller.telephone.value,
-                                    keyboardType: TextInputType.number,
-                                    firstText: 'Telephone'.tr,
-                                    hintText: 'Please enter'.tr,
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Telephone is required".tr;
-                                      }else if(!value.isNumericOnly){
-                                        return "Telephone must contain only number".tr;
-                                      }else if(value[0] == '0'){
-                                        return "Telephone can't start with zero".tr;
-                                      }
-                                      else if (value.length < 7) {
-                                        return "Min digit should be 7".tr;
-                                      }else if (value.length > 15) {
-                                        return "Max digit should be 15".tr;
-                                      }
-                                      else {
-                                        return null;
-                                      }
-                                    }
-                                  ),
+                                      controller: controller.telephone.value,
+                                      keyboardType: TextInputType.number,
+                                      firstText: 'Telephone'.tr,
+                                      hintText: 'Please enter'.tr,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Telephone is required".tr;
+                                        } else if (!value.isNumericOnly) {
+                                          return "Telephone must contain only number"
+                                              .tr;
+                                        } else if (value[0] == '0') {
+                                          return "Telephone can't start with zero"
+                                              .tr;
+                                        } else if (value.length < 7) {
+                                          return "Min digit should be 7".tr;
+                                        } else if (value.length > 15) {
+                                          return "Max digit should be 15".tr;
+                                        } else {
+                                          return null;
+                                        }
+                                      }),
                                   const SizedBox(
                                     height: 15,
                                   ),
@@ -301,23 +299,35 @@ class MyProfile extends StatelessWidget {
                                         controller: controller.birthDate.value,
                                         enabled: true,
                                         showCursor: false,
+                                        showDateIcon: true,
                                         readOnly: true,
                                         firstText: 'Birth Date'.tr,
                                         hintText: 'YYYY-MM-DD',
                                         onTap: () async {
-                                          final dateSelected = await PickerCustom.datePicker(
+                                          final dateSelected =
+                                              await PickerCustom.datePicker(
                                             dateFormat: 'yyyy-MM-dd',
-                                            selectedDate: controller.birthDate.value.text == '' || controller.birthDate.value.text == '0000-00-00' ? DateTime.parse('2006-12-31') : DateTime.parse(controller.birthDate.value.text),
+                                            selectedDate: controller.birthDate
+                                                            .value.text ==
+                                                        '' ||
+                                                    controller.birthDate.value
+                                                            .text ==
+                                                        '0000-00-00'
+                                                ? DateTime.parse('2006-12-31')
+                                                : DateTime.parse(controller
+                                                    .birthDate.value.text),
                                             firstDate: DateTime(1900),
-                                            lastDate: DateTime.parse('2006-12-31'),
+                                            lastDate:
+                                                DateTime.parse('2006-12-31'),
                                           );
 
                                           if (dateSelected != null) {
-                                            controller.birthDate.value.text = dateSelected.toString();
-                                            em ="";
-                                          }else {
+                                            controller.birthDate.value.text =
+                                                dateSelected.toString();
+                                            em = "";
+                                          } else {
                                             print("Date is not selected".tr);
-                                            em ="Birth Date is required".tr;
+                                            em = "Birth Date is required".tr;
                                           }
                                         },
                                         validator: (value) {
@@ -329,27 +339,6 @@ class MyProfile extends StatelessWidget {
                                           }
                                         },
                                       ),
-                                      Positioned(
-                                        right: 15,
-                                          bottom: 15,
-                                          child: InkWell(
-                                            onTap: () async{
-                                              final dateSelected = await PickerCustom.datePicker(
-                                                dateFormat: 'yyyy-MM-dd',
-                                                selectedDate: controller.birthDate.value.text == '' || controller.birthDate.value.text == '0000-00-00' ? DateTime.parse('2006-12-31') : DateTime.parse(controller.birthDate.value.text),
-                                                firstDate: DateTime(1900),
-                                                lastDate: DateTime.parse('2006-12-31'),
-                                              );
-
-                                              if (dateSelected != null) {
-                                                controller.birthDate.value.text = dateSelected.toString();
-                                                em ="";
-                                              }else {
-                                                print("Date is not selected".tr);
-                                                em ="Birth Date is required".tr;
-                                              }
-                                            },
-                                              child: Image.asset(ImageStyle.calendar, height: 20,)))
                                     ],
                                   ),
 
@@ -402,19 +391,20 @@ class MyProfile extends StatelessWidget {
                                   ),
                                   // -----------------------C/o field---------------------------->
                                   TextFormFieldWithLabel(
-                                    controller: controller.co.value,
-                                    firstText: 'C/o'.tr,
-                                    secondText: '',
-                                    hintText: 'Please enter'.tr,
+                                      controller: controller.co.value,
+                                      firstText: 'C/o'.tr,
+                                      secondText: '',
+                                      hintText: 'Please enter'.tr,
                                       validator: (value) {
-                                      if( value!.isNotEmpty && value![0] == ' '){
+                                        if (value!.isNotEmpty &&
+                                            value![0] == ' ') {
                                           // controller.userMessage.value.text = '';
-                                          return "C/o can't start with space".tr;
-                                        }else {
+                                          return "C/o can't start with space"
+                                              .tr;
+                                        } else {
                                           return null;
                                         }
-                                      }
-                                  ),
+                                      }),
                                   const SizedBox(
                                     height: 15,
                                   ),
@@ -426,10 +416,10 @@ class MyProfile extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Street is required".tr;
-                                      } else if(value![0] == ' '){
-                                        return "Street can't start with space".tr;
-                                      }
-                                      else {
+                                      } else if (value![0] == ' ') {
+                                        return "Street can't start with space"
+                                            .tr;
+                                      } else {
                                         return null;
                                       }
                                     },
@@ -447,11 +437,11 @@ class MyProfile extends StatelessWidget {
                                         return "City is required".tr;
                                       } else if (!GetUtils.isAlphabetOnly(
                                           value)) {
-                                        return " City name must only contain letters".tr;
-                                      }else if(value![0] == ' '){
+                                        return "City name must only contain letters"
+                                            .tr;
+                                      } else if (value![0] == ' ') {
                                         return "City can't start with space".tr;
-                                      }
-                                      else {
+                                      } else {
                                         return null;
                                       }
                                     },
@@ -469,9 +459,11 @@ class MyProfile extends StatelessWidget {
                                       if (value!.isEmpty) {
                                         return "Postal code is required".tr;
                                       } else if (!value!.isNumericOnly) {
-                                        return 'Postal code must contain only numbers'.tr;
-                                      }else if(value.length > 6){
-                                        return "Postal code can't have more than 6 digits".tr;
+                                        return 'Postal code must contain only numbers'
+                                            .tr;
+                                      } else if (value.length > 6) {
+                                        return "Postal code can't have more than 6 digits"
+                                            .tr;
                                       } else {
                                         return null;
                                       }
@@ -487,26 +479,28 @@ class MyProfile extends StatelessWidget {
                                         controller.country.value = value;
                                       });
                                     },
-                                    child: controller.country.value == ''?
+                                    child: controller.country.value == ''
+                                        ? ContainerWithLabel(
+                                            firstText: 'Country'.tr,
+                                            hintText: 'Please Select'.tr,
+                                            isError:
+                                                controller.countryError.value,
+                                            colorhintText:
+                                                ColorStyle.grey_DAE1E7,
+                                            colorBorder: ColorStyle.white,
+                                            // selectedValue: controller.country.value.text,
+                                          )
+                                        : ContainerWithLabel(
+                                            firstText: 'Country'.tr,
+                                            hintText: controller.country.value,
+                                            isError:
+                                                controller.countryError.value,
+                                            colorhintText:
+                                                ColorStyle.grey_5E6D77,
+                                            colorBorder: ColorStyle.white,
 
-                                    ContainerWithLabel(
-                                      firstText: 'Country'.tr,
-                                      hintText: 'Please Select'.tr,
-                                      isError: controller.countryError.value,
-                                      colorhintText: ColorStyle.grey_DAE1E7,
-                                      colorBorder: ColorStyle.white,
-                                      // selectedValue: controller.country.value.text,
-                                    ):
-                                    ContainerWithLabel(
-                                      firstText: 'Country'.tr,
-                                      hintText: controller.country.value,
-                                      isError: controller.countryError.value,
-                                      colorhintText: ColorStyle.grey_5E6D77,
-                                      colorBorder: ColorStyle.white,
-
-                                      // selectedValue: controller.country.value.text,
-                                    )
-                                    ,
+                                            // selectedValue: controller.country.value.text,
+                                          ),
                                   ),
 
                                   if (controller.countryError.value)
