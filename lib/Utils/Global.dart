@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 
 final controller = Get.put(PersistentNavBarController());
 
-
 showLoaderGetX() {
   Get.dialog(
     Material(
@@ -36,11 +35,9 @@ showLoaderGetX() {
               Container(
                 width: 16,
               ),
-              Text(
-                  "Loading ...",
+              Text("Loading ...".tr,
                   style: TextStylesCustom.textStyles_16
-                      .apply(color: Colors.white)
-              ),
+                      .apply(color: Colors.white)),
             ],
           ),
         ),
@@ -57,7 +54,7 @@ hideLoader() {
 extension SnackBar on String {
   showError() {
     Get.snackbar(
-      "Error!",
+      "Error!".tr,
       this,
       backgroundColor: Colors.red,
       colorText: Colors.white,
@@ -66,7 +63,7 @@ extension SnackBar on String {
 
   showSuccess() {
     Get.snackbar(
-      "Success!",
+      "Success!".tr,
       this,
       backgroundColor: Colors.green,
       colorText: Colors.white,
@@ -85,13 +82,13 @@ goToAnotherScreen(Widget page) {
 }
 
 extension NavigateCustom on Widget {
-  navigateToCustom(context, { bool withNavBar = true, bool isNavBarActive = false}) {
-    controller.isNavBarActive.value = isNavBarActive;
+  navigateToCustom(context,
+      {bool withNavBar = true, bool isNavBarActive = false}) {
+    // controller.isNavBarActive.value = isNavBarActive;
     PersistentNavBarNavigator.pushNewScreen(
       context,
       screen: this,
       withNavBar: withNavBar,
-
       pageTransitionAnimation: PageTransitionAnimation.cupertino,
     );
 
@@ -101,7 +98,6 @@ extension NavigateCustom on Widget {
 }
 
 navigateToBack(context) {
-
   // Navigator.of(context).popUntil((route) {
   //   return route.isActive;
   // });
@@ -120,8 +116,14 @@ showAlertDialog(BuildContext context) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Alert!", style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 1),),
-    content: Text("Password reset link is sent to your email.", style: TextStylesCustom.textStyles_12,),
+    title: Text(
+      "Alert!",
+      style: TextStylesCustom.textStyles_14.apply(fontWeightDelta: 1),
+    ),
+    content: Text(
+      "Password reset link is sent to your email.",
+      style: TextStylesCustom.textStyles_12,
+    ),
     actions: [
       okButton,
     ],
@@ -141,32 +143,24 @@ registrationColor(DateTime from) {
   // from = DateTime(from.year, from.month, from.day);
   DateTime tenhrLater = from.add(Duration(hours: 10));
   // to = DateTime.now();
-  int remainingMinutes = tenhrLater
-      .difference(DateTime.now())
-      .inMinutes;
-  print('${tenhrLater
-      .difference(DateTime.now())
-      .inMinutes}');
+  int remainingMinutes = tenhrLater.difference(DateTime.now()).inMinutes;
+  print('${tenhrLater.difference(DateTime.now()).inMinutes}');
   if (remainingMinutes <= (24 * 60)) {
     return Colors.red;
-  } else
-  if (remainingMinutes > (24 * 60) && remainingMinutes <= (24 * 60 * 5)) {
+  } else if (remainingMinutes > (24 * 60) &&
+      remainingMinutes <= (24 * 60 * 5)) {
     return Colors.orange;
   } else {
     return Colors.green;
   }
 }
 
-circleColor(value){
-  if(value <= 10){
+circleColor(value) {
+  if (value <= 10) {
     return Colors.red;
-  }else if(value > 10 && value <= 30){
+  } else if (value > 10 && value <= 30) {
     return Colors.orange;
-  }else{
+  } else {
     return Colors.green;
   }
 }
-
-
-
-

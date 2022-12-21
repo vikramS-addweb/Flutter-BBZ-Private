@@ -11,10 +11,7 @@ import 'dart:math';
 import './ExamDetailController.dart';
 import '../Views/BookingConfirmation.dart';
 
-
-
 class BookingFormController extends GetxController {
-
   void initMethods() {
     reset();
     Future.delayed(const Duration(microseconds: 100), () {
@@ -42,7 +39,7 @@ class BookingFormController extends GetxController {
   RxBool agreementError = false.obs;
 
   //drowpdown variables
-  RxString event_id= ''.obs;
+  RxString event_id = ''.obs;
   RxString salutation = ''.obs;
   Rx<TextEditingController> academic_title = TextEditingController().obs;
   Rx<TextEditingController> birth_date = TextEditingController().obs;
@@ -65,16 +62,12 @@ class BookingFormController extends GetxController {
   Rx<TextEditingController> postal_code = TextEditingController().obs;
   RxString country = ''.obs;
 
-
-
   //booking confirmation variables
   RxString amount = ''.obs;
   RxString code = ''.obs;
 
-
-
 // -----------------------------------------------------Book exam ----------------------------------->
-  registerExam() async{
+  registerExam() async {
     print(examDetailController.examDetailData.value['id']);
     print(salutation.value);
     print(academic_title.value.text);
@@ -124,14 +117,11 @@ class BookingFormController extends GetxController {
     //   }
     // }
 
-
-
     //----------------------------------------------Booking form api----------------------------->
 
-    if(image.value.path.isEmpty){
+    if (image.value.path.isEmpty) {
       "ID Proof Image is required".showError();
-    }
-    else {
+    } else {
       uploadImage();
 
       final params = {
@@ -162,16 +152,22 @@ class BookingFormController extends GetxController {
         'term_conditions_2': '${secondTerm.value}'
       };
 
-
       final response =
-      await API.instance.post(endPoint: endpoint, params: params);
+          await API.instance.post(endPoint: endpoint, params: params);
       print(response);
 
       if (response!.isNotEmpty) {
         debugPrint(response.toString());
         // response['message'].toString().showSuccess();
         if (response['status'] == 1) {
-          response['message'].toString().showSuccess();
+          if (response['message'].toString() ==
+              'You Booking has been processed successfully.Redirect To Payment') {
+            "Your Booking has been processed successfully.Redirect To Payment"
+                .tr
+                .showSuccess();
+          } else {
+            response['message'].toString().showSuccess();
+          }
           event_id.value = response['event_id'].toString();
           amount.value = response['amount'].toString();
           code.value = response['code'].toString();
@@ -180,7 +176,11 @@ class BookingFormController extends GetxController {
 
           bookingConfirm();
         } else if (response['message'] != null) {
-          response['message'].toString().showError();
+          if (response['message'].toString() == 'Email already exists') {
+            "Email already exists".tr.showError();
+          } else {
+            response['message'].toString().showError();
+          }
         }
         // final response1 = await API.instance.get(endPoint: 'api/profile');
         // print(response1);
@@ -192,7 +192,6 @@ class BookingFormController extends GetxController {
         // navigateToBack(Get.context);
       }
     }
-
   }
 
   // -------------------------------------------upload image------------------------------------->
@@ -212,51 +211,57 @@ class BookingFormController extends GetxController {
     );
 
     if (response!.isNotEmpty) {
-      response['message'].toString().showSuccess();
+      if (response['message'].toString() == 'Image Uploaded') {
+        "Image Uploaded".tr.showSuccess();
+      } else {
+        response['message'].toString().showSuccess();
+      }
     }
   }
 
 // ....................................................Get logged in User details ............------------------>
-  getUserDetails(){
+  getUserDetails() {
     debugPrint('token ${kTOKENSAVED}');
     debugPrint('endpoint $endpoint');
-    if(kTOKENSAVED != ''){
+    if (kTOKENSAVED != '') {
       first_name.value.text = dictUserSaved['first_name'];
       last_name.value.text = dictUserSaved['last_name'];
       email.value.text = dictUserSaved['email'];
-      mobile.value.text = dictUserSaved['phone'] != null ? dictUserSaved['phone'].toString().replaceAll('-', '') : '';
+      mobile.value.text = dictUserSaved['phone'] != null
+          ? dictUserSaved['phone'].toString().replaceAll('-', '')
+          : '';
       endpoint = 'api/auth-register-exam';
-    }else{
+    } else {
       endpoint = 'api/register-exam';
     }
     debugPrint('endpoint $endpoint');
   }
 
   // --------------------------------------------------------Reset variables---------------------------------------->
-  reset (){
+  reset() {
     salutation.value = '';
-    academic_title.value.text='';
-    first_name.value.text= '';
-    last_name.value.text='';
-    identification_number.value.text='';
-    email.value.text='';
-    birth_date.value.text='';
-    birth_place.value.text='';
-    country_of_birth.value.text='';
-    motherToungue.value='';
-    telephone.value.text='';
-    mobile.value.text='';
+    academic_title.value.text = '';
+    first_name.value.text = '';
+    last_name.value.text = '';
+    identification_number.value.text = '';
+    email.value.text = '';
+    birth_date.value.text = '';
+    birth_place.value.text = '';
+    country_of_birth.value.text = '';
+    motherToungue.value = '';
+    telephone.value.text = '';
+    mobile.value.text = '';
     image.value = File('');
     imageURL.value = '';
-    co.value.text='';
-    street.value.text='';
-    city.value.text='';
-    postal_code.value.text='';
-    country.value='';
-    paymentMethod.value='';
-    termsAndCondition.value=false;
-    privacyPolicy.value=false;
-    secondTerm.value=false;
+    co.value.text = '';
+    street.value.text = '';
+    city.value.text = '';
+    postal_code.value.text = '';
+    country.value = '';
+    paymentMethod.value = '';
+    termsAndCondition.value = false;
+    privacyPolicy.value = false;
+    secondTerm.value = false;
   }
 
   // -------------------------------------------------------Booking confimation api------------------------------------>
@@ -267,18 +272,22 @@ class BookingFormController extends GetxController {
       'event_id': '${examDetailController.examDetailData.value['id']}'
     };
 
-
-    final response =
-    await API.instance.post(endPoint: 'api/confirm/:gateways', params: params);
+    final response = await API.instance
+        .post(endPoint: 'api/confirm/:gateways', params: params);
     print(response);
 
     if (response!.isNotEmpty) {
       // response['message'].toString().showSuccess();
-      if(response['message'] != null){
-        response['message'].toString().showSuccess();
-        BookingConfirmation(code: code.value,).navigateToCustom(Get.context);
-      }else
-      if(response['errors'] != null){
+      if (response['message'] != null) {
+        if (response['message'].toString() == 'Payment Successfully Done') {
+          "Payment Successfully Done".tr.showSuccess();
+        } else {
+          response['message'].toString().showSuccess();
+        }
+        BookingConfirmation(
+          code: code.value,
+        ).navigateToCustom(Get.context);
+      } else if (response['errors'] != null) {
         response['errors'].toString().showSuccess();
       }
     }

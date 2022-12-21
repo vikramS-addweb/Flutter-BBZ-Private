@@ -1,3 +1,5 @@
+import 'package:bbz/Styles/ImageStyle.dart';
+
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import 'package:flutter/material.dart';
@@ -142,6 +144,7 @@ class TextFormFieldOutline extends StatelessWidget {
   final Function()? onTap;
   final bool? showCursor;
   final bool readOnly;
+  final bool? showDateIcon;
 
   TextFormFieldOutline({
     Key? key,
@@ -163,6 +166,7 @@ class TextFormFieldOutline extends StatelessWidget {
     this.onTap,
     this.showCursor = true,
     this.readOnly = false,
+    this.showDateIcon = false,
   }) : super(key: key);
 
   @override
@@ -174,6 +178,14 @@ class TextFormFieldOutline extends StatelessWidget {
       keyboardType: keyboardType,
       maxLines: maxLines,
       decoration: InputDecoration(
+
+        // suffixIcon: Image.asset(ImageStyle.calendar),
+        suffixIcon: showDateIcon! ?  Padding(
+          padding: const EdgeInsets.only(right:15.0),
+          child: Image.asset(ImageStyle.calendar, height: 5,),
+        ) : SizedBox(width: 0,),
+          suffixIconConstraints: BoxConstraints(maxHeight: 15, minHeight: 15),
+
           fillColor: colorFill,
           contentPadding: padding,
           errorMaxLines: 2,
@@ -267,7 +279,8 @@ class TextFormFieldWithLabel extends StatelessWidget {
         this.obscureText = false,
         this.onTap,
         this.showCursor = true,
-        this.readOnly = false
+        this.readOnly = false,
+        this.showDateIcon = false,
       })
       : super(key: key);
   final TextEditingController? controller;
@@ -281,6 +294,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
   final Function()? onTap;
   final bool? showCursor;
   final bool readOnly ;
+  final bool? showDateIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -311,6 +325,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
           controller: controller,
           hintText: hintText!,
           radiusBorder: 4,
+          showDateIcon: showDateIcon,
           colorBoder: ColorStyle.grey_DAE1E7,
           padding: const EdgeInsets.only(left: 14),
           colorHint: ColorStyle.grey_DAE1E7,

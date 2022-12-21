@@ -58,7 +58,13 @@ class SignUpController extends GetxController {
 
         if (dictMessage['email'] != null) {
           final arrEmail = dictMessage['email'];
-          arrEmail[0].toString().showError();
+          if(arrEmail[0].toString() == 'The email has already been taken.'){
+            "The email has already been taken.".tr.showError();
+          }
+          else{
+            arrEmail[0].toString().showError();
+          }
+
 
           return;
         } else if (dictMessage['phone'] != null) {

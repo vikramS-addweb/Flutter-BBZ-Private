@@ -201,7 +201,7 @@ class _ExamState extends State<Exam> {
                           children: [
                             Image.asset(
                               ImageStyle.examBG,
-                              height: 200,
+                              height: 170,
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),
@@ -214,11 +214,13 @@ class _ExamState extends State<Exam> {
                                   const SizedBox(
                                     height: 20,
                                   ),
-                                  Text(
-                                    'Book Your Exam Now!'.tr,
-                                    style: TextStylesCustom.textStyles_26.apply(
-                                      color: Colors.white,
-                                      // fontWeightDelta: 1,
+                                  FittedBox(
+                                    child: Text(
+                                      'Book Your Exam Now!'.tr,
+                                      style: TextStylesCustom.textStyles_26.apply(
+                                        color: Colors.white,
+                                        // fontWeightDelta: 1,
+                                      ),
                                     ),
                                   ),
                                   Text(
@@ -237,7 +239,7 @@ class _ExamState extends State<Exam> {
                               // height: 320,
                               width: Get.mediaQuery.size.width,
                               margin: const EdgeInsets.only(
-                                  top: 150, left: 16, right: 16),
+                                  top: 120, left: 16, right: 16),
                               padding: const EdgeInsets.only(
                                 top: 20,
                               ),

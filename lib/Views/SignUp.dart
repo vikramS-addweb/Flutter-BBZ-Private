@@ -1,5 +1,3 @@
-
-
 import 'package:bbz/Components/BGImage.dart';
 import 'package:bbz/Controller/SignUpController.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
@@ -19,8 +17,6 @@ import '../../Utils/Global.dart';
 import 'PersistentBottomNavBarCustom.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
-
 class SignUp extends StatelessWidget {
   SignUp({super.key});
 
@@ -29,7 +25,6 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBarStyle(
         title: 'Sign Up'.tr,
@@ -72,22 +67,20 @@ class SignUp extends StatelessWidget {
                           child: TextFormFieldOutline(
                             controller: controller.firstName.value,
                             hintText: 'First Name'.tr,
-                            textStyle: TextStylesCustom.textStyles_14.apply(fontWeightDelta: -1),
+                            textStyle: TextStylesCustom.textStyles_14
+                                .apply(fontWeightDelta: -1),
                             padding: const EdgeInsets.only(left: 16, right: 16),
                             colorBoder: ColorStyle.grey_DAE1E7,
                             radiusBorder: 4,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "First name is required".tr;
-                              }
-                              else if (!alphaSpace.hasMatch(value)) {
+                              } else if (!alphaSpace.hasMatch(value)) {
                                 return " FN should have letters".tr;
-                              }
-                              else if(value![0] == ' '){
+                              } else if (value![0] == ' ') {
                                 // controller.userMessage.value.text = '';
                                 return "Can't start with space".tr;
-                              }
-                              else {
+                              } else {
                                 return null;
                               }
                             },
@@ -111,12 +104,10 @@ class SignUp extends StatelessWidget {
                                 return "Last name is required".tr;
                               } else if (!alphaSpace.hasMatch(value)) {
                                 return " LN should have letters".tr;
-                              }
-                              else if(value![0] == ' '){
+                              } else if (value![0] == ' ') {
                                 // controller.userMessage.value.text = '';
                                 return "Can't start with space".tr;
-                              }
-                              else {
+                              } else {
                                 return null;
                               }
                             },
@@ -140,11 +131,9 @@ class SignUp extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Email is required".tr;
-                        }
-                        else if (!GetUtils.isEmail(value)) {
+                        } else if (!GetUtils.isEmail(value)) {
                           return "Email is invalid".tr;
-                        }
-                        else {
+                        } else {
                           return null;
                         }
                       },
@@ -165,14 +154,13 @@ class SignUp extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Mobile number is required".tr;
-                        }else if(!value.isNum){
+                        } else if (!value.isNum) {
                           return "Phone must contain number only".tr;
-                        }
-                        else if (value.length < 7) {
+                        } else if (value.length < 7) {
                           return "Min digit should be 7".tr;
-                        }else if (value.length > 15) {
+                        } else if (value.length > 15) {
                           return "Max digit should be 15".tr;
-                        }else {
+                        } else {
                           return null;
                         }
                       },
@@ -192,11 +180,12 @@ class SignUp extends StatelessWidget {
                       colorBoder: ColorStyle.grey_DAE1E7,
                       radiusBorder: 4,
                       validator: (value) {
-                        RegExp regex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                        RegExp regex = RegExp(
+                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
                         if (value!.isEmpty) {
-                          return "Password is required.".tr;
-                        } else if (value.length < 8){
+                          return "Password is required".tr;
+                        } else if (value.length < 8) {
                           return "Password should have atleast 8 characters".tr;
                         }
                         // else if (!regex.hasMatch(value)) {
@@ -222,9 +211,11 @@ class SignUp extends StatelessWidget {
                       radiusBorder: 4,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Confirm password is required.".tr;
-                        } else if (controller.password.value.text != controller.cPassword.value.text) {
-                          return "Password and confirm password must be same.".tr;
+                          return "Confirm password is required".tr;
+                        } else if (controller.password.value.text !=
+                            controller.cPassword.value.text) {
+                          return "Password and confirm password must be same."
+                              .tr;
                         } else {
                           return null;
                         }
@@ -238,13 +229,14 @@ class SignUp extends StatelessWidget {
                       children: [
                         InkWell(
                             onTap: () => controller.isTermsConditions(),
-
                             child: Obx(
-                                  () => Icon(
+                              () => Icon(
                                 controller.check.value
                                     ? Icons.check_box
                                     : Icons.check_box_outline_blank,
-                                color: controller.check.value ? ColorStyle.primaryColor_1570A5 : ColorStyle.grey_DAE1E7,
+                                color: controller.check.value
+                                    ? ColorStyle.primaryColor_1570A5
+                                    : ColorStyle.grey_DAE1E7,
                               ),
                             )),
                         const SizedBox(
@@ -265,17 +257,34 @@ class SignUp extends StatelessWidget {
                             text: TextSpan(
                               // text: 'I have read the ',
                               // style: TextStylesCustom.textStyles_12,
-                              children:  <TextSpan>[
-                                TextSpan(text: 'I have read and accept the'.tr + ' ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
-                                TextSpan(text: 'Terms and Conditions'.tr, style:TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5,),
-                                recognizer: TapGestureRecognizer()..onTap = ()async => {
-                                  await launchUrl(Uri.parse('https://www.sprachtestcenter.de/page/terms-and-conditions'))
-                                }),
-                                TextSpan(text: ' '+'and'.tr +' ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
-                                TextSpan(text: 'Privacy Policy'.tr, style:TextStylesCustom.textStyles_15.apply(color: ColorStyle.primaryColor_1570A5),
-                                    recognizer: TapGestureRecognizer()..onTap = ()async => {
-                                      await launchUrl(Uri.parse('https://www.sprachtestcenter.de/page/privacy-policy'))
-                                    }),
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'I have read and accept the'.tr + ' ',
+                                    style: TextStylesCustom.textStyles_15
+                                        .apply(color: Colors.black)),
+                                TextSpan(
+                                    text: 'Terms and Conditions'.tr,
+                                    style: TextStylesCustom.textStyles_15.apply(
+                                      color: ColorStyle.primaryColor_1570A5,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () async => {
+                                            await launchUrl(Uri.parse(
+                                                'https://www.sprachtestcenter.de/page/terms-and-conditions'))
+                                          }),
+                                TextSpan(
+                                    text: ' ' + 'and'.tr + ' ',
+                                    style: TextStylesCustom.textStyles_15
+                                        .apply(color: Colors.black)),
+                                TextSpan(
+                                    text: 'Privacy Policy'.tr,
+                                    style: TextStylesCustom.textStyles_15.apply(
+                                        color: ColorStyle.primaryColor_1570A5),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () async => {
+                                            await launchUrl(Uri.parse(
+                                                'https://www.sprachtestcenter.de/page/privacy-policy'))
+                                          }),
                                 // TextSpan(text: ' and agree to the storage of the above data. ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
                               ],
                             ),
@@ -291,25 +300,21 @@ class SignUp extends StatelessWidget {
                     ),
                     ElevatedButtonCustom(
                       text: 'SIGN UP'.tr,
-                      styleText: TextStylesCustom.textStyles_15.apply(
-                          fontWeightDelta: 4
-                      ),
+                      styleText: TextStylesCustom.textStyles_15
+                          .apply(fontWeightDelta: 4),
                       size: Size(MediaQuery.of(context).size.width - 30, 50),
                       onTap: () {
                         debugPrint('Save is clicking ...');
                         // controller.userSignUp();
 
-
-
                         if (fromkey.currentState!.validate()) {
-                          if(controller.check.value) {
+                          if (controller.check.value) {
                             controller.userSignUp();
                           } else {
                             'The terms and conditions field is required'.tr.showError();
                           }
                         }
                         return;
-
                       },
                     ),
 
@@ -317,13 +322,15 @@ class SignUp extends StatelessWidget {
                       height: 16,
                     ),
 
-                    TextRichCustom(
-                      textFirst: 'Already have an account?'.tr +' ',
-                      textSecond: 'Log in'.tr,
-                      onTap: () {
-                        Login().navigateToCustom(context);
-                        // navigateToBack(context);
-                      },
+                    FittedBox(
+                      child: TextRichCustom(
+                        textFirst: 'Already have an account?'.tr + ' ',
+                        textSecond: 'Log in'.tr,
+                        onTap: () {
+                          Login().navigateToCustom(context);
+                          // navigateToBack(context);
+                        },
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -333,8 +340,8 @@ class SignUp extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Continue as a Guest'.tr,
-                              style: TextStylesCustom.textStyles_15
-                                  .apply(color: ColorStyle.primaryColor_1570A5)),
+                              style: TextStylesCustom.textStyles_15.apply(
+                                  color: ColorStyle.primaryColor_1570A5)),
                           const SizedBox(
                             width: 10,
                           ),
@@ -346,7 +353,9 @@ class SignUp extends StatelessWidget {
                       ),
                       onTap: () {
                         indexSelectedTab.value = 0;
-                        PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
+                        PersistentBottomNavBarCustom(
+                          initialIndex: 0,
+                        ).navigateToCustom(context, withNavBar: false);
                       },
                     )
                   ],

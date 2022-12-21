@@ -20,9 +20,14 @@ class ResetPasswordController extends GetxController {
 
     if (response!.isNotEmpty) {
       if (response['status'].toString() == 'error') {
-        response['message'].toString().showError();
+        if(response['message'] == 'Email not found'){
+          'Email not found'.tr.showError();
+        }else{
+          response['message'].toString().showError();
+        }
       } else {
-        response['message'].toString().showSuccess();
+        'We have emailed your password reset link!'.tr.showSuccess();
+        debugPrint(response['message'].toString());
         useremail.value.text = '';
         Future.delayed(const Duration(seconds: 1), () {
           Login().navigateToCustom(Get.context);
