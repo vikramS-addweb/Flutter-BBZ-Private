@@ -61,7 +61,12 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder(
       init: controller,
-    builder: ((controller)=>Obx(() => PersistentTabView(
+    builder: ((controller)=>Obx(() => WillPopScope(
+        onWillPop: () async {
+          print("After clicking the Android Back Button in persistentNavbar");
+          return false;
+        },
+        child: PersistentTabView(
       context,
       controller: PersistentTabController(initialIndex: initialIndex),
       screens: _buildScreens(),
@@ -92,7 +97,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
         indexSelectedTab.value = index;
       },
       navBarStyle: NavBarStyle.style3, // Choose the nav bar style with this property.
-    ))),
+    )))),
     );
 
 

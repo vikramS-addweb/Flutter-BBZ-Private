@@ -65,6 +65,9 @@ class MyProfileController extends GetxController {
         final dictMedia = Map<String, dynamic>.from(profileData['media']);
         print(dictMedia['file_name'].toString());
         imageURL.value = kBaseURL_Image + dictMedia['file_name'].toString();
+      }else {
+        image.value = File('');
+        imageURL.value = '' ;
       }
 
       // https://bbzstage.addwebprojects.com/uploads/image_picker_E2DC2F7C-A3F9-4B59-8B19-C3C8CADF915B-2786-0000001BF293E94E.jpg

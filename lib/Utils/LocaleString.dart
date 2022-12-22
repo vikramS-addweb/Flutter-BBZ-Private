@@ -118,8 +118,9 @@ class LocaleString extends Translations {
               "Geburtsort darf nur Buchstaben enthalten",
           "Country of birth must contain only letters":
               "Herkunftsland darf nur Buchstaben enthalten",
-          "Postal code cant have more than 6 digits":
-              "Die Postleitzahl darf nicht mehr als 6 Ziffern haben",
+          "Postal code can't have less than 6 digits":"Die Postleitzahl darf nicht weniger als 6 Ziffern haben",
+          "Postal code cant have more than 10 digits":
+              "Die Postleitzahl darf nicht mehr als 10 Ziffern haben",
           "Success!": "Erfolg!",
           "Image Uploaded": "Bild hochgeladen",
           "Booking Successful": "Buchung erfolgreich",
@@ -287,6 +288,10 @@ class LocaleString extends Translations {
           "FN should have letters":"FN sollte Buchstaben haben",
           "are a subsidiary of BBZ Altenkirchen GmbH & Co. KG":"sind eine Tochtergesellschaft von BBZ Altenkirchen GmbH & Co. KG",
   "BBZ Language Schools":"BBZ Sprache Schulen",
+          "From Camera":"Von der Kamera",
+          "From Photo":"Von Foto",
+          "Cancel":"Stornieren",
+
 
           "Log In/Sign Up": "Einloggen Anmelden",
           "Login/Sign Up to get your profile and stay updated with the upcoming exams and news.":
@@ -314,7 +319,7 @@ class LocaleString extends Translations {
           "Success!":"Erfolg!",
           "Error!":"Fehler!",
           "No changes made":"Keine Änderungen vorgenommen",
-
+          "Your message has been sent successfully.":"Ihre Nachricht wurde erfolgreich gesendet.",
         }
       };
 }

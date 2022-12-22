@@ -119,10 +119,10 @@ class BookingFormController extends GetxController {
 
     //----------------------------------------------Booking form api----------------------------->
 
-    if (image.value.path.isEmpty) {
-      "ID Proof Image is required".showError();
-    } else {
-      uploadImage();
+    // if (image.value.path.isEmpty) {
+    //   "ID Proof Image is required".showError();
+    // } else {
+      // uploadImage();
 
       final params = {
         '_method': 'post',
@@ -191,7 +191,7 @@ class BookingFormController extends GetxController {
 
         // navigateToBack(Get.context);
       }
-    }
+    // }
   }
 
   // -------------------------------------------upload image------------------------------------->

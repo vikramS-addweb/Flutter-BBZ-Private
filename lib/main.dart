@@ -22,6 +22,7 @@ import './Views/language.dart';
 import './Utils/LocaleString.dart';
 import 'package:devicelocale/devicelocale.dart';
 
+
 void main() async {
 
   await GetStorage.init();
@@ -47,21 +48,31 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
 
   Future<void> _getCurrentLocale() async {
-    try {
-      final currentLocale = await Devicelocale.currentLocale;
-      print((currentLocale != null)
-          ? currentLocale
-          : "Unable to get currentLocale");
-      if(currentLocale!.contains('de')){
-        var local = Locale('de');
-        Get.updateLocale(local);
-      }else {
+    if(await GetStorage().read('setLanguage') != null){
+      if(await GetStorage().read('setLanguage') == 'english'){
         var local = Locale('en','US');
         Get.updateLocale(local);
+      }else{
+        var local = Locale('de');
+        Get.updateLocale(local);
       }
-      // setState(() => _currentLocale = currentLocale);
-    } on PlatformException {
-      print("Error obtaining current locale");
+    }else {
+      try {
+        final currentLocale = await Devicelocale.currentLocale;
+        print((currentLocale != null)
+            ? currentLocale
+            : "Unable to get currentLocale");
+        if (currentLocale!.contains('de')) {
+          var local = Locale('de');
+          Get.updateLocale(local);
+        } else {
+          var local = Locale('en', 'US');
+          Get.updateLocale(local);
+        }
+        // setState(() => _currentLocale = currentLocale);
+      } on PlatformException {
+        print("Error obtaining current locale");
+      }
     }
   }
 

@@ -211,6 +211,7 @@ class _DropdownWithLabelState extends State<DropdownWithLabel> {
               decoration: InputDecoration(
                   fillColor: widget.colorFill,
                   contentPadding: widget.padding,
+                  prefix: Padding(padding: EdgeInsets.only(left: 14),),
                   // isDense: true,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(widget.radiusBorder!),

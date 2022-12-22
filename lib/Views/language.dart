@@ -6,7 +6,7 @@ import '../Utils/Global.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/ElevatedButtonCustom.dart';
 import './DrawerScreen.dart';
-import '../Utils/Global.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Language extends StatefulWidget {
   Language({Key? key}) : super(key: key);
@@ -69,6 +69,7 @@ class _LanguageState extends State<Language> {
                           setState(() {
                             this.language = 'english';
                           });
+                          GetStorage().write('setLanguage', 'english');
                           navigateToBack(context);
                         },width: Get.size.width, colorBG: this.language == 'english' ? ColorStyle.primaryColor_1570A5 : Colors.white, colorText: this.language == 'english' ? Colors.white : Colors.black,),
                         SizedBox(height: 20,),
@@ -79,6 +80,7 @@ class _LanguageState extends State<Language> {
                           setState(() {
                             this.language = 'deutsch';
                           });
+                          GetStorage().write('setLanguage', 'deutsch');
                           navigateToBack(context);
                         },width: Get.size.width, colorBG: this.language == 'deutsch' ? ColorStyle.primaryColor_1570A5 : Colors.white, colorText: this.language == 'deutsch' ? Colors.white : Colors.black,),
                       ],

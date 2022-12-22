@@ -69,7 +69,7 @@ class SignUp extends StatelessWidget {
                             hintText: 'First Name'.tr,
                             textStyle: TextStylesCustom.textStyles_14
                                 .apply(fontWeightDelta: -1),
-                            padding: const EdgeInsets.only(left: 16, right: 16),
+                            padding: const EdgeInsets.only(right: 16),
                             colorBoder: ColorStyle.grey_DAE1E7,
                             radiusBorder: 4,
                             validator: (value) {
@@ -96,14 +96,14 @@ class SignUp extends StatelessWidget {
                             hintText: 'Last Name'.tr,
                             textStyle: TextStylesCustom.textStyles_14
                                 .apply(fontWeightDelta: -1),
-                            padding: const EdgeInsets.only(left: 16, right: 16),
+                            padding: const EdgeInsets.only(right: 16),
                             colorBoder: ColorStyle.grey_DAE1E7,
                             radiusBorder: 4,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Last name is required".tr;
                               } else if (!alphaSpace.hasMatch(value)) {
-                                return " LN should have letters".tr;
+                                return "LN should have letters".tr;
                               } else if (value![0] == ' ') {
                                 // controller.userMessage.value.text = '';
                                 return "Can't start with space".tr;
@@ -123,9 +123,10 @@ class SignUp extends StatelessWidget {
                       controller: controller.email.value,
                       keyboardType: TextInputType.emailAddress,
                       hintText: 'Email address'.tr,
+                      formatInput: true,
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
-                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      padding: const EdgeInsets.only(right: 16),
                       colorBoder: ColorStyle.grey_DAE1E7,
                       radiusBorder: 4,
                       validator: (value) {
@@ -148,7 +149,7 @@ class SignUp extends StatelessWidget {
                       hintText: 'Mobile Number'.tr,
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
-                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      padding: const EdgeInsets.only(right: 16),
                       colorBoder: ColorStyle.grey_DAE1E7,
                       radiusBorder: 4,
                       validator: (value) {
@@ -176,7 +177,7 @@ class SignUp extends StatelessWidget {
                       hintText: 'Password'.tr,
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
-                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      padding: const EdgeInsets.only(right: 16),
                       colorBoder: ColorStyle.grey_DAE1E7,
                       radiusBorder: 4,
                       validator: (value) {
@@ -206,7 +207,7 @@ class SignUp extends StatelessWidget {
                       hintText: 'Confirm Password'.tr,
                       textStyle: TextStylesCustom.textStyles_14
                           .apply(fontWeightDelta: -1),
-                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      padding: const EdgeInsets.only(right: 16),
                       colorBoder: ColorStyle.grey_DAE1E7,
                       radiusBorder: 4,
                       validator: (value) {

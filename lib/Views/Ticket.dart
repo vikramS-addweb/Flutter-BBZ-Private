@@ -123,7 +123,6 @@ JohnDoe@gmail.com
                           'title': 'Student'.tr,
                           'secondText': '''${controller.bookingDetails['first_name'] ?? ''} ${controller.bookingDetails['last_name'] ?? ''}
 ${controller.bookingDetails['email'] ?? ''}
-johnnyharpertesting03@gmail.com
 ${controller.bookingDetails['phone'] ?? ''}''',
                         },
                       ]),

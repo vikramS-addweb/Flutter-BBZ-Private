@@ -18,6 +18,7 @@ import '../Components/PickerCustom.dart';
 import '../Components/ContainerWithLabel.dart';
 import 'package:path/path.dart';
 import '../Utils/Constant.dart';
+import 'dart:io';
 
 class BookingForm extends StatelessWidget {
   BookingForm({Key? key, required this.examDetails}) : super(key: key);
@@ -99,7 +100,13 @@ class BookingForm extends StatelessWidget {
                         onTap: () {
                           if(controller.image.value.path.isEmpty){
                             "ID Proof Image is required".tr.showError();
+
                           }
+                          else if(
+                              controller.image.value.readAsBytesSync().lengthInBytes / 1024 > 500){
+                            "ID Proof Image size(${(controller.image.value.readAsBytesSync().lengthInBytes / 1024).round()} kb) can't be larger than 500 kb".tr.showError();
+                          }
+
                           if (controller.country.value == '') {
                             controller.countryError.value = true;
                           } else {
@@ -384,7 +391,7 @@ class BookingForm extends StatelessWidget {
                                     hintText: 'Please select'.tr,
                                     colorBoder: ColorStyle.grey_DAE1E7,
                                     padding:
-                                        EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                                        EdgeInsets.only(right: 15, bottom: 10),
                                     textStyle: TextStylesCustom.textStyles_14,
                                     validator: (value) {
                                       if (value == null) {
@@ -494,6 +501,7 @@ class BookingForm extends StatelessWidget {
                                     controller: controller.email.value,
                                     firstText: 'Email'.tr,
                                     hintText: 'Please enter'.tr,
+                                    formatInput: true,
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Email is required".tr;
@@ -534,7 +542,7 @@ class BookingForm extends StatelessWidget {
                                         onTap: () async {
                                           final dateSelected = await PickerCustom.datePicker(
                                             dateFormat: 'yyyy-MM-dd',
-                                            selectedDate: DateTime.parse('2006-12-31'),
+                                            selectedDate: controller.birth_date.value.text == ''? DateTime.parse('2006-12-31') : DateTime.parse(controller.birth_date.value.text),
                                             firstDate: DateTime(1900),
                                             lastDate: DateTime.parse('2006-12-31'),
                                           );
@@ -621,7 +629,7 @@ class BookingForm extends StatelessWidget {
                                     controllerValue: controller.motherToungue,
                                     colorBoder: ColorStyle.grey_DAE1E7,
                                     padding:
-                                    EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                                    EdgeInsets.only(right: 15, bottom: 10),
                                     hintText: 'Please Select'.tr,
                                     validator: (value) {
                                       if (value == null) {
@@ -700,7 +708,7 @@ class BookingForm extends StatelessWidget {
                                     onTap: () {
                                       final xx = PickerCustom.imagePicker((file) {
                                         controller.image.value = file;
-                                        //controller.uploadImage();
+                                        controller.uploadImage();
                                       });
                                     },
                                     child:
@@ -892,9 +900,14 @@ class BookingForm extends StatelessWidget {
                                         return "Postal code is required".tr;
                                       }else if(!value.isNumericOnly){
                                         return "Postal code must contain number only".tr;
-                                      }else if(value.length > 6){
-                                        return "Postal code can't have more than 6 digits".tr;
-                                      }  else {
+                                      }else if(value.length < 6){
+                                        return "Postal code can't have less than 6 digits".tr;
+                                      } else if(value.length > 10){
+                                        return "Postal code can't have more than 10 digits".tr;
+                                      }else if((value.replaceAll('0', '')).isEmpty){
+                                        return "All digits can't be zeros".tr;
+                                      }
+                                      else {
                                         return null;
                                       }
                                     },
@@ -938,7 +951,7 @@ class BookingForm extends StatelessWidget {
                                             hintText: controller.country.value,
                                             isError:
                                                 controller.countryError.value,
-                                            colorhintText: Colors.black,
+                                            colorhintText: ColorStyle.grey_5E6D77,
 
                                             // selectedValue: controller.country.value.text,
                                           ),

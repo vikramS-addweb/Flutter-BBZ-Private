@@ -19,7 +19,7 @@ class CustomError extends StatelessWidget {
     return Container(
       width: Get.size.width,
       // height:
-      padding: const EdgeInsets.only(top: 10.0, bottom: 13, left: 13),
+      padding: const EdgeInsets.only(top: 10.0, bottom: 13,),
       decoration: BoxDecoration(
         // color: Colors.red,
 

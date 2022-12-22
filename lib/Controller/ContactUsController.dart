@@ -39,7 +39,12 @@ class ContactUsController extends GetxController {
 
     if (response!.isNotEmpty) {
       // isLoggedIn = true;
-      response['success'].toString().showSuccess();
+      if(response['success'].toString() == 'Your message has been sent successfully.'){
+        "Your message has been sent successfully.".tr.showSuccess();
+      }
+      else{
+        response['success'].toString().showSuccess();
+      }
       userName.value.text = '';
       userEmail.value.text = '';
       userMessage.value.text = '';

@@ -197,7 +197,7 @@ class _ExamState extends State<Exam> {
                       SizedBox(
                         // height: 475,
                         child: Stack(
-                          clipBehavior: Clip.none,
+                          // clipBehavior: Clip.none,
                           children: [
                             Image.asset(
                               ImageStyle.examBG,
@@ -235,174 +235,179 @@ class _ExamState extends State<Exam> {
                                 ],
                               ),
                             ),
-                            Container(
-                              // height: 320,
-                              width: Get.mediaQuery.size.width,
-                              margin: const EdgeInsets.only(
-                                  top: 120, left: 16, right: 16),
-                              padding: const EdgeInsets.only(
-                                top: 20,
-                              ),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(4),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: ColorStyle.grey_DAE1E7,
-                                      blurRadius: 4,
-                                      offset: const Offset(
-                                          0, 0), // changes position of shadow
-                                    ),
-                                  ]),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 16, right: 16, bottom: 16),
-                                    width: Get.mediaQuery.size.width,
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                      width: 2,
-                                      color: ColorStyle.grey_DAE1E7,
-                                    ))),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Location, Date or Level'.tr,
-                                          style: TextStylesCustom.textStyles_16
-                                              .apply(
-                                            color: ColorStyle.grey_5E6D77,
-                                            // fontWeightDelta: 1,
-                                          ),
+                            Column(
+                              children: [
+                                Container(
+                                  // height: 320,
+                                  width: Get.mediaQuery.size.width,
+                                  margin: const EdgeInsets.only(
+                                      top: 120, left: 16, right: 16),
+                                  padding: const EdgeInsets.only(
+                                    top: 20,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(4),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: ColorStyle.grey_DAE1E7,
+                                          blurRadius: 4,
+                                          offset: const Offset(
+                                              0, 0), // changes position of shadow
                                         ),
-                                        const SizedBox(
-                                          height: 6,
-                                        ),
-                                        SizedBox(
-                                          height: 30,
-                                          child: TextFormFieldOutline(
-                                            padding: const EdgeInsets.all(0),
-                                            colorBoder: Colors.transparent,
-                                            controller: controller.search,
-                                            hintText:
-                                                'Search everything here...'.tr,
-                                            colorHint: ColorStyle
-                                                .primaryColor_1570A5
-                                                .withOpacity(0.6),
-                                            textStyle: TextStylesCustom
-                                                .textStyles_16
-                                                .apply(
-                                              color: ColorStyle
-                                                  .primaryColor_1570A5
-                                                  .withOpacity(1),
-                                              fontWeightDelta: 1,
+                                      ]),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 16, right: 16, bottom: 16),
+                                        width: Get.mediaQuery.size.width,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                          width: 2,
+                                          color: ColorStyle.grey_DAE1E7,
+                                        ))),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Location, Date or Level'.tr,
+                                              style: TextStylesCustom.textStyles_16
+                                                  .apply(
+                                                color: ColorStyle.grey_5E6D77,
+                                                // fontWeightDelta: 1,
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  DropdownButtonCustom(
-                                    controllerValue: controller.location,
-                                    width:
-                                        MediaQuery.of(context).size.width - 32,
-                                    height: 50,
-                                    hintText: 'Select Your Center Location'.tr,
-                                    list: controller
-                                                .searchDetails['locations'] !=
-                                            null
-                                        ? controller.searchDetails['locations']
-                                        : [
-                                            {'name': 'One'},
-                                            {'name': 'Two'},
-                                            {'name': 'Three'}
+                                            const SizedBox(
+                                              height: 6,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: TextFormFieldOutline(
+                                                padding: const EdgeInsets.all(0),
+                                                colorBoder: Colors.transparent,
+                                                controller: controller.search,
+                                                hintText:
+                                                    'Search everything here...'.tr,
+                                                colorHint: ColorStyle
+                                                    .primaryColor_1570A5
+                                                    .withOpacity(0.6),
+                                                textStyle: TextStylesCustom
+                                                    .textStyles_16
+                                                    .apply(
+                                                  color: ColorStyle
+                                                      .primaryColor_1570A5
+                                                      .withOpacity(1),
+                                                  fontWeightDelta: 1,
+                                                ),
+                                              ),
+                                            ),
                                           ],
-                                    padding: const EdgeInsets.only(
-                                        left: 16, right: 16),
-                                    colorIcon: ColorStyle.primaryColor_1570A5,
-                                    icon: Svg(
-                                      ImageStyle.ticket_location,
-                                    ),
-                                    textStyle: TextStylesCustom.textStyles_14,
-                                    onChanged: (value) {
-                                      print(value);
-                                      controller.location.value = value!;
-                                    },
-                                  ),
-                                  Container(
-                                    height: 1,
-                                    color: ColorStyle.grey_DAE1E7,
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      right: 20,
-                                      top: 10,
-                                      bottom: 10,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: ColorStyle.grey_DAE1E7,
-                                              width: 1)),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Image.asset(
-                                          ImageStyle.calendar,
-                                          height: 20,
                                         ),
-                                        const SizedBox(
-                                          width: 10,
+                                      ),
+                                      DropdownButtonCustom(
+                                        controllerValue: controller.location,
+                                        width:
+                                            MediaQuery.of(context).size.width - 32,
+                                        height: 50,
+                                        hintText: 'Select Your Center Location'.tr,
+                                        list: controller
+                                                    .searchDetails['locations'] !=
+                                                null
+                                            ? controller.searchDetails['locations']
+                                            : [
+                                                {'name': 'One'},
+                                                {'name': 'Two'},
+                                                {'name': 'Three'}
+                                              ],
+                                        padding: const EdgeInsets.only(
+                                            left: 16, right: 16),
+                                        colorIcon: ColorStyle.primaryColor_1570A5,
+                                        icon: Svg(
+                                          ImageStyle.ticket_location,
                                         ),
-                                        Expanded(
-                                            child: datePicker(
-                                                controller.dateFrom.value,
-                                                isFrom: true)),
-                                        const SizedBox(
-                                          width: 10,
+                                        textStyle: TextStylesCustom.textStyles_14,
+                                        onChanged: (value) {
+                                          print(value);
+                                          controller.location.value = value!;
+                                        },
+                                      ),
+                                      Container(
+                                        height: 1,
+                                        color: ColorStyle.grey_DAE1E7,
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.only(
+                                          left: 16,
+                                          right: 20,
+                                          top: 10,
+                                          bottom: 10,
                                         ),
-                                        Expanded(
-                                            child: datePicker(
-                                                controller.dateTo.value,
-                                                isFrom: false)),
-                                      ],
-                                    ),
-                                  ),
-                                  DropdownButtonCustom(
-                                    controllerValue: controller.language,
-                                    width:
-                                        MediaQuery.of(context).size.width - 32,
-                                    height: 50,
-                                    hintText: 'Select Your Language Level'.tr,
-                                    list: controller
-                                                .searchDetails['exam_level'] !=
-                                            null
-                                        ? controller.searchDetails['exam_level']
-                                        : [
-                                            {'name': 'One'},
-                                            {'name': 'Two'},
-                                            {'name': 'Three'}
+                                        decoration: BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color: ColorStyle.grey_DAE1E7,
+                                                  width: 1)),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(
+                                              ImageStyle.calendar,
+                                              height: 20,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Expanded(
+                                                child: datePicker(
+                                                    controller.dateFrom.value,
+                                                    isFrom: true)),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Expanded(
+                                                child: datePicker(
+                                                    controller.dateTo.value,
+                                                    isFrom: false)),
                                           ],
-                                    padding: const EdgeInsets.only(
-                                        left: 16, right: 16),
-                                    colorIcon: ColorStyle.primaryColor_1570A5,
-                                    textStyle: TextStylesCustom.textStyles_14,
-                                    icon: Svg(ImageStyle.language),
-                                    onChanged: (value) {
-                                      controller.language.value = value!;
-                                    },
+                                        ),
+                                      ),
+                                      DropdownButtonCustom(
+                                        controllerValue: controller.language,
+                                        width:
+                                            MediaQuery.of(context).size.width - 32,
+                                        height: 50,
+                                        hintText: 'Select Your Language Level'.tr,
+                                        list: controller
+                                                    .searchDetails['exam_level'] !=
+                                                null
+                                            ? controller.searchDetails['exam_level']
+                                            : [
+                                                {'name': 'One'},
+                                                {'name': 'Two'},
+                                                {'name': 'Three'}
+                                              ],
+                                        padding: const EdgeInsets.only(
+                                            left: 16, right: 16),
+                                        colorIcon: ColorStyle.primaryColor_1570A5,
+                                        textStyle: TextStylesCustom.textStyles_14,
+                                        icon: Svg(ImageStyle.language),
+                                        onChanged: (value) {
+                                          controller.language.value = value!;
+                                        },
+                                      ),
+                                      SizedBox(height: 50,)
+                                    ],
                                   ),
-                                  SizedBox(height: 50,)
-                                ],
-                              ),
+                                ),
+                                SizedBox(height: 23,),
+                              ],
                             ),
                             Positioned(
-                              bottom: -23,
+                              bottom: 0,
                               left: 0,
                               right: 0,
                               child: Center(

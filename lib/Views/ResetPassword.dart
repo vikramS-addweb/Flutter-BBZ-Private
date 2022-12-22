@@ -76,9 +76,10 @@ class ResetPassword extends StatelessWidget {
                     controller: controller.useremail.value,
                     keyboardType: TextInputType.emailAddress,
                     hintText: 'Email address'.tr,
+                    formatInput: true,
                     textStyle: TextStylesCustom.textStyles_14
                         .apply(fontWeightDelta: -1),
-                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    padding: const EdgeInsets.only(right: 16),
                     colorBoder: ColorStyle.grey_DAE1E7,
                     radiusBorder: 4,
                     validator: (value) {
