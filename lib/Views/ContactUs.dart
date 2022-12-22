@@ -83,7 +83,7 @@ class ContactUs extends StatelessWidget {
             Container(
               // height: 603,
               child: Stack(
-                clipBehavior: Clip.none,
+                // clipBehavior: Clip.none,
                 children: [
                   Image.asset(
                     ImageStyle.examBG,
@@ -118,118 +118,122 @@ class ContactUs extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    // height: 400,
-                    width: Get.mediaQuery.size.width,
-                    margin:
-                        const EdgeInsets.only(top: 150, left: 16, right: 16),
-                    padding: const EdgeInsets.only(
-                      top: 20,
-                      left: 15,
-                      right: 15,
-                    ),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(4),
-                        boxShadow: [
-                          BoxShadow(
-                            color: ColorStyle.grey_DAE1E7,
-                            // spreadRadius: 1,
-                            blurRadius: 4,
-                            offset: const Offset(
-                                0, 0), // changes position of shadow
-                          ),
-                        ]),
-                    child:Form(
-                    key: formkey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextFormFieldOutline(
-                          controller: controller.userName.value,
-                          hintText: 'Your Name'.tr,
-                          textStyle: TextStylesCustom.textStyles_14,
-                          colorText: ColorStyle.grey_DAE1E7,
-                          colorBoder: ColorStyle.grey_DAE1E7,
-                          radiusBorder: 4,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 13),
-                            validator: (value) {
-                              // var regex = /^ [a-zA-Z ]*$/;
-                              // final alphaSpace = RegExp(r'^[a-zA-Z ]*$');
-                              if (value!.isEmpty) {
-                                return "Name is required".tr;
-                              } else if (!alphaSpace.hasMatch(value)){
-                                return " Name must only contain letters".tr;
-                              }else if(value![0] == ' '){
-                                controller.userName.value.text = '';
-                                return "Name cannot start with space".tr;
-                              }
-                              // else if (value!.trim().isEmpty){
-                              //   return "Name must contain letters";
-                              // }
-                              else {
-                                return null;
-                              }
-                            }
+                  Column(
+                    children: [
+                      Container(
+                        // height: 400,
+                        width: Get.mediaQuery.size.width,
+                        margin:
+                            const EdgeInsets.only(top: 150, left: 16, right: 16),
+                        padding: const EdgeInsets.only(
+                          top: 20,
+                          left: 15,
+                          right: 15,
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormFieldOutline(
-                          controller: controller.userEmail.value,
-                          hintText: 'Email address'.tr,
-                          textStyle: TextStylesCustom.textStyles_14,
-                          colorText: ColorStyle.grey_DAE1E7,
-                          colorBoder: ColorStyle.grey_DAE1E7,
-                          radiusBorder: 4,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 13),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Email is required".tr;
-                            }else if(!GetUtils.isEmail(value)){
-                              return "Email is invalid".tr;
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormFieldOutline(
-                          controller: controller.userMessage.value,
-                          hintText: 'Message'.tr,
-                          textStyle: TextStylesCustom.textStyles_14,
-                          colorText: ColorStyle.grey_DAE1E7,
-                          colorBoder: ColorStyle.grey_DAE1E7,
-                          radiusBorder: 4,
-                          maxLines: 6,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 13),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Message is required".tr;
-                            }
-                            else if(value![0] == ' '){
-                              controller.userMessage.value.text = '';
-                              return "Message cannot start with space".tr;
-                            }
-                            else {
-                              return null;
-                            }
-                          },
-                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: [
+                              BoxShadow(
+                                color: ColorStyle.grey_DAE1E7,
+                                // spreadRadius: 1,
+                                blurRadius: 4,
+                                offset: const Offset(
+                                    0, 0), // changes position of shadow
+                              ),
+                            ]),
+                        child:Form(
+                        key: formkey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextFormFieldOutline(
+                              controller: controller.userName.value,
+                              hintText: 'Your Name'.tr,
+                              textStyle: TextStylesCustom.textStyles_14,
+                              colorText: ColorStyle.grey_DAE1E7,
+                              colorBoder: ColorStyle.grey_DAE1E7,
+                              radiusBorder: 4,
+                              padding: const EdgeInsets.symmetric(
+                                   vertical: 13),
+                                validator: (value) {
+                                  // var regex = /^ [a-zA-Z ]*$/;
+                                  // final alphaSpace = RegExp(r'^[a-zA-Z ]*$');
+                                  if (value!.isEmpty) {
+                                    return "Name is required".tr;
+                                  } else if (!alphaSpace.hasMatch(value)){
+                                    return " Name must only contain letters".tr;
+                                  }else if(value![0] == ' '){
+                                    controller.userName.value.text = '';
+                                    return "Name cannot start with space".tr;
+                                  }
+                                  // else if (value!.trim().isEmpty){
+                                  //   return "Name must contain letters";
+                                  // }
+                                  else {
+                                    return null;
+                                  }
+                                }
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormFieldOutline(
+                              controller: controller.userEmail.value,
+                              hintText: 'Email address'.tr,
+                              formatInput: true,
+                              textStyle: TextStylesCustom.textStyles_14,
+                              colorText: ColorStyle.grey_DAE1E7,
+                              colorBoder: ColorStyle.grey_DAE1E7,
+                              radiusBorder: 4,
+                              padding: const EdgeInsets.symmetric( vertical: 13),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "Email is required".tr;
+                                }else if(!GetUtils.isEmail(value)){
+                                  return "Email is invalid".tr;
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormFieldOutline(
+                              controller: controller.userMessage.value,
+                              hintText: 'Message'.tr,
+                              textStyle: TextStylesCustom.textStyles_14,
+                              colorText: ColorStyle.grey_DAE1E7,
+                              colorBoder: ColorStyle.grey_DAE1E7,
+                              radiusBorder: 4,
+                              maxLines: 6,
+                              padding: const EdgeInsets.symmetric(vertical: 13),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "Message is required".tr;
+                                }
+                                else if(value![0] == ' '){
+                                  controller.userMessage.value.text = '';
+                                  return "Message cannot start with space".tr;
+                                }
+                                else {
+                                  return null;
+                                }
+                              },
+                            ),
 
-                         SizedBox(
-                          height: 50,
-                        )
-                      ],
-                    ),
-                  )),
+                             SizedBox(
+                              height: 50,
+                            )
+                          ],
+                        ),
+                      )),
+                      SizedBox(height: 23,)
+                    ],
+                  ),
                   Positioned(
-                    bottom: -23,
+                    bottom: 0,
                     left: 0,
                     right: 0,
                     child: Center(

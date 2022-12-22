@@ -38,7 +38,8 @@ class PickerCustom {
         lastDate: lastDate,
     );
 
-    if (picked != null && picked != selectedDate) {
+    // if (picked != null && picked != selectedDate) {
+    if (picked != null) {
       selectedDate = picked;
       final DateFormat format = DateFormat(dateFormat);
       return format.format(picked);
@@ -64,7 +65,7 @@ class PickerCustom {
               ListTile(
                 leading: new Icon(Icons.camera_alt),
                 title: Text(
-                  'From Camera',
+                  'From Camera'.tr,
                     style: TextStylesCustom.textStyles_16
                         .apply(color: Colors.black)
                 ),
@@ -83,7 +84,7 @@ class PickerCustom {
               ListTile(
                 leading: new Icon(Icons.photo),
                 title: Text(
-                  'From Photo',
+                  'From Photo'.tr,
                     style: TextStylesCustom.textStyles_16
                         .apply(color: Colors.black)
                 ),
@@ -116,7 +117,7 @@ class PickerCustom {
                       borderRadius: BorderRadius.circular(25)),
                   alignment: Alignment.center,
                   child: Text(
-                    'Cancel',
+                    'Cancel'.tr,
                       style: TextStylesCustom.textStyles_16
                           .apply(color: Colors.white)
                   ),

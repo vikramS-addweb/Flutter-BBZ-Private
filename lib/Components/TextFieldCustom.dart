@@ -1,4 +1,5 @@
 import 'package:bbz/Styles/ImageStyle.dart';
+import 'package:flutter/services.dart';
 
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
@@ -44,6 +45,7 @@ class TextFormFieldUnderline extends StatelessWidget {
       decoration: InputDecoration(
           fillColor: colorFill,
           contentPadding: padding,
+          prefix: Padding(padding: EdgeInsets.only(left: 14),),
           border: UnderlineInputBorder(
               borderRadius: BorderRadius.circular(radiusBorder!),
               borderSide: BorderSide(color: colorBoder!, width: 1)),
@@ -145,6 +147,7 @@ class TextFormFieldOutline extends StatelessWidget {
   final bool? showCursor;
   final bool readOnly;
   final bool? showDateIcon;
+  final bool? formatInput;
 
   TextFormFieldOutline({
     Key? key,
@@ -167,6 +170,7 @@ class TextFormFieldOutline extends StatelessWidget {
     this.showCursor = true,
     this.readOnly = false,
     this.showDateIcon = false,
+    this.formatInput = false,
   }) : super(key: key);
 
   @override
@@ -177,8 +181,12 @@ class TextFormFieldOutline extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       maxLines: maxLines,
+      inputFormatters: formatInput! ? <TextInputFormatter>[
+        FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z@.]")),
+      ] : [],
       decoration: InputDecoration(
-
+          contentPadding: padding,
+          prefix: Padding(padding: EdgeInsets.only(left: 14),),
         // suffixIcon: Image.asset(ImageStyle.calendar),
         suffixIcon: showDateIcon! ?  Padding(
           padding: const EdgeInsets.only(right:15.0),
@@ -187,7 +195,6 @@ class TextFormFieldOutline extends StatelessWidget {
           suffixIconConstraints: BoxConstraints(maxHeight: 15, minHeight: 15),
 
           fillColor: colorFill,
-          contentPadding: padding,
           errorMaxLines: 2,
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radiusBorder!),
@@ -249,6 +256,7 @@ class _TextFormFieldPWDOutlineState extends State<TextFormFieldPWDOutline> {
       decoration: InputDecoration(
         fillColor: widget.colorFill,
         contentPadding: widget.padding,
+        prefix: Padding(padding: EdgeInsets.only(left: 14),),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(widget.radiusBorder!),
             borderSide: BorderSide(color: widget.colorBoder!, width: 1)),
@@ -281,6 +289,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
         this.showCursor = true,
         this.readOnly = false,
         this.showDateIcon = false,
+        this.formatInput = false,
       })
       : super(key: key);
   final TextEditingController? controller;
@@ -295,6 +304,7 @@ class TextFormFieldWithLabel extends StatelessWidget {
   final bool? showCursor;
   final bool readOnly ;
   final bool? showDateIcon;
+  final bool? formatInput;
 
   @override
   Widget build(BuildContext context) {
@@ -326,8 +336,9 @@ class TextFormFieldWithLabel extends StatelessWidget {
           hintText: hintText!,
           radiusBorder: 4,
           showDateIcon: showDateIcon,
+          formatInput: formatInput,
           colorBoder: ColorStyle.grey_DAE1E7,
-          padding: const EdgeInsets.only(left: 14),
+          padding: const EdgeInsets.only(right: 14),
           colorHint: ColorStyle.grey_DAE1E7,
           textStyle: TextStylesCustom.textStyles_14
               .apply(color: ColorStyle.grey_5E6D77),
