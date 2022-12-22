@@ -175,7 +175,7 @@ class BookingFormController extends GetxController {
           print('hellow hterher');
           reset();
 
-          bookingConfirm();
+          //bookingConfirm();
         } else if (response['message'] != null) {
           response['message'].toString().showError();
         }

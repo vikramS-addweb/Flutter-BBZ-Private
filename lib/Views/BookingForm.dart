@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../Components/AppBarStyle.dart';
+import '../Controller/StripePaymentController.dart';
 import '../Styles/TextStyles.dart';
 import '../Styles/ColorStyle.dart';
 import '../Utils/Global.dart';
@@ -25,6 +26,7 @@ class BookingForm extends StatelessWidget {
   Map examDetails = {};
 
   final controller = Get.put(BookingFormController());
+  final StripePaymentController paymentController = Get.put(StripePaymentController());
   // final examDetailController = Get.put(ExamDetailController());
 
   List examDetail = [
@@ -130,7 +132,18 @@ class BookingForm extends StatelessWidget {
                               !controller.termsError.value &&
                               !controller.paymentError.value) {
                             debugPrint('yay you logged in successfully');
-                            controller.registerExam();
+                           // controller.registerExam();
+
+                            paymentController.makePayment(
+                              amount: examDetails['price'].toString(),
+                              currency: 'USD',
+                              name:"${controller.first_name.value} + ${controller.last_name.value}",
+                              country:controller.country.value,
+                              city:controller.city.string,
+                                postalCode:controller.postal_code.string,
+                                line1:controller.street.string
+
+                            );
                           } else {
                             debugPrint('hello else');
                           }
