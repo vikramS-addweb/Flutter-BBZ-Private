@@ -79,6 +79,7 @@ class ExamController extends GetxController {
     dateTo.value = 'To';
     dateFrom.value = 'From';
     search.text = '';
+    dateFromMinDateForTo.value = DateTime.now();
     update();
   }
 

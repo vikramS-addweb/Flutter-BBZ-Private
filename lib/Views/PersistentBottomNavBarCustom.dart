@@ -64,7 +64,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
     builder: ((controller)=>Obx(() => WillPopScope(
         onWillPop: () async {
           print("After clicking the Android Back Button in persistentNavbar");
-          return false;
+          return true;
         },
         child: PersistentTabView(
       context,

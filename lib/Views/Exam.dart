@@ -585,7 +585,7 @@ class ItemsList extends StatelessWidget {
                                     ),
                                   )
                                 : Text(
-                                    'A2-B1',
+                                    '',
                                     style: TextStylesCustom.textStyles_16.apply(
                                       color: Colors.white,
                                       fontWeightDelta: 1,
@@ -609,13 +609,7 @@ class ItemsList extends StatelessWidget {
                                       fontWeightDelta: 1,
                                     ),
                                   )
-                                : Text(
-                                    '7,50 €',
-                                    style: TextStylesCustom.textStyles_22.apply(
-                                      color: Colors.white,
-                                      fontWeightDelta: 1,
-                                    ),
-                                  ),
+                                : SizedBox(height: 0,),
                           ),
                         ),
                       ],
@@ -634,7 +628,7 @@ class ItemsList extends StatelessWidget {
                                     color: Colors.black,
                                   ))
                               : Text(
-                                  'Zusatzleistung: Postversand - Zertifikate / Ergebnisbogen',
+                                  '',
                                   style: TextStylesCustom.textStyles_14.apply(
                                     color: Colors.black,
                                   ),
@@ -810,7 +804,7 @@ class ItemsList extends StatelessWidget {
                                         ),
                                       )
                                     : Text(
-                                        'Brüder Grimm Bildungscentrum e. V. Langstr. 60 63452 Hanau',
+                                        '',
                                         style: TextStylesCustom.textStyles_13
                                             .apply(
                                           color: ColorStyle.primaryColor_1570A5,
@@ -846,11 +840,7 @@ class ItemsList extends StatelessWidget {
                                           items[index]['available_seats'] + .0,
                                       total: items[index]['total_seat'] + .0,
                                     )
-                                  : ProgressBarCircularCustom(
-                                      text: '250',
-                                      progress: 250,
-                                      total: 400,
-                                    ),
+                                  : SizedBox(height: 0,),
                             ],
                           ),
                           const SizedBox(

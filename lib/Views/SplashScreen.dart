@@ -40,7 +40,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   gotToWelcomeScree(int index) {
     Future.delayed(const Duration(seconds: 3), () {
-      PersistentBottomNavBarCustom(initialIndex: index,).navigateToCustom(context);
+      // PersistentBottomNavBarCustom(initialIndex: index,).navigateToCustom(context);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PersistentBottomNavBarCustom(initialIndex: index)));
     });
   }
 

@@ -35,7 +35,10 @@ class MyProfileController extends GetxController {
   RxBool countryError = false.obs;
 
   void initMethods() {
+    image.value = File('');
+    imageURL.value = '' ;
     Future.delayed(const Duration(microseconds: 100), () {
+
       getProfile();
     });
   }
