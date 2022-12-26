@@ -76,7 +76,8 @@ class PickerCustom {
                   final imageFile = await _picker.pickImage(
                       source: ImageSource.camera,
                       // maxHeight:  200 ,
-                      maxWidth: 500);
+                      // maxWidth: 500
+                  );
 
                   onSelected(File(imageFile!.path));
                 },
@@ -95,7 +96,8 @@ class PickerCustom {
                   final imageFile = await _picker.pickImage(
                       source: ImageSource.gallery,
                       // maxHeight:  200 ,
-                      maxWidth: 500);
+                      // maxWidth: 500
+                  );
 
                   onSelected(File(imageFile!.path));
 

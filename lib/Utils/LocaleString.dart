@@ -295,6 +295,8 @@ class LocaleString extends Translations {
           "Mrs":"Frau",
           "Ms":"Divers",
           "No Exams are Available!":"Es werden keine Prüfungen angeboten!",
+          "ID Proof Image size(":"ID-Beweisbildgröße(",
+          " kb) can't be larger than 500 kb":" kb) darf nicht größer als 500 kb sein",
 
 
           "Log In/Sign Up": "Einloggen Anmelden",
