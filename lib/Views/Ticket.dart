@@ -111,7 +111,7 @@ JohnDoe@gmail.com
                         {
                           'icon': ImageStyle.ticket_100_percent,
                           'title': 'Price'.tr,
-                          'secondText': '${controller.bookingDetails['booked_event']['price'] ?? ''} €',
+                          'secondText': '${controller.bookingDetails['booked_event']['sale_price'] ?? controller.bookingDetails['booked_event']['price'] ?? ''} €',
                         },
                         {
                           'icon': ImageStyle.ticket_time,

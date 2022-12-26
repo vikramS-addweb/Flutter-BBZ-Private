@@ -165,7 +165,7 @@ class Exams extends StatelessWidget {
                                           ),
 
                                           TextSpan(
-                                            text: '${ items![index]['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['created_at']}')) : '25/03/2022'} | ${ items![index]['created_at'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['created_at']}')):'03:30 PM'}  ',
+                                            text: '${ items![index]['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['created_at']}')) : ''} | ${ items![index]['created_at'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['created_at']}')):''}  ',
                                             style: TextStylesCustom.textStyles_12
                                                 .apply(color: ColorStyle.primaryColor_1570A5),
                                           ),
@@ -205,17 +205,17 @@ class Exams extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${items![index]['booked_event']['title'] ??  'Zusatzleistung: Postversand- Zertifikate / Ergebnisbogen'}',
+                                    '${items![index]['booked_event']['title'] ??  ''}',
                                     style: TextStylesCustom.textStyles_12
                                         .apply(fontWeightDelta: 1),
                                   ),
                                   SizedBox(height: 30,),
-                                  // Text(
-                                  //   '${items![index]['booked_event']['title'] ??  'A2-B1'}',
-                                  //   style: TextStylesCustom.textStyles_14.apply(
-                                  //       color: ColorStyle.primaryColor_1570A5,
-                                  //       fontWeightDelta: 2),
-                                  // ),
+                                  Text(
+                                    '${items![index]['booked_event']['examLevel'] ??  ''}',
+                                    style: TextStylesCustom.textStyles_14.apply(
+                                        color: ColorStyle.primaryColor_1570A5,
+                                        fontWeightDelta: 2),
+                                  ),
                                   Row(
                                     children: [
                                       Expanded(

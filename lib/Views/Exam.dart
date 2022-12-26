@@ -601,15 +601,13 @@ class ItemsList extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                                 color: ColorStyle.primaryColor_1570A5),
                             padding: EdgeInsets.symmetric(horizontal: 8),
-                            child: items[index]['price'] != null
-                                ? Text(
-                                    '${items[index]['price']} €',
+                            child:Text(
+                                    '${items[index]['sale_price'] ?? items[index]['price']} €',
                                     style: TextStylesCustom.textStyles_22.apply(
                                       color: Colors.white,
                                       fontWeightDelta: 1,
                                     ),
                                   )
-                                : SizedBox(height: 0,),
                           ),
                         ),
                       ],
