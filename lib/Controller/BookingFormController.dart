@@ -181,6 +181,10 @@ class BookingFormController extends GetxController {
           } else {
             response['message'].toString().showError();
           }
+        }else if(response['errors'] != null){
+          response['errors'].toString().showError();
+        }else{
+          debugPrint('Booking form error: '+ response.toString());
         }
         // final response1 = await API.instance.get(endPoint: 'api/profile');
         // print(response1);

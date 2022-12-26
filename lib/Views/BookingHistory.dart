@@ -209,13 +209,15 @@ class Exams extends StatelessWidget {
                                     style: TextStylesCustom.textStyles_12
                                         .apply(fontWeightDelta: 1),
                                   ),
-                                  SizedBox(height: 30,),
+                                  SizedBox(height: 3,),
                                   Text(
                                     '${items![index]['booked_event']['examLevel'] ??  ''}',
                                     style: TextStylesCustom.textStyles_14.apply(
                                         color: ColorStyle.primaryColor_1570A5,
                                         fontWeightDelta: 2),
                                   ),
+                                  SizedBox(height: 2,),
+
                                   Row(
                                     children: [
                                       Expanded(

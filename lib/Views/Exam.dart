@@ -484,7 +484,7 @@ class _ExamState extends State<Exam> {
                             controller.upcomingExamData.value.length ==
                                 0
                                 ? Text(
-                              'Exam not found'.tr,
+                              'No Exams are Available!'.tr,
                               style: TextStylesCustom.textStyles_16.apply(
                                 color: Colors.black,
                               ),

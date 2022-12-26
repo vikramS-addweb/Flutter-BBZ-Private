@@ -294,6 +294,7 @@ class LocaleString extends Translations {
           "Mr":"Herr",
           "Mrs":"Frau",
           "Ms":"Divers",
+          "No Exams are Available!":"Es werden keine Prüfungen angeboten!",
 
 
           "Log In/Sign Up": "Einloggen Anmelden",
