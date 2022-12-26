@@ -245,13 +245,11 @@ class ItemsList extends StatelessWidget {
               children: [
                 Text(items[index]['item'],
                     style: TextStylesCustom.textStyles_14),
-                SizedBox(
-                  width: Get.mediaQuery.size.width * 0.5,
-                  child: Text(items[index]['value'],
-                      textAlign: TextAlign.end,
-                      style: TextStylesCustom.textStyles_14
-                          .apply(color: ColorStyle.grey_A8B0B5)),
-                ),
+                SizedBox(width: 10,),
+                Text(items[index]['value'],
+                    textAlign: TextAlign.end,
+                    style: TextStylesCustom.textStyles_14
+                        .apply(color: ColorStyle.grey_A8B0B5)),
               ],
             );
           },

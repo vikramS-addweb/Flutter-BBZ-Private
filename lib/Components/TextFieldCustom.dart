@@ -192,7 +192,7 @@ class TextFormFieldOutline extends StatelessWidget {
           padding: const EdgeInsets.only(right:15.0),
           child: Image.asset(ImageStyle.calendar, height: 5,),
         ) : SizedBox(width: 0,),
-          suffixIconConstraints: BoxConstraints(maxHeight: 15, minHeight: 15),
+          suffixIconConstraints: BoxConstraints(maxHeight: 20, minHeight: 20),
 
           fillColor: colorFill,
           errorMaxLines: 2,

@@ -102,10 +102,11 @@ class BookingForm extends StatelessWidget {
                             "ID Proof Image is required".tr.showError();
 
                           }
-                          else if(
-                              controller.image.value.readAsBytesSync().lengthInBytes / 1024 > 500){
-                            "ID Proof Image size(${(controller.image.value.readAsBytesSync().lengthInBytes / 1024).round()} kb) can't be larger than 500 kb".tr.showError();
-                          }
+                          // else if(
+                          //     controller.image.value.readAsBytesSync().lengthInBytes / 1024 > 500){
+                          //   "ID Proof Image size(${(controller.image.value.readAsBytesSync().lengthInBytes / 1024).round()} kb) can't be larger than 500 kb".tr.showError();
+                          // }
+                          debugPrint('file size : ${controller.image.value.readAsBytesSync().lengthInBytes / 1024}');
 
                           if (controller.country.value == '') {
                             controller.countryError.value = true;
@@ -708,7 +709,21 @@ class BookingForm extends StatelessWidget {
                                     onTap: () {
                                       final xx = PickerCustom.imagePicker((file) {
                                         controller.image.value = file;
-                                        controller.uploadImage();
+                                        if((controller.image.value.readAsBytesSync().lengthInBytes / 1024).round() > 500){
+                                          '${
+                                            "ID Proof Image size(".tr +
+                                                "${(controller.image.value
+                                                    .readAsBytesSync()
+                                                    .lengthInBytes / 1024)
+                                                    .round()}" +
+                                                " kb) can't be larger than 500 kb"
+                                                    .tr
+                                          }'.showError();
+                                          controller.image.value = File('');
+
+                                        }else{
+                                          controller.uploadImage();
+                                        }
                                       });
                                     },
                                     child:
