@@ -291,6 +291,9 @@ class LocaleString extends Translations {
           "From Camera":"Von der Kamera",
           "From Photo":"Von Foto",
           "Cancel":"Stornieren",
+          "Mr":"Herr",
+          "Mrs":"Frau",
+          "Ms":"Divers",
 
 
           "Log In/Sign Up": "Einloggen Anmelden",

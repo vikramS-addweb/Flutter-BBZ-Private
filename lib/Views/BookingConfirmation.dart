@@ -289,7 +289,7 @@ class BookingConfirmation extends StatelessWidget {
                           style: TextStylesCustom.textStyles_14),
                       SizedBox(
                         width: Get.mediaQuery.size.width * 0.4,
-                        child: Text('${controller.bookingConfirmationData['booked_event']['price'] ?? ''} €',
+                        child: Text('${controller.bookingConfirmationData['booked_event']['sale_price'] ?? controller.bookingConfirmationData['booked_event']['price'] ?? ''} €',
                             textAlign: TextAlign.end,
                             style: TextStylesCustom.textStyles_14
                                 .apply(color: ColorStyle.black)),

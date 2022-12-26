@@ -36,8 +36,7 @@ class ExamDetail extends StatelessWidget {
           appBar: AppBarStyle(
             title:
                 controller.examDetailData['title'] != null ? '${controller.examDetailData['title']}':
-                '''      Deutschtest für Zuwanderer
-(DTZ / A2-B1) (PR-220409-HU-DTZ)''',
+                '',
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
@@ -75,7 +74,7 @@ class ExamDetail extends StatelessWidget {
                   const SizedBox(width: 10,),
                   Text('Fee'.tr, style: TextStylesCustom.textStyles_16.apply(color: ColorStyle.grey_5E6D77),),
                   const SizedBox(width: 13,),
-                  Text('${controller.examDetailData['price']} €', style: TextStylesCustom.textStyles_22.apply(color: ColorStyle.primaryColor_1570A5),),
+                  Text('${controller.examDetailData['sale_price'] ?? controller.examDetailData['price']} €', style: TextStylesCustom.textStyles_22.apply(color: ColorStyle.primaryColor_1570A5),),
                   const SizedBox(width: 35,),
                   Expanded(
                       child:

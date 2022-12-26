@@ -87,7 +87,7 @@ class BookingForm extends StatelessWidget {
                         width: 13,
                       ),
                       Text(
-                        '${examDetails['price']} €',
+                        '${examDetails['sale_price'] ?? examDetails['price']} €',
                         style: TextStylesCustom.textStyles_22.apply(
                             color: ColorStyle.primaryColor_1570A5,
                             fontWeightDelta: 1),

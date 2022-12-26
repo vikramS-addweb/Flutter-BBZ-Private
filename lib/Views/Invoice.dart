@@ -201,7 +201,7 @@ class Invoice extends StatelessWidget {
                           },
                           {
                             'item':'Fee'.tr,
-                            'value':'${controller.bookingDetails['booked_event']['price'] ?? ''} €'
+                            'value':'${controller.bookingDetails['booked_event']['sale_price'] ?? controller.bookingDetails['booked_event']['price'] ?? ''} €'
                           }
                         ],),
                         const SizedBox(height: 10,),
