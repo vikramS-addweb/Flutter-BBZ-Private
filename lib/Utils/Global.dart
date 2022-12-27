@@ -84,7 +84,7 @@ goToAnotherScreen(Widget page) {
 extension NavigateCustom on Widget {
   navigateToCustom(context,
       {bool withNavBar = true, bool isNavBarActive = false}) {
-    // controller.isNavBarActive.value = isNavBarActive;
+    controller.isNavBarActive.value = isNavBarActive;
     PersistentNavBarNavigator.pushNewScreen(
       context,
       screen: this,
