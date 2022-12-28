@@ -484,12 +484,14 @@ class BookingForm extends StatelessWidget {
                                     firstText: 'Identification Number'.tr,
                                     hintText: 'Please enter'.tr,
                                     validator: (value) {
-                                      if (value!.isEmpty) {
+                                      if (value!.isEmpty || value.trim().isEmpty) {
                                         return "Identification number is required".tr;
                                       }else
-                                      if (!alphaNumeric.hasMatch(value)) {
+                                      if (!alphaSpace.hasMatch(value)) {
                                         return "Identification number contains only numbers and letters.".tr;
-                                      } else {
+                                      } else if(value![0] == ' '){
+                                        return "Identification number cannot start with space".tr;
+                                      }else {
                                         return null;
                                       }
                                     },
@@ -500,6 +502,7 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                     controller: controller.email.value,
+                                    enabled: kTOKENSAVED == '',
                                     firstText: 'Email'.tr,
                                     hintText: 'Please enter'.tr,
                                     formatInput: true,

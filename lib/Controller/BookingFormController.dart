@@ -133,7 +133,7 @@ class BookingFormController extends GetxController {
         'academic_title': academic_title.value.text,
         'first_name': first_name.value.text,
         'last_name': last_name.value.text,
-        'identification_number': identification_number.value.text,
+        'identification_number': (identification_number.value.text).trim(),
         'birth_date': birth_date.value.text,
         'birth_place': birth_place.value.text,
         'country_of_birth': country_of_birth.value.text,

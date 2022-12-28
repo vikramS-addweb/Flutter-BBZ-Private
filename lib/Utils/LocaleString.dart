@@ -178,6 +178,8 @@ class LocaleString extends Translations {
               "Nachricht darf nicht mit Leerzeichen beginnen",
           "Name cannot start with space":
               "Name darf nicht mit Leerzeichen beginnen",
+          "Identification number cannot start with space":
+          "Personalausweisnummer darf nicht mit Leerzeichen beginnen",
           "Your message has been sent successfully":
               "Ihre Nachricht wurde erfolgreich gesendet",
           "News": "Nachrichten",

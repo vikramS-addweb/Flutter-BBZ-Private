@@ -131,7 +131,7 @@ class ExamDetail extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 4.0),
                                 child: Text(
-                                  '${controller.examDetailData['exam_level'] ?? 'A2-B1 Level'}',
+                                  '${controller.examDetailData['exam_level'] ?? ''}',
 
                                   style: TextStylesCustom.textStyles_21
                                       .apply(color: Colors.white, fontWeightDelta: 1),
@@ -160,7 +160,7 @@ class ExamDetail extends StatelessWidget {
                                           .apply(color: Colors.white),
                                     ) :
                                     Text(
-                                      'Brüder Grimm Bildungscentrum e. V. Langstr.60 63452 Hanau',
+                                      '',
                                       style: TextStylesCustom.textStyles_14
                                           .apply(color: Colors.white),
                                     ),
@@ -216,7 +216,7 @@ class ExamDetail extends StatelessWidget {
                                     Text('|', style: TextStylesCustom.textStyles_14.apply( color:circleColor((controller.examDetailData['available_seats'] * 100/controller.examDetailData['total_seat']).round()) ??  Colors.green, fontWeightDelta: 2),),
                                     const SizedBox(width: 10,),
                                     // Text('400/500', style: TextStylesCustom.textStyles_14.apply(color: Colors.green),)
-
+                                    if(controller.examDetailData['available_seats'] != null && controller.examDetailData['total_seat'] != null)
                                     Text('${controller.examDetailData['available_seats'] ?? '400'}/${controller.examDetailData['total_seat'] ?? '500'}', style: TextStylesCustom.textStyles_14.apply(color:circleColor((controller.examDetailData['available_seats'] * 100/controller.examDetailData['total_seat']).round()) ??  Colors.green),)
                                   ],
                                 ),
@@ -234,7 +234,7 @@ class ExamDetail extends StatelessWidget {
                                     const SizedBox(width: 10,),
                                     // Text( '25/03/2022 (SAT)', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
 
-                                    Expanded(child: Text( controller.examDetailData['exam_date'] != null ? '${DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${controller.examDetailData['exam_date']}'))}':'25/03/2022 (SAT)', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),))
+                                    Expanded(child: Text( controller.examDetailData['exam_date'] != null ? '${DateFormat('dd/MM/yyyy (EE)').format(DateTime.parse('${controller.examDetailData['exam_date']}'))}':'', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),))
                                   ],
                                 ),
                                 const SizedBox(height: 30,),
@@ -267,7 +267,7 @@ class ExamDetail extends StatelessWidget {
                                     Text(' |', style: TextStylesCustom.textStyles_14.apply( color: ColorStyle.grey_DAE1E7, fontWeightDelta: 2),),
                                     const SizedBox(width: 10,),
                                     // Text('09:30 AM', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
-                                    Text(controller.examDetailData['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${controller.examDetailData['exam_date']}T${controller.examDetailData['exam_time']}'))}':'09:30 AM', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
+                                    Text(controller.examDetailData['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${controller.examDetailData['exam_date']}T${controller.examDetailData['exam_time']}'))}':'', style: TextStylesCustom.textStyles_14.apply(color: ColorStyle.primaryColor_1570A5),)
                                   ],
                                 )
                               ],
@@ -280,6 +280,7 @@ class ExamDetail extends StatelessWidget {
                   ],
                 ),
                 // --------------------------------------------Booking Submission ------------------------------>
+                if(controller.examDetailData['content'] != null)
                 Container(
                   color: Colors.white,
                   width: double.infinity,
@@ -302,7 +303,7 @@ class ExamDetail extends StatelessWidget {
                             await launchUrl(Uri.parse(url!));
                           }
                       ):
-                      Text('Libero sem vitae sed donec conubia integer nisi integer rhoncus imperdiet orci odio libero est integer a integer tincidunt sollicitudin blandit fusce nibh leo vulputate lobortis egestas dapibus faucibus metus conubia maecenas cras potenti cum hac arcu rhoncus nullam eros dictum torquent integer cursus bibendum sem sociis molestie tellus purus Quam fusce convallis ipsum malesuada amet velit aliquam urna nullam vehicula fermentum id morbi dis magnis porta sagittis euismod etiam',style: TextStylesCustom.textStyles_14,),
+                      Text('',style: TextStylesCustom.textStyles_14,),
                       // Text(controller.examDetailData['content'] != null ? '${controller.examDetailData['content']}' :'Libero sem vitae sed donec conubia integer nisi integer rhoncus imperdiet orci odio libero est integer a integer tincidunt sollicitudin blandit fusce nibh leo vulputate lobortis egestas dapibus faucibus metus conubia maecenas cras potenti cum hac arcu rhoncus nullam eros dictum torquent integer cursus bibendum sem sociis molestie tellus purus Quam fusce convallis ipsum malesuada amet velit aliquam urna nullam vehicula fermentum id morbi dis magnis porta sagittis euismod etiam',style: TextStylesCustom.textStyles_14,),
                       const SizedBox(height: 30,)
 
