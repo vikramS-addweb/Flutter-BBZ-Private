@@ -139,33 +139,33 @@ class BookingFormController extends GetxController {
     // } else {
     // uploadImage();
 
-    final params = {
-      '_method': 'post',
-      'id_proof': image.value.path,
-      'email': email.value.text,
-      'event_id': '${examDetailController.examDetailData.value['id']}',
-      'salutation': salutation.value,
-      'academic_title': academic_title.value.text,
-      'first_name': first_name.value.text,
-      'last_name': last_name.value.text,
-      'identification_number': identification_number.value.text,
-      'birth_date': birth_date.value.text,
-      'birth_place': birth_place.value.text,
-      'country_of_birth': country_of_birth.value.text,
-      'mother_tongue': motherToungue.value,
-      'telephone': telephone.value.text,
-      'phone': mobile.value.text,
-      'c/o': co.value.text,
-      'address_line_1': first_name.value.text,
-      'street': street.value.text,
-      'city': city.value.text,
-      'zip_code': postal_code.value.text,
-      'country': country.value,
-      'payment_gateway': paymentMethod.value,
-      'term_conditions_1': '${termsAndCondition.value}',
-      'term_conditions': '${privacyPolicy.value}',
-      'term_conditions_2': '${secondTerm.value}'
-    };
+      final params = {
+        '_method': 'post',
+        'id_proof': image.value.path,
+        'email': email.value.text,
+        'event_id': '${examDetailController.examDetailData.value['id']}',
+        'salutation': salutation.value,
+        'academic_title': academic_title.value.text,
+        'first_name': first_name.value.text,
+        'last_name': last_name.value.text,
+        'identification_number': identification_number.value.text,
+        'birth_date': birth_date.value.text,
+        'birth_place': birth_place.value.text,
+        'country_of_birth': country_of_birth.value.text,
+        'mother_tongue': motherToungue.value,
+        'telephone': telephone.value.text,
+        'phone': mobile.value.text,
+        'c/o': co.value.text,
+        'address_line_1': first_name.value.text,
+        'street': street.value.text,
+        'city': city.value.text,
+        'zip_code': postal_code.value.text,
+        'country': country.value,
+        'payment_gateway': paymentMethod.value,
+        'term_conditions_1': '${termsAndCondition.value}',
+        'term_conditions': '${privacyPolicy.value}',
+        'term_conditions_2': '${secondTerm.value}'
+      };
 
     final response =
         await API.instance.post(endPoint: endpoint, params: params);
