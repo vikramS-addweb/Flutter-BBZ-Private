@@ -55,6 +55,8 @@ dependencies:
   url_launcher: ^6.1.7
   focus_detector: ^2.0.1
   devicelocale: ^0.5.5
+  flutter_paypal: ^0.0.7
+  flutter_stripe: ^7.0.0
 
 dev_dependencies:
   flutter_test:

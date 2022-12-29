@@ -952,6 +952,8 @@ class BookingForm extends StatelessWidget {
                                     onTap: () {
                                       PickerCustom.countryPicker((value) {
                                         controller.country.value = value;
+                                      },(value) {
+                                        controller.countryCode.value = value;
                                       });
                                     },
                                     child: controller.country.value == ''

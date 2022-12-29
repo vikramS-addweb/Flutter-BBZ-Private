@@ -461,15 +461,16 @@ class MyProfile extends StatelessWidget {
                                       } else if (!value!.isNumericOnly) {
                                         return 'Postal code must contain only numbers'
                                             .tr;
-                                      }else if(value.length < 2){
-                                        return "Postal code can't have less than 2 digits".tr;
-                                      } else if(value.length > 6){
-                                        return "Postal code can't have more than 6 digits".tr;
-                                      }
-                                      else if((value.replaceAll('0', '')).isEmpty){
+                                      } else if (value.length < 2) {
+                                        return "Postal code can't have less than 2 digits"
+                                            .tr;
+                                      } else if (value.length > 6) {
+                                        return "Postal code can't have more than 6 digits"
+                                            .tr;
+                                      } else if ((value.replaceAll('0', ''))
+                                          .isEmpty) {
                                         return "All digits can't be zeros".tr;
-                                      }
-                                      else {
+                                      } else {
                                         return null;
                                       }
                                     },
@@ -482,7 +483,7 @@ class MyProfile extends StatelessWidget {
                                     onTap: () {
                                       PickerCustom.countryPicker((value) {
                                         controller.country.value = value;
-                                      });
+                                      }, (value) {});
                                     },
                                     child: controller.country.value == ''
                                         ? ContainerWithLabel(

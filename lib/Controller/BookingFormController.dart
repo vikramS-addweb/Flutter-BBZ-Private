@@ -1,5 +1,7 @@
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_paypal/flutter_paypal.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import '../Utils/Global.dart';
 import '../Utils/API.dart';
@@ -10,6 +12,7 @@ import 'dart:io';
 import 'dart:math';
 import './ExamDetailController.dart';
 import '../Views/BookingConfirmation.dart';
+import 'package:http/http.dart' as http;
 
 class BookingFormController extends GetxController {
   void initMethods() {
@@ -61,6 +64,7 @@ class BookingFormController extends GetxController {
   Rx<TextEditingController> city = TextEditingController().obs;
   Rx<TextEditingController> postal_code = TextEditingController().obs;
   RxString country = ''.obs;
+  RxString countryCode = ''.obs;
 
   //booking confirmation variables
   RxString amount = ''.obs;
@@ -172,9 +176,12 @@ class BookingFormController extends GetxController {
           amount.value = response['amount'].toString();
           code.value = response['code'].toString();
           print('hellow hterher');
-          reset();
-
-          bookingConfirm();
+          
+        if (paymentMethod.value == 'paypal') {
+          usePaypal();
+        } else {
+          useStripe();
+        }
         } else if (response['message'] != null) {
           if (response['message'].toString() == 'Email already exists') {
             "Email already exists".tr.showError();
@@ -268,6 +275,37 @@ class BookingFormController extends GetxController {
     secondTerm.value = false;
   }
 
+  
+  Future<String?> fetchPaymentIntent() async {
+    try {
+      http.Response response = await http.post(
+          Uri.parse("https://bbzstage.addwebprojects.com/api/paymentIntent"),
+          body: {
+            "email": email.value.text,
+            "name": '${first_name.value.text} ${last_name.value.text}',
+            "phone": mobile.value.text,
+            "currency": 'EUR',
+            "address": street.value.text,
+            "postal_code": postal_code.value.text,
+            "country": countryCode.value,
+            "city": city.value.text,
+            "amount": amount.value,
+            'line1': "line1"
+          });
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body)['clientSecret'];
+      } else {
+        'Error ${response.statusCode.toString()}';
+        return null;
+        
+      }
+    } catch (e) {
+      e.toString().showError();
+    }
+
+    return null;
+  }
+
   // -------------------------------------------------------Booking confimation api------------------------------------>
   bookingConfirm() async {
     final params = {
@@ -294,6 +332,126 @@ class BookingFormController extends GetxController {
       } else if (response['errors'] != null) {
         response['errors'].toString().showSuccess();
       }
+    }
+  }
+    void usePaypal() {
+    Get.to(() => UsePaypal(
+        sandboxMode: true,
+        clientId:
+            "AXEu7yfDuX_iWlKKvD25YLqe-YP5dWUcaEfgQZS-GpwjYPcNfHgxVUxZGOhzy6Uz-wpnkjavMTdrkT1n",
+        secretKey:
+            "EAFFLldjnX0wIQX6oJVIYZ9TZe1MulpmC65RkrBQ99OaNW5vvBmA3EgotzhJzGf3FomfxInoJ0FI79TW",
+        returnURL: "https://samplesite.com/return",
+        cancelURL: "https://samplesite.com/cancel",
+        transactions: [
+          {
+            "amount": {
+              "total": amount.value,
+              "currency": 'EUR',
+              "details": {
+                "subtotal": amount.value,
+                "shipping": '0',
+                "shipping_discount": 0
+              }
+            },
+            "description": "The payment transaction description.",
+            // "payment_options": {
+            //   "allowed_payment_method":
+            //       "INSTANT_FUNDING_SOURCE"
+            // },
+            "item_list": {
+              "items": [
+                {
+                  "name": '${first_name.value.text} ${last_name.value.text}',
+                  "quantity": 1,
+                  "price": amount.value,
+                  "currency": 'EUR'
+                }
+              ],
+
+              // shipping address is not required though
+              // "shipping_address": {
+              //   "recipient_name": "Jane Foster",
+              //   "line1": "Travis County",
+              //   "line2": "",
+              //   "city": "Austin",
+              //   "country_code": "US",
+              //   "postal_code": "73301",
+              //   "phone": "+00000000",
+              //   "state": "Texas"
+              // },
+            }
+          }
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          // "Payment Successful".showSuccess();
+          print("onSuccess: $params");
+          reset();
+          bookingConfirm();
+        },
+        onError: (error) {
+          "$error".showError();
+          print("onError: $error");
+        },
+        onCancel: (params) {
+          '$params'.showError();
+          print('cancelled: $params');
+        }));
+  }
+
+  void useStripe() async {
+    try {
+      var paymentIntentData = await fetchPaymentIntent();
+      // var paymentIntentData = await createPaymentIntent('1000', 'EUR', 'name' ,'ET','city','1000','line1');
+      print('paymeny intent data');
+      print(paymentIntentData);
+      if (paymentIntentData != null) {
+        await Stripe.instance.initPaymentSheet(
+            paymentSheetParameters: SetupPaymentSheetParameters(
+          merchantDisplayName: 'Prospects',
+          customerId: null,
+          paymentIntentClientSecret: paymentIntentData,
+          customerEphemeralKeySecret: null,
+
+          googlePay: const PaymentSheetGooglePay(
+            merchantCountryCode: 'INR',
+            testEnv: true,
+          ),
+          // applePay: const PaymentSheetApplePay(
+          //   merchantCountryCode: 'DE',
+          // ),
+        ));
+        print('hi');
+        displayPaymentSheet();
+      }
+    } on StripeConfigException catch (e) {
+      print(e.message);
+      e.toString().showError();
+    }
+  }
+
+  void displayPaymentSheet() async {
+    try {
+      await Stripe.instance.presentPaymentSheet();
+      // Get.snackbar('Payment', 'Payment Successful',
+      //     snackPosition: SnackPosition.BOTTOM,
+      //     backgroundColor: Colors.green,
+      //     colorText: Colors.white,
+      //     margin: const EdgeInsets.all(10),
+      //     duration: const Duration(seconds: 2));
+
+      reset();
+      bookingConfirm();
+    } on Exception catch (e) {
+      if (e is StripeException) {
+        print("Error from Stripe: ${e.error.localizedMessage}");
+      } else {
+        print("Unforeseen error: ${e}");
+      }
+    } catch (e) {
+      print('sheet error');
+      print("exception:$e");
     }
   }
 }

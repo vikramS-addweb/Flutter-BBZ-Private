@@ -13,7 +13,7 @@ import 'package:country_picker/country_picker.dart';
 
 
 class PickerCustom {
-  static countryPicker(Function(String) onSelected) async {
+  static countryPicker(Function(String) onSelected, Function(String) onCountryCodeSelected) async {
 
     showCountryPicker(
       context: Get.context!,
@@ -21,6 +21,7 @@ class PickerCustom {
       onSelect: (Country country) {
         debugPrint('Select country: ${country.name}');
         onSelected(country.name);
+        onCountryCodeSelected(country.countryCode);
         // return country.name;
       },
     );
