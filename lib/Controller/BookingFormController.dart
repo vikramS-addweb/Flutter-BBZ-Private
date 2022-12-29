@@ -1,5 +1,8 @@
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_paypal/flutter_paypal.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import '../Utils/Global.dart';
 import '../Utils/API.dart';
@@ -10,8 +13,11 @@ import 'dart:io';
 import 'dart:math';
 import './ExamDetailController.dart';
 import '../Views/BookingConfirmation.dart';
+import 'package:http/http.dart' as http;
 
 class BookingFormController extends GetxController {
+
+
   void initMethods() {
     reset();
     Future.delayed(const Duration(microseconds: 100), () {
@@ -22,7 +28,7 @@ class BookingFormController extends GetxController {
   String endpoint = 'api/register-exam';
 
   final examDetailController = Get.put(ExamDetailController());
-
+  // String? paymentIntentData;
   Rx<File> image = File('').obs;
   RxString imageURL = ''.obs;
 
@@ -41,15 +47,23 @@ class BookingFormController extends GetxController {
   //drowpdown variables
   RxString event_id = ''.obs;
   RxString salutation = ''.obs;
-  Rx<TextEditingController> academic_title = TextEditingController().obs;
-  Rx<TextEditingController> birth_date = TextEditingController().obs;
-  Rx<TextEditingController> first_name = TextEditingController().obs;
-  Rx<TextEditingController> last_name = TextEditingController().obs;
-  Rx<TextEditingController> identification_number = TextEditingController().obs;
-  Rx<TextEditingController> email = TextEditingController().obs;
+  Rx<TextEditingController> academic_title =
+      TextEditingController(text: "shhhss").obs;
+  Rx<TextEditingController> birth_date =
+      TextEditingController(text: faker.date.toString()).obs;
+  Rx<TextEditingController> first_name =
+      TextEditingController(text: faker.person.toString()).obs;
+  Rx<TextEditingController> last_name =
+      TextEditingController(text: "shjsh").obs;
+  Rx<TextEditingController> identification_number =
+      TextEditingController(text: "152625736735267").obs;
+  Rx<TextEditingController> email =
+      TextEditingController(text: faker.internet.email()).obs;
   RxString birthDate = ''.obs;
-  Rx<TextEditingController> birth_place = TextEditingController().obs;
-  Rx<TextEditingController> country_of_birth = TextEditingController().obs;
+  Rx<TextEditingController> birth_place =
+      TextEditingController(text: faker.food.toString()).obs;
+  Rx<TextEditingController> country_of_birth =
+      TextEditingController(text: faker.food.toString()).obs;
 
   RxString motherToungue = ''.obs;
   Rx<TextEditingController> telephone = TextEditingController().obs;
@@ -61,6 +75,7 @@ class BookingFormController extends GetxController {
   Rx<TextEditingController> city = TextEditingController().obs;
   Rx<TextEditingController> postal_code = TextEditingController().obs;
   RxString country = ''.obs;
+  RxString country_code = ''.obs;
 
   //booking confirmation variables
   RxString amount = ''.obs;
@@ -122,79 +137,85 @@ class BookingFormController extends GetxController {
     // if (image.value.path.isEmpty) {
     //   "ID Proof Image is required".showError();
     // } else {
-      // uploadImage();
+    // uploadImage();
 
-      final params = {
-        '_method': 'post',
-        'id_proof': image.value.path,
-        'email': email.value.text,
-        'event_id': '${examDetailController.examDetailData.value['id']}',
-        'salutation': salutation.value,
-        'academic_title': academic_title.value.text,
-        'first_name': first_name.value.text,
-        'last_name': last_name.value.text,
-        'identification_number': identification_number.value.text,
-        'birth_date': birth_date.value.text,
-        'birth_place': birth_place.value.text,
-        'country_of_birth': country_of_birth.value.text,
-        'mother_tongue': motherToungue.value,
-        'telephone': telephone.value.text,
-        'phone': mobile.value.text,
-        'c/o': co.value.text,
-        'address_line_1': first_name.value.text,
-        'street': street.value.text,
-        'city': city.value.text,
-        'zip_code': postal_code.value.text,
-        'country': country.value,
-        'payment_gateway': paymentMethod.value,
-        'term_conditions_1': '${termsAndCondition.value}',
-        'term_conditions': '${privacyPolicy.value}',
-        'term_conditions_2': '${secondTerm.value}'
-      };
+    final params = {
+      '_method': 'post',
+      'id_proof': image.value.path,
+      'email': email.value.text,
+      'event_id': '${examDetailController.examDetailData.value['id']}',
+      'salutation': salutation.value,
+      'academic_title': academic_title.value.text,
+      'first_name': first_name.value.text,
+      'last_name': last_name.value.text,
+      'identification_number': identification_number.value.text,
+      'birth_date': birth_date.value.text,
+      'birth_place': birth_place.value.text,
+      'country_of_birth': country_of_birth.value.text,
+      'mother_tongue': motherToungue.value,
+      'telephone': telephone.value.text,
+      'phone': mobile.value.text,
+      'c/o': co.value.text,
+      'address_line_1': first_name.value.text,
+      'street': street.value.text,
+      'city': city.value.text,
+      'zip_code': postal_code.value.text,
+      'country': country.value,
+      'payment_gateway': paymentMethod.value,
+      'term_conditions_1': '${termsAndCondition.value}',
+      'term_conditions': '${privacyPolicy.value}',
+      'term_conditions_2': '${secondTerm.value}'
+    };
 
-      final response =
-          await API.instance.post(endPoint: endpoint, params: params);
-      print(response);
+    final response =
+        await API.instance.post(endPoint: endpoint, params: params);
+    print(response);
 
-      if (response!.isNotEmpty) {
-        debugPrint(response.toString());
-        // response['message'].toString().showSuccess();
-        if (response['status'] == 1) {
-          if (response['message'].toString() ==
-              'You Booking has been processed successfully.Redirect To Payment') {
-            "Your Booking has been processed successfully.Redirect To Payment"
-                .tr
-                .showSuccess();
-          } else {
-            response['message'].toString().showSuccess();
-          }
-          event_id.value = response['event_id'].toString();
-          amount.value = response['amount'].toString();
-          code.value = response['code'].toString();
-          print('hellow hterher');
-          reset();
-
-          bookingConfirm();
-        } else if (response['message'] != null) {
-          if (response['message'].toString() == 'Email already exists') {
-            "Email already exists".tr.showError();
-          } else {
-            response['message'].toString().showError();
-          }
-        }else if(response['errors'] != null){
-          response['errors'].toString().showError();
-        }else{
-          debugPrint('Booking form error: '+ response.toString());
+    if (response!.isNotEmpty) {
+      debugPrint(response.toString());
+      // response['message'].toString().showSuccess();
+      if (response['status'] == 1) {
+        if (response['message'].toString() ==
+            'You Booking has been processed successfully.Redirect To Payment') {
+          "Your Booking has been processed successfully.Redirect To Payment"
+              .tr
+              .showSuccess();
+        } else {
+          response['message'].toString().showSuccess();
         }
-        // final response1 = await API.instance.get(endPoint: 'api/profile');
-        // print(response1);
-        //
-        // if (response1!.isNotEmpty) {
-        //   dictUserSaved = response;
-        // }
+        event_id.value = response['event_id'].toString();
+        amount.value = response['amount'].toString();
+        code.value = response['code'].toString();
+        print('hellow hterher');
+        // reset();
 
-        // navigateToBack(Get.context);
+        if (paymentMethod.value == 'paypal') {
+          usePaypal();
+        } else {
+          useStripe();
+        }
+
+        // bookingConfirm();
+      } else if (response['message'] != null) {
+        if (response['message'].toString() == 'Email already exists') {
+          "Email already exists".tr.showError();
+        } else {
+          response['message'].toString().showError();
+        }
+      } else if (response['errors'] != null) {
+        response['errors'].toString().showError();
+      } else {
+        debugPrint('Booking form error: ' + response.toString());
       }
+      // final response1 = await API.instance.get(endPoint: 'api/profile');
+      // print(response1);
+      //
+      // if (response1!.isNotEmpty) {
+      //   dictUserSaved = response;
+      // }
+
+      // navigateToBack(Get.context);
+    }
     // }
   }
 
@@ -268,6 +289,33 @@ class BookingFormController extends GetxController {
     secondTerm.value = false;
   }
 
+
+  Future<String?> fetchPaymentIntent() async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse("https://bbzstage.addwebprojects.com/api/paymentIntent?email=ermias@gmail.com&name=ermias&phone=0912983424&address=test&postal_code=1000&country=ET&amount=200"),
+        // body: {
+        //   "email" : email.value.text,
+        //   "name" : '${first_name.value.text} ${last_name.value.text}',
+        //   "address" : "line 1",
+        //   "postal_code" : postal_code.value.text,
+        //   "country" : country.value
+
+        // }
+      );
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body)['clientSecret'];
+      } else {
+        response.statusCode.toString().showError();
+        return null;
+      }
+    } catch (e) {
+      e.toString().showError();
+    }
+
+    return null;
+  }
+
   // -------------------------------------------------------Booking confimation api------------------------------------>
   bookingConfirm() async {
     final params = {
@@ -295,5 +343,164 @@ class BookingFormController extends GetxController {
         response['errors'].toString().showSuccess();
       }
     }
+  }
+
+  void usePaypal() {
+    Get.to(() => UsePaypal(
+        sandboxMode: true,
+        clientId:
+            "AXEu7yfDuX_iWlKKvD25YLqe-YP5dWUcaEfgQZS-GpwjYPcNfHgxVUxZGOhzy6Uz-wpnkjavMTdrkT1n",
+        secretKey:
+            "EAFFLldjnX0wIQX6oJVIYZ9TZe1MulpmC65RkrBQ99OaNW5vvBmA3EgotzhJzGf3FomfxInoJ0FI79TW",
+        returnURL: "https://samplesite.com/return",
+        cancelURL: "https://samplesite.com/cancel",
+        transactions: [
+          {
+            "amount": {
+              "total": amount.value,
+              "currency": 'EUR',
+              "details": {
+                "subtotal": amount.value,
+                "shipping": '0',
+                "shipping_discount": 0
+              }
+            },
+            "description": "The payment transaction description.",
+            // "payment_options": {
+            //   "allowed_payment_method":
+            //       "INSTANT_FUNDING_SOURCE"
+            // },
+            "item_list": {
+              "items": [
+                {
+                  "name": '${first_name.value.text} ${last_name.value.text}',
+                  "quantity": 1,
+                  "price": amount.value,
+                  "currency": 'EUR'
+                }
+              ],
+
+              // shipping address is not required though
+              // "shipping_address": {
+              //   "recipient_name": "Jane Foster",
+              //   "line1": "Travis County",
+              //   "line2": "",
+              //   "city": "Austin",
+              //   "country_code": "US",
+              //   "postal_code": "73301",
+              //   "phone": "+00000000",
+              //   "state": "Texas"
+              // },
+            }
+          }
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          "Payment Successful".showSuccess();
+          print("onSuccess: $params");
+          reset();
+          bookingConfirm();
+        },
+        onError: (error) {
+          "$error".showError();
+          print("onError: $error");
+        },
+        onCancel: (params) {
+          '$params'.showError();
+          print('cancelled: $params');
+        }));
+  }
+
+  void useStripe() async {
+    try {
+      // paymentIntentData = await fetchPaymentIntent();
+      var paymentIntentData = await createPaymentIntent(amount.value, 'EUR', '${first_name.value.text}' ,country_code.value,city.value.text,postal_code.value.text,'line1');
+      print('paymeny intent data');
+      print(paymentIntentData);
+      if (paymentIntentData != null) {
+        await Stripe.instance.initPaymentSheet(
+            paymentSheetParameters: SetupPaymentSheetParameters(
+          merchantDisplayName: 'Prospects',
+          customerId: null,
+          paymentIntentClientSecret: paymentIntentData!['client_secret'],
+          customerEphemeralKeySecret: null,
+          googlePay: const PaymentSheetGooglePay(
+            merchantCountryCode: 'US',
+            testEnv: true,
+          ),
+          // applePay: const PaymentSheetApplePay(
+          //   merchantCountryCode: 'DE',
+          // ),
+        ));
+        print('hi');
+        displayPaymentSheet();
+      }
+    } on StripeConfigException catch (e) {
+      print(e.message);
+      e.toString().showError();
+    }
+  }
+
+  void displayPaymentSheet() async {
+    try {
+      await Stripe.instance.presentPaymentSheet();
+      Get.snackbar('Payment', 'Payment Successful',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+          margin: const EdgeInsets.all(10),
+          duration: const Duration(seconds: 2));
+
+      reset();
+      bookingConfirm();
+    } on Exception catch (e) {
+      if (e is StripeException) {
+        print("Error from Stripe: ${e.error.localizedMessage}");
+      } else {
+        print("Unforeseen error: ${e}");
+      }
+    } catch (e) {
+      print('sheet error');
+      print("exception:$e");
+    }
+  }
+
+  //  Future<Map<String, dynamic>>
+  createPaymentIntent(String amount, String currency, String name,
+      String country, String city, String postalCode, String line1) async {
+    try {
+      Map<String, dynamic> body = {
+        'amount': calculateAmount(amount),
+        'currency': currency,
+        'payment_method_types[]': 'card',
+        'description': 'Software development services',
+        'shipping[name]': name,
+        'shipping[address][line1]': line1,
+        'shipping[address][postal_code]': postalCode,
+        'shipping[address][city]': city,
+        'shipping[address][state]': 'CA',
+        'shipping[address][country]': country
+      };
+      var response = await http.post(
+          Uri.parse('https://api.stripe.com/v1/payment_intents'),
+          body: body,
+          headers: {
+            'Authorization':
+                'Bearer sk_test_51KizhOSCX1pYzccDRYPfksOOXreQXtoo2aJ8alvStXPFL43lKbeGEzy79hUAHrHxRoH4wOl8m6Jz2GFXQ4xh8XHO00ZByqA027',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          });
+      print("===========paid===========");
+      // print(jsonDecode(response.body));
+      return jsonDecode(response.body);
+    } catch (err) {
+      print('err charging user: ${err.toString()}');
+    }
+
+    return null;
+  }
+
+  calculateAmount(String amount) {
+    final a = (int.parse(amount)) * 100;
+    return a.toString();
   }
 }

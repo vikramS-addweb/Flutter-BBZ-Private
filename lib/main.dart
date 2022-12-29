@@ -4,6 +4,7 @@ import 'package:bbz/Views/ContactUs.dart';
 import 'package:bbz/Views/HowWeWork.dart';
 import 'package:bbz/Views/Profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import './Views/WelcomeScreen.dart';
 import './Views/SplashScreen.dart';
 import './Views/TabbarScreen.dart';
@@ -27,7 +28,7 @@ void main() async {
 
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
-
+      Stripe.publishableKey = 'pk_test_51KizhOSCX1pYzccDD8rNXEZcHl8hv8WoAzOsNv0vDl0IiYQnO1vS9xuI1NjgCsZWQsjzBeCsHasUmM2UtRRAFzYx004PAjsCFM';
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));

@@ -83,7 +83,7 @@ goToAnotherScreen(Widget page) {
 
 extension NavigateCustom on Widget {
   navigateToCustom(context,
-      {bool withNavBar = true, bool isNavBarActive = true }) {
+      {bool withNavBar = true, bool isNavBarActive = false }) {
     controller.isNavBarActive.value = isNavBarActive;
     PersistentNavBarNavigator.pushNewScreen(
       context,
@@ -102,6 +102,7 @@ navigateToBack(context) {
   //   return route.isActive;
   // });
   // Get.previousRoute
+ 
   Navigator.pop(context!);
 }
 

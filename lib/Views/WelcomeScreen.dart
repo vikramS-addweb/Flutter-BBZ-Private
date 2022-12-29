@@ -1,3 +1,5 @@
+import 'package:bbz/Controller/BookingConfirmationController.dart';
+import 'package:bbz/Controller/BookingFormController.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
 import 'package:bbz/Styles/ImageStyle.dart';
 import 'package:bbz/Views/BookingHistory.dart';
@@ -121,6 +123,10 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
+                  ElevatedButton(onPressed: (){
+                    final controller = Get.put(BookingFormController());
+                    controller.useStripe();
+                  }, child: const Text('hello')),
                   ElevatedButtonCustom(
                     text: 'LOGIN'.tr,
                     styleText: TextStylesCustom.textStyles_15.apply(

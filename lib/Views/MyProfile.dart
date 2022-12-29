@@ -482,7 +482,7 @@ class MyProfile extends StatelessWidget {
                                     onTap: () {
                                       PickerCustom.countryPicker((value) {
                                         controller.country.value = value;
-                                      });
+                                      }, (value){});
                                     },
                                     child: controller.country.value == ''
                                         ? ContainerWithLabel(
