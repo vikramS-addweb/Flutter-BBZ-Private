@@ -106,7 +106,7 @@ class BookingForm extends StatelessWidget {
                           //     controller.image.value.readAsBytesSync().lengthInBytes / 1024 > 500){
                           //   "ID Proof Image size(${(controller.image.value.readAsBytesSync().lengthInBytes / 1024).round()} kb) can't be larger than 500 kb".tr.showError();
                           // }
-                          debugPrint('file size : ${controller.image.value.readAsBytesSync().lengthInBytes / 1024}');
+                          // debugPrint('file size : ${controller.image.value.readAsBytesSync().lengthInBytes / 1024}');
 
                           if (controller.country.value == '') {
                             controller.countryError.value = true;
@@ -487,10 +487,8 @@ class BookingForm extends StatelessWidget {
                                       if (value!.isEmpty || value.trim().isEmpty) {
                                         return "Identification number is required".tr;
                                       }else
-                                      if (!alphaSpace.hasMatch(value)) {
+                                      if (!alphaNumeric.hasMatch(value)) {
                                         return "Identification number contains only numbers and letters.".tr;
-                                      } else if(value![0] == ' '){
-                                        return "Identification number cannot start with space".tr;
                                       }else {
                                         return null;
                                       }
@@ -694,7 +692,7 @@ class BookingForm extends StatelessWidget {
                                         if (value!.isEmpty) {
                                           return "Mobile number is required".tr;
                                         }else if(!value.isNum){
-                                          return "mobile must contain number only".tr;
+                                          return "Mobile must contain number only".tr;
                                         }
                                         else if (value.length < 7) {
                                           return "Min digit should be 7".tr;

@@ -138,7 +138,7 @@ class ExamController extends GetxController {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text(
-        "Error!",
+        "Error!".tr,
         style: TextStylesCustom.textStyles_18.apply(fontWeightDelta: 1),
       ),
       content: Text(

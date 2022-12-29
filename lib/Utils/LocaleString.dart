@@ -119,7 +119,7 @@ class LocaleString extends Translations {
           "Country of birth must contain only letters":
               "Herkunftsland darf nur Buchstaben enthalten",
           "Postal code can't have less than 2 digits":"Die Postleitzahl darf nicht weniger als 2 Ziffern haben",
-          "Postal code cant have more than 6 digits":
+          "Postal code can't have more than 6 digits":
               "Die Postleitzahl darf nicht mehr als 6 Ziffern haben",
           "Success!": "Erfolg!",
           "Image Uploaded": "Bild hochgeladen",
@@ -299,6 +299,18 @@ class LocaleString extends Translations {
           "No Exams are Available!":"Es werden keine Prüfungen angeboten!",
           "ID Proof Image size(":"ID-Beweisbildgröße(",
           " kb) can't be larger than 500 kb":" kb) darf nicht größer als 500 kb sein",
+          "Identification number contains only numbers and letters.":"Die Identifikationsnummer enthält nur Zahlen und Buchstaben.",
+          "Password Incorrect":"Falsches Passwort",
+          "Internet is not connected":"Internet ist nicht verbunden",
+          "Name must only contain letters":"Name darf nur Buchstaben enthalten",
+          "C/o can't start with space":"C/o kann nicht mit Leerzeichen beginnen",
+          "City can't start with space":"Die Stadt kann nicht mit dem Weltraum beginnen",
+          "Postal code must contain number only":"Die Postleitzahl darf nur eine Zahl enthalten",
+          "Academic title can't start with space":"Akademischer Titel darf nicht mit Leerzeichen beginnen",
+          "Telephone must contain number only":"Telefon darf nur Nummer enthalten",
+          "Mobile must contain number only":"Handy darf nur Nummer enthalten",
+          "New Password cannot be same as old password":"Das neue Passwort darf nicht mit dem alten Passwort identisch sein",
+          "ALREADY BOOKED":"BEREITS GEBUCHT",
 
 
           "Log In/Sign Up": "Einloggen Anmelden",

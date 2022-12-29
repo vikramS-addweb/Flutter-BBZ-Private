@@ -162,7 +162,7 @@ class ContactUs extends StatelessWidget {
                                   if (value!.isEmpty) {
                                     return "Name is required".tr;
                                   } else if (!alphaSpace.hasMatch(value)){
-                                    return " Name must only contain letters".tr;
+                                    return "Name must only contain letters".tr;
                                   }else if(value![0] == ' '){
                                     controller.userName.value.text = '';
                                     return "Name cannot start with space".tr;

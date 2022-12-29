@@ -44,6 +44,8 @@ class LoginController extends GetxController {
     isLoggedIn = false;
     GetStorage().remove(kUserDetails);
     kTOKENSAVED = '';
+    dictUserSaved = {};
+    indexSelectedTab.value = 1;
     PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
   }
 
@@ -84,7 +86,9 @@ class LoginController extends GetxController {
       userPassword.value.text = '';
 
       // TabbarScreen().navigateToCustom(Get.context);
-      PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context,);
+      indexSelectedTab.value = 0;
+
+      PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, isNavBarActive: true);
     }
   }
 

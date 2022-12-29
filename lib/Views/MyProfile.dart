@@ -207,7 +207,7 @@ class MyProfile extends StatelessWidget {
                                             return "First name is required".tr;
                                           } else if (!alphaSpace
                                               .hasMatch(value)) {
-                                            return " FN should have letters".tr;
+                                            return "FN should have letters".tr;
                                           } else if (value![0] == ' ') {
                                             // controller.userMessage.value.text = '';
                                             return "Can't start with space".tr;
@@ -229,7 +229,7 @@ class MyProfile extends StatelessWidget {
                                             return "Last name is required".tr;
                                           } else if (!alphaSpace
                                               .hasMatch(value)) {
-                                            return " LN should have letters".tr;
+                                            return "LN should have letters".tr;
                                           } else if (value![0] == ' ') {
                                             // controller.userMessage.value.text = '';
                                             return "Can't start with space".tr;
@@ -276,7 +276,7 @@ class MyProfile extends StatelessWidget {
                                         if (value!.isEmpty) {
                                           return "Telephone is required".tr;
                                         } else if (!value.isNumericOnly) {
-                                          return "Telephone must contain only number"
+                                          return "Telephone must contain number only"
                                               .tr;
                                         } else if (value[0] == '0') {
                                           return "Telephone can't start with zero"
@@ -459,7 +459,7 @@ class MyProfile extends StatelessWidget {
                                       if (value!.isEmpty) {
                                         return "Postal code is required".tr;
                                       } else if (!value!.isNumericOnly) {
-                                        return 'Postal code must contain only numbers'
+                                        return 'Postal code must contain number only'
                                             .tr;
                                       }else if(value.length < 2){
                                         return "Postal code can't have less than 2 digits".tr;

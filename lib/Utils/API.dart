@@ -29,7 +29,7 @@ class API {
         return true;
       } else {
         debugPrint('Internet is not connected');
-        'Internet is not connected'.showError();
+        'Internet is not connected'.tr.showError();
         return false;
       }
     } catch (error) {
@@ -100,6 +100,8 @@ class API {
             "Email not found".tr.showError();
           }else if(parsed["error"].toString() == 'No changes made'){
             "No changes made".tr.showError();
+          }else if(parsed["error"].toString() == 'Password Incorrect'){
+            "Password Incorrect".tr.showError();
           }
           else{
             parsed["error"].toString().showError();
@@ -109,6 +111,8 @@ class API {
             "Email not found".tr.showError();
           }else if(parsed["error"].toString() == 'No changes made'){
             "No changes made".tr.showError();
+          }else if(parsed["error"].toString() == 'Password Incorrect'){
+            "Password Incorrect".tr.showError();
           }else{
             parsed["message"].toString().showError();
           }
