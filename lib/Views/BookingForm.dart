@@ -481,80 +481,84 @@ class BookingForm extends StatelessWidget {
                                                 return null;
                                               }
                                             },
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Expanded(
-                                        child: TextFormFieldWithLabel(
-                                          controller:
-                                              controller.last_name.value,
-                                          firstText: 'Last Name'.tr,
-                                          hintText: 'Please enter'.tr,
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return "Last name is required".tr;
-                                            } else if (!alphaSpace.hasMatch(value)) {
-                                              return "LN should have letters".tr;
-                                            }
-                                            else if(value![0] == ' '){
-                                              // controller.userMessage.value.text = '';
-                                              return "Can't start with space".tr;
-                                            }
-                                            else {
-                                              return null;
-                                            }
-                                          },
+                                        SizedBox(
+                                          width: 20,
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  TextFormFieldWithLabel(
-                                    controller:
-                                        controller.identification_number.value,
-                                    firstText: 'Identification Number'.tr,
-                                    hintText: 'Please enter'.tr,
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Identification number is required".tr;
-                                      }else
-                                      if (!alphaNumeric.hasMatch(value)) {
-                                        return "Identification number contains only numbers and letters.".tr;
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                  ),
+                                        Expanded(
+                                          child: TextFormFieldWithLabel(
+                                            controller:
+                                                controller.last_name.value,
+                                            firstText: 'Last Name'.tr,
+                                            hintText: 'Please enter'.tr,
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return "Last name is required"
+                                                    .tr;
+                                              } else if (!alphaSpace
+                                                  .hasMatch(value)) {
+                                                return "LN should have letters"
+                                                    .tr;
+                                              } else if (value![0] == ' ') {
+                                                // controller.userMessage.value.text = '';
+                                                return "Can't start with space"
+                                                    .tr;
+                                              } else {
+                                                return null;
+                                              }
+                                            },
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    TextFormFieldWithLabel(
+                                      controller: controller
+                                          .identification_number.value,
+                                      firstText: 'Identification Number'.tr,
+                                      hintText: 'Please enter'.tr,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Identification number is required"
+                                              .tr;
+                                        } else if (!alphaNumeric
+                                            .hasMatch(value)) {
+                                          return "Identification number contains only numbers and letters."
+                                              .tr;
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
 
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  TextFormFieldWithLabel(
-                                    controller: controller.email.value,
-                                    firstText: 'Email'.tr,
-                                    hintText: 'Please enter'.tr,
-                                    formatInput: true,
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Email is required".tr;
-                                      }else if(value![0] == ' '){
-                                        return "Email can't start with space".tr;
-                                      }
-                                      else if (!GetUtils.isEmail(value)) {
-                                        return "Email is invalid".tr;
-                                      }
-                                      // else if (!emailRegexWithoutSpecial.hasMatch(value)) {
-                                      //   return "Email can't have special characters";
-                                      // }
-                                      else {
-                                        return null;
-                                      }
-                                    },
-                                  ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    TextFormFieldWithLabel(
+                                      controller: controller.email.value,
+                                      firstText: 'Email'.tr,
+                                      hintText: 'Please enter'.tr,
+                                      formatInput: true,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Email is required".tr;
+                                        } else if (value![0] == ' ') {
+                                          return "Email can't start with space"
+                                              .tr;
+                                        } else if (!GetUtils.isEmail(value)) {
+                                          return "Email is invalid".tr;
+                                        }
+                                        // else if (!emailRegexWithoutSpecial.hasMatch(value)) {
+                                        //   return "Email can't have special characters";
+                                        // }
+                                        else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
 
                                     SizedBox(
                                       height: 15,
