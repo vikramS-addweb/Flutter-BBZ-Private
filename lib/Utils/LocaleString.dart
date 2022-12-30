@@ -254,7 +254,7 @@ class LocaleString extends Translations {
           "Agreement checkbox is required":
               "Das Kontrollkästchen für die Vereinbarung ist erforderlich",
 
-          "Identification No.": "Identifikationsnummer",
+          "Identification No.": "Personalausweisnummer",
 
           "Terms and Conditions": "Geschäftsbedingungen",
           "Exam Expired": "Prüfung abgelaufen",
@@ -299,7 +299,7 @@ class LocaleString extends Translations {
           "No Exams are Available!":"Es werden keine Prüfungen angeboten!",
           "ID Proof Image size(":"ID-Beweisbildgröße(",
           " kb) can't be larger than 500 kb":" kb) darf nicht größer als 500 kb sein",
-          "Identification number contains only numbers and letters.":"Die Identifikationsnummer enthält nur Zahlen und Buchstaben.",
+          "Identification number contains only numbers and letters.":"Die Personalausweisnummer enthält nur Zahlen und Buchstaben.",
           "Password Incorrect":"Falsches Passwort",
           "Internet is not connected":"Internet ist nicht verbunden",
           "Name must only contain letters":"Name darf nur Buchstaben enthalten",
