@@ -99,11 +99,13 @@ class ContactUs extends StatelessWidget {
                         const SizedBox(
                           height: 37,
                         ),
-                        Text(
-                          "We'd love to hear from you".tr,
-                          style: TextStylesCustom.textStyles_22.apply(
-                            color: Colors.white,
-                            // fontWeightDelta: 1,
+                        FittedBox(
+                          child: Text(
+                            "We'd love to hear from you".tr,
+                            style: TextStylesCustom.textStyles_22.apply(
+                              color: Colors.white,
+                              // fontWeightDelta: 1,
+                            ),
                           ),
                         ),
                         Text(
@@ -162,7 +164,7 @@ class ContactUs extends StatelessWidget {
                                   if (value!.isEmpty) {
                                     return "Name is required".tr;
                                   } else if (!alphaSpace.hasMatch(value)){
-                                    return " Name must only contain letters".tr;
+                                    return "Name must only contain letters".tr;
                                   }else if(value![0] == ' '){
                                     controller.userName.value.text = '';
                                     return "Name cannot start with space".tr;

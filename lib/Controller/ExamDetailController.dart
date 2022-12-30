@@ -16,8 +16,9 @@ class ExamDetailController extends GetxController {
   RxBool isBooked = false.obs;
 
   void initMethods(id) {
+    examDetailData.clear();
     Future.delayed(Duration(microseconds: 100), () {
-      examDetailData.clear();
+
 
       fetchExamDetails(id);
       if (kTOKENSAVED.isNotEmpty) fetchBookingStatus(id);

@@ -18,6 +18,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
   PersistentBottomNavBarCustom({Key? key,  this.initialIndex = 1}) : super(key: key);
   final controller = Get.put(PersistentNavBarController());
 
+
   List<Widget> _buildScreens() {
     return [
       const Exam(),

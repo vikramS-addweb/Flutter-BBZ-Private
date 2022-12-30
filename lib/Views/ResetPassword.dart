@@ -63,7 +63,7 @@ class ResetPassword extends StatelessWidget {
                     height: 30,
                   ),
                   Text(
-                    'Kindly enter your registered E-mail Address to continue to Reset your password.'.tr,
+                    'Kindly enter your registered E-mail Address to continue to Reset your password'.tr,
                     style: TextStylesCustom.textStyles_14
                         .apply(fontWeightDelta: -1),
                   ),

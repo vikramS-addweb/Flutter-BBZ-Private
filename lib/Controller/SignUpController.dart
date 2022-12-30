@@ -51,7 +51,7 @@ class SignUpController extends GetxController {
     debugPrint(response.toString());
 
     if (response!.isNotEmpty) {
-      isLoggedIn = true;
+
 
       if (response['error'] != null) {
         final dictMessage = Map<String, dynamic>.from(response['messages']);
@@ -75,12 +75,12 @@ class SignUpController extends GetxController {
         }
       } else {
         GetStorage().write('user', jsonEncode(response));
-
+        isLoggedIn = true;
         dictUserSaved = response;
         kSavedUserID = dictUserSaved[kUserID].toString();
         kTOKENSAVED = dictUserSaved[kTOKEN];
 
-
+        indexSelectedTab.value = 0;
         PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context,);
       }
     }

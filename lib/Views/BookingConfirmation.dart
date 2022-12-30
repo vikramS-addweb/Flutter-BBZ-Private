@@ -5,6 +5,7 @@ import '../Components/AppBarStyle.dart';
 import '../Styles/TextStyles.dart';
 import '../Styles/ColorStyle.dart';
 import '../Utils/Global.dart';
+import '../Utils/Constant.dart';
 import '../Styles/ImageStyle.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../Controller/BookingConfirmationController.dart';
@@ -86,7 +87,8 @@ class BookingConfirmation extends StatelessWidget {
     onWillPop: () async {
     // Do something here
     print("After clicking the Android Back Button");
-    PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
+    indexSelectedTab.value = 0;
+    PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false, isNavBarActive: true);
     return true;
     },
     child:Scaffold(
@@ -99,7 +101,8 @@ class BookingConfirmation extends StatelessWidget {
                 size: 30,
               ),
               onPressed: () {
-                PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
+                indexSelectedTab.value = 0;
+                PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false, isNavBarActive: true);
               },
             ),
             styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -193,7 +196,7 @@ class BookingConfirmation extends StatelessWidget {
                             {'item': 'Booking Number'.tr+':', 'value': '${controller.bookingConfirmationData['id'] != null ? controller.bookingConfirmationData['id'] : ''}'},
                             {'item': 'Booking Date'.tr+':', 'value': '${ controller.bookingConfirmationData['created_at']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['created_at']}')) : ''}'},
                             {'item': 'Payment Method'.tr+':', 'value': '${controller.bookingConfirmationData['gateway'] != null ? controller.bookingConfirmationData['gateway'] : ''}'},
-                            {'item': 'Booking Status'.tr+':', 'value': 'Booked'.tr}
+                            {'item': 'Booking Status'.tr+':', 'value': controller.bookingConfirmationData['status'] != null ? controller.bookingConfirmationData['status'] : 'Booked'.tr}
                           ],),
 
                         ))
@@ -241,7 +244,7 @@ class BookingConfirmation extends StatelessWidget {
                                 fontWeightDelta: 1),
                             ) :
                             Text(
-                              'Brüder Grimm Bildungscentrum e. V.Langstr. 60 63452 Hanau',
+                              '',
                               style: TextStylesCustom.textStyles_14.apply(
                                   color: ColorStyle.primaryColor_1570A5,
                                   fontWeightDelta: 1),))
@@ -499,7 +502,8 @@ class BookingConfirmation extends StatelessWidget {
                       ),
                       SizedBox(height: 20,),
                       ElevatedButtonCustoms(text: 'Go back to Home page'.tr, onTap: (){
-                        PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
+                        indexSelectedTab.value = 0;
+                        PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false, isNavBarActive: true);
                       },
                       width: Get.size.width,
                         colorBG: ColorStyle.primaryColor_1570A5,
