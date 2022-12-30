@@ -196,7 +196,7 @@ class BookingConfirmation extends StatelessWidget {
                             {'item': 'Booking Number'.tr+':', 'value': '${controller.bookingConfirmationData['id'] != null ? controller.bookingConfirmationData['id'] : ''}'},
                             {'item': 'Booking Date'.tr+':', 'value': '${ controller.bookingConfirmationData['created_at']!=null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingConfirmationData['created_at']}')) : ''}'},
                             {'item': 'Payment Method'.tr+':', 'value': '${controller.bookingConfirmationData['gateway'] != null ? controller.bookingConfirmationData['gateway'] : ''}'},
-                            {'item': 'Booking Status'.tr+':', 'value': 'Booked'.tr}
+                            {'item': 'Booking Status'.tr+':', 'value': controller.bookingConfirmationData['status'] != null ? controller.bookingConfirmationData['status'] : 'Booked'.tr}
                           ],),
 
                         ))
@@ -244,7 +244,7 @@ class BookingConfirmation extends StatelessWidget {
                                 fontWeightDelta: 1),
                             ) :
                             Text(
-                              'Brüder Grimm Bildungscentrum e. V.Langstr. 60 63452 Hanau',
+                              '',
                               style: TextStylesCustom.textStyles_14.apply(
                                   color: ColorStyle.primaryColor_1570A5,
                                   fontWeightDelta: 1),))

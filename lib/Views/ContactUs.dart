@@ -99,11 +99,13 @@ class ContactUs extends StatelessWidget {
                         const SizedBox(
                           height: 37,
                         ),
-                        Text(
-                          "We'd love to hear from you".tr,
-                          style: TextStylesCustom.textStyles_22.apply(
-                            color: Colors.white,
-                            // fontWeightDelta: 1,
+                        FittedBox(
+                          child: Text(
+                            "We'd love to hear from you".tr,
+                            style: TextStylesCustom.textStyles_22.apply(
+                              color: Colors.white,
+                              // fontWeightDelta: 1,
+                            ),
                           ),
                         ),
                         Text(

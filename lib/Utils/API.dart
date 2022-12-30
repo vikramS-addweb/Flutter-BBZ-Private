@@ -102,19 +102,27 @@ class API {
             "No changes made".tr.showError();
           }else if(parsed["error"].toString() == 'Password Incorrect'){
             "Password Incorrect".tr.showError();
+          }else if(parsed["error"].toString() == 'New Password cannot be the same as old password'){
+            "New Password cannot be same as old password".tr.showError();
           }
           else{
             parsed["error"].toString().showError();
+            print('api error error key : ${parsed["error"]}');
           }
         } else if (parsed["message"] != null) {
           if(parsed["message"].toString() == 'Email not found'){
             "Email not found".tr.showError();
-          }else if(parsed["error"].toString() == 'No changes made'){
+          }else if(parsed["message"].toString() == 'No changes made'){
             "No changes made".tr.showError();
-          }else if(parsed["error"].toString() == 'Password Incorrect'){
+          }else if(parsed["message"].toString() == 'Password Incorrect'){
             "Password Incorrect".tr.showError();
+          }else if(parsed["message"].toString() == 'Old password is incorrect'){
+            "Old password is incorrect".tr.showError();
+          }else if(parsed["message"].toString() == 'New Password cannot be the same as old password'){
+            "New Password cannot be same as old password".tr.showError();
           }else{
             parsed["message"].toString().showError();
+            print('api error message : ${parsed["message"]}');
           }
         } else {
           parsed["error"].toString().showError();
@@ -160,7 +168,13 @@ class API {
         if (parsed["error"] != null) {
           parsed["error"].toString().showError();
         } else if (parsed["message"] != null) {
-          parsed["message"].toString().showError();
+          print('haalo');
+          if(parsed["message"].toString() == 'No changes made'){
+            "No changes made".tr.showError();
+          }else{
+            parsed["message"].toString().showError();
+          }
+
         } else {
           parsed["error"].toString().showError();
         }

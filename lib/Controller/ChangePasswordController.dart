@@ -37,7 +37,7 @@ class ChangePasswordController extends GetxController {
     final response = await API.instance.post(endPoint: 'api/change-password', params: params);
 
     if (response!.isNotEmpty) {
-      'password changed successfully'.showSuccess();
+      'Password changed successfully'.tr.showSuccess();
       reset();
       loginController.logout();
 

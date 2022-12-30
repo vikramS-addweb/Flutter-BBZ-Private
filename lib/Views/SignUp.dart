@@ -76,7 +76,7 @@ class SignUp extends StatelessWidget {
                               if (value!.isEmpty) {
                                 return "First name is required".tr;
                               } else if (!alphaSpace.hasMatch(value)) {
-                                return "FN should have letters".tr;
+                                return "First name should have letters".tr;
                               } else if (value![0] == ' ') {
                                 // controller.userMessage.value.text = '';
                                 return "Can't start with space".tr;
@@ -103,7 +103,7 @@ class SignUp extends StatelessWidget {
                               if (value!.isEmpty) {
                                 return "Last name is required".tr;
                               } else if (!alphaSpace.hasMatch(value)) {
-                                return "LN should have letters".tr;
+                                return "Last name should have letters".tr;
                               } else if (value![0] == ' ') {
                                 // controller.userMessage.value.text = '';
                                 return "Can't start with space".tr;

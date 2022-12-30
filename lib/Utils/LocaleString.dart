@@ -254,7 +254,7 @@ class LocaleString extends Translations {
           "Agreement checkbox is required":
               "Das Kontrollkästchen für die Vereinbarung ist erforderlich",
 
-          "Identification No.": "Identifikationsnummer.",
+          "Identification No.": "Identifikationsnummer",
 
           "Terms and Conditions": "Geschäftsbedingungen",
           "Exam Expired": "Prüfung abgelaufen",
@@ -286,8 +286,8 @@ class LocaleString extends Translations {
           "Hello": "Hallo",
           "there": "dort",
           "Email can't start with space":"E-Mail darf nicht mit Leerzeichen beginnen",
-          "LN should have letters":"LN sollte Buchstaben haben",
-          "FN should have letters":"FN sollte Buchstaben haben",
+          "Last name should have letters":"Nachname sollte Buchstaben haben",
+          "First name should have letters":"Vorname sollte Buchstaben haben",
           "are a subsidiary of BBZ Altenkirchen GmbH & Co. KG":"sind eine Tochtergesellschaft von BBZ Altenkirchen GmbH & Co. KG",
   "BBZ Language Schools":"BBZ Sprache Schulen",
           "From Camera":"Von der Kamera",
@@ -311,6 +311,8 @@ class LocaleString extends Translations {
           "Mobile must contain number only":"Handy darf nur Nummer enthalten",
           "New Password cannot be same as old password":"Das neue Passwort darf nicht mit dem alten Passwort identisch sein",
           "ALREADY BOOKED":"BEREITS GEBUCHT",
+          "Password changed successfully":"das Passwort wurde erfolgreich geändert",
+          "Old password is incorrect":"das alte Passwort ist falsch",
 
 
           "Log In/Sign Up": "Einloggen Anmelden",
