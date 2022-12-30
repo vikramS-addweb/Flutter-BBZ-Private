@@ -218,6 +218,7 @@ class Exams extends StatelessWidget {
                                   ),
                                   SizedBox(height: 2,),
 
+                                  if(items![index]['paid'] != null)
                                   Row(
                                     children: [
                                       Expanded(
