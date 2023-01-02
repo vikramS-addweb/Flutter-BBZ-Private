@@ -29,9 +29,13 @@ class ExamDetail extends StatelessWidget {
       init: controller,
         initState: (state){
           controller.initMethods(id!);
+          print("Hi");
+          print(controller.examDetailData['content'].toString());
         },
+
         builder: ((controller) =>
         Obx(() =>
+
         controller.examDetailData.isEmpty ? Container(color: Colors.white,) : Scaffold(
           appBar: AppBarStyle(
             title:

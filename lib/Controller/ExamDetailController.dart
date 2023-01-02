@@ -1,3 +1,4 @@
+
 import 'package:bbz/Utils/Constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +31,14 @@ class ExamDetailController extends GetxController {
 
     if (response!.isNotEmpty) {
       debugPrint('response count ${response['data'].length}');
-      examDetailData.value = response['data'];
+      var body = response['data'];
+      var bodycontent = response['data']['content'];
+      if(bodycontent != null) {
+        var searchSrc = 'src=\"/uploads';
+        var replaceSrc = 'src=\"${API.instance.baseURL()}uploads';
+        body['content'] = bodycontent.replaceAll(searchSrc, replaceSrc);
+      }
+      examDetailData.value = body;
       update();
     }
   }
