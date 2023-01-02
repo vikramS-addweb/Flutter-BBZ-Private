@@ -16,6 +16,10 @@ class API {
 
   final _kBaseURL = 'https://bbzstage.addwebprojects.com/';
 
+  baseURL(){
+    return _kBaseURL;
+  }
+
   Future<bool> _checkInternet() async {
     try {
       showLoaderGetX();

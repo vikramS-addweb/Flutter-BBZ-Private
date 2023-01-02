@@ -20,7 +20,14 @@ class NewsDetailController extends GetxController {
 
     if (response!.isNotEmpty) {
       debugPrint('response count ${response['data'].length}');
-      newsDetailData.value = response['data'];
+      var body = response['data'];
+      var bodycontent = response['data']['content'];
+      if(bodycontent != null) {
+        var searchSrc = 'src=\"/uploads';
+        var replaceSrc = 'src=\"${API.instance.baseURL()}uploads';
+        body['content'] = bodycontent.replaceAll(searchSrc, replaceSrc);
+      }
+      newsDetailData.value = body;
       update();
     }
   }
