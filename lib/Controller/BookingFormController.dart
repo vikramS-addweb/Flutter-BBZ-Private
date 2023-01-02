@@ -142,7 +142,7 @@ class BookingFormController extends GetxController {
         'birth_place': birth_place.value.text,
         'country_of_birth': country_of_birth.value.text,
         'mother_tongue': motherToungue.value,
-        'telephone': telephone.value.text,
+        'tele_phone': telephone.value.text,
         'phone': mobile.value.text,
         'c/o': co.value.text,
         'address_line_1': first_name.value.text,
@@ -316,6 +316,7 @@ class BookingFormController extends GetxController {
 
     final response = await API.instance
         .post(endPoint: 'api/confirm/:gateways', params: params);
+        print('hi');
     print(response);
 
     if (response!.isNotEmpty) {

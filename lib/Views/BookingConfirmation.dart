@@ -2,6 +2,7 @@ import 'package:bbz/Components/ElevatedButtonCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Components/AppBarStyle.dart';
+import '../Controller/PersistentNavBarController.dart';
 import '../Styles/TextStyles.dart';
 import '../Styles/ColorStyle.dart';
 import '../Utils/Global.dart';
@@ -85,6 +86,8 @@ class BookingConfirmation extends StatelessWidget {
         builder: ((controller)=>Obx(() => controller.bookingConfirmationData.isEmpty ? Container(color: Colors.white,) : WillPopScope(
     onWillPop: () async {
     // Do something here
+     final navbarController = Get.find<PersistentNavBarController>();
+                navbarController.isNavBarActive.value = true;
     print("After clicking the Android Back Button");
     PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
     return true;

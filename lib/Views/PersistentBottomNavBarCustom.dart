@@ -63,6 +63,8 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
       init: controller,
     builder: ((controller)=>Obx(() => WillPopScope(
         onWillPop: () async {
+          final navbarController = Get.find<PersistentNavBarController>();
+          navbarController.isNavBarActive.value = true;
           print("After clicking the Android Back Button in persistentNavbar");
           return true;
         },

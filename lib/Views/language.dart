@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Components/AppBarStyle.dart';
+import '../Controller/PersistentNavBarController.dart';
 import '../Styles/ColorStyle.dart';
 import '../Utils/Global.dart';
 import '../Styles/TextStyles.dart';
@@ -21,10 +22,10 @@ class _LanguageState extends State<Language> {
   String language = 'english';
 
   @override
-  void initState(){
+  void initState() {
     setState(() {
       // print('langungae : ' + Get.locale.toString());
-      if(Get.locale.toString().contains('de')){
+      if (Get.locale.toString().contains('de')) {
         setState(() {
           this.language = 'deutsch';
         });
@@ -37,54 +38,79 @@ class _LanguageState extends State<Language> {
     return Scaffold(
         key: keyDrawer,
         drawer: DrawerScreen(),
-                  appBar: AppBarStyle(
-                    title: 'Language'.tr,
-
-                    leading: IconButton(
-                      icon: Icon(
-                        Icons.menu,
-                        color: ColorStyle.primaryColor_1570A5,
-                        size: 30,
-                      ),
-                      onPressed: () {
-                        keyDrawer.currentState!.openDrawer();
-                      },
-                    ),
-                    styleTitle: TextStylesCustom.textStyles_16.apply(
-                      color: ColorStyle.primaryColor_1570A5,
-                      fontWeightDelta: 1,
-                    ),
-                    elevation: 2,
-                  ),
-                  body: Container(
-                    color: ColorStyle.grey_DAE1E7,
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 50,),
-                        ElevatedButtonCustoms(text: 'English'.tr,onTap: (){
-                          var local = Locale('en','US');
-                          print(Get.locale);
-                          Get.updateLocale(local);
-                          setState(() {
-                            this.language = 'english';
-                          });
-                          GetStorage().write('setLanguage', 'english');
-                          navigateToBack(context);
-                        },width: Get.size.width, colorBG: this.language == 'english' ? ColorStyle.primaryColor_1570A5 : Colors.white, colorText: this.language == 'english' ? Colors.white : Colors.black,),
-                        SizedBox(height: 20,),
-                        ElevatedButtonCustoms(text: 'Deutsch'.tr,onTap: (){
-                          var local = Locale('de');
-                          print(Get.locale);
-                          Get.updateLocale(local);
-                          setState(() {
-                            this.language = 'deutsch';
-                          });
-                          GetStorage().write('setLanguage', 'deutsch');
-                          navigateToBack(context);
-                        },width: Get.size.width, colorBG: this.language == 'deutsch' ? ColorStyle.primaryColor_1570A5 : Colors.white, colorText: this.language == 'deutsch' ? Colors.white : Colors.black,),
-                      ],
-                    ),
-                  ));
+        appBar: AppBarStyle(
+          title: 'Language'.tr,
+          leading: IconButton(
+            icon: Icon(
+              Icons.menu,
+              color: ColorStyle.primaryColor_1570A5,
+              size: 30,
+            ),
+            onPressed: () {
+              keyDrawer.currentState!.openDrawer();
+            },
+          ),
+          styleTitle: TextStylesCustom.textStyles_16.apply(
+            color: ColorStyle.primaryColor_1570A5,
+            fontWeightDelta: 1,
+          ),
+          elevation: 2,
+        ),
+        body: Container(
+          color: ColorStyle.grey_DAE1E7,
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              ElevatedButtonCustoms(
+                text: 'English'.tr,
+                onTap: () {
+                  var local = Locale('en', 'US');
+                  print(Get.locale);
+                  Get.updateLocale(local);
+                  setState(() {
+                    this.language = 'english';
+                  });
+                  GetStorage().write('setLanguage', 'english');
+                    final navbarController = Get.find<PersistentNavBarController>();
+                navbarController.isNavBarActive.value = true;
+                  navigateToBack(context);
+                },
+                width: Get.size.width,
+                colorBG: this.language == 'english'
+                    ? ColorStyle.primaryColor_1570A5
+                    : Colors.white,
+                colorText:
+                    this.language == 'english' ? Colors.white : Colors.black,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButtonCustoms(
+                text: 'Deutsch'.tr,
+                onTap: () {
+                  var local = Locale('de');
+                  print(Get.locale);
+                  Get.updateLocale(local);
+                  setState(() {
+                    this.language = 'deutsch';
+                  });
+                  GetStorage().write('setLanguage', 'deutsch');
+                final navbarController = Get.find<PersistentNavBarController>();
+                navbarController.isNavBarActive.value = true;
+                  navigateToBack(context);
+                },
+                width: Get.size.width,
+                colorBG: this.language == 'deutsch'
+                    ? ColorStyle.primaryColor_1570A5
+                    : Colors.white,
+                colorText:
+                    this.language == 'deutsch' ? Colors.white : Colors.black,
+              ),
+            ],
+          ),
+        ));
   }
 }

@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
+import '../Controller/PersistentNavBarController.dart';
 import '../Utils/Global.dart';
 import 'BookingDetails.dart';
 import 'Invoice.dart';
@@ -24,7 +25,17 @@ class BookingHistory extends StatelessWidget {
         initState: (state){
           controller.initMethods();
         },
-        builder: ((controller)=>Obx(() => Scaffold(
+        builder: ((controller)=>Obx(() =>
+        
+        WillPopScope(
+          onWillPop: () async {
+            // Do something here
+             final navbarController = Get.find<PersistentNavBarController>();
+                navbarController.isNavBarActive.value = true;
+            print("After clicking the Android Back Button");
+            return true;
+          },
+         child: Scaffold(
           backgroundColor: ColorStyle.white,
           appBar: AppBarStyle(
             title: 'Booking History'.tr,
@@ -67,7 +78,7 @@ class BookingHistory extends StatelessWidget {
               ),
             ),
           ),
-        )))
+        ))))
     );
 
   }

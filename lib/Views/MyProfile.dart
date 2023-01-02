@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 
 import '../Components/BGImage.dart';
+import '../Controller/PersistentNavBarController.dart';
 import '../Styles/ColorStyle.dart';
 import 'package:flutter/material.dart';
 import './ChangePassword.dart';
@@ -36,7 +37,16 @@ class MyProfile extends StatelessWidget {
           controller.initMethods();
         },
         init: controller,
-        builder: ((controller) => Obx(() => Scaffold(
+        builder: ((controller) => Obx(() =>
+        WillPopScope(
+          onWillPop: () async {
+            // Do something here
+             final navbarController = Get.find<PersistentNavBarController>();
+                navbarController.isNavBarActive.value = true;
+            print("After clicking the Android Back Button");
+            return true;
+          },
+        child: Scaffold(
               appBar: AppBarStyle(
                 title: 'My Profile'.tr,
                 leading: IconButton(
@@ -547,6 +557,6 @@ class MyProfile extends StatelessWidget {
                       ))
                 ],
               ),
-            ))));
+            )))));
   }
 }
