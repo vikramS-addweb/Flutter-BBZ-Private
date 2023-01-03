@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:html/dom.dart' as dom;
 import '../Components/AppBarStyle.dart';
+import '../Controller/PersistentNavBarController.dart';
 import '../Styles/TextStyles.dart';
 import '../Styles/ColorStyle.dart';
 import '../Utils/Global.dart';
@@ -36,7 +37,15 @@ class ExamDetail extends StatelessWidget {
         builder: ((controller) =>
         Obx(() =>
 
-        controller.examDetailData.isEmpty ? Container(color: Colors.white,) : Scaffold(
+    WillPopScope(
+    onWillPop: () async {
+    final navbarController = Get.find<PersistentNavBarController>();
+    navbarController.isNavBarActive.value = true;
+    print(
+    "After clicking the Android Back Button in persistentNavbar");
+    return true;
+    },
+        child: controller.examDetailData.isEmpty ? Container(color: Colors.white,) : Scaffold(
           appBar: AppBarStyle(
             title:
                 controller.examDetailData['title'] != null ? '${controller.examDetailData['title']}':
@@ -320,7 +329,7 @@ class ExamDetail extends StatelessWidget {
           ),
         )
         )
-            ))
+        )))
       ;
   }
 }

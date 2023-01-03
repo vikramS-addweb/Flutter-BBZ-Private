@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
+import '../Controller/PersistentNavBarController.dart';
 import '../Utils/Global.dart';
 import 'BookingDetails.dart';
 import 'Invoice.dart';
@@ -20,54 +21,64 @@ class BookingHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-      init: controller,
+        init: controller,
         initState: (state){
           controller.initMethods();
         },
-        builder: ((controller)=>Obx(() => Scaffold(
-          backgroundColor: ColorStyle.white,
-          appBar: AppBarStyle(
-            title: 'Booking History'.tr,
-            leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: ColorStyle.primaryColor_1570A5,
-                size: 30,
-              ),
-              onPressed: () {
-                navigateToBack(context);
-              },
-            ),
-            styleTitle: TextStylesCustom.textStyles_16.apply(
-              color: ColorStyle.primaryColor_1570A5,
-              fontWeightDelta: 1,
-            ),
-            elevation: 2,
-          ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // ----------------------------------UPCOMING EXAMS------------------------------------->
-                  Exams(
-                    title: 'Upcoming Exams'.tr,
-                    itemCount: 1,
-                    items: controller.upcomingExamHistoryData.value
-                  ),
+        builder: ((controller)=>Obx(() =>
 
-                  // ----------------------------------PAST EXAMS------------------------------------->
-                  Exams(
-                    title: 'Past Exams'.tr,
-                    itemCount: 3,
-                    items: controller.pastExamHistoryData.value,
+            WillPopScope(
+                onWillPop: () async {
+                  // Do something here
+                  final navbarController = Get.find<PersistentNavBarController>();
+                  navbarController.isNavBarActive.value = true;
+                  print("After clicking the Android Back Button");
+                  return true;
+                },
+                child: Scaffold(
+                  backgroundColor: ColorStyle.white,
+                  appBar: AppBarStyle(
+                    title: 'Booking History'.tr,
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: ColorStyle.primaryColor_1570A5,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        navigateToBack(context);
+                      },
+                    ),
+                    styleTitle: TextStylesCustom.textStyles_16.apply(
+                      color: ColorStyle.primaryColor_1570A5,
+                      fontWeightDelta: 1,
+                    ),
+                    elevation: 2,
                   ),
-                ],
-              ),
-            ),
-          ),
-        )))
+                  body: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // ----------------------------------UPCOMING EXAMS------------------------------------->
+                          Exams(
+                              title: 'Upcoming Exams'.tr,
+                              itemCount: 1,
+                              items: controller.upcomingExamHistoryData.value
+                          ),
+
+                          // ----------------------------------PAST EXAMS------------------------------------->
+                          Exams(
+                            title: 'Past Exams'.tr,
+                            itemCount: 3,
+                            items: controller.pastExamHistoryData.value,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ))))
     );
 
   }
@@ -103,7 +114,7 @@ class Exams extends StatelessWidget {
           },
           itemBuilder: (context, index) {
             return items![index]['booked_event'].length != 0?
-              Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -165,7 +176,7 @@ class Exams extends StatelessWidget {
                                           ),
 
                                           TextSpan(
-                                            text: '${ items![index]['start_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['start_date']}')) : ''} | ${ items![index]['start_date'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['start_date']}')):''}  ',
+                                            text: '${ items![index]['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['created_at']}')) : ''} | ${ items![index]['created_at'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['created_at']}')):''}  ',
                                             style: TextStylesCustom.textStyles_12
                                                 .apply(color: ColorStyle.primaryColor_1570A5),
                                           ),
@@ -266,9 +277,9 @@ class Exams extends StatelessWidget {
                               width: 10,
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 8.0, right: 8),
-                              child: SvgPicture.asset(ImageStyle.bookingHistory_arrow)
+                                padding:
+                                const EdgeInsets.only(top: 8.0, right: 8),
+                                child: SvgPicture.asset(ImageStyle.bookingHistory_arrow)
                             )
                           ],
                         ),
