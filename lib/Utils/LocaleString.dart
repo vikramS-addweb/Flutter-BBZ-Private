@@ -313,6 +313,9 @@ class LocaleString extends Translations {
           "ALREADY BOOKED":"BEREITS GEBUCHT",
           "Password changed successfully":"das Passwort wurde erfolgreich geändert",
           "Old password is incorrect":"das alte Passwort ist falsch",
+          "Other":"Andere",
+          'Unable to proceed, check your internet connection.':'Fortfahren nicht möglich, überprüfen Sie Ihre Internetverbindung.',
+          'Software caused connection abort':'Software verursachte Verbindungsabbruch',
 
 
           "Log In/Sign Up": "Einloggen Anmelden",

@@ -44,7 +44,7 @@ class API {
     }
   }
 
-  Future<Map<String, dynamic>?> get({required String endPoint}) async {
+  Future get({required String endPoint}) async {
     if (!await _checkInternet()) {
       return null;
     }
@@ -61,8 +61,8 @@ class API {
       debugPrint(response.statusCode.toString());
       // debugPrint(response.body);
 
-      final Map parsed = json.decode(response.body);
-      return parsed as Map<String, dynamic>;
+      final parsed = json.decode(response.body);
+      return parsed;
     } on Exception catch (exception) {
       hideLoader();
       debugPrint('Exception is:-' + exception.toString());

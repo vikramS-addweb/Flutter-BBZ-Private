@@ -15,10 +15,14 @@ import '../Views/BookingConfirmation.dart';
 import 'package:http/http.dart' as http;
 
 class BookingFormController extends GetxController {
+
+  RxList motherToungeData = [].obs;
+
   void initMethods() {
     reset();
     Future.delayed(const Duration(microseconds: 100), () {
       getUserDetails();
+      fetchMotherTongue();
     });
   }
 
@@ -69,6 +73,18 @@ class BookingFormController extends GetxController {
   //booking confirmation variables
   RxString amount = ''.obs;
   RxString code = ''.obs;
+
+  //------------------------------------------------- Fetch mother toungue-------------------------->
+  Future fetchMotherTongue() async {
+    final response = await API.instance.get(endPoint: 'api/motherTongue');
+
+    if (response!.isNotEmpty) {
+      debugPrint('mothertoungue response:  ${response}');
+
+      motherToungeData.value = response;
+      update();
+    }
+  }
 
 // -----------------------------------------------------Book exam ----------------------------------->
   registerExam() async {
@@ -300,7 +316,11 @@ class BookingFormController extends GetxController {
         
       }
     } catch (e) {
-      e.toString().showError();
+      if(e.toString() == 'Unable to proceed, check your internet connection.'){
+        'Unable to proceed, check your internet connection.'.tr.showError();
+      }else {
+        e.toString().showError();
+      }
     }
 
     return null;
@@ -391,7 +411,14 @@ class BookingFormController extends GetxController {
           bookingConfirm();
         },
         onError: (error) {
-          "$error".showError();
+          if(error.toString() == 'Unable to proceed, check your internet connection.'){
+            'Unable to proceed, check your internet connection.'.tr.showError();
+          }else if(error.toString() == 'Software caused connection abort'){
+            'Software caused connection abort'.tr.showError();
+          }else{
+            "$error".showError();
+          }
+
           print("onError: $error");
         },
         onCancel: (params) {
@@ -427,7 +454,12 @@ class BookingFormController extends GetxController {
       }
     } on StripeConfigException catch (e) {
       print(e.message);
-      e.toString().showError();
+      if(e.toString() == 'Unable to proceed, check your internet connection.'){
+        'Unable to proceed, check your internet connection.'.tr.showError();
+      }else {
+        e.toString().showError();
+      }
+
     }
   }
 
