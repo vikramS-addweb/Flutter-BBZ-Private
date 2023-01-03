@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 // import '../../Controller/LoginController.dart';
 // import '../Auth/SignUp.dart';
 // import '../Auth/ResetPassword.dart';
+import '../Controller/PersistentNavBarController.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/TextFieldCustom.dart';
 import '../Components/TextRichCustom.dart';
@@ -29,13 +30,15 @@ class ChangePassword extends StatelessWidget {
   Widget build(BuildContext context) {
     // final controller = LoginController();
     return GetBuilder(
-      initState: (state){
+        initState: (state){
 
-      },
-      init: controller,
+        },
+        init: controller,
         builder: ((controller)=>Obx(() => WillPopScope(
           onWillPop: () async {
             // Do something here
+            final navbarController = Get.find<PersistentNavBarController>();
+            navbarController.isNavBarActive.value = true;
             print("After clicking the Android Back Button");
             controller.reset();
             return true;

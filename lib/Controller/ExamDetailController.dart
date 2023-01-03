@@ -47,16 +47,10 @@ class ExamDetailController extends GetxController {
     final response = await API.instance.get(endPoint: 'api/bookedExam/$id');
 
     if (response!.isNotEmpty) {
-      if (response['status'] != null) {
-        if (response['status'] == 'Not') {
-          isBooked.value = false;
-        } else if (response['status'] == 'booked') {
-          isBooked.value = true;
-        } else {
-          response['status'].toString().showError();
-        }
+      if (response['check'] != 'paid') {
+        isBooked.value = false;
       } else {
-        response['message'].toString().showError();
+        isBooked.value = true;
       }
       update();
     }
