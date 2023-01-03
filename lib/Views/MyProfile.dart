@@ -461,11 +461,11 @@ class MyProfile extends StatelessWidget {
                                       } else if (!value!.isNumericOnly) {
                                         return 'Postal code must contain number only'
                                             .tr;
-                                      } else if (value.length < 2) {
-                                        return "Postal code can't have less than 2 digits"
+                                      } else if (value.length < 6) {
+                                        return "Postal code can't have less than 6 digits"
                                             .tr;
-                                      } else if (value.length > 6) {
-                                        return "Postal code can't have more than 6 digits"
+                                      } else if (value.length > 10) {
+                                        return "Postal code can't have more than 10 digits"
                                             .tr;
                                       } else if ((value.replaceAll('0', ''))
                                           .isEmpty) {
