@@ -213,14 +213,12 @@ class BookingFormController extends GetxController {
     final params = {
       '_method': 'post',
     };
-   File filePath = File(image.value.path.split('/').last);
-print(filePath);
-print(image.value.absolute);
+print(image.value.path);
     final response = await API.instance.postImage(
       endPoint: "api/bookingImage",
       params: params,
       fileParams: "id_proof",
-      file: filePath,
+      file: image.value,
     );
 
     if (response!.isNotEmpty) {
