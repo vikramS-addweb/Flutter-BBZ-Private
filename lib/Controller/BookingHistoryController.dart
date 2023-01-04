@@ -29,10 +29,7 @@ class BookingHistoryController extends GetxController {
   }
 
   Future fetchPastExamHistory() async {
-    final response = await API.instance.get(endPoint: 'api/past-exams/378');
-   print(dictUserSaved);
-
-   print(response);
+    final response = await API.instance.get(endPoint: 'api/past-exams/${dictUserSaved['id']}');
     if (response!.isNotEmpty) {
       debugPrint('Past history response count ${response['data'].length}');
       pastExamHistoryData.value = response['data'];
