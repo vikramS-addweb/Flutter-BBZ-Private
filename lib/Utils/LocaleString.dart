@@ -118,9 +118,9 @@ class LocaleString extends Translations {
               "Geburtsort darf nur Buchstaben enthalten",
           "Country of birth must contain only letters":
               "Herkunftsland darf nur Buchstaben enthalten",
-          "Postal code can't have less than 2 digits":"Die Postleitzahl darf nicht weniger als 2 Ziffern haben",
-          "Postal code can't have more than 6 digits":
-              "Die Postleitzahl darf nicht mehr als 6 Ziffern haben",
+          "Postal code can't have less than 4 digits":"Die Postleitzahl darf nicht weniger als 4 Ziffern haben",
+          "Postal code can't have more than 10 digits":
+              "Die Postleitzahl darf nicht mehr als 10 Ziffern haben",
           "Success!": "Erfolg!",
           "Image Uploaded": "Bild hochgeladen",
           "Booking Successful": "Buchung erfolgreich",
