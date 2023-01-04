@@ -20,10 +20,17 @@ class BookingHistoryController extends GetxController {
   // String code = '65F4B64C97C67DEC33AA3354304818';
 
   Future fetchUpcomingExamHistory() async {
+    upcomingExamHistoryData.value = [];
     final response = await API.instance.get(endPoint: 'api/upcoming-exams/${dictUserSaved['id']}');
     if (response!.isNotEmpty) {
       debugPrint(' upcoming history response count ${response['data'].length}');
-      upcomingExamHistoryData.value = response['data'];
+      // print(response['data']);
+      for(int i=0; i < response['data'].length; i++){
+        if(response['data'][i]['status'] == 'paid'){
+          print('hi');
+          upcomingExamHistoryData.add(response['data'][i]);
+        }
+      }
       update();
     }
   }
