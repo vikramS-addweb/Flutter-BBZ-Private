@@ -126,7 +126,8 @@ class BookingFormController extends GetxController {
     // if (image.value.path.isEmpty) {
     //   "ID Proof Image is required".showError();
     // } else {
-       uploadImage();
+
+    // uploadImage();
 
       final params = {
         '_method': 'post',
