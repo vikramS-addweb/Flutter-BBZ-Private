@@ -142,7 +142,8 @@ class BookingFormController extends GetxController {
     // if (image.value.path.isEmpty) {
     //   "ID Proof Image is required".showError();
     // } else {
-      // uploadImage();
+
+    // uploadImage();
 
       final params = {
         '_method': 'post',
@@ -229,7 +230,7 @@ class BookingFormController extends GetxController {
     final params = {
       '_method': 'post',
     };
-
+print(image.value.path);
     final response = await API.instance.postImage(
       endPoint: "api/bookingImage",
       params: params,
