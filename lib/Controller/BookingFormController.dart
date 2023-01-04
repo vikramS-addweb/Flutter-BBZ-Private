@@ -101,6 +101,7 @@ class BookingFormController extends GetxController {
     print(motherToungue.value);
     print(telephone.value.text);
     print(mobile.value.text);
+    print(image.value.path.split('/').last);
     print(co.value.text);
     print(street.value.text);
     print(city.value.text);
@@ -144,10 +145,9 @@ class BookingFormController extends GetxController {
     // } else {
 
     // uploadImage();
-
       final params = {
         '_method': 'post',
-        'id_proof': image.value.path,
+        'id_proof': image.value.path.split('/').last,
         'email': email.value.text,
         'event_id': '${examDetailController.examDetailData.value['id']}',
         'salutation': salutation.value,
@@ -231,6 +231,7 @@ class BookingFormController extends GetxController {
       '_method': 'post',
     };
 print(image.value.path);
+print(image.value);
     final response = await API.instance.postImage(
       endPoint: "api/bookingImage",
       params: params,
