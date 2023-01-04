@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 
 import '../Components/BGImage.dart';
+import '../Controller/PersistentNavBarController.dart';
 import '../Styles/ColorStyle.dart';
 import 'package:flutter/material.dart';
 import './ChangePassword.dart';
@@ -45,6 +46,8 @@ class MyProfile extends StatelessWidget {
                     color: ColorStyle.primaryColor_1570A5,
                   ),
                   onPressed: () {
+                      final navbarController = Get.find<PersistentNavBarController>();
+              navbarController.isNavBarActive.value = true;
                     navigateToBack(context);
                   },
                 ),

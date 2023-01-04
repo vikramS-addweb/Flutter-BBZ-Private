@@ -71,6 +71,8 @@ class ChangePassword extends StatelessWidget {
                 onPressed: () {
                   // Get.back();
                   controller.reset();
+                  final navbarController = Get.find<PersistentNavBarController>();
+              navbarController.isNavBarActive.value = true;
                   navigateToBack(context);
                 },
               ),

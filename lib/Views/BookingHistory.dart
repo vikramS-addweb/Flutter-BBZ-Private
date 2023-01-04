@@ -46,6 +46,8 @@ class BookingHistory extends StatelessWidget {
                         size: 30,
                       ),
                       onPressed: () {
+                        final navbarController = Get.find<PersistentNavBarController>();
+              navbarController.isNavBarActive.value = true;
                         navigateToBack(context);
                       },
                     ),
