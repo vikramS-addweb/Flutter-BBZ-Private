@@ -176,7 +176,7 @@ class Exams extends StatelessWidget {
                                           ),
 
                                           TextSpan(
-                                            text: '${ items![index]['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['created_at']}')) : ''} | ${ items![index]['created_at'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['created_at']}')):''}  ',
+                                            text: '${ items![index]['start_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${items![index]['start_date']}')) : ''} | ${ items![index]['start_date'] != null ? DateFormat.jm().format(DateTime.parse('${items![index]['start_date']}')):''}  ',
                                             style: TextStylesCustom.textStyles_12
                                                 .apply(color: ColorStyle.primaryColor_1570A5),
                                           ),
