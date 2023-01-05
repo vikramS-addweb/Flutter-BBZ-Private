@@ -516,7 +516,7 @@ class BookingForm extends StatelessWidget {
                                           value.trim().isEmpty) {
                                         return "Identification number is required"
                                             .tr;
-                                      } else if (!alphaNumeric
+                                      } else if (!alphaNumericSpace
                                           .hasMatch(value)) {
                                         return "Identification number contains only numbers and letters."
                                             .tr;
@@ -951,10 +951,12 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Postal code is required".tr;
-                                      } else if (!value.isNumericOnly) {
-                                        return "Postal code must contain number only"
+                                      }
+                                      else if (!alphaNumeric.hasMatch(value)) {
+                                        return "Postal code must contain number and character only"
                                             .tr;
-                                      } else if (value.length < 4) {
+                                      }
+                                      else if (value.length < 4) {
                                         return "Postal code can't have less than 4 digits"
                                             .tr;
                                       } else if (value.length > 10) {
