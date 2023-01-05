@@ -241,7 +241,7 @@ class _SignUpState extends State<SignUp> {
                           return "Confirm password is required".tr;
                         } else if (controller.password.value.text !=
                             controller.cPassword.value.text) {
-                          return "Password and confirm password must be same."
+                          return "Password and confirm password must be same"
                               .tr;
                         } else {
                           return null;

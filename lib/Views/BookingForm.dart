@@ -619,7 +619,7 @@ class BookingForm extends StatelessWidget {
                                         return "Birth place can't start with space"
                                             .tr;
                                       } else if (!alphaSpace.hasMatch(value)) {
-                                        return "Birth place must only contain letters"
+                                        return "Birth place must contain only letters"
                                             .tr;
                                       } else {
                                         return null;
@@ -640,7 +640,7 @@ class BookingForm extends StatelessWidget {
                                         return "Country of birth is required"
                                             .tr;
                                       } else if (!alphaSpace.hasMatch(value)) {
-                                        return "Country of birth contains letters only"
+                                        return "Country of birth must contain only letters"
                                             .tr;
                                       } else if (value![0] == ' ') {
                                         return "Country of birth place can't start with space"
@@ -671,7 +671,7 @@ class BookingForm extends StatelessWidget {
                                     colorBoder: ColorStyle.grey_DAE1E7,
                                     padding:
                                         EdgeInsets.only(right: 15, bottom: 10),
-                                    hintText: 'Please Select'.tr,
+                                    hintText: 'Please select'.tr,
                                     validator: (value) {
                                       if (value == null) {
                                         return 'Mother tongue is required'.tr;
@@ -930,7 +930,7 @@ class BookingForm extends StatelessWidget {
                                       if (value!.isEmpty) {
                                         return "City is required".tr;
                                       } else if (!alphaSpace.hasMatch(value)) {
-                                        return "City contains only letters.".tr;
+                                        return "City name must only contain letters".tr;
                                       } else if (value!.isNotEmpty &&
                                           value![0] == ' ') {
                                         return "City can't start with space".tr;
@@ -997,7 +997,7 @@ class BookingForm extends StatelessWidget {
                                     child: controller.country.value == ''
                                         ? ContainerWithLabel(
                                             firstText: 'Country'.tr,
-                                            hintText: 'Please Select'.tr,
+                                            hintText: 'Please select'.tr,
                                             isError:
                                                 controller.countryError.value,
                                             colorhintText:

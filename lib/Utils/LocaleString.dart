@@ -316,6 +316,7 @@ class LocaleString extends Translations {
           "Other":"Andere",
           'Unable to proceed, check your internet connection.':'Fortfahren nicht möglich, überprüfen Sie Ihre Internetverbindung.',
           'Software caused connection abort':'Software verursachte Verbindungsabbruch',
+          "All digits can't be zeros":"Alle Ziffern dürfen keine Nullen sein",
 
 
           "Log In/Sign Up": "Einloggen Anmelden",
