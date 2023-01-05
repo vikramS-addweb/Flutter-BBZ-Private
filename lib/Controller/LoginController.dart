@@ -64,6 +64,7 @@ class LoginController extends GetxController {
   // }
 
   userLogin() async {
+    FocusManager.instance.primaryFocus!.unfocus();
     final params = {
       'email': useremail.value.text,
       'password': userPassword.value.text
