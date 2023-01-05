@@ -290,6 +290,7 @@ class _ExamState extends State<Exam> {
                                                 padding: const EdgeInsets.all(0),
                                                 colorBoder: Colors.transparent,
                                                 controller: controller.search,
+                                                showPrefix: false,
                                                 hintText:
                                                     'Search everything here...'.tr,
                                                 colorHint: ColorStyle
@@ -442,7 +443,7 @@ class _ExamState extends State<Exam> {
 
                       ),
                       const SizedBox(
-                        height: 50,
+                        height: 25,
                       ),
                       Container(
                         color: Colors.white,
@@ -819,7 +820,7 @@ class ItemsList extends StatelessWidget {
                             color: ColorStyle.grey_DAE1E7,
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 5,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -842,7 +843,7 @@ class ItemsList extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 5,
                           ),
                         ],
                       ),

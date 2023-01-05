@@ -44,7 +44,7 @@ class ProgressBarCircularCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
-      radius: 30,
+      radius: 22,
       lineWidth: 7.0,
       animation: true,
       animationDuration: 1000,
@@ -55,7 +55,7 @@ class ProgressBarCircularCustom extends StatelessWidget {
       center: Text(
           '${(progress / total > 1.0) ? 100 : (progress * 100  / total).round()}%',
         // '240',
-          style: TextStylesCustom.textStyles_13.apply(
+          style: TextStylesCustom.textStyles_10.apply(
               fontWeightDelta: 2,
               color: circleColor((progress*100 / total).round()) ??  ColorStyle.brown_C16D00
           )

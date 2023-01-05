@@ -148,6 +148,7 @@ class TextFormFieldOutline extends StatelessWidget {
   final bool readOnly;
   final bool? showDateIcon;
   final bool? formatInput;
+  final bool? showPrefix;
 
   TextFormFieldOutline({
     Key? key,
@@ -171,6 +172,7 @@ class TextFormFieldOutline extends StatelessWidget {
     this.readOnly = false,
     this.showDateIcon = false,
     this.formatInput = false,
+    this.showPrefix = true,
   }) : super(key: key);
 
   @override
@@ -186,7 +188,7 @@ class TextFormFieldOutline extends StatelessWidget {
       ] : [],
       decoration: InputDecoration(
           contentPadding: padding,
-          prefix: Padding(padding: EdgeInsets.only(left: 14),),
+          prefix: showPrefix! ? Padding(padding: EdgeInsets.only(left: 14),) : SizedBox(width: 0,),
         // suffixIcon: Image.asset(ImageStyle.calendar),
         suffixIcon: showDateIcon! ?  Padding(
           padding: const EdgeInsets.only(right:15.0),

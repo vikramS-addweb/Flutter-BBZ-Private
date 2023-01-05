@@ -72,7 +72,7 @@ class _DropdownButtonCustomState extends State<DropdownButtonCustom> {
                 hint: Text(
                   widget.hintText!,
                   style: widget.textStyle!.apply(color: ColorStyle.grey_A8B0B5),
-                  textAlign: TextAlign.center,
+                  // textAlign: TextAlign.center,
                 ),
                 underline: Container(
                   height: 0,

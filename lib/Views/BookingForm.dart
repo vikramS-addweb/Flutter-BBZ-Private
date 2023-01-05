@@ -1189,9 +1189,15 @@ class BookingForm extends StatelessWidget {
                                                         TapGestureRecognizer()
                                                           ..onTap =
                                                               () async => {
-                                                                    await launchUrl(
-                                                                        Uri.parse(
-                                                                            'https://www.sprachtestcenter.de/page/terms-and-conditions'))
+                                                                if (Get.locale.toString().contains('de')) {
+
+                                                                  await launchUrl(
+                                                                      Uri.parse('https://www.sprachtestcenter.de/de/page/terms-and-conditions'))
+                                                                }else{
+                                                                  await launchUrl(
+                                                                      Uri.parse(
+                                                                          'https://www.sprachtestcenter.de/page/terms-and-conditions'))
+                                                                }
                                                                   }),
                                               ],
                                             ),
@@ -1261,9 +1267,15 @@ class BookingForm extends StatelessWidget {
                                                         TapGestureRecognizer()
                                                           ..onTap =
                                                               () async => {
+                                                                  if (Get.locale.toString().contains('de')) {
+
+                                                                      await launchUrl(
+                                                                              Uri.parse('https://www.sprachtestcenter.de/de/page/privacy-policy'))
+                                                                  }else{
                                                                     await launchUrl(
                                                                         Uri.parse(
                                                                             'https://www.sprachtestcenter.de/page/privacy-policy'))
+                                                                  }
                                                                   }),
                                                 TextSpan(
                                                     text:
