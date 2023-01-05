@@ -107,6 +107,10 @@ class BookingConfirmation extends StatelessWidget {
                     size: 30,
                   ),
                   onPressed: () {
+                    final navbarController = Get.find<PersistentNavBarController>();
+              final examScreenController = Get.find<ExamScreenController>();
+              navbarController.isNavBarActive.value = true;
+              examScreenController.inExamScreen.value = true;
                     PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
                   },
                 ),
