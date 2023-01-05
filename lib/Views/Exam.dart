@@ -201,27 +201,26 @@ class _ExamState extends State<Exam> {
                           children: [
                             Image.asset(
                               ImageStyle.examBG,
-                              height: 170,
+                              height: 200,
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),
                             Container(
                               padding:
-                                  const EdgeInsets.only(left: 16, right: 16),
+                              const EdgeInsets.only(left: 16, right: 16),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const SizedBox(
-                                    height: 20,
+                                    height: 10,
                                   ),
-                                  FittedBox(
-                                    child: Text(
-                                      'Book Your Exam Now!'.tr,
-                                      style: TextStylesCustom.textStyles_26.apply(
-                                        color: Colors.white,
-                                        // fontWeightDelta: 1,
-                                      ),
+                                  Text(
+                                    'Book Your Exam Now!'.tr,
+                                    style: TextStylesCustom.textStyles_26.apply(
+                                      color: Colors.white,
+                                      // fontWeightDelta: 2,
                                     ),
+                                    // maxLines: 2,
                                   ),
                                   Text(
                                     'Use the search filters to find specific courses faster and easier'.tr,
@@ -230,7 +229,7 @@ class _ExamState extends State<Exam> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 40,
+                                    height: 80,
                                   ),
                                 ],
                               ),
@@ -241,7 +240,7 @@ class _ExamState extends State<Exam> {
                                   // height: 320,
                                   width: Get.mediaQuery.size.width,
                                   margin: const EdgeInsets.only(
-                                      top: 120, left: 16, right: 16),
+                                      top: 150, left: 16, right: 16),
                                   padding: const EdgeInsets.only(
                                     top: 20,
                                   ),
@@ -266,12 +265,12 @@ class _ExamState extends State<Exam> {
                                         decoration: BoxDecoration(
                                             border: Border(
                                                 bottom: BorderSide(
-                                          width: 2,
-                                          color: ColorStyle.grey_DAE1E7,
-                                        ))),
+                                                  width: 2,
+                                                  color: ColorStyle.grey_DAE1E7,
+                                                ))),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               'Location, Date or Level'.tr,
@@ -291,7 +290,7 @@ class _ExamState extends State<Exam> {
                                                 colorBoder: Colors.transparent,
                                                 controller: controller.search,
                                                 hintText:
-                                                    'Search everything here...'.tr,
+                                                'Search everything here...'.tr,
                                                 colorHint: ColorStyle
                                                     .primaryColor_1570A5
                                                     .withOpacity(0.6),
@@ -311,18 +310,18 @@ class _ExamState extends State<Exam> {
                                       DropdownButtonCustom(
                                         controllerValue: controller.location,
                                         width:
-                                            MediaQuery.of(context).size.width - 32,
+                                        MediaQuery.of(context).size.width - 32,
                                         height: 50,
                                         hintText: 'Select Your Center Location'.tr,
                                         list: controller
-                                                    .searchDetails['locations'] !=
-                                                null
+                                            .searchDetails['locations'] !=
+                                            null
                                             ? controller.searchDetails['locations']
                                             : [
-                                                {'name': 'One'},
-                                                {'name': 'Two'},
-                                                {'name': 'Three'}
-                                              ],
+                                          {'name': 'One'},
+                                          {'name': 'Two'},
+                                          {'name': 'Three'}
+                                        ],
                                         padding: const EdgeInsets.only(
                                             left: 16, right: 16),
                                         colorIcon: ColorStyle.primaryColor_1570A5,
@@ -378,18 +377,18 @@ class _ExamState extends State<Exam> {
                                       DropdownButtonCustom(
                                         controllerValue: controller.language,
                                         width:
-                                            MediaQuery.of(context).size.width - 32,
+                                        MediaQuery.of(context).size.width - 32,
                                         height: 50,
                                         hintText: 'Select Your Language Level'.tr,
                                         list: controller
-                                                    .searchDetails['exam_level'] !=
-                                                null
+                                            .searchDetails['exam_level'] !=
+                                            null
                                             ? controller.searchDetails['exam_level']
                                             : [
-                                                {'name': 'One'},
-                                                {'name': 'Two'},
-                                                {'name': 'Three'}
-                                              ],
+                                          {'name': 'One'},
+                                          {'name': 'Two'},
+                                          {'name': 'Three'}
+                                        ],
                                         padding: const EdgeInsets.only(
                                             left: 16, right: 16),
                                         colorIcon: ColorStyle.primaryColor_1570A5,
