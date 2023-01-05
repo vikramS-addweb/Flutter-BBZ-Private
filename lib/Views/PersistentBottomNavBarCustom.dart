@@ -7,6 +7,7 @@ import 'package:bbz/Views/Profile.dart';
 import 'package:bbz/Views/WelcomeScreen.dart';
 import 'package:get/get.dart';
 import 'package:bbz/Styles/ImageStyle.dart';
+import '../Controller/ExamScreenController.dart';
 import '../Controller/PersistentNavBarController.dart';
 import '../Utils/Constant.dart';
 import 'package:flutter/cupertino.dart';
@@ -65,8 +66,12 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
     builder: ((controller)=>Obx(() => WillPopScope(
         onWillPop: () async {
           final navbarController = Get.find<PersistentNavBarController>();
+          final examScreenController = Get.put(ExamScreenController());
           navbarController.isNavBarActive.value = true;
           print("After clicking the Android Back Button in persistentNavbar");
+          if(examScreenController.inExamScreen.value){
+            return false;
+          }
           return true;
         },
         child: PersistentTabView(

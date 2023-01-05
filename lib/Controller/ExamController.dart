@@ -16,7 +16,7 @@ class ExamController extends GetxController {
   RxList upcomingExamData = [].obs;
   RxList searchResultData = [].obs;
   RxBool showSearchData = false.obs;
-
+  RxBool inExamScreen = false.obs;
   RxMap searchDetails = {}.obs;
 
   TextEditingController search = TextEditingController();

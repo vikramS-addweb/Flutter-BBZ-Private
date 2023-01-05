@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Components/AppBarStyle.dart';
+import '../Controller/ExamScreenController.dart';
 import '../Controller/PersistentNavBarController.dart';
 import '../Styles/ColorStyle.dart';
 import '../Utils/Global.dart';
@@ -24,6 +25,9 @@ class _LanguageState extends State<Language> {
   @override
   void initState() {
     setState(() {
+       final examScreenController = Get.find<ExamScreenController>();
+     examScreenController.inExamScreen.value = false;
+     examScreenController.drawerIndex.value = 5;
       // print('langungae : ' + Get.locale.toString());
       if (Get.locale.toString().contains('de')) {
         setState(() {
@@ -31,6 +35,16 @@ class _LanguageState extends State<Language> {
         });
       }
     });
+  }
+
+
+
+  @override
+  void dispose() {
+    final examScreenController = Get.put(ExamScreenController());
+     examScreenController.drawerIndex.value = 10;
+    examScreenController.inExamScreen.value = true;
+    super.dispose();
   }
 
   @override

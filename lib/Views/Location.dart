@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import '../Controller/ExamScreenController.dart';
 import '../Styles/TextStyles.dart';
 import '../Utils/Global.dart';
 import '../Components/AppBarStyle.dart';
@@ -22,6 +23,22 @@ class Location extends StatefulWidget {
 class _LocationState extends State<Location> {
    late WebViewController _webViewController;
    GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
+
+    @override
+  void initState() {
+    final examScreenController = Get.find<ExamScreenController>();
+     examScreenController.inExamScreen.value = false;
+     examScreenController.drawerIndex.value = 3;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    final examScreenController = Get.put(ExamScreenController());
+     examScreenController.drawerIndex.value = 10;
+    examScreenController.inExamScreen.value = true;
+    super.dispose();
+  }
 
 
    @override

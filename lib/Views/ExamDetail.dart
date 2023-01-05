@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:html/dom.dart' as dom;
 import '../Components/AppBarStyle.dart';
+import '../Controller/ExamScreenController.dart';
 import '../Controller/PersistentNavBarController.dart';
 import '../Styles/TextStyles.dart';
 import '../Styles/ColorStyle.dart';
@@ -34,6 +35,13 @@ class ExamDetail extends StatelessWidget {
           print(controller.examDetailData['content'].toString());
         },
 
+             dispose: (state) {
+          final examScreenController = Get.find<ExamScreenController>();
+          examScreenController.inExamScreen.value = true;
+          final navbarController = Get.find<PersistentNavBarController>();
+          navbarController.isNavBarActive.value = true;
+        },
+
         builder: ((controller) =>
         Obx(() =>
 
@@ -57,6 +65,10 @@ class ExamDetail extends StatelessWidget {
                 size: 30,
               ),
               onPressed: () {
+                 final navbarController = Get.find<PersistentNavBarController>();
+              navbarController.isNavBarActive.value = true;
+            final examScreenController = Get.find<ExamScreenController>();
+            examScreenController.inExamScreen.value = false;
                 navigateToBack(context);
               },
             ),

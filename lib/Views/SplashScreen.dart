@@ -1,3 +1,4 @@
+import 'package:bbz/Controller/ExamScreenController.dart';
 import 'package:bbz/Styles/ImageStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final controller = Get.put(LoginController());
-
+  final examScreen = Get.put(ExamScreenController());
   @override
   void initState() {
     // TODO: implement initState
