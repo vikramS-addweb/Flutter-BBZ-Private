@@ -305,7 +305,7 @@ class LocaleString extends Translations {
           "Name must only contain letters":"Name darf nur Buchstaben enthalten",
           "C/o can't start with space":"C/o kann nicht mit Leerzeichen beginnen",
           "City can't start with space":"Die Stadt kann nicht mit dem Weltraum beginnen",
-          "Postal code must contain number only":"Die Postleitzahl darf nur eine Zahl enthalten",
+          "Postal code must contain number and character only":"Die Postleitzahl darf nur Zahlen und Zeichen enthalten",
           "Academic title can't start with space":"Akademischer Titel darf nicht mit Leerzeichen beginnen",
           "Telephone must contain number only":"Telefon darf nur Nummer enthalten",
           "Mobile must contain number only":"Handy darf nur Nummer enthalten",

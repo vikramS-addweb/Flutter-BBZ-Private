@@ -73,11 +73,19 @@ class _LocationState extends State<Location> {
           ),
           color: Colors.white.withOpacity(0.1),
         ),
-        child: WebView(
+        child:WebView(
+          initialUrl: widget.urlCustom,
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController webViewController) {
+            _webViewController = webViewController;
+          },
+        ),
+        /*
+        WebView(
           initialUrl: widget.urlCustom,
           javascriptMode: JavascriptMode.unrestricted,
           gestureNavigationEnabled: true,
-          backgroundColor: const Color(0x00000000),
+          backgroundColor: Colors.white,
           onWebViewCreated: (WebViewController webViewController) {
               this._webViewController = webViewController;
           },
@@ -94,7 +102,7 @@ class _LocationState extends State<Location> {
           },
           onPageStarted: (String url) {
             debugPrint('Page started loading: $url');
-            showLoaderGetX();
+           // showLoaderGetX();
           },
           // onPageFinished: (String url) {
           //   debugPrint('Page finished loading: $url');
@@ -134,6 +142,7 @@ class _LocationState extends State<Location> {
           },
 
         ),
+        */
       ),
     );
   }

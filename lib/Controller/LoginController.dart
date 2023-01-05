@@ -43,6 +43,7 @@ class LoginController extends GetxController {
   logout(){
     isLoggedIn = false;
     GetStorage().remove(kUserDetails);
+    GetStorage().erase();
     kTOKENSAVED = '';
     dictUserSaved = {};
     indexSelectedTab.value = 1;
@@ -63,6 +64,7 @@ class LoginController extends GetxController {
   // }
 
   userLogin() async {
+    FocusManager.instance.primaryFocus!.unfocus();
     final params = {
       'email': useremail.value.text,
       'password': userPassword.value.text
