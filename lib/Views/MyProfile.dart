@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 
 import '../Components/BGImage.dart';
+import '../Controller/ExamScreenController.dart';
 import '../Controller/PersistentNavBarController.dart';
 import '../Styles/ColorStyle.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,13 @@ class MyProfile extends StatelessWidget {
     return GetBuilder(
         initState: (state) {
           controller.initMethods();
+        },
+        dispose: (state){
+          final examScreenController = Get.find<ExamScreenController>();
+            examScreenController.inExamScreen.value = true;
+          final navbarController = Get.find<PersistentNavBarController>();
+              navbarController.isNavBarActive.value = true;
+            
         },
         init: controller,
         builder: ((controller) => Obx(() => Scaffold(

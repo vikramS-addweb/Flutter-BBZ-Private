@@ -7,6 +7,7 @@ import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
 import '../../Components/ElevatedButtonCustom.dart';
 import '../Components/TextFieldCustom.dart';
+import '../Controller/ExamScreenController.dart';
 import 'Profile.dart';
 import '../Controller/ContactUsController.dart';
 import '../Views/DrawerScreen.dart';
@@ -14,14 +15,19 @@ import '../Utils/Constant.dart';
 import '../Components/BottomNavBarCustom.dart';
 
 
-class ContactUs extends StatelessWidget {
+class ContactUs extends StatefulWidget {
   ContactUs({Key? key}) : super(key: key);
 
+  @override
+  State<ContactUs> createState() => _ContactUsState();
+}
+
+class _ContactUsState extends State<ContactUs> {
   GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
   final controller = ContactUsController();
-  final formkey = GlobalKey<FormState>();
 
+  final formkey = GlobalKey<FormState>();
 
   final arrIcons = [
     // const Icon(Icons.location_on),
@@ -33,6 +39,7 @@ class ContactUs extends StatelessWidget {
 
     const Icon(Icons.language),
   ];
+
   final arrTitle = [
     'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen',
     '02681 8797-0',
@@ -40,6 +47,21 @@ class ContactUs extends StatelessWidget {
     'www.bbz-altenkirchen.de'
   ];
 
+   @override
+  void initState() {
+    final examScreenController = Get.find<ExamScreenController>();
+     examScreenController.inExamScreen.value = false;
+     examScreenController.drawerIndex.value = 2;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    final examScreenController = Get.put(ExamScreenController());
+     examScreenController.drawerIndex.value = 10;
+    examScreenController.inExamScreen.value = true;
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

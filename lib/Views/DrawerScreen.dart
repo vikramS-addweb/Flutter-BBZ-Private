@@ -8,6 +8,7 @@ import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
 import '../Components/ProgressBarCustom.dart';
 import '../../Components/ElevatedButtonCustom.dart';
+import '../Controller/ExamScreenController.dart';
 import '../Views/DrawerScreen.dart';
 import '../Views/ContactUs.dart';
 import '../Views/AboutUs.dart';
@@ -21,6 +22,7 @@ import './language.dart';
 
 class DrawerScreen extends StatelessWidget {
   DrawerScreen({Key? key}) : super(key: key);
+
 
   final arrIconData = [
     SvgPicture.asset(
@@ -128,24 +130,31 @@ class DrawerScreen extends StatelessWidget {
                       return InkWell(
                         onTap: () {
                           Scaffold.of(context).closeDrawer();
-
+                           final examScreenController = Get.put(ExamScreenController());
                           switch (index) {
                             case 0:
+                              if(examScreenController.drawerIndex != 0)
                               AboutUs().navigateToCustom(context);
+                              
                               break;
                             case 1:
+                             if(examScreenController.drawerIndex != 1)
                               HowWeWork().navigateToCustom(context);
                               break;
                             case 2:
+                             if(examScreenController.drawerIndex != 2)
                               ContactUs().navigateToCustom(context);
                               break;
                             case 3:
+                             if(examScreenController.drawerIndex != 3)
                               Location().navigateToCustom(context);
                               break;
                             case 4:
+                             if(examScreenController.drawerIndex != 4)
                               News().navigateToCustom(context);
                               break;
                             case 5:
+                             if(examScreenController.drawerIndex != 5)
                               Language().navigateToCustom(context);
                               break;
                             default:

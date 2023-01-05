@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import '../Components/AppBarStyle.dart';
 import '../Components/ElevatedButtonCustom.dart';
 import 'package:get/get.dart';
+import '../Controller/ExamScreenController.dart';
+import '../Controller/PersistentNavBarController.dart';
 import 'PersistentBottomNavBarCustom.dart';
 import '../Controller/LoginController.dart';
 import '../Views/SignUp.dart';
@@ -39,10 +41,20 @@ class _LoginState extends State<Login> {
   }
 
   @override
+  void initState() {
+    final examScreenController = Get.find<ExamScreenController>();
+    examScreenController.inExamScreen.value = false;
+    super.initState();
+  }
+
+  @override
   void dispose() {
-    print("onDestroy / viewDidUnload / dispose");
+    final examScreenController = Get.find<ExamScreenController>();
+    examScreenController.inExamScreen.value = true;
     super.dispose();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +70,10 @@ class _LoginState extends State<Login> {
               color: ColorStyle.primaryColor_1570A5,
             ),
             onPressed: () {
+                final navbarController = Get.find<PersistentNavBarController>();
+              navbarController.isNavBarActive.value = true;
+            final examScreenController = Get.find<ExamScreenController>();
+            examScreenController.inExamScreen.value = true;
               navigateToBack(context);
             },
           ),

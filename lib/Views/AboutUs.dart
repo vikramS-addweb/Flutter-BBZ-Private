@@ -79,6 +79,7 @@
 // }
 
 // ------------------------------------------------------old about us screen---------------------------->
+import 'package:bbz/Controller/ExamDetailController.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
@@ -86,14 +87,36 @@ import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
 
+import '../Controller/ExamScreenController.dart';
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
 import '../Components/BottomNavBarCustom.dart';
 
-class AboutUs extends StatelessWidget {
+class AboutUs extends StatefulWidget {
   AboutUs({Key? key}) : super(key: key);
 
+  @override
+  State<AboutUs> createState() => _AboutUsState();
+}
+
+class _AboutUsState extends State<AboutUs> {
   GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
+
+   @override
+  void initState() {
+    final examScreenController = Get.find<ExamScreenController>();
+     examScreenController.inExamScreen.value = false;
+     examScreenController.drawerIndex.value = 0;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    final examScreenController = Get.put(ExamScreenController());
+     examScreenController.drawerIndex.value = 10;
+    examScreenController.inExamScreen.value = true;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

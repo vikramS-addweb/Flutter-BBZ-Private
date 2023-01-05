@@ -14,14 +14,36 @@ import '../../Styles/EffectStyle.dart';
 import '../../Components/TextFieldCustom.dart';
 import '../../Components/TextRichCustom.dart';
 import '../../Utils/Global.dart';
+import '../Controller/ExamScreenController.dart';
+import '../Controller/PersistentNavBarController.dart';
 import 'PersistentBottomNavBarCustom.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   SignUp({super.key});
 
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   final controller = SignUpController();
+
   final fromkey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    final examScreenController = Get.find<ExamScreenController>();
+    examScreenController.inExamScreen.value = false;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    final examScreenController = Get.find<ExamScreenController>();
+    examScreenController.inExamScreen.value = true;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +56,10 @@ class SignUp extends StatelessWidget {
             color: ColorStyle.primaryColor_1570A5,
           ),
           onPressed: () {
+             final navbarController = Get.find<PersistentNavBarController>();
+              navbarController.isNavBarActive.value = true;
+            final examScreenController = Get.find<ExamScreenController>();
+            examScreenController.inExamScreen.value = true;
             navigateToBack(context);
           },
         ),
@@ -312,7 +338,9 @@ class SignUp extends StatelessWidget {
                           if (controller.check.value) {
                             controller.userSignUp();
                           } else {
-                            'The terms and conditions field is required'.tr.showError();
+                            'The terms and conditions field is required'
+                                .tr
+                                .showError();
                           }
                         }
                         return;

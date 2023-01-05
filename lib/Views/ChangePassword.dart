@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 // import '../../Controller/LoginController.dart';
 // import '../Auth/SignUp.dart';
 // import '../Auth/ResetPassword.dart';
+import '../Controller/ExamScreenController.dart';
 import '../Controller/PersistentNavBarController.dart';
 import '../Styles/TextStyles.dart';
 import '../Components/TextFieldCustom.dart';
@@ -32,6 +33,12 @@ class ChangePassword extends StatelessWidget {
     return GetBuilder(
         initState: (state){
 
+        },
+         dispose: (state){
+                        final examScreenController = Get.find<ExamScreenController>();
+            examScreenController.inExamScreen.value = true;
+          final navbarController = Get.find<PersistentNavBarController>();
+              navbarController.isNavBarActive.value = true;
         },
         init: controller,
         builder: ((controller)=>Obx(() => WillPopScope(

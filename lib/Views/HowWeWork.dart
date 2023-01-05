@@ -7,15 +7,39 @@ import '../../Components/AppBarStyle.dart';
 import '../../Styles/TextStyles.dart';
 import '../../Styles/ImageStyle.dart';
 
+import '../Controller/ExamScreenController.dart';
 import '../Views/DrawerScreen.dart';
 import '../Utils/Constant.dart';
 
 import '../Components/BottomNavBarCustom.dart';
 
-class HowWeWork extends StatelessWidget {
+class HowWeWork extends StatefulWidget {
    HowWeWork({Key? key}) : super(key: key);
 
+   
+
+  @override
+  State<HowWeWork> createState() => _HowWeWorkState();
+}
+
+class _HowWeWorkState extends State<HowWeWork> {
    GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
+
+   @override
+  void initState() {
+    final examScreenController = Get.find<ExamScreenController>();
+     examScreenController.inExamScreen.value = false;
+     examScreenController.drawerIndex.value = 1;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    final examScreenController = Get.put(ExamScreenController());
+     examScreenController.drawerIndex.value = 10;
+    examScreenController.inExamScreen.value = true;
+    super.dispose();
+  }
 
   final demoData = [
     {
