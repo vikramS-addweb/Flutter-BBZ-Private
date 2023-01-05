@@ -27,7 +27,6 @@ class Profile extends StatelessWidget {
   final controllerMyProfile = Get.put(MyProfileController());
   final examDetailController = Get.put(ExamDetailController());
   // final navBarController = Get.put(PersistentNavBarController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

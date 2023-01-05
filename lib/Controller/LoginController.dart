@@ -42,7 +42,8 @@ class LoginController extends GetxController {
 
   logout(){
     isLoggedIn = false;
-    GetStorage().remove(kUserDetails);
+    // GetStorage().remove(kUserDetails);
+    GetStorage().erase();
     kTOKENSAVED = '';
     dictUserSaved = {};
     indexSelectedTab.value = 1;

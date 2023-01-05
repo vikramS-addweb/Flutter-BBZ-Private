@@ -8,7 +8,52 @@ import '../Components/AppBarStyle.dart';
 import '../Styles/ColorStyle.dart';
 import '../Views/DrawerScreen.dart';
 
+/*
 
+class Location extends StatelessWidget {
+  late WebViewController _controller;
+
+
+
+   Location({Key? key,}) : super(key: key);
+
+  final String url = "https://www.sprachtestcenter.de/page/locations";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.pop(context)),
+        backgroundColor: Colors.white,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Text(
+              "Location",
+              style:TextStyle(
+                    color: Colors.black,
+                    letterSpacing: .5,
+                    fontSize: 14,
+                  ),
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: WebView(
+          initialUrl: url,
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController webViewController) {
+            _controller = webViewController;
+          },
+        ),
+      ),
+    );
+  }
+}
+*/
 
 class Location extends StatefulWidget {
   final String urlCustom;
@@ -59,8 +104,16 @@ class _LocationState extends State<Location> {
         child: WebView(
           initialUrl: widget.urlCustom,
           javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController webViewController) {
+            _webViewController = webViewController;
+          },
+        ),
+            /*
+        WebView(
+          initialUrl: widget.urlCustom,
+          javascriptMode: JavascriptMode.unrestricted,
           gestureNavigationEnabled: true,
-          backgroundColor: const Color(0x00000000),
+          backgroundColor: Colors.white,
           onWebViewCreated: (WebViewController webViewController) {
               this._webViewController = webViewController;
           },
@@ -77,7 +130,7 @@ class _LocationState extends State<Location> {
           },
           onPageStarted: (String url) {
             debugPrint('Page started loading: $url');
-            showLoaderGetX();
+           // showLoaderGetX();
           },
           // onPageFinished: (String url) {
           //   debugPrint('Page finished loading: $url');
@@ -117,6 +170,7 @@ class _LocationState extends State<Location> {
           },
 
         ),
+        */
       ),
     );
   }
