@@ -28,7 +28,6 @@ class _HowWeWorkState extends State<HowWeWork> {
    @override
   void initState() {
     final examScreenController = Get.find<ExamScreenController>();
-     examScreenController.inExamScreen.value = false;
      examScreenController.drawerIndex.value = 1;
     super.initState();
   }
@@ -37,7 +36,6 @@ class _HowWeWorkState extends State<HowWeWork> {
   void dispose() {
     final examScreenController = Get.put(ExamScreenController());
      examScreenController.drawerIndex.value = 10;
-    examScreenController.inExamScreen.value = true;
     super.dispose();
   }
 

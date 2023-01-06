@@ -42,15 +42,11 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    final examScreenController = Get.find<ExamScreenController>();
-    examScreenController.inExamScreen.value = false;
     super.initState();
   }
 
   @override
   void dispose() {
-    final examScreenController = Get.find<ExamScreenController>();
-    examScreenController.inExamScreen.value = true;
     super.dispose();
   }
 
@@ -72,8 +68,6 @@ class _LoginState extends State<Login> {
             onPressed: () {
                 final navbarController = Get.find<PersistentNavBarController>();
               navbarController.isNavBarActive.value = true;
-            final examScreenController = Get.find<ExamScreenController>();
-            examScreenController.inExamScreen.value = true;
               navigateToBack(context);
             },
           ),

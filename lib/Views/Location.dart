@@ -27,7 +27,6 @@ class _LocationState extends State<Location> {
     @override
   void initState() {
     final examScreenController = Get.find<ExamScreenController>();
-     examScreenController.inExamScreen.value = false;
      examScreenController.drawerIndex.value = 3;
     super.initState();
   }
@@ -36,7 +35,6 @@ class _LocationState extends State<Location> {
   void dispose() {
     final examScreenController = Get.put(ExamScreenController());
      examScreenController.drawerIndex.value = 10;
-    examScreenController.inExamScreen.value = true;
     super.dispose();
   }
 

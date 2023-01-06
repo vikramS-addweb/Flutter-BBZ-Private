@@ -89,12 +89,8 @@ class BookingConfirmation extends StatelessWidget {
             onWillPop: () async {
               // Do something here
               final navbarController = Get.find<PersistentNavBarController>();
-              final examScreenController = Get.find<ExamScreenController>();
-              navbarController.isNavBarActive.value = true;
-              examScreenController.inExamScreen.value = true;
-
-              print("After clicking the Androi TRUE");
-              PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
+              
+              Get.offAll(()=> PersistentBottomNavBarCustom(initialIndex: 0));
               return true;
             },
             child:Scaffold(
@@ -108,10 +104,8 @@ class BookingConfirmation extends StatelessWidget {
                   ),
                   onPressed: () {
                     final navbarController = Get.find<PersistentNavBarController>();
-              final examScreenController = Get.find<ExamScreenController>();
               navbarController.isNavBarActive.value = true;
-              examScreenController.inExamScreen.value = true;
-                    PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
+              Get.offAll(()=> PersistentBottomNavBarCustom(initialIndex: 0));
                   },
                 ),
                 styleTitle: TextStylesCustom.textStyles_16.apply(
@@ -511,7 +505,7 @@ class BookingConfirmation extends StatelessWidget {
                           ),
                           SizedBox(height: 20,),
                           ElevatedButtonCustoms(text: 'Go back to Home page'.tr, onTap: (){
-                            PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, withNavBar: false);
+                             Get.offAll(()=> PersistentBottomNavBarCustom(initialIndex: 0));
                           },
                             width: Get.size.width,
                             colorBG: ColorStyle.primaryColor_1570A5,

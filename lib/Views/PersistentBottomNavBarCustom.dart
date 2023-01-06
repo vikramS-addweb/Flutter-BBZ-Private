@@ -69,9 +69,6 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
           final examScreenController = Get.put(ExamScreenController());
           navbarController.isNavBarActive.value = true;
           print("After clicking the Android Back Button in persistentNavbar");
-          if(examScreenController.inExamScreen.value){
-            return false;
-          }
           return true;
         },
         child: PersistentTabView(
