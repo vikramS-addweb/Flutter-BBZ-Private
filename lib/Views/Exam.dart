@@ -214,13 +214,15 @@ class _ExamState extends State<Exam> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Text(
-                                    'Book Your Exam Now!'.tr,
-                                    style: TextStylesCustom.textStyles_26.apply(
-                                      color: Colors.white,
-                                      // fontWeightDelta: 2,
+                                  FittedBox(
+                                    child: Text(
+                                      'Book Your Exam Now!'.tr,
+                                      style: TextStylesCustom.textStyles_26.apply(
+                                        color: Colors.white,
+                                        // fontWeightDelta: 2,
+                                      ),
+                                      // maxLines: 2,
                                     ),
-                                    // maxLines: 2,
                                   ),
                                   Text(
                                     'Use the search filters to find specific courses faster and easier'.tr,
@@ -240,7 +242,7 @@ class _ExamState extends State<Exam> {
                                   // height: 320,
                                   width: Get.mediaQuery.size.width,
                                   margin: const EdgeInsets.only(
-                                      top: 150, left: 16, right: 16),
+                                      top: 130, left: 16, right: 16),
                                   padding: const EdgeInsets.only(
                                     top: 20,
                                   ),
