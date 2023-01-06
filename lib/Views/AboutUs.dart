@@ -105,7 +105,6 @@ class _AboutUsState extends State<AboutUs> {
    @override
   void initState() {
     final examScreenController = Get.find<ExamScreenController>();
-     examScreenController.inExamScreen.value = false;
      examScreenController.drawerIndex.value = 0;
     super.initState();
   }
@@ -114,7 +113,6 @@ class _AboutUsState extends State<AboutUs> {
   void dispose() {
     final examScreenController = Get.put(ExamScreenController());
      examScreenController.drawerIndex.value = 10;
-    examScreenController.inExamScreen.value = true;
     super.dispose();
   }
 

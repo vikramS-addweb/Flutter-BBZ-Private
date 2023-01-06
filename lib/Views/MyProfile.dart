@@ -38,8 +38,6 @@ class MyProfile extends StatelessWidget {
           controller.initMethods();
         },
         dispose: (state){
-          final examScreenController = Get.find<ExamScreenController>();
-            examScreenController.inExamScreen.value = true;
           final navbarController = Get.find<PersistentNavBarController>();
               navbarController.isNavBarActive.value = true;
             

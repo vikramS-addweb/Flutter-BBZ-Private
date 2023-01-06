@@ -35,8 +35,6 @@ class ChangePassword extends StatelessWidget {
 
         },
          dispose: (state){
-                        final examScreenController = Get.find<ExamScreenController>();
-            examScreenController.inExamScreen.value = true;
           final navbarController = Get.find<PersistentNavBarController>();
               navbarController.isNavBarActive.value = true;
         },
