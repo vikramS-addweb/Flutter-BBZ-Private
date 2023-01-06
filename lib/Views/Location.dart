@@ -1,6 +1,9 @@
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../Controller/ExamScreenController.dart';
 import '../Styles/TextStyles.dart';
@@ -13,7 +16,7 @@ import '../Views/DrawerScreen.dart';
 
 class Location extends StatefulWidget {
   final String urlCustom;
-  const Location({Key? key, this.urlCustom = 'https://www.sprachtestcenter.de/page/locations'}) : super(key: key);
+  const Location({Key? key, this.urlCustom = 'https://bbzstage.addwebprojects.com/page/locations'}) : super(key: key);
 
 
   @override
@@ -24,11 +27,13 @@ class _LocationState extends State<Location> {
    late WebViewController _webViewController;
    GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
+
     @override
   void initState() {
     final examScreenController = Get.find<ExamScreenController>();
      examScreenController.drawerIndex.value = 3;
     super.initState();
+
   }
 
   @override
@@ -41,7 +46,7 @@ class _LocationState extends State<Location> {
 
    @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return   Scaffold(
       key: keyDrawer,
       drawer: DrawerScreen(),
       backgroundColor: Colors.transparent,
@@ -71,14 +76,15 @@ class _LocationState extends State<Location> {
           ),
           color: Colors.white.withOpacity(0.1),
         ),
-        child:WebView(
+        child:
+        /*WebView(
           initialUrl: widget.urlCustom,
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _webViewController = webViewController;
           },
         ),
-        /*
+        */
         WebView(
           initialUrl: widget.urlCustom,
           javascriptMode: JavascriptMode.unrestricted,
@@ -90,22 +96,21 @@ class _LocationState extends State<Location> {
           onProgress: (int progress) {
             debugPrint('WebView is loading (progress : $progress%)');
           },
-          navigationDelegate: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              debugPrint('blocking navigation to $request}');
-              return NavigationDecision.prevent;
-            }
-            debugPrint('allowing navigation to $request');
-            return NavigationDecision.navigate;
-          },
+          // navigationDelegate: (NavigationRequest request) {
+          //   if (request.url.startsWith('https://www.youtube.com/')) {
+          //     debugPrint('blocking navigation to $request}');
+          //     return NavigationDecision.prevent;
+          //   }
+          //   debugPrint('allowing navigation to $request');
+          //   return NavigationDecision.navigate;
+          // },
           onPageStarted: (String url) {
             debugPrint('Page started loading: $url');
-           // showLoaderGetX();
+            showLoaderGetX();
+            Timer(const Duration(milliseconds: 5000), () {
+              hideLoader();
+            });
           },
-          // onPageFinished: (String url) {
-          //   debugPrint('Page finished loading: $url');
-          //   hideLoader();
-          // },
 
           onPageFinished: (String url) {
             debugPrint('Page finished loading: $url');
@@ -120,7 +125,6 @@ class _LocationState extends State<Location> {
             //     "})()")
             //     .then((value) => debugPrint('Page finished loading Javascript'))
             //     .catchError((onError) => debugPrint('$onError'));
-
             _webViewController.runJavascript(
                 "document.getElementsByClassName('bravo_header')[0].style.display='none'");
             _webViewController.runJavascript(
@@ -129,6 +133,7 @@ class _LocationState extends State<Location> {
                 "document.getElementsByTagName('h1')[0].style.display='none'");
             _webViewController.runJavascript(
                 "document.getElementsByClassName('booking_cookie_agreement')[0].parentNode.removeChild(document.getElementsByClassName('booking_cookie_agreement')[0])");
+
             // _webViewController.runJavascript(
             //     "document.getElementsByClassName('fixed-bottom')[0].style.display='none'");
 
@@ -136,11 +141,11 @@ class _LocationState extends State<Location> {
             // _webViewController.runJavascript(
             //   "document.getElementsByClassName('booking_cookie_agreement')[0].classList.remove('booking_cookie_agreement', 'p-3', 'd-flex', 'fixed-bottom').addClass('d-none')"
             // );
-            hideLoader();
+            // hideLoader();
           },
 
         ),
-        */
+
       ),
     );
   }
