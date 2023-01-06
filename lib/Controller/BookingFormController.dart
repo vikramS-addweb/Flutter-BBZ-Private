@@ -257,6 +257,14 @@ print(image.value);
       first_name.value.text = dictUserSaved['first_name'];
       last_name.value.text = dictUserSaved['last_name'];
       email.value.text = dictUserSaved['email'];
+      birth_date.value.text = dictUserSaved['birthday'] ?? '' ;
+      city.value.text = dictUserSaved['city'] ?? '' ;
+      co.value.text = dictUserSaved['address'] ?? '' ;
+      street.value.text = dictUserSaved['address2'] ?? '' ;
+      postal_code.value.text = dictUserSaved['zip_code'] != null
+          ? dictUserSaved['zip_code'].toString()
+          : '';
+      country.value = dictUserSaved['country'] ?? '' ;
       mobile.value.text = dictUserSaved['phone'] != null
           ? dictUserSaved['phone'].toString().replaceAll('-', '')
           : '';
@@ -292,6 +300,11 @@ print(image.value);
     termsAndCondition.value = false;
     privacyPolicy.value = false;
     secondTerm.value = false;
+    paymentError.value = false;
+    agreementError.value = false;
+    privacyError.value = false;
+    termsError.value = false;
+    countryError.value = false;
   }
 
   

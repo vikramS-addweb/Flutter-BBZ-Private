@@ -165,7 +165,28 @@ class _HowWeWorkState extends State<HowWeWork> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            ...demoData.map((e) => Container(
+                            ...[
+                              {
+                                'assetImageWidget': ImageStyle.registration,
+                                'title':'Registration'.tr,
+                              },
+                              {
+                                'assetImageWidget': ImageStyle.gradingTest,
+                                'title':'Grading Test'.tr,
+                              },
+                              {
+                                'assetImageWidget': ImageStyle.education,
+                                'title':'Education'.tr,
+                              },
+                              {
+                                'assetImageWidget': ImageStyle.examTraining,
+                                'title':'Exam Training'.tr,
+                              },
+                              {
+                                'assetImageWidget': ImageStyle.exam,
+                                'title':'Exam'.tr,
+                              }
+                            ].map((e) => Container(
                               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
                               decoration:   BoxDecoration(
                                 color: Colors.white,
