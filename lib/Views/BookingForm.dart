@@ -947,7 +947,7 @@ class BookingForm extends StatelessWidget {
                                     controller: controller.postal_code.value,
                                     firstText: 'Postal Code'.tr,
                                     hintText: 'Please enter'.tr,
-                                    keyboardType: TextInputType.number,
+                                    // keyboardType: TextInputType.number,
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Postal code is required".tr;

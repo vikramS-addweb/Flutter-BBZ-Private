@@ -463,14 +463,14 @@ class MyProfile extends StatelessWidget {
                                   // -----------------------Postal field---------------------------->
                                   TextFormFieldWithLabel(
                                     controller: controller.postalCode.value,
-                                    keyboardType: TextInputType.number,
+                                    // keyboardType: TextInputType.number,
                                     firstText: 'Postal Code'.tr,
                                     hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Postal code is required".tr;
-                                      } else if (!value!.isNumericOnly) {
-                                        return 'Postal code must contain number only'
+                                      } else if (!alphaNumeric.hasMatch(value)) {
+                                        return "Postal code must contain number and character only"
                                             .tr;
                                       } else if (value.length < 4) {
                                         return "Postal code can't have less than 4 digits"

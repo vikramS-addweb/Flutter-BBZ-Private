@@ -182,6 +182,7 @@ class BookingFormController extends GetxController {
         // response['message'].toString().showSuccess();
         if (response['status'] == 1) {
           if (response['message'].toString() ==
+              'You Booking has been processed successfully UPDATED.Redirect To Payment' || response['message'].toString() ==
               'You Booking has been processed successfully.Redirect To Payment') {
             "Your Booking has been processed successfully.Redirect To Payment"
                 .tr

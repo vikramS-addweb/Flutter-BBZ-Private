@@ -106,7 +106,7 @@ class ExamDetailController extends GetxController {
           }
           // BookingForm(examDetails: examDetailData.value,).navigateToCustom(Get.context, withNavBar: false);
         } else {
-          'verification mail sent on your email, please verify first'
+          'verification mail sent on your email, please verify first'.tr
               .showSuccess();
         }
       } else {

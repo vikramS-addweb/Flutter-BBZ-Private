@@ -819,7 +819,7 @@ class ItemsList extends StatelessWidget {
                             color: ColorStyle.grey_DAE1E7,
                           ),
                           const SizedBox(
-                            height: 5,
+                            height: 9,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -842,7 +842,7 @@ class ItemsList extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(
-                            height: 5,
+                            height: 9,
                           ),
                         ],
                       ),

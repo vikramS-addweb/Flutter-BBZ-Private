@@ -213,7 +213,7 @@ class _SignUpState extends State<SignUp> {
                         if (value!.isEmpty) {
                           return "Password is required".tr;
                         } else if (value.length < 8) {
-                          return "Password should have atleast 8 characters".tr;
+                          return "Password must be at least 8 characters".tr;
                         }
                         // else if (!regex.hasMatch(value)) {
                         //   return "Password should have atleast 8 characters.";
