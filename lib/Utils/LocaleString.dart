@@ -119,6 +119,7 @@ class LocaleString extends Translations {
           "Country of birth must contain only letters":
               "Herkunftsland darf nur Buchstaben enthalten",
           "Postal code can't have less than 4 digits":"Die Postleitzahl darf nicht weniger als 4 Ziffern haben",
+              "Postal code can't have less than 6 digits":"Die Postleitzahl darf nicht weniger als 6 Ziffern haben",
           "Postal code can't have more than 10 digits":
               "Die Postleitzahl darf nicht mehr als 10 Ziffern haben",
           "Success!": "Erfolg!",
@@ -342,6 +343,10 @@ class LocaleString extends Translations {
           "Image Uploaded":"Bild hochgeladen",
           "verification mail sent on your email, please verify first":"Bestätigungsmail an Ihre E-Mail gesendet, bitte zuerst bestätigen",
           "Your Booking has been processed successfully.Redirect To Payment":"Ihre Buchung wurde erfolgreich verarbeitet.Zur Zahlung umleiten",
+          "Your Booking has been processed successfully UPDATED.Redirect To Payment":"Ihre Buchung wurde erfolgreich aktualisiert. Umleitung zur Zahlung",
+          "Your Booking has been processed successfully updated.Redirect To Payment":"Ihre Buchung wurde erfolgreich aktualisiert. Umleitung zur Zahlung",
+          "You have already registered for this event":"Sie haben sich bereits für diese Veranstaltung angemeldet",
+          "Booked":"Gebucht",
           "Success!":"Erfolg!",
           "Error!":"Fehler!",
           "No changes made":"Keine Änderungen vorgenommen",

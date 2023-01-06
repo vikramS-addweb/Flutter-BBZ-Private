@@ -15,7 +15,6 @@ import '../Views/BookingConfirmation.dart';
 import 'package:http/http.dart' as http;
 
 class BookingFormController extends GetxController {
-
   RxList motherToungeData = [].obs;
 
   void initMethods() {
@@ -145,81 +144,95 @@ class BookingFormController extends GetxController {
     // } else {
 
     // uploadImage();
-      final params = {
-        '_method': 'post',
-        'id_proof': image.value.path.split('/').last,
-        'email': email.value.text,
-        'event_id': '${examDetailController.examDetailData.value['id']}',
-        'salutation': salutation.value,
-        'academic_title': academic_title.value.text,
-        'first_name': first_name.value.text,
-        'last_name': last_name.value.text,
-        'identification_number': (identification_number.value.text).trim(),
-        'birth_date': birth_date.value.text,
-        'birth_place': birth_place.value.text,
-        'country_of_birth': country_of_birth.value.text,
-        'mother_tongue': motherToungue.value,
-        'tele_phone': telephone.value.text,
-        'phone': mobile.value.text,
-        'c/o': co.value.text,
-        'address_line_1': first_name.value.text,
-        'street': street.value.text,
-        'city': city.value.text,
-        'zip_code': postal_code.value.text,
-        'country': country.value,
-        'payment_gateway': paymentMethod.value,
-        'term_conditions_1': '${termsAndCondition.value}',
-        'term_conditions': '${privacyPolicy.value}',
-        'term_conditions_2': '${secondTerm.value}'
-      };
+    final params = {
+      '_method': 'post',
+      'id_proof': image.value.path.split('/').last,
+      'email': email.value.text,
+      'event_id': '${examDetailController.examDetailData.value['id']}',
+      'salutation': salutation.value,
+      'academic_title': academic_title.value.text,
+      'first_name': first_name.value.text,
+      'last_name': last_name.value.text,
+      'identification_number': (identification_number.value.text).trim(),
+      'birth_date': birth_date.value.text,
+      'birth_place': birth_place.value.text,
+      'country_of_birth': country_of_birth.value.text,
+      'mother_tongue': motherToungue.value,
+      'tele_phone': telephone.value.text,
+      'phone': mobile.value.text,
+      'c/o': co.value.text,
+      'address_line_1': first_name.value.text,
+      'street': street.value.text,
+      'city': city.value.text,
+      'zip_code': postal_code.value.text,
+      'country': country.value,
+      'payment_gateway': paymentMethod.value,
+      'term_conditions_1': '${termsAndCondition.value}',
+      'term_conditions': '${privacyPolicy.value}',
+      'term_conditions_2': '${secondTerm.value}'
+    };
 
-      final response =
-          await API.instance.post(endPoint: endpoint, params: params);
-      print(response);
+    final response =
+        await API.instance.post(endPoint: endpoint, params: params);
 
-      if (response!.isNotEmpty) {
-        debugPrint(response.toString());
-        // response['message'].toString().showSuccess();
-        if (response['status'] == 1) {
-          if (response['message'].toString() ==
-              'You Booking has been processed successfully UPDATED.Redirect To Payment' || response['message'].toString() ==
-              'You Booking has been processed successfully.Redirect To Payment') {
-            "Your Booking has been processed successfully.Redirect To Payment"
-                .tr
-                .showSuccess();
-          } else {
-            response['message'].toString().showSuccess();
-          }
-          event_id.value = response['event_id'].toString();
-          amount.value = response['amount'].toString();
-          code.value = response['code'].toString();
-          print('hellow hterher');
-          
+    if (response!.isNotEmpty) {
+      debugPrint(response.toString());
+      // response['message'].toString().showSuccess();
+      print('HIHIHI');
+      print(response['message'].toString() ==
+          'You have already registered for this event');
+      if (response['status'] == 1) {
+        if (response['message'].toString() ==
+            'You Booking has been processed successfully.Redirect To Payment') {
+          "Your Booking has been processed successfully.Redirect To Payment"
+              .tr
+              .showSuccess();
+        } else if (response['message'].toString() ==
+            'You Booking has been processed successfully UPDATED.Redirect To Payment') {
+          "Your Booking has been processed successfully UPDATED.Redirect To Payment"
+              .tr
+              .showSuccess();
+        } else if (response['message'].toString() ==
+            'You Booking has been processed successfully updated.Redirect To Payment') {
+          "Your Booking has been processed successfully UPDATED.Redirect To Payment"
+              .tr
+              .showSuccess();
+        } else {
+          response['message'].toString().showSuccess();
+        }
+        event_id.value = response['event_id'].toString();
+        amount.value = response['amount'].toString();
+        code.value = response['code'].toString();
+        print('hellow hterher');
+
         if (paymentMethod.value == 'paypal') {
           usePaypal();
         } else {
           useStripe();
         }
-        } else if (response['message'] != null) {
-          if (response['message'].toString() == 'Email already exists') {
-            "Email already exists".tr.showError();
-          } else {
-            response['message'].toString().showError();
-          }
-        }else if(response['errors'] != null){
-          response['errors'].toString().showError();
-        }else{
-          debugPrint('Booking form error: '+ response.toString());
+      } else if (response['message'].toString() ==
+          'You have already registered for this event') {
+        "You have already registered for this event".tr.showError();
+      } else if (response['message'] != null) {
+        if (response['message'].toString() == 'Email already exists') {
+          "Email already exists".tr.showError();
+        } else {
+          response['message'].toString().showError();
         }
-        // final response1 = await API.instance.get(endPoint: 'api/profile');
-        // print(response1);
-        //
-        // if (response1!.isNotEmpty) {
-        //   dictUserSaved = response;
-        // }
-
-        // navigateToBack(Get.context);
+      } else if (response['errors'] != null) {
+        response['errors'].toString().showError();
+      } else {
+        debugPrint('Booking form error: ' + response.toString());
       }
+      // final response1 = await API.instance.get(endPoint: 'api/profile');
+      // print(response1);
+      //
+      // if (response1!.isNotEmpty) {
+      //   dictUserSaved = response;
+      // }
+
+      // navigateToBack(Get.context);
+    }
     // }
   }
 
@@ -231,8 +244,8 @@ class BookingFormController extends GetxController {
     final params = {
       '_method': 'post',
     };
-print(image.value.path);
-print(image.value);
+    print(image.value.path);
+    print(image.value);
     final response = await API.instance.postImage(
       endPoint: "api/bookingImage",
       params: params,
@@ -257,14 +270,6 @@ print(image.value);
       first_name.value.text = dictUserSaved['first_name'];
       last_name.value.text = dictUserSaved['last_name'];
       email.value.text = dictUserSaved['email'];
-      birth_date.value.text = dictUserSaved['birthday'] ?? '' ;
-      city.value.text = dictUserSaved['city'] ?? '' ;
-      co.value.text = dictUserSaved['address'] ?? '' ;
-      street.value.text = dictUserSaved['address2'] ?? '' ;
-      postal_code.value.text = dictUserSaved['zip_code'] != null
-          ? dictUserSaved['zip_code'].toString()
-          : '';
-      country.value = dictUserSaved['country'] ?? '' ;
       mobile.value.text = dictUserSaved['phone'] != null
           ? dictUserSaved['phone'].toString().replaceAll('-', '')
           : '';
@@ -300,14 +305,8 @@ print(image.value);
     termsAndCondition.value = false;
     privacyPolicy.value = false;
     secondTerm.value = false;
-    paymentError.value = false;
-    agreementError.value = false;
-    privacyError.value = false;
-    termsError.value = false;
-    countryError.value = false;
   }
 
-  
   Future<String?> fetchPaymentIntent() async {
     try {
       http.Response response = await http.post(
@@ -329,12 +328,12 @@ print(image.value);
       } else {
         'Error ${response.statusCode.toString()}';
         return null;
-        
       }
     } catch (e) {
-      if(e.toString() == 'Unable to proceed, check your internet connection.'){
+      if (e.toString() ==
+          'Unable to proceed, check your internet connection.') {
         'Unable to proceed, check your internet connection.'.tr.showError();
-      }else {
+      } else {
         e.toString().showError();
       }
     }
@@ -370,7 +369,8 @@ print(image.value);
       }
     }
   }
-    void usePaypal() {
+
+  void usePaypal() {
     Get.to(() => UsePaypal(
         sandboxMode: true,
         clientId:
@@ -427,11 +427,12 @@ print(image.value);
           bookingConfirm();
         },
         onError: (error) {
-          if(error.toString() == 'Unable to proceed, check your internet connection.'){
+          if (error.toString() ==
+              'Unable to proceed, check your internet connection.') {
             'Unable to proceed, check your internet connection.'.tr.showError();
-          }else if(error.toString() == 'Software caused connection abort'){
+          } else if (error.toString() == 'Software caused connection abort') {
             'Software caused connection abort'.tr.showError();
-          }else{
+          } else {
             "$error".showError();
           }
 
@@ -465,17 +466,16 @@ print(image.value);
           //   merchantCountryCode: 'DE',
           // ),
         ));
-        print('hi');
         displayPaymentSheet();
       }
     } on StripeConfigException catch (e) {
       print(e.message);
-      if(e.toString() == 'Unable to proceed, check your internet connection.'){
+      if (e.toString() ==
+          'Unable to proceed, check your internet connection.') {
         'Unable to proceed, check your internet connection.'.tr.showError();
-      }else {
+      } else {
         e.toString().showError();
       }
-
     }
   }
 

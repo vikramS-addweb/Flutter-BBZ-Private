@@ -55,7 +55,7 @@ class BookingConfirmation extends StatelessWidget {
     {'item': 'Booking Number:', 'value': '11'},
     {'item': 'Booking Date:', 'value': '03/30/2022'},
     {'item': 'Payment Method:', 'value': 'Visa ending with 3334'},
-    {'item': 'Booking Status:', 'value': 'Booked'}
+    {'item': 'Booking Status:', 'value': 'Booked'.tr}
   ];
 
   final arrIcons = [

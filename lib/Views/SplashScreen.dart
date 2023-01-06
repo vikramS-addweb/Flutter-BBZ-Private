@@ -27,12 +27,12 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(milliseconds: 500), () {
       final isLoggedIn = controller.checkIsLoggedIn();
-
-      if (isLoggedIn) {
-        indexSelectedTab.value = 0;
-      } else {
-        indexSelectedTab.value = 1;
-      }
+       indexSelectedTab.value = 0;
+      // if (isLoggedIn) {
+      //   indexSelectedTab.value = 0;
+      // } else {
+      //   indexSelectedTab.value = 1;
+      // }
 
       gotToWelcomeScree(indexSelectedTab.value);
     });

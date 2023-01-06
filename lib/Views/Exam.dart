@@ -201,7 +201,7 @@ class _ExamState extends State<Exam> {
                           children: [
                             Image.asset(
                               ImageStyle.examBG,
-                              height: 200,
+                              height: 170,
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),
@@ -214,15 +214,13 @@ class _ExamState extends State<Exam> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  FittedBox(
-                                    child: Text(
-                                      'Book Your Exam Now!'.tr,
-                                      style: TextStylesCustom.textStyles_26.apply(
-                                        color: Colors.white,
-                                        // fontWeightDelta: 2,
-                                      ),
-                                      // maxLines: 2,
+                                  Text(
+                                    'Book Your Exam Now!'.tr,
+                                    style: TextStylesCustom.textStyles_26.apply(
+                                      color: Colors.white,
+                                      fontWeightDelta: 1,
                                     ),
+                                    // maxLines: 2,
                                   ),
                                   Text(
                                     'Use the search filters to find specific courses faster and easier'.tr,
@@ -821,7 +819,7 @@ class ItemsList extends StatelessWidget {
                             color: ColorStyle.grey_DAE1E7,
                           ),
                           const SizedBox(
-                            height: 9,
+                            height: 5,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -844,7 +842,7 @@ class ItemsList extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(
-                            height: 9,
+                            height: 5,
                           ),
                         ],
                       ),
