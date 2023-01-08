@@ -270,6 +270,14 @@ class BookingFormController extends GetxController {
       first_name.value.text = dictUserSaved['first_name'];
       last_name.value.text = dictUserSaved['last_name'];
       email.value.text = dictUserSaved['email'];
+      birth_date.value.text = dictUserSaved['birthday'] ?? '' ;
+      city.value.text = dictUserSaved['city'] ?? '' ;
+      co.value.text = dictUserSaved['address'] ?? '' ;
+      street.value.text = dictUserSaved['address2'] ?? '' ;
+      postal_code.value.text = dictUserSaved['zip_code'] != null
+          ? dictUserSaved['zip_code'].toString()
+          : '';
+      country.value = dictUserSaved['country'] ?? '' ;
       mobile.value.text = dictUserSaved['phone'] != null
           ? dictUserSaved['phone'].toString().replaceAll('-', '')
           : '';
