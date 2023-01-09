@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:bbz/Controller/ExamController.dart';
+import 'package:bbz/Controller/ExamDetailController.dart';
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,9 +44,17 @@ class LoginController extends GetxController {
 
   logout(){
     isLoggedIn = false;
+    print('LOGOUT');
     GetStorage().remove(kUserDetails);
     GetStorage().erase();
+    final examDetailController = Get.find<ExamDetailController>();
+    examDetailController.isBooked.value = false;
+    examDetailController.examDetailData.value = {};
+    final examController = Get.find<ExamController>();
+    examController.upcomingExamData.value = [];
+    examController.searchResultData.value = [];
     kTOKENSAVED = '';
+    kSavedUserID = '';
     dictUserSaved = {};
     indexSelectedTab.value = 1;
     PersistentBottomNavBarCustom().navigateToCustom(Get.context,);

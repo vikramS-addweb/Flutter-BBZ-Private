@@ -8,6 +8,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../Controller/PersistentNavBarController.dart';
 import 'package:get/get.dart';
 
+var webViewController1;
 final controller = Get.put(PersistentNavBarController());
 
 showLoaderGetX() {
