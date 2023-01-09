@@ -201,7 +201,7 @@ class _ExamState extends State<Exam> {
                           children: [
                             Image.asset(
                               ImageStyle.examBG,
-                              height: 170,
+                              height: 190,
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),
@@ -240,7 +240,7 @@ class _ExamState extends State<Exam> {
                                   // height: 320,
                                   width: Get.mediaQuery.size.width,
                                   margin: const EdgeInsets.only(
-                                      top: 130, left: 16, right: 16),
+                                      top: 155, left: 16, right: 16),
                                   padding: const EdgeInsets.only(
                                     top: 20,
                                   ),
