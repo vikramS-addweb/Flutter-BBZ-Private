@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:bbz/Controller/ExamController.dart';
+import 'package:bbz/Controller/ExamDetailController.dart';
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,8 +12,6 @@ import '../Utils/Constant.dart';
 import 'package:get_storage/get_storage.dart';
 import '../Views/WelcomeScreen.dart';
 import '../Views/Profile.dart';
-
-
 
 class LoginController extends GetxController {
   RxBool check3 = false.obs;
@@ -25,7 +25,7 @@ class LoginController extends GetxController {
     // debugPrint('user : ${storage.read(kUserDetails)}');
     final strUserSAVED = storage.read(kUserDetails);
 
-    if( strUserSAVED != null) {
+    if (strUserSAVED != null) {
       isLoggedIn = true;
 
       dictUserSaved = Map<String, dynamic>.from(jsonDecode(strUserSAVED));
@@ -40,13 +40,23 @@ class LoginController extends GetxController {
     }
   }
 
-  logout(){
+  logout() {
     isLoggedIn = false;
+    print('LOGOUT');
     GetStorage().remove(kUserDetails);
+    final examDetailController = Get.find<ExamDetailController>();
+    examDetailController.isBooked.value = false;
+    examDetailController.examDetailData.value = {};
+    final examController = Get.find<ExamController>();
+    examController.upcomingExamData.value = [];
+    examController.searchResultData.value = [];
     kTOKENSAVED = '';
+    kSavedUserID = '';
     dictUserSaved = {};
     indexSelectedTab.value = 1;
-    PersistentBottomNavBarCustom().navigateToCustom(Get.context,);
+    PersistentBottomNavBarCustom().navigateToCustom(
+      Get.context,
+    );
   }
 
   // validation() async {
@@ -69,14 +79,15 @@ class LoginController extends GetxController {
       'password': userPassword.value.text
     };
 
-    final response = await API.instance.post(endPoint: 'api/login', params: params);
+    final response =
+        await API.instance.post(endPoint: 'api/login', params: params);
     // log(response.toString());
 
     print(response);
     if (response!.isNotEmpty) {
       isLoggedIn = true;
 
-      if(check3.value) {
+      if (check3.value) {
         GetStorage().write('user', jsonEncode(response));
       }
 
@@ -89,7 +100,9 @@ class LoginController extends GetxController {
       // TabbarScreen().navigateToCustom(Get.context);
       indexSelectedTab.value = 0;
 
-      PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context, isNavBarActive: true);
+      PersistentBottomNavBarCustom(
+        initialIndex: 0,
+      ).navigateToCustom(Get.context, isNavBarActive: true);
     }
   }
 
@@ -97,5 +110,3 @@ class LoginController extends GetxController {
     check3.value = !check3.value;
   }
 }
-
-

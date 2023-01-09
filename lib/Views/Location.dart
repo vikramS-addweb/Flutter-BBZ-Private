@@ -16,8 +16,7 @@ import '../Views/DrawerScreen.dart';
 
 class Location extends StatefulWidget {
   final String urlCustom;
-  const Location({Key? key, this.urlCustom = 'https://bbzstage.addwebprojects.com/page/locations'}) : super(key: key);
-
+  Location({Key? key, this.urlCustom = 'https://bbzstage.addwebprojects.com/page/locations'}) : super(key: key);
 
   @override
   State<Location> createState() => _LocationState();
@@ -25,25 +24,11 @@ class Location extends StatefulWidget {
 
 class _LocationState extends State<Location> {
    late WebViewController _webViewController;
+
    GlobalKey<ScaffoldState> keyDrawer = GlobalKey();
 
 
-    @override
-  void initState() {
-    final examScreenController = Get.find<ExamScreenController>();
-     examScreenController.drawerIndex.value = 3;
-    super.initState();
-
-  }
-
-  @override
-  void dispose() {
-    final examScreenController = Get.put(ExamScreenController());
-     examScreenController.drawerIndex.value = 10;
-    super.dispose();
-  }
-
-
+  //   @override
    @override
   Widget build(BuildContext context) {
     return   Scaffold(
@@ -53,7 +38,7 @@ class _LocationState extends State<Location> {
       // extendBodyBehindAppBar: true,
       appBar: AppBarStyle(
         title: 'Location'.tr,
-        leading: IconButton(
+         leading: IconButton(
           icon: Icon(
             Icons.menu,
             color: ColorStyle.primaryColor_1570A5,
@@ -91,7 +76,8 @@ class _LocationState extends State<Location> {
           gestureNavigationEnabled: true,
           backgroundColor: Colors.white,
           onWebViewCreated: (WebViewController webViewController) {
-              this._webViewController = webViewController;
+              _webViewController = webViewController;
+              webViewController1 = _webViewController;
           },
           onProgress: (int progress) {
             debugPrint('WebView is loading (progress : $progress%)');
@@ -125,9 +111,9 @@ class _LocationState extends State<Location> {
             //     "})()")
             //     .then((value) => debugPrint('Page finished loading Javascript'))
             //     .catchError((onError) => debugPrint('$onError'));
-            _webViewController.runJavascript(
+             _webViewController.runJavascript(
                 "document.getElementsByClassName('bravo_header')[0].style.display='none'");
-            _webViewController.runJavascript(
+             _webViewController.runJavascript(
                 "document.getElementsByClassName('bravo_footer')[0].style.display='none'");
             _webViewController.runJavascript(
                 "document.getElementsByTagName('h1')[0].style.display='none'");
@@ -150,11 +136,6 @@ class _LocationState extends State<Location> {
     );
   }
 }
-
-
-
-
-
 
 // ------------------------------------------------------------old code for location ------------------------------->
 
