@@ -313,6 +313,11 @@ class BookingFormController extends GetxController {
     termsAndCondition.value = false;
     privacyPolicy.value = false;
     secondTerm.value = false;
+    countryError.value =false;
+    paymentError.value = false;
+    termsError.value = false;
+    privacyError.value = false;
+    agreementError.value = false;
   }
 
   Future<String?> fetchPaymentIntent() async {

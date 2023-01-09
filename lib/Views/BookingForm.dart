@@ -245,7 +245,7 @@ class BookingForm extends StatelessWidget {
                             ),
                             Container(
                               width: double.infinity,
-                              height: 270,
+                              height: 245,
                               color: ColorStyle.white_F3F3F3,
                             ),
                           ],
