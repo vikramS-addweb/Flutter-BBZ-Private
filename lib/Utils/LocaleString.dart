@@ -41,8 +41,8 @@ class LocaleString extends Translations {
           "Can't start with space": "Kann nicht mit Leerzeichen beginnen",
           "Min digit should be 7": "Die Mindestziffer sollte 7 sein",
           "Max digit should be 15": "Die maximale Ziffer sollte 15 sein",
-           "Min digit should be 9": "Die Mindestziffer sollte 7 sein",
-          "Max digit should be 15": "Die maximale Ziffer sollte 15 sein",
+           "Min digit should be 9": "Die Mindestziffer sollte 9 sein",
+          "Max digit should be 14": "Die maximale Ziffer sollte 14 sein",
           "Phone must contain number only": "Telefon darf nur Nummer enthalten",
           "Password and confirm password must be same":
               "Passwort und Bestätigungspasswort müssen identisch sein",
