@@ -169,7 +169,7 @@ class WelcomeScreen extends StatelessWidget {
                     onTap: () {
                       controller.isBackVisible.value = true;
                       indexSelectedTab.value = 0;
-                      PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(context, withNavBar: false);
+                          Get.offAll(PersistentBottomNavBarCustom(initialIndex: 0,));
                     },
                   )
                 ],

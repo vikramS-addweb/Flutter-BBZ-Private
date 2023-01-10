@@ -247,9 +247,7 @@ class _LoginState extends State<Login> {
                         ),
                         onTap: () {
                           indexSelectedTab.value = 0;
-                          PersistentBottomNavBarCustom(
-                            initialIndex: 0,
-                          ).navigateToCustom(context, withNavBar: false);
+                          Get.offAll(PersistentBottomNavBarCustom(initialIndex: 0,));
                         },
                       )
                     ],
