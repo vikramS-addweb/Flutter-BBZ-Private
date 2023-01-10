@@ -99,10 +99,11 @@ class LoginController extends GetxController {
 
       // TabbarScreen().navigateToCustom(Get.context);
       indexSelectedTab.value = 0;
+      Get.offAll(() => PersistentBottomNavBarCustom(initialIndex: 0,));
 
-      PersistentBottomNavBarCustom(
-        initialIndex: 0,
-      ).navigateToCustom(Get.context, isNavBarActive: true);
+      // PersistentBottomNavBarCustom(
+      //   initialIndex: 0,
+      // ).navigateToCustom(Get.context, isNavBarActive: true);
     }
   }
 
