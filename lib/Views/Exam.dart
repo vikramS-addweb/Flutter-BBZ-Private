@@ -1,4 +1,5 @@
 import 'package:bbz/Components/PickerCustom.dart';
+import 'package:bbz/Controller/ExamScreenController.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:bbz/Styles/ColorStyle.dart';
@@ -40,6 +41,10 @@ class _ExamState extends State<Exam> {
     Future.delayed(const Duration(milliseconds: 500), () {
       welcomeController.isBackVisible.value = true;
     });
+
+    final examScreenController = Get.find<ExamScreenController>();
+    examScreenController.inExamScreen.value = true;
+    print('in exam screen');
   }
 
   // textIcon(ImageProvider IconImage, String text, bool isBorder) {

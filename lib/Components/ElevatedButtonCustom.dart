@@ -78,6 +78,7 @@ class ElevatedButtonCustoms extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: colorBG,
         elevation: 0,
+        onSurface: Colors.white,
         padding: const EdgeInsets.only(
           left: 20,
           right: 20,

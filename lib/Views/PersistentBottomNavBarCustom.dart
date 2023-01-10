@@ -75,7 +75,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
       builder: ((controller) => Obx(() => WillPopScope(
           onWillPop: () async {
             final navbarController = Get.find<PersistentNavBarController>();
-            final examScreenController = Get.put(ExamScreenController());
+            final examScreenController = Get.find<ExamScreenController>();
             if (webViewController1 != null) {
               if (await webViewController1.canGoBack()) {
                 webViewController1.goBack();
@@ -83,7 +83,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
               }
             }
              if (navbarController.isNavBarActive.value &&
-                indexSelectedTab.value == 1) {
+                indexSelectedTab.value == 1 && !examScreenController.inExamScreen.value) {
               SystemNavigator.pop();
             }
          

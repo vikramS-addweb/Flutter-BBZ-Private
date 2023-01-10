@@ -155,8 +155,11 @@ class BookingForm extends StatelessWidget {
                           // BookingConfirmation().navigateToCustom(context, withNavBar: false);
                         },
                         text: 'PAY NOW'.tr,
-                        colorBG:
-                            ColorStyle.primaryColor_1570A5.withOpacity(0.5),
+                        colorBG: controller.secondTerm.value &&
+                                controller.termsAndCondition.value &&
+                                controller.privacyPolicy.value
+                            ? ColorStyle.primaryColor_1570A5
+                            : ColorStyle.primaryColor_1570A5.withOpacity(0.5),
                       ))
                     ],
                   ),
@@ -703,10 +706,10 @@ class BookingForm extends StatelessWidget {
                                           if (!value!.isNum) {
                                             return "Telephone must contain number only"
                                                 .tr;
-                                          } else if (value.length < 7) {
-                                            return "Min digit should be 7".tr;
-                                          } else if (value.length > 15) {
-                                            return "Max digit should be 15".tr;
+                                          } else if (value.length < 9) {
+                                            return "Min digit should be 9".tr;
+                                          } else if (value.length > 14) {
+                                            return "Max digit should be 14".tr;
                                           } else {
                                             return null;
                                           }
@@ -730,10 +733,10 @@ class BookingForm extends StatelessWidget {
                                         } else if (!value.isNum) {
                                           return "Mobile must contain number only"
                                               .tr;
-                                        } else if (value.length < 7) {
-                                          return "Min digit should be 7".tr;
-                                        } else if (value.length > 15) {
-                                          return "Max digit should be 15".tr;
+                                        } else if (value.length < 9) {
+                                          return "Min digit should be 9".tr;
+                                        } else if (value.length > 14) {
+                                          return "Max digit should be 14".tr;
                                         } else {
                                           return null;
                                         }
@@ -930,7 +933,8 @@ class BookingForm extends StatelessWidget {
                                       if (value!.isEmpty) {
                                         return "City is required".tr;
                                       } else if (!alphaSpace.hasMatch(value)) {
-                                        return "City name must only contain letters".tr;
+                                        return "City name must only contain letters"
+                                            .tr;
                                       } else if (value!.isNotEmpty &&
                                           value![0] == ' ') {
                                         return "City can't start with space".tr;
@@ -951,12 +955,11 @@ class BookingForm extends StatelessWidget {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Postal code is required".tr;
-                                      }
-                                      else if (!alphaNumeric.hasMatch(value)) {
+                                      } else if (!alphaNumeric
+                                          .hasMatch(value)) {
                                         return "Postal code must contain number and character only"
                                             .tr;
-                                      }
-                                      else if (value.length < 4) {
+                                      } else if (value.length < 4) {
                                         return "Postal code can't have less than 4 digits"
                                             .tr;
                                       } else if (value.length > 10) {
@@ -1191,15 +1194,20 @@ class BookingForm extends StatelessWidget {
                                                         TapGestureRecognizer()
                                                           ..onTap =
                                                               () async => {
-                                                                if (Get.locale.toString().contains('de')) {
-
-                                                                  await launchUrl(
-                                                                      Uri.parse('https://www.sprachtestcenter.de/de/page/terms-and-conditions'))
-                                                                }else{
-                                                                  await launchUrl(
-                                                                      Uri.parse(
-                                                                          'https://www.sprachtestcenter.de/page/terms-and-conditions'))
-                                                                }
+                                                                    if (Get
+                                                                        .locale
+                                                                        .toString()
+                                                                        .contains(
+                                                                            'de'))
+                                                                      {
+                                                                        await launchUrl(
+                                                                            Uri.parse('https://www.sprachtestcenter.de/de/page/terms-and-conditions'))
+                                                                      }
+                                                                    else
+                                                                      {
+                                                                        await launchUrl(
+                                                                            Uri.parse('https://www.sprachtestcenter.de/page/terms-and-conditions'))
+                                                                      }
                                                                   }),
                                               ],
                                             ),
@@ -1269,15 +1277,20 @@ class BookingForm extends StatelessWidget {
                                                         TapGestureRecognizer()
                                                           ..onTap =
                                                               () async => {
-                                                                  if (Get.locale.toString().contains('de')) {
-
-                                                                      await launchUrl(
-                                                                              Uri.parse('https://www.sprachtestcenter.de/de/page/privacy-policy'))
-                                                                  }else{
-                                                                    await launchUrl(
-                                                                        Uri.parse(
-                                                                            'https://www.sprachtestcenter.de/page/privacy-policy'))
-                                                                  }
+                                                                    if (Get
+                                                                        .locale
+                                                                        .toString()
+                                                                        .contains(
+                                                                            'de'))
+                                                                      {
+                                                                        await launchUrl(
+                                                                            Uri.parse('https://www.sprachtestcenter.de/de/page/privacy-policy'))
+                                                                      }
+                                                                    else
+                                                                      {
+                                                                        await launchUrl(
+                                                                            Uri.parse('https://www.sprachtestcenter.de/page/privacy-policy'))
+                                                                      }
                                                                   }),
                                                 TextSpan(
                                                     text:

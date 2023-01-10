@@ -108,7 +108,7 @@ class ExamDetail extends StatelessWidget {
                         colorBG: ColorStyle.primaryColor_1570A5,
                       ):
                       ElevatedButtonCustoms(
-                        onTap: (){
+                        onTap: !controller.isBooked.value ? (){
                           if(!(controller.isBooked.value || controller.examDetailData['available_seats'] == 0)){
 
                             if(kTOKENSAVED!=""){
@@ -117,7 +117,7 @@ class ExamDetail extends StatelessWidget {
                               BookingForm(examDetails: controller.examDetailData.value,).navigateToCustom(context, withNavBar: false);
                             }
                           }
-                        },
+                        } : null,
                         text: '${controller.isBooked.value ? 'ALREADY BOOKED'.tr : (controller.examDetailData['available_seats'] != null && controller.examDetailData['available_seats'] == 0) ? 'SEATS NOT AVAILABLE'.tr : 'BOOK NOW'.tr}',
                         colorBG: controller.isBooked.value ? ColorStyle.white : ColorStyle.primaryColor_1570A5,
                         colorText: controller.isBooked.value? ColorStyle.red_ED0925 : ColorStyle.white,

@@ -162,10 +162,10 @@ class SignUp extends StatelessWidget {
                           return "Mobile number is required".tr;
                         } else if (!value.isNum) {
                           return "Phone must contain number only".tr;
-                        } else if (value.length < 7) {
-                          return "Min digit should be 7".tr;
-                        } else if (value.length > 15) {
-                          return "Max digit should be 15".tr;
+                        } else if (value.length < 9) {
+                          return "Min digit should be 9".tr;
+                        } else if (value.length > 14) {
+                          return "Max digit should be 14".tr;
                         } else {
                           return null;
                         }

@@ -76,6 +76,7 @@ class _LocationState extends State<Location> {
           gestureNavigationEnabled: true,
           backgroundColor: Colors.white,
           onWebViewCreated: (WebViewController webViewController) {
+            showLoaderGetX();
               _webViewController = webViewController;
               webViewController1 = _webViewController;
           },
@@ -92,8 +93,8 @@ class _LocationState extends State<Location> {
           // },
           onPageStarted: (String url) {
             debugPrint('Page started loading: $url');
-            showLoaderGetX();
-            Timer(const Duration(milliseconds: 5000), () {
+            
+            Timer(const Duration(seconds: 4), () {
               hideLoader();
             });
           },

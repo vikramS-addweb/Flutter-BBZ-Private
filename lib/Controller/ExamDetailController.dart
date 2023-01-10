@@ -27,7 +27,11 @@ class ExamDetailController extends GetxController {
   }
 
   Future fetchExamDetails(id) async {
-    final response = await API.instance.get(endPoint: 'api/exam-detail/$id');
+   var endpoint = 'api/exam-detail/$id/';
+   if(Get.locale.toString().contains('de')){
+      endpoint = 'api/exam-detail/$id/de';
+   }
+    final response = await API.instance.get(endPoint: endpoint);
 
     if (response!.isNotEmpty) {
       debugPrint('response count ${response['data'].length}');

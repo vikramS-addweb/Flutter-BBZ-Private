@@ -290,10 +290,10 @@ class MyProfile extends StatelessWidget {
                                         } else if (value[0] == '0') {
                                           return "Telephone can't start with zero"
                                               .tr;
-                                        } else if (value.length < 7) {
-                                          return "Min digit should be 7".tr;
-                                        } else if (value.length > 15) {
-                                          return "Max digit should be 15".tr;
+                                        } else if (value.length < 9) {
+                                          return "Min digit should be 9".tr;
+                                        } else if (value.length > 14) {
+                                          return "Max digit should be 14".tr;
                                         } else {
                                           return null;
                                         }
@@ -497,7 +497,7 @@ class MyProfile extends StatelessWidget {
                                     child: controller.country.value == ''
                                         ? ContainerWithLabel(
                                             firstText: 'Country'.tr,
-                                            hintText: 'Please Select'.tr,
+                                            hintText: 'Please select'.tr,
                                             isError:
                                                 controller.countryError.value,
                                             colorhintText:
