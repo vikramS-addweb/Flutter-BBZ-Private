@@ -85,7 +85,7 @@ class _LanguageState extends State<Language> {
                   setState(() {
                     this.language = 'english';
                   });
-                  GetStorage().write('setLanguage', 'english');
+                  GetStorage().write('`setLanguage`', 'english');
                   final navbarController = Get.find<PersistentNavBarController>();
                   navbarController.isNavBarActive.value = true;
                   navigateToBack(context);

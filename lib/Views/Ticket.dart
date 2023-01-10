@@ -8,6 +8,7 @@ import '../Utils/Global.dart';
 import '../Styles/ImageStyle.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../Controller/BookingHistoryController.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class Ticket extends StatelessWidget {
   Ticket({
@@ -131,12 +132,17 @@ ${controller.bookingDetails['phone'] ?? ''}''',
                       ),
 
                       // ---------------------------------------------QR Code---------------------------------------->
-                      Center(
-                        child: Image.asset(
-                          ImageStyle.ticketBarcode,
-                          width: 230,
-                          height: 230,
-                        ),
+                      // Center(
+                      //   child: Image.asset(
+                      //     ImageStyle.ticketBarcode,
+                      //     width: 230,
+                      //     height: 230,
+                      //   ),
+                      // ),
+                      QrImage(
+                        data: "https://bbzstage.addwebprojects.com/user/booking/${controller.bookingDetails['code']}/ticket",
+                        version: QrVersions.auto,
+                        size: 200.0,
                       ),
                       SizedBox(
                         height: 50,
