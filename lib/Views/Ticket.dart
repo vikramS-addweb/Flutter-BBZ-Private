@@ -8,6 +8,7 @@ import '../Utils/Global.dart';
 import '../Styles/ImageStyle.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../Controller/BookingHistoryController.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class Ticket extends StatelessWidget {
   Ticket({
@@ -23,7 +24,7 @@ class Ticket extends StatelessWidget {
       'icon': ImageStyle.ticket_location,
       'title': 'Location',
       'secondText':
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.',
     },
     {
       'icon': ImageStyle.ticket_calendar,
@@ -58,94 +59,115 @@ JohnDoe@gmail.com
             controller.fetchBookingDetail(id);
           });
         },
-        builder: ((controller) => Obx(() => controller.bookingDetails.isEmpty ? Container(color: Colors.white,) :  Scaffold(
-              appBar: AppBarStyle(
-                title: 'Ticket'.tr,
-                leading: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: ColorStyle.primaryColor_1570A5,
-                    size: 30,
-                  ),
-                  onPressed: () {
-                    // keyDrawer.currentState!.openDrawer();
-                    navigateToBack(context);
-                  },
-                ),
-                styleTitle: TextStylesCustom.textStyles_20.apply(
-                  color: ColorStyle.primaryColor_1570A5,
-                  fontWeightDelta: 1,
-                ),
-                elevation: 2,
+        builder: ((controller) => Obx(() => controller.bookingDetails.isEmpty
+            ? Container(
+          color: Colors.white,
+        )
+            : Scaffold(
+          appBar: AppBarStyle(
+            title: 'Ticket'.tr,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: ColorStyle.primaryColor_1570A5,
+                size: 30,
               ),
-              body: SingleChildScrollView(
-                child: Container(
-                  color: ColorStyle.white_FAFAFA,
-                  width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${controller.bookingDetails['booked_event']['title'] ?? ''}',
-                        style: TextStylesCustom.textStyles_19.apply(
-                            color: ColorStyle.primaryColor_1570A5,
-                            fontWeightDelta: 2),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      ItemsList(items: [
-                        {
-                          'icon': ImageStyle.ticket_location,
-                          'title': 'Location'.tr,
-                          'secondText':
-                          '${controller.bookingDetails['address'] != null ? '${controller.bookingDetails['address']}, ': ''}${controller.bookingDetails['address2'] != null ? '${controller.bookingDetails['address2']}, ': ''}${controller.bookingDetails['city'] != null ? '${controller.bookingDetails['city']}, ': ''}${controller.bookingDetails['zip_code'] != null ? '${controller.bookingDetails['zip_code']}, ': ''}${controller.bookingDetails['country'] != null ? '${controller.bookingDetails['country']}': ''}',
-                        },
-                        {
-                          'icon': ImageStyle.ticket_calendar,
-                          'title': 'Date'.tr,
-                          'secondText': controller.bookingDetails['booked_event']['exam_date'] != null ? DateFormat('dd.MM.yyyy').format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}')):'',
-                        },
-                        {
-                          'icon': ImageStyle.ticket_100_percent,
-                          'title': 'Price'.tr,
-                          'secondText': '${controller.bookingDetails['booked_event']['sale_price'] ?? controller.bookingDetails['booked_event']['price'] ?? ''} €',
-                        },
-                        {
-                          'icon': ImageStyle.ticket_time,
-                          'title': 'Exam Time'.tr,
-                          'secondText': '${controller.bookingDetails['booked_event']['exam_time'] ?? ''}',
-                        },
-                        {
-                          'icon': ImageStyle.ticket_person,
-                          'title': 'Student'.tr,
-                          'secondText': '''${controller.bookingDetails['first_name'] ?? ''} ${controller.bookingDetails['last_name'] ?? ''}
+              onPressed: () {
+                // keyDrawer.currentState!.openDrawer();
+                navigateToBack(context);
+              },
+            ),
+            styleTitle: TextStylesCustom.textStyles_20.apply(
+              color: ColorStyle.primaryColor_1570A5,
+              fontWeightDelta: 1,
+            ),
+            elevation: 2,
+          ),
+          body: SingleChildScrollView(
+            child: Container(
+              color: ColorStyle.white_FAFAFA,
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 20, vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${controller.bookingDetails['booked_event']['title'] ?? ''}',
+                    style: TextStylesCustom.textStyles_19.apply(
+                        color: ColorStyle.primaryColor_1570A5,
+                        fontWeightDelta: 2),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ItemsList(items: [
+                    {
+                      'icon': ImageStyle.ticket_location,
+                      'title': 'Location'.tr,
+                      'secondText':
+                      '${controller.bookingDetails['address'] != null ? '${controller.bookingDetails['address']}, ' : ''}${controller.bookingDetails['address2'] != null ? '${controller.bookingDetails['address2']}, ' : ''}${controller.bookingDetails['city'] != null ? '${controller.bookingDetails['city']}, ' : ''}${controller.bookingDetails['zip_code'] != null ? '${controller.bookingDetails['zip_code']}, ' : ''}${controller.bookingDetails['country'] != null ? '${controller.bookingDetails['country']}' : ''}',
+                    },
+                    {
+                      'icon': ImageStyle.ticket_calendar,
+                      'title': 'Date'.tr,
+                      'secondText': controller
+                          .bookingDetails['booked_event']
+                      ['exam_date'] !=
+                          null
+                          ? DateFormat('dd.MM.yyyy').format(DateTime.parse(
+                          '${controller.bookingDetails['booked_event']['exam_date']}'))
+                          : '',
+                    },
+                    {
+                      'icon': ImageStyle.ticket_100_percent,
+                      'title': 'Price'.tr,
+                      'secondText':
+                      '${controller.bookingDetails['booked_event']['sale_price'] ?? controller.bookingDetails['booked_event']['price'] ?? ''} €',
+                    },
+                    {
+                      'icon': ImageStyle.ticket_time,
+                      'title': 'Exam Time'.tr,
+                      'secondText':
+                      '${controller.bookingDetails['booked_event']['exam_time'] ?? ''}',
+                    },
+                    {
+                      'icon': ImageStyle.ticket_person,
+                      'title': 'Student'.tr,
+                      'secondText':
+                      '''${controller.bookingDetails['first_name'] ?? ''} ${controller.bookingDetails['last_name'] ?? ''}
 ${controller.bookingDetails['email'] ?? ''}
 ${controller.bookingDetails['phone'] ?? ''}''',
-                        },
-                      ]),
-                      SizedBox(
-                        height: 40,
-                      ),
-
-                      // ---------------------------------------------QR Code---------------------------------------->
-                      Center(
-                        child: Image.asset(
-                          ImageStyle.ticketBarcode,
-                          width: 230,
-                          height: 230,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 50,
-                      )
-                    ],
+                    },
+                  ]),
+                  SizedBox(
+                    height: 40,
                   ),
-                ),
+
+                  // ---------------------------------------------QR Code---------------------------------------->
+                  // Center(
+                  //   child: Image.asset(
+                  //     ImageStyle.ticketBarcode,
+                  //     width: 230,
+                  //     height: 230,
+                  //   ),
+                  // ),
+                  Center(
+                    child: QrImage(
+                      data:
+                      "https://bbzstage.addwebprojects.com/user/booking/${controller.bookingDetails['code']}/ticket",
+                      version: QrVersions.auto,
+                      size: 200.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  )
+                ],
               ),
-            ))));
+            ),
+          ),
+        ))));
   }
 }
 
@@ -163,72 +185,72 @@ class ItemsList extends StatelessWidget {
         ListView.separated(
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: ((context, index) => Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: ColorStyle.grey_DAE1E7.withOpacity(0.5),
-                      blurRadius: 10.0,
-                    ),
-                  ],
+            padding:
+            const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: ColorStyle.grey_DAE1E7.withOpacity(0.5),
+                  blurRadius: 10.0,
                 ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    // Image.asset(
-                    //   ImageStyle.calendar,
-                    //   height: 70,
-                    //   width: 70 ,
-                    //   fit: BoxFit.fill,
-                    // ),
-                    SizedBox(
-                        width: 60,
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              items[index]['icon'],
-                              width: 45,
-                            ),
-                            Expanded(
-                                child: SizedBox(
+              ],
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                // Image.asset(
+                //   ImageStyle.calendar,
+                //   height: 70,
+                //   width: 70 ,
+                //   fit: BoxFit.fill,
+                // ),
+                SizedBox(
+                    width: 60,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          items[index]['icon'],
+                          width: 45,
+                        ),
+                        Expanded(
+                            child: SizedBox(
                               width: 0,
                             ))
-                          ],
-                        )),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            items[index]['title'],
-                            style: TextStylesCustom.textStyles_14.apply(
-                                color: ColorStyle.primaryColor_1570A5,
-                                fontWeightDelta: 1),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            items[index]['secondText'],
-                            style: TextStylesCustom.textStyles_10,
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
+                      ],
+                    )),
+                const SizedBox(
+                  width: 16,
                 ),
-              )),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        items[index]['title'],
+                        style: TextStylesCustom.textStyles_14.apply(
+                            color: ColorStyle.primaryColor_1570A5,
+                            fontWeightDelta: 1),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        items[index]['secondText'],
+                        style: TextStylesCustom.textStyles_10,
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )),
           separatorBuilder: ((context, index) => SizedBox(
-                height: 5,
-              )),
+            height: 5,
+          )),
           itemCount: items.length,
           shrinkWrap: true,
         ),

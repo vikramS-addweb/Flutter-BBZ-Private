@@ -57,6 +57,7 @@ dependencies:
   devicelocale: ^0.5.5
   flutter_paypal: ^0.0.7
   flutter_stripe: ^7.0.0
+  qr_flutter: ^4.0.0
 
 dev_dependencies:
   flutter_test:
