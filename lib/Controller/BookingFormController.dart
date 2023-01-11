@@ -1,3 +1,4 @@
+import 'package:bbz/Controller/ExamScreenController.dart';
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal/flutter_paypal.dart';
@@ -87,6 +88,7 @@ class BookingFormController extends GetxController {
 
 // -----------------------------------------------------Book exam ----------------------------------->
   registerExam() async {
+    final examScreenController = Get.find<ExamScreenController>();
     print(examDetailController.examDetailData.value['id']);
     print(salutation.value);
     print(academic_title.value.text);
@@ -200,11 +202,12 @@ class BookingFormController extends GetxController {
         } else {
           response['message'].toString().showSuccess();
         }
+        examScreenController.isFilled.value = true;
         event_id.value = response['event_id'].toString();
         amount.value = response['amount'].toString();
         code.value = response['code'].toString();
-        print('hellow hterher');
-
+          
+        
         if (paymentMethod.value == 'paypal') {
           usePaypal();
         } else {
@@ -374,6 +377,8 @@ class BookingFormController extends GetxController {
         } else {
           response['message'].toString().showSuccess();
         }
+        final examScreenController = Get.find<ExamScreenController>();
+        examScreenController.isFilled.value = false;
         BookingConfirmation(
           code: code.value,
         ).navigateToCustom(Get.context);

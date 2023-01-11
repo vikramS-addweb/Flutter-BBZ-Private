@@ -126,6 +126,7 @@ class DropdownWithLabel extends StatefulWidget {
      this.radiusBorder = 4.0,
      this.maxLines = 1,
      this.enabled = true,
+     this.isFilled = false
   }) : super(key: key);
 
   final String? firstText;
@@ -158,6 +159,7 @@ class DropdownWithLabel extends StatefulWidget {
    final double? radiusBorder;
    final int? maxLines;
    final bool? enabled;
+   final bool isFilled;
 
   @override
   State<DropdownWithLabel> createState() => _DropdownWithLabelState();
@@ -226,7 +228,7 @@ class _DropdownWithLabelState extends State<DropdownWithLabel> {
                   ),
                   hintText: widget.hintText,
                   hintStyle: widget.textStyle!.apply(color: widget.colorHint)),
-              onChanged: (value) {
+              onChanged: widget.isFilled ? null : (value) {
                 dropdownValue = value;
 
                 setState(() {

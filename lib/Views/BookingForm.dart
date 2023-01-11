@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Components/AppBarStyle.dart';
+import '../Controller/ExamScreenController.dart';
 import '../Styles/TextStyles.dart';
 import '../Styles/ColorStyle.dart';
 import '../Utils/Global.dart';
@@ -28,6 +29,7 @@ class BookingForm extends StatelessWidget {
   Map examDetails = {};
 
   final controller = Get.put(BookingFormController());
+  final examScreenController = Get.find<ExamScreenController>();
 
   // final examDetailController = Get.put(ExamDetailController());
 
@@ -415,6 +417,7 @@ class BookingForm extends StatelessWidget {
                                     list: ['Mr'.tr, 'Mrs'.tr, 'Ms'.tr],
                                     width: Get.mediaQuery.size.width,
                                     controllerValue: controller.salutation,
+                                    isFilled: examScreenController.isFilled.value,
                                     hintText: 'Please select'.tr,
                                     colorBoder: ColorStyle.grey_DAE1E7,
                                     padding:
@@ -438,6 +441,7 @@ class BookingForm extends StatelessWidget {
                                     controller: controller.academic_title.value,
                                     firstText: 'Academic Title'.tr,
                                     secondText: '',
+                                    readOnly: examScreenController.isFilled.value,
                                     hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isNotEmpty &&
@@ -458,6 +462,7 @@ class BookingForm extends StatelessWidget {
                                         child: TextFormFieldWithLabel(
                                           controller:
                                               controller.first_name.value,
+                                              readOnly: examScreenController.isFilled.value,
                                           firstText: 'First Name'.tr,
                                           hintText: 'Please enter'.tr,
                                           validator: (value) {
@@ -485,6 +490,7 @@ class BookingForm extends StatelessWidget {
                                         child: TextFormFieldWithLabel(
                                           controller:
                                               controller.last_name.value,
+                                              readOnly: examScreenController.isFilled.value,
                                           firstText: 'Last Name'.tr,
                                           hintText: 'Please enter'.tr,
                                           validator: (value) {
@@ -512,6 +518,7 @@ class BookingForm extends StatelessWidget {
                                   TextFormFieldWithLabel(
                                     controller:
                                         controller.identification_number.value,
+                                        readOnly: examScreenController.isFilled.value,
                                     firstText: 'Identification Number'.tr,
                                     hintText: 'Please enter'.tr,
                                     validator: (value) {
@@ -535,6 +542,7 @@ class BookingForm extends StatelessWidget {
                                   TextFormFieldWithLabel(
                                     controller: controller.email.value,
                                     enabled: kTOKENSAVED == '',
+                                    readOnly: examScreenController.isFilled.value,
                                     firstText: 'Email'.tr,
                                     hintText: 'Please enter'.tr,
                                     formatInput: true,
@@ -575,7 +583,7 @@ class BookingForm extends StatelessWidget {
                                         readOnly: true,
                                         firstText: 'Birth Date'.tr,
                                         hintText: 'YYYY-MM-DD'.tr,
-                                        onTap: () async {
+                                        onTap: examScreenController.isFilled.value ? null : () async {
                                           final dateSelected =
                                               await PickerCustom.datePicker(
                                             dateFormat: 'yyyy-MM-dd',
@@ -614,6 +622,7 @@ class BookingForm extends StatelessWidget {
                                   TextFormFieldWithLabel(
                                     controller: controller.birth_place.value,
                                     firstText: 'Birth Place'.tr,
+                                    readOnly: examScreenController.isFilled.value,
                                     hintText: 'Please enter'.tr,
                                     validator: (value) {
                                       if (value!.isEmpty) {
@@ -636,6 +645,7 @@ class BookingForm extends StatelessWidget {
                                   TextFormFieldWithLabel(
                                     controller:
                                         controller.country_of_birth.value,
+                                        readOnly: examScreenController.isFilled.value,
                                     firstText: 'Country Of Birth'.tr,
                                     hintText: 'Please enter'.tr,
                                     validator: (value) {
@@ -669,6 +679,7 @@ class BookingForm extends StatelessWidget {
                                         ...controller.motherToungeData.map(
                                             (element) => element['language'])
                                     ],
+                                    isFilled: examScreenController.isFilled.value,
                                     width: Get.mediaQuery.size.width,
                                     controllerValue: controller.motherToungue,
                                     colorBoder: ColorStyle.grey_DAE1E7,
@@ -693,6 +704,7 @@ class BookingForm extends StatelessWidget {
                                     height: 15,
                                   ),
                                   TextFormFieldWithLabel(
+                                    readOnly: examScreenController.isFilled.value,
                                       controller: controller.telephone.value,
                                       firstText: 'Telephone'.tr,
                                       secondText: '',
@@ -724,6 +736,7 @@ class BookingForm extends StatelessWidget {
                                   TextFormFieldWithLabel(
                                       controller: controller.mobile.value,
                                       firstText: 'Mobile'.tr,
+                                      readOnly: examScreenController.isFilled.value,
                                       secondText: '*',
                                       hintText: 'Please enter'.tr,
                                       keyboardType: TextInputType.phone,
@@ -746,7 +759,7 @@ class BookingForm extends StatelessWidget {
                                     height: 35,
                                   ),
                                   InkWell(
-                                    onTap: () {
+                                    onTap: examScreenController.isFilled.value ? null : () {
                                       final xx =
                                           PickerCustom.imagePicker((file) {
                                         controller.image.value = file;
@@ -890,6 +903,7 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                       controller: controller.co.value,
+                                      readOnly: examScreenController.isFilled.value,
                                       firstText: 'C/o'.tr,
                                       secondText: '',
                                       hintText: 'Please enter'.tr,
@@ -908,6 +922,7 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                       controller: controller.street.value,
+                                      readOnly: examScreenController.isFilled.value,
                                       firstText: 'Street'.tr,
                                       hintText: 'Please enter'.tr,
                                       validator: (value) {
@@ -927,6 +942,7 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                     controller: controller.city.value,
+                                    readOnly: examScreenController.isFilled.value,
                                     firstText: 'City'.tr,
                                     hintText: 'Please enter'.tr,
                                     validator: (value) {
@@ -949,6 +965,7 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   TextFormFieldWithLabel(
                                     controller: controller.postal_code.value,
+                                    readOnly: examScreenController.isFilled.value,
                                     firstText: 'Postal Code'.tr,
                                     hintText: 'Please enter'.tr,
                                     // keyboardType: TextInputType.number,
@@ -992,7 +1009,7 @@ class BookingForm extends StatelessWidget {
                                   // ),
 
                                   InkWell(
-                                    onTap: () {
+                                    onTap: examScreenController.isFilled.value ? null : () {
                                       PickerCustom.countryPicker((value) {
                                         controller.country.value = value;
                                       }, (value) {

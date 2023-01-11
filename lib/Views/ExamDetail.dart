@@ -27,10 +27,12 @@ class ExamDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return GetBuilder(
       init: controller,
         initState: (state){
           controller.initMethods(id!);
+          FocusManager.instance.primaryFocus!.unfocus();
           print("Hi");
           print(controller.examDetailData['content'].toString());
         },
