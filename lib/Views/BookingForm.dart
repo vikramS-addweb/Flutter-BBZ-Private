@@ -46,7 +46,14 @@ class BookingForm extends StatelessWidget {
         initState: (state) {
           controller.initMethods();
         },
-        builder: ((controller) => Obx(() => Scaffold(
+        builder: ((controller) => Obx(() =>
+        WillPopScope(
+          onWillPop: ()async{
+            examScreenController.isFilled.value = false;
+            return true;
+
+          },
+         child: Scaffold(
               appBar: AppBarStyle(
                 title: '${examDetails['title']}',
                 centerTitle: true,
@@ -1159,8 +1166,11 @@ class BookingForm extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      controller.termsAndCondition.value =
+                                      if(!examScreenController.isFilled.value){
+                                              controller.termsAndCondition.value =
                                           !controller.termsAndCondition.value;
+                                      }
+                                
                                     },
                                     child: Row(
                                       crossAxisAlignment:
@@ -1245,8 +1255,11 @@ class BookingForm extends StatelessWidget {
 
                                   InkWell(
                                     onTap: () {
-                                      controller.privacyPolicy.value =
+                                      if(!examScreenController.isFilled.value){
+                                        controller.privacyPolicy.value =
                                           !controller.privacyPolicy.value;
+                                      }
+                                      
                                     },
                                     child: Row(
                                       crossAxisAlignment:
@@ -1336,8 +1349,11 @@ class BookingForm extends StatelessWidget {
 
                                   InkWell(
                                     onTap: () {
-                                      controller.secondTerm.value =
+                                         if(!examScreenController.isFilled.value){
+                                          controller.secondTerm.value =
                                           !controller.secondTerm.value;
+                                         }
+                                      
                                     },
                                     child: Row(
                                       crossAxisAlignment:
@@ -1386,7 +1402,7 @@ class BookingForm extends StatelessWidget {
                   ],
                 ),
               ),
-            ))));
+            )))));
   }
 }
 

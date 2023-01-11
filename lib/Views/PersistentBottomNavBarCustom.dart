@@ -85,6 +85,7 @@ class PersistentBottomNavBarCustom extends StatelessWidget {
              if (navbarController.isNavBarActive.value &&
                 indexSelectedTab.value == 1 && !examScreenController.inExamScreen.value) {
               SystemNavigator.pop();
+              return false;
             }
          
             navbarController.isNavBarActive.value = true;

@@ -15,7 +15,6 @@ class NewsController extends GetxController {
 
   Future fetchNews() async {
 
-
     final response = await API.instance.get(endPoint: 'api/news');
 
     if (response!.isNotEmpty) {

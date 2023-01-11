@@ -98,7 +98,7 @@ JohnDoe@gmail.com
                         color: ColorStyle.primaryColor_1570A5,
                         fontWeightDelta: 2),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ItemsList(items: [
@@ -106,11 +106,20 @@ JohnDoe@gmail.com
                       'icon': ImageStyle.ticket_location,
                       'title': 'Location'.tr,
                       'secondText':
-                      '${controller.bookingDetails['address'] != null ? '${controller.bookingDetails['address']}, ' : ''}${controller.bookingDetails['address2'] != null ? '${controller.bookingDetails['address2']}, ' : ''}${controller.bookingDetails['city'] != null ? '${controller.bookingDetails['city']}, ' : ''}${controller.bookingDetails['zip_code'] != null ? '${controller.bookingDetails['zip_code']}, ' : ''}${controller.bookingDetails['country'] != null ? '${controller.bookingDetails['country']}' : ''}',
+                      '${controller.bookingDetails['examName'] != null ? '${controller.bookingDetails['examName']}, ' : ''}'
+                          '${controller.bookingDetails['examStreet'] != null ? '${controller.bookingDetails['examStreet']}, ' : ''}'
+                          '${controller.bookingDetails['examZipCode'] != null ? '${controller.bookingDetails['examZipCode']}, ' : ''}'
+                          '${controller.bookingDetails['examCity'] != null ? '${controller.bookingDetails['examCity']}, ' : ''}'
+                    },
+                    {
+                      'icon': ImageStyle.ticket_100_percent,
+                      'title': 'Price'.tr,
+                      'secondText':
+                      '${controller.bookingDetails['booked_event']['sale_price'] ?? controller.bookingDetails['booked_event']['price'] ?? ''} €',
                     },
                     {
                       'icon': ImageStyle.ticket_calendar,
-                      'title': 'Date'.tr,
+                      'title': 'Exam Date'.tr,
                       'secondText': controller
                           .bookingDetails['booked_event']
                       ['exam_date'] !=
@@ -120,16 +129,11 @@ JohnDoe@gmail.com
                           : '',
                     },
                     {
-                      'icon': ImageStyle.ticket_100_percent,
-                      'title': 'Price'.tr,
-                      'secondText':
-                      '${controller.bookingDetails['booked_event']['sale_price'] ?? controller.bookingDetails['booked_event']['price'] ?? ''} €',
-                    },
-                    {
                       'icon': ImageStyle.ticket_time,
                       'title': 'Exam Time'.tr,
                       'secondText':
-                      '${controller.bookingDetails['booked_event']['exam_time'] ?? ''}',
+                      '${DateFormat("hh:mm a").format(DateFormat("hh:mm").parse(controller.bookingDetails['booked_event']['exam_time']))
+                          ?? ''}',
                     },
                     {
                       'icon': ImageStyle.ticket_person,

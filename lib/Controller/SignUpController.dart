@@ -81,7 +81,8 @@ class SignUpController extends GetxController {
         kTOKENSAVED = dictUserSaved[kTOKEN];
 
         indexSelectedTab.value = 0;
-        PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context,);
+        Get.offAll(()=> PersistentBottomNavBarCustom(initialIndex: 0));
+        // PersistentBottomNavBarCustom(initialIndex: 0,).navigateToCustom(Get.context,);
       }
     }
 
