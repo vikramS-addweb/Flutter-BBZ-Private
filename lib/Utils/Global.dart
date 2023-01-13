@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../Controller/ExamScreenController.dart';
 import '../Styles/ColorStyle.dart';
 import '../Styles/TextStyles.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,34 +13,42 @@ var webViewController1;
 final controller = Get.put(PersistentNavBarController());
 
 showLoaderGetX() {
+  final loaderController = Get.find<ExamScreenController>();
   Get.dialog(
-    Material(
-      color: Colors.transparent,
-      child: Center(
-        child: Container(
-          height: 60,
-          margin: const EdgeInsets.only(left: 40, right: 40),
-          decoration: BoxDecoration(
-              color: ColorStyle.primaryColor_1570A5,
-              borderRadius: BorderRadius.circular(4)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 30,
-                width: 30,
-                child: CircularProgressIndicator(
-                  strokeWidth: 3,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+    WillPopScope(
+      onWillPop: ()async {
+         
+         loaderController.loaderPoped.value = true;
+        return true;
+      },
+      child: Material(
+        color: Colors.transparent,
+        child: Center(
+          child: Container(
+            height: 60,
+            margin: const EdgeInsets.only(left: 40, right: 40),
+            decoration: BoxDecoration(
+                color: ColorStyle.primaryColor_1570A5,
+                borderRadius: BorderRadius.circular(4)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 30,
+                  width: 30,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 3,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  ),
                 ),
-              ),
-              Container(
-                width: 16,
-              ),
-              Text("Loading ...".tr,
-                  style: TextStylesCustom.textStyles_16
-                      .apply(color: Colors.white)),
-            ],
+                Container(
+                  width: 16,
+                ),
+                Text("Loading ...".tr,
+                    style: TextStylesCustom.textStyles_16
+                        .apply(color: Colors.white)),
+              ],
+            ),
           ),
         ),
       ),
@@ -49,7 +58,15 @@ showLoaderGetX() {
 }
 
 hideLoader() {
-  Navigator.pop(Get.context!);
+   final loaderController = Get.find<ExamScreenController>();
+  if(!loaderController.loaderPoped.value){
+    loaderController.loaderPoped.value = false;
+     Navigator.pop(Get.context!); 
+      
+  } 
+ loaderController.loaderPoped.value = false;
+
+  
 }
 
 extension SnackBar on String {

@@ -84,7 +84,8 @@ class ExamController extends GetxController {
 
   Future fetchUpcomingExam() async {
     final response = await API.instance.get(endPoint: 'api/exams');
-
+    print('HIHIH');
+    print(response);
     if (response!.isNotEmpty) {
       debugPrint('response count ${response['data'].toList().length}');
       upcomingExamData.value = response['data'];

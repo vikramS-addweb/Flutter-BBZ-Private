@@ -313,7 +313,7 @@ class ExamDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 35,),
-                      Text('Description'.tr, style: TextStylesCustom.textStyles_17.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),),
+                      controller.examDetailData['content'].toString().isNotEmpty ? Text('Description'.tr, style: TextStylesCustom.textStyles_17.apply(color: ColorStyle.primaryColor_1570A5, fontWeightDelta: 1),) : const SizedBox(),
                       const SizedBox(height: 6,),
                       controller.examDetailData['content'] != null?
                       Html(

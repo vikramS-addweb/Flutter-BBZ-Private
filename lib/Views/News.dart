@@ -102,12 +102,13 @@ class _NewsState extends State<News> {
                         width: double.infinity,
                         fit: BoxFit.fill,
                       ):
-                      Image.asset(
+                      controller.newsData[index].toString().isNotEmpty ?
+                       Image.asset(
                         ImageStyle.newArticle,
                         height: 250,
                         width: double.infinity,
                         fit: BoxFit.fill,
-                      ),
+                      ) : const SizedBox(),
                       const SizedBox(
                         height: 25,
                       ),
@@ -118,12 +119,7 @@ class _NewsState extends State<News> {
                           color: ColorStyle.primaryColor_1570A5,
                         ),
                       ):
-                      Text(
-                        '03/30/022',
-                        style: TextStylesCustom.textStyles_12.apply(
-                          color: ColorStyle.primaryColor_1570A5,
-                        ),
-                      ),
+                      const SizedBox(),
                       const SizedBox(
                         height: 7,
                       ),
@@ -133,44 +129,22 @@ class _NewsState extends State<News> {
                         style: TextStylesCustom.textStyles_14
                             .apply(color: Colors.black, fontWeightDelta: 1),
                       ):
-                      Text(
-                        'Lorem ipsum dolor sit amet ',
-                        style: TextStylesCustom.textStyles_14
-                            .apply(color: Colors.black, fontWeightDelta: 1),
-                      ),
+                      const SizedBox(),
                       const SizedBox(
                         height: 9,
                       ),
-                      controller.newsData[index]['content_without_tag'] != null ?
-                      // SizedBox(
-                      //   height: 48,
-                      //   child: Html(
-                      //       style: {
-                      //
-                      //         "body": Style(margin: Margins.zero, padding: EdgeInsets.zero,),
-                      //         '#': Style(
-                      //           maxLines: 3,
-                      //           textOverflow: TextOverflow.ellipsis,
-                      //         ),
-                      //         'p':Style.fromTextStyle(TextStylesCustom.textStyles_13.apply(
-                      //           color: ColorStyle.grey_5E6D77,
-                      //         )),
-                      //       },
-                      //       data: controller.newsData[index]['content']
-                      //   ),
-                      // ):
+                      controller.newsData[index]['contentInEn'] != null ?
+                      
                       Text(
-                        '${controller.newsData[index]['content_without_tag']}...',
+                        Get.locale.toString().contains('de') ? '${controller.newsData[index]['contentInDe']}...' : '${controller.newsData[index]['contentInEn']}...',
                         style: TextStylesCustom.textStyles_13.apply(
                           color: ColorStyle.grey_5E6D77,
+                          overflow: TextOverflow.ellipsis,
+                          
                         ),
+                        maxLines: 3,
                       ):
-                      Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...',
-                        style: TextStylesCustom.textStyles_13.apply(
-                          color: ColorStyle.grey_5E6D77,
-                        ),
-                      ),
+                      const SizedBox(),
                     ],
                   ),
                 );

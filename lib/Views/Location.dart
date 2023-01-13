@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../Controller/ExamScreenController.dart';
 import '../Styles/TextStyles.dart';
@@ -82,14 +83,22 @@ class _LocationState extends State<Location> {
           onProgress: (int progress) {
             debugPrint('WebView is loading (progress : $progress%)');
           },
-          // navigationDelegate: (NavigationRequest request) {
-          //   if (request.url.startsWith('https://www.youtube.com/')) {
-          //     debugPrint('blocking navigation to $request}');
-          //     return NavigationDecision.prevent;
-          //   }
-          //   debugPrint('allowing navigation to $request');
-          //   return NavigationDecision.navigate;
-          // },
+          navigationDelegate: (NavigationRequest request) async {
+            if (request.url.startsWith('https://www.google.com/maps/')) {
+             var split = request.url.split('/').last;
+              MapsLauncher.launchQuery(split);
+              return NavigationDecision.prevent;
+            }
+            if (request.url.startsWith('https://maps.google.com/')) {
+              var uri = Uri.parse(request.url);
+              var uriQ= uri.queryParameters['q'];
+              MapsLauncher.launchQuery(uriQ!);
+              return NavigationDecision.prevent;
+            }
+            debugPrint('allowing navigation to $request');
+            return NavigationDecision.navigate;
+          },
+
           onPageStarted: (String url) {
             debugPrint('Page started loading: $url');
             showLoaderGetX();
@@ -119,6 +128,11 @@ class _LocationState extends State<Location> {
                 "document.getElementsByTagName('h1')[0].style.display='none'");
             _webViewController.runJavascript(
                 "document.getElementsByClassName('booking_cookie_agreement')[0].parentNode.removeChild(document.getElementsByClassName('booking_cookie_agreement')[0])");
+
+           // var xx=  _webViewController.runJavascript(
+           //      "document.getElementsByClassName('location-btn btn btn-success w-100')[0].style.display='none'");
+
+            //MapsLauncher.launchQuery('1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA');
 
             // _webViewController.runJavascript(
             //     "document.getElementsByClassName('fixed-bottom')[0].style.display='none'");

@@ -15,6 +15,7 @@ class ExamDetailController extends GetxController {
 
   RxMap examDetailData = {}.obs;
   RxBool isBooked = false.obs;
+  RxBool descriptionIsEmpty = true.obs;
 
   void initMethods(id) {
     examDetailData.clear();
@@ -32,9 +33,11 @@ class ExamDetailController extends GetxController {
       endpoint = 'api/exam-detail/$id/de';
    }
     final response = await API.instance.get(endPoint: endpoint);
-
+    print('test $id');
     if (response!.isNotEmpty) {
       debugPrint('response count ${response['data'].length}');
+      print("HIHIHI");
+      descriptionIsEmpty.value = response['data']['content'].toString().isEmpty;
       var body = response['data'];
       var bodycontent = response['data']['content'];
       if(bodycontent != null) {

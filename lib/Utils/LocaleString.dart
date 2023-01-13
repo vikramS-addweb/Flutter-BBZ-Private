@@ -186,6 +186,7 @@ class LocaleString extends Translations {
           "Your message has been sent successfully":
               "Ihre Nachricht wurde erfolgreich gesendet",
           "News": "Nachrichten",
+          "News Detail": "Nachrichten Detail",
           "No News is Available!": "Keine Nachrichten verfügbar!",
           "ABOUT US": "ÜBER UNS",
           "HOW WE WORK": "WIE WIR ARBEITEN",

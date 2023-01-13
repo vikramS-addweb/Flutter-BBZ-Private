@@ -176,11 +176,11 @@ class BookingFormController extends GetxController {
 
     final response =
         await API.instance.post(endPoint: endpoint, params: params);
-
+    print('in process');
+    print(response);
     if (response!.isNotEmpty) {
       debugPrint(response.toString());
       // response['message'].toString().showSuccess();
-      print('HIHIHI');
       print(response['message'].toString() ==
           'You have already registered for this event');
       if (response['status'] == 1) {
@@ -202,7 +202,7 @@ class BookingFormController extends GetxController {
         } else {
           response['message'].toString().showSuccess();
         }
-        examScreenController.isFilled.value = true;
+        // examScreenController.isFilled.value = true;
         event_id.value = response['event_id'].toString();
         amount.value = response['amount'].toString();
         code.value = response['code'].toString();
@@ -236,6 +236,9 @@ class BookingFormController extends GetxController {
 
       // navigateToBack(Get.context);
     }
+    //  else {
+    //   "error".showError();
+    // }
     // }
   }
 

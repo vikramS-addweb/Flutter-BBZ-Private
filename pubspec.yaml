@@ -58,6 +58,7 @@ dependencies:
   flutter_paypal: ^0.0.7
   flutter_stripe: ^7.0.0
   qr_flutter: ^4.0.0
+  maps_launcher: ^2.0.1
 
 dev_dependencies:
   flutter_test:
