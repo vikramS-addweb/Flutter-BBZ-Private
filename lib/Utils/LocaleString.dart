@@ -350,6 +350,7 @@ class LocaleString extends Translations {
           "Your Booking has been processed successfully updated. Redirecting you to the payment":"Ihre Buchung wurde erfolgreich aktualisiert. Sie werden zur Zahlung weitergeleitet",
           "You have already registered for this event":"Sie haben sich bereits für diese Veranstaltung angemeldet",
           "Booked":"Gebucht",
+          "paid": "bezahlt",
           "Success!":"Erfolg!",
           "Error!":"Fehler!",
           "No changes made":"Keine Änderungen vorgenommen",

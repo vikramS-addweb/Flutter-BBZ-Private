@@ -37,13 +37,14 @@ class _NewsState extends State<News> {
 
   @override
   void dispose() {
-    final examScreenController = Get.put(ExamScreenController());
+     final examScreenController = Get.find<ExamScreenController>();
      examScreenController.drawerIndex.value = 10;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final loaderController = Get.find<ExamScreenController>();
     return Scaffold(
       backgroundColor: ColorStyle.white,
       key: keyDrawer,
@@ -75,7 +76,8 @@ class _NewsState extends State<News> {
         builder: ((controller) =>
             Obx(() =>
             controller.newsData.length == 0 ?
-                Center(child: Text('No News is Available!'.tr, style: TextStylesCustom.textStyles_18,)):
+                Center(child:
+                loaderController.loaderPoped.value ? CircularProgressIndicator(): Text('No News is Available!'.tr, style: TextStylesCustom.textStyles_18,)):
                 ListView.separated(
               padding: const EdgeInsets.only(
                   left: 16, right: 16, top: 32, bottom: 32),

@@ -138,7 +138,7 @@ class BookingDetails extends StatelessWidget {
                     height: 10,
                   ),
                   ItemsList(items: [
-                    {'item': 'Booking Status'.tr, 'value': '${controller.bookingDetails['status'] ?? ''}'},
+                    {'item': 'Booking Status'.tr, 'value':controller.bookingDetails['status'] != null ? '${controller.bookingDetails['status'].toString().tr}' : ''},
                     {'item': 'Booking Date'.tr, 'value': controller.bookingDetails['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['created_at']}')):''},
                     {'item': 'Payment Method'.tr, 'value': '${controller.bookingDetails['gateway'] ?? ''}'},
                     {'item': 'Exam Type'.tr, 'value': '${controller.bookingDetails['examLevel'] ?? ''}'},

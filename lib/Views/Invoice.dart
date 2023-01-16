@@ -181,7 +181,7 @@ class Invoice extends StatelessWidget {
                           },
                           {
                             'item':'Booking Status'.tr,
-                            'value':'${controller.bookingDetails['status'] ?? ''}'
+                            'value':controller.bookingDetails['status'] != null ? controller.bookingDetails['status'].toString().tr : ''
                           },
                           {
                             'item':'Payment Method'.tr,
