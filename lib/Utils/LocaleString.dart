@@ -11,11 +11,11 @@ class LocaleString extends Translations {
           "Remember me": "Anmeldedaten speichern",
           "Forgot Password?": "Passwort vergessen?",
           "LOGIN": "ANMELDUNG",
-          "Continue as a Guest": "Fahren Sie als Gast fort",
+          "Continue as a Guest": "Als Gast fortfahren",
           "Log In": "Einloggen",
           "Sign Up": "Registrieren",
           "SIGN UP": "REGISTRIEREN",
-          "Do you have an account": "Haben Sie kein Konto?",
+          "Do you have an account": "Haben Sie bereits ein Kundenkonto?",
           "Email is required": "E-Mail ist erforderlich",
           "Email address": "E-Mail-Addresse",
           "Mobile Number": "Handy Nummer",
@@ -27,9 +27,7 @@ class LocaleString extends Translations {
           "Last Name": "Nachname",
           "Confirm Password": "Kennwort bestätigen",
           "Log in": "Einloggen",
-          "Already have an account?": "Haben Sie schon einen Kundenkonto?",
-          "I have read and accept the":
-              "Ich habe die und bin mit deren Geltung einverstanden",
+          "Already have an account?": "Haben Sie schon ein Kundenkonto?",
           "terms and conditions": "Allgemeine Geschäftsbedingungen",
           "and": "und",
           "Privacy Policy": "Datenschutz-Bestimmungen",
@@ -37,11 +35,11 @@ class LocaleString extends Translations {
           "Last name is required": "Nachname ist erforderlich",
           "Mobile number is required": "Handynummer ist erforderlich",
           "Confirm password is required":
-              "Passwort bestätigen ist erforderlich",
+              "Passwortbestätigung ist erforderlich",
           "Can't start with space": "Kann nicht mit Leerzeichen beginnen",
           "Min digit should be 7": "Die Mindestziffer sollte 7 sein",
           "Max digit should be 15": "Die maximale Ziffer sollte 15 sein",
-           "Min digit should be 9": "Die Mindestziffer sollte 9 sein",
+          "Min digit should be 9": "Die Mindestziffer sollte 9 sein",
           "Max digit should be 14": "Die maximale Ziffer sollte 14 sein",
           "Phone must contain number only": "Telefon darf nur Nummer enthalten",
           "Password and confirm password must be same":
@@ -49,9 +47,7 @@ class LocaleString extends Translations {
           "Book Your Exam Now!": "Melden Sie sich hier für eine Prüfung an!",
           "Use the search filters to find specific courses faster and easier":
               "Benutzen Sie den Suchfilter um spezielle Prüfungen schnell zu finden",
-          "Location": "Standort",
           "Date": "Datum",
-          "Level": "Niveau",
           "Search everything here": "Suchen Sie hier alles",
           "Select Your Center Location": "Wählen Sie Ihren Center-Standort aus",
           "Select Your Language Level": "Wählen Sie Ihr Sprachniveau aus",
@@ -70,9 +66,11 @@ class LocaleString extends Translations {
           "Seats Available": "Verfügbare Plätze",
           "Description": "Beschreibung",
           "BOOK NOW": "Kotenpflichtig bestellen",
+          "Book Now": "Kotenpflichtig bestellen",
           "Upload ID Proof":
               "Foto Ihres Personalausweises für die BAMF Anmeldung hochladen",
-          "Fee": "Presis",
+          "Fee": "Preis",
+          "Examination Fees": "Prüfungsgebühren",
           "Street": "Straße",
           "Postal Code": "Postleitzahl",
           "City": "Stadt",
@@ -85,7 +83,7 @@ class LocaleString extends Translations {
           "Booking Submission": "Kursbuchung",
           "Contact Information": "Kontaktdaten",
           "Salutation": "Anrede",
-          "Please enter": "Bitte eintragen",
+          "Please enter": "Bitte eingeben",
           "Academic Title": "Akademischer Titel",
           "Identification Number": "Personalausweisnummer",
           "Email": "Email",
@@ -102,6 +100,14 @@ class LocaleString extends Translations {
           "Address": "Adresse",
           "Select Payment Method": "Gewünschte Zahlungsmethode",
           "PAY NOW": "ZAHLEN SIE JETZT",
+          "I have read and accept the":
+              "Ich habe die und bin mit deren Geltung einverstanden",
+          "General Terms and Conditions.":
+              "Allgemeinen Geschäftsbedingungengelesen",
+          "and agree to the storage of the above data.":
+              "und willige in die dort beschriebene Verarbeitung meiner personenbezogenen Daten und Informationen ein.",
+          "I agree that the service can be performed before the end of the right of withdrawal and I am aware that the right of withdrawal ends with the specified withdrawal period.":
+              "Ich stimme ausdrücklich zu, dass mit der Ausführung der Dienstleistung vor Ablauf der Widerrufsfrist begonnen wird. Ich habe zur Kenntnis genommen, dass bei vollständiger Vertragserfüllung mein Widerrufsrecht erlischt.",
           "Salutation is required": "Anrede ist erforderlich",
           "Identification number is required":
               "Personalausweisnummer ist erforderlich",
@@ -120,10 +126,8 @@ class LocaleString extends Translations {
               "Geburtsort darf nur Buchstaben enthalten",
           "Country of birth must contain only letters":
               "Herkunftsland darf nur Buchstaben enthalten",
-          "Postal code can't have less than 4 digits":"Die Postleitzahl darf nicht weniger als 4 Ziffern haben",
-              "Postal code can't have less than 6 digits":"Die Postleitzahl darf nicht weniger als 6 Ziffern haben",
-          "Postal code can't have more than 10 digits":
-              "Die Postleitzahl darf nicht mehr als 10 Ziffern haben",
+          "Postal code cant have more than 6 digits":
+              "Die Postleitzahl darf nicht mehr als 6 Ziffern haben",
           "Success!": "Erfolg!",
           "Image Uploaded": "Bild hochgeladen",
           "Booking Successful": "Buchung erfolgreich",
@@ -145,7 +149,7 @@ class LocaleString extends Translations {
           "CHANGE PASSWORD": "PASSWORT ÄNDERN",
           "SAVE CHANGES": "ÄNDERUNGEN SPEICHERN",
           "Current Password": "Aktuelles Passwort",
-          "New Password": "Neues Kennwort",
+          "New Password": "Neues Passwort",
           "Current password is required": "Aktuelles Passwort ist erforderlich",
           "New password is required": "Neues Kennwort ist erforderlich",
           "Confirm password must be same as new password":
@@ -161,8 +165,8 @@ class LocaleString extends Translations {
           "Exam Type": "Prüfungsniveau",
           "Booking ID": "Buchungs-ID",
           "About Us": "Über Uns",
-          "Know Who we are!": "Wissen, wer wir sind!",
-          "How We Work": "Wie wir arbeiten",
+          "Know Who we are!": "Über uns",
+          "How We Work": "Wie wir in unseren Sprachkursen arbeiten",
           "Our process for your better understanding":
               "So läuft die Schulung bei uns ab",
           "Registration": "Anmeldung",
@@ -170,23 +174,18 @@ class LocaleString extends Translations {
           "Education": "Ausbildung",
           "Exam Training": "Prüfungstraining",
           "Exam": "Prüfung",
-          "Exam Fee": "Prüfung Presis",
           "CONTACT": "KONTAKT",
           "Contact Us": "Kontakt uns",
           "Your Name": "Dein Name",
-          "Email address": "E-Mail-Addresse",
-          "Message": "Botschaft",
-          "Message is required": "Botschaft ist erforderlich",
+          "Message": "Nachricht",
+          "Message is required": "Nachrichtentext ist erforderlich",
           "Message cannot start with space":
               "Nachricht darf nicht mit Leerzeichen beginnen",
           "Name cannot start with space":
               "Name darf nicht mit Leerzeichen beginnen",
-          "Identification number cannot start with space":
-          "Personalausweisnummer darf nicht mit Leerzeichen beginnen",
           "Your message has been sent successfully":
               "Ihre Nachricht wurde erfolgreich gesendet",
           "News": "Nachrichten",
-          "News Detail": "Nachrichten Detail",
           "No News is Available!": "Keine Nachrichten verfügbar!",
           "ABOUT US": "ÜBER UNS",
           "HOW WE WORK": "WIE WIR ARBEITEN",
@@ -200,9 +199,16 @@ class LocaleString extends Translations {
           "SEND PASSWORD RESET LINK": "LINK ZURÜCKSETZEN DES PASSWORTS SENDEN",
           "Email not found": "Email wurde nicht gefunden",
           "We have emailed your password reset link!":
-              "Wir haben Ihren Link zum Zurücksetzen des Passworts per E-Mail gesendet!",
+              "Wir haben Ihren Link zum Zurücksetzen des Passworts an Ihre E-Mail Adresse gesendet!",
           "Exams": "Prüfungen",
-
+          "Postal code can't have less than 4 digits":
+              "Die Postleitzahl darf nicht weniger als 4 Ziffern haben",
+          "Postal code can't have less than 6 digits":
+              "Die Postleitzahl darf nicht weniger als 6 Ziffern haben",
+          "Postal code can't have more than 10 digits":
+              "Die Postleitzahl darf nicht mehr als 10 Ziffern haben",
+          "Identification number cannot start with space":
+              "Personalausweisnummer darf nicht mit Leerzeichen beginnen",
           "Choose language": "Sprache wählen",
           "Welcome To BBZ": "Willkommen bei BBZ",
           "Login/Sign Up to get your profile and stay updated with the upcoming exams and news":
@@ -210,33 +216,27 @@ class LocaleString extends Translations {
           "Do not have an account?": "Haben Sie kein Konto?",
           "Please select": "Bitte auswählen",
           "Telephone": "Telefon",
-          "I have read and accept the ":
-              "Ich habe die und bin mit deren Geltung einverstanden ",
-          "General Terms and Conditions": "Allgemeinen Geschäftsbedingungengelesen",
+          "General Terms and Conditions":
+              "Allgemeinen Geschäftsbedingungengelesen",
           " and agree to the storage of the above data.":
               " und willige in die dort beschriebene Verarbeitung meiner personenbezogenen Daten und Informationen ein.",
           "I have read and accept the General Terms and Conditions":
               "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiere sie",
           "I have read and accept the Privacy Policy and agree to the storage of the above data.":
               "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie und stimme der Speicherung der oben genannten Daten zu.",
-          "I agree that the service can be performed before the end of the right of withdrawal and I am aware that the right of withdrawal ends with the specified withdrawal period.":
-              "Ich stimme ausdrücklich zu, dass mit der Ausführung der Dienstleistung vor Ablauf der Widerrufsfrist begonnen wird. Ich habe zur Kenntnis genommen, dass bei vollständiger Vertragserfüllung mein Widerrufsrecht erlischt.",
           "Do you have a query?": "Haben Sie eine Frage?",
           "You can connect with us anytime!":
-              "Sie können sich jederzeit mit uns verbinden!",
-          "Go back to Home page": "Gehen Sie zurück zur Startseite",
-          "Exam Level": "Prüfungsstufe",
+              "Sie können uns jederzeit kontaktieren!",
+          "Go back to Home page": "Zurück zur Startseite",
           "Exam Date": "Prüfungsdatum",
           "Exam Time": "Prüfungszeit",
           "Booking successful!": "Buchung erfolgreich",
           "Booking details has been sent to":
               "Buchungsdetails wurden gesendet an",
           "Booking Confirmation": "Buchungsbestätigung",
-          "Examination Fees": "Kursgebühren",
-          "Location": "Standort",
-          "Date": "Datum",
+          "Location": "Ort",
           "or": "oder",
-          "Level": "Niveau",
+          "Level": "Ebene",
           "EDIT PICTURE": "BILD BEARBEITEN",
           "Full Amount Paid": "Vollständiger Betrag bezahlt",
           "Booking Details": "Buchungsdetails",
@@ -246,7 +246,7 @@ class LocaleString extends Translations {
           "Exam Name": "Prüfungsname",
           "Exam Time And Date": "Prüfungszeit und -datum",
           "Invoice": "Rechnung",
-          "Ticket": "Fahrkarte",
+          "Ticket": "Ticket",
           "Price": "Preis",
           "Student": "Student",
 
@@ -257,6 +257,10 @@ class LocaleString extends Translations {
           "Privacy policy is required": "Datenschutzerklärung ist erforderlich",
           "Agreement checkbox is required":
               "Das Kontrollkästchen für die Vereinbarung ist erforderlich",
+          "The terms and conditions field is required":
+              "Das Feld Geschäftsbedingungen ist erforderlich",
+          "The email has already been taken.":
+              "Diese E-Mail Adresse ist schon vergeben.",
 
           "Identification No.": "Personalausweisnummer",
 
@@ -289,39 +293,51 @@ class LocaleString extends Translations {
           "Telephone is required": "Telefon ist erforderlich",
           "Hello": "Hallo",
           "there": "dort",
-          "Email can't start with space":"E-Mail darf nicht mit Leerzeichen beginnen",
-          "Last name should have letters":"Nachname sollte Buchstaben haben",
-          "First name should have letters":"Vorname sollte Buchstaben haben",
-          "are a subsidiary of BBZ Altenkirchen GmbH & Co. KG":"sind eine Tochtergesellschaft von BBZ Altenkirchen GmbH & Co. KG",
-  "BBZ Language Schools":"BBZ Sprache Schulen",
-          "From Camera":"Von der Kamera",
-          "From Photo":"Von Foto",
-          "Cancel":"Stornieren",
-          "Mr":"Herr",
-          "Mrs":"Frau",
-          "Ms":"Divers",
-          "No Exams are Available!":"Es werden keine Prüfungen angeboten!",
-          "ID Proof Image size(":"ID-Beweisbildgröße(",
-          " kb) can't be larger than 500 kb":" kb) darf nicht größer als 500 kb sein",
-          "Identification number contains only numbers and letters.":"Die Personalausweisnummer enthält nur Zahlen und Buchstaben.",
-          "Password Incorrect":"Falsches Passwort",
-          "Internet is not connected":"Internet ist nicht verbunden",
-          "Name must only contain letters":"Name darf nur Buchstaben enthalten",
-          "C/o can't start with space":"C/o kann nicht mit Leerzeichen beginnen",
-          "City can't start with space":"Die Stadt kann nicht mit dem Weltraum beginnen",
-          "Postal code must contain number and character only":"Die Postleitzahl darf nur Zahlen und Zeichen enthalten",
-          "Academic title can't start with space":"Akademischer Titel darf nicht mit Leerzeichen beginnen",
-          "Telephone must contain number only":"Telefon darf nur Nummer enthalten",
-          "Mobile must contain number only":"Handy darf nur Nummer enthalten",
-          "New Password cannot be same as old password":"Das neue Passwort darf nicht mit dem alten Passwort identisch sein",
-          "ALREADY BOOKED":"BEREITS GEBUCHT",
-          "Password changed successfully":"das Passwort wurde erfolgreich geändert",
-          "Old password is incorrect":"das alte Passwort ist falsch",
-          "Other":"Andere",
-          'Unable to proceed, check your internet connection.':'Fortfahren nicht möglich, überprüfen Sie Ihre Internetverbindung.',
-          'Software caused connection abort':'Software verursachte Verbindungsabbruch',
-          "All digits can't be zeros":"Alle Ziffern dürfen keine Nullen sein",
-
+          "Email can't start with space":
+              "E-Mail darf nicht mit Leerzeichen beginnen",
+          "Last name should have letters": "Nachname sollte Buchstaben haben",
+          "First name should have letters": "Vorname sollte Buchstaben haben",
+          "are a subsidiary of BBZ Altenkirchen GmbH & Co. KG":
+              "sind eine Tochtergesellschaft von BBZ Altenkirchen GmbH & Co. KG",
+          "BBZ Language Schools": "BBZ Sprache Schulen",
+          "From Camera": "Von der Kamera",
+          "From Photo": "Von Foto",
+          "Cancel": "Stornieren",
+          "Mr": "Herr",
+          "Mrs": "Frau",
+          "Ms": "Divers",
+          "No Exams are Available!": "Es werden keine Prüfungen angeboten!",
+          "ID Proof Image size(": "ID-Beweisbildgröße(",
+          " kb) can't be larger than 500 kb":
+              " kb) darf nicht größer als 500 kb sein",
+          "Identification number contains only numbers and letters.":
+              "Die Personalausweisnummer enthält nur Zahlen und Buchstaben.",
+          "Internet is not connected": "Internet ist nicht verbunden",
+          "Name must only contain letters":
+              "Name darf nur Buchstaben enthalten",
+          "C/o can't start with space":
+              "C/o kann nicht mit Leerzeichen beginnen",
+          "City can't start with space":
+              "Die Stadt kann nicht mit dem Weltraum beginnen",
+          "Postal code must contain number and character only":
+              "Die Postleitzahl darf nur Zahlen und Zeichen enthalten",
+          "Academic title can't start with space":
+              "Akademischer Titel darf nicht mit Leerzeichen beginnen",
+          "Telephone must contain number only":
+              "Telefon darf nur Nummer enthalten",
+          "Mobile must contain number only": "Handy darf nur Nummer enthalten",
+          "New Password cannot be same as old password":
+              "Das neue Passwort darf nicht mit dem alten Passwort identisch sein",
+          "ALREADY BOOKED": "BEREITS GEBUCHT",
+          "Password changed successfully":
+              "das Passwort wurde erfolgreich geändert",
+          "Old password is incorrect": "das alte Passwort ist falsch",
+          "Other": "Andere",
+          'Unable to proceed, check your internet connection.':
+              'Fortfahren nicht möglich, überprüfen Sie Ihre Internetverbindung.',
+          'Software caused connection abort':
+              'Software verursachte Verbindungsabbruch',
+          "All digits can't be zeros": "Alle Ziffern dürfen keine Nullen sein",
 
           "Log In/Sign Up": "Einloggen Anmelden",
           "Login/Sign Up to get your profile and stay updated with the upcoming exams and news.":
@@ -334,27 +350,25 @@ class LocaleString extends Translations {
           " Choose language": " Sprache wählen",
           //   "languages": "Sprachen"
 
-
           //-------------------------------------------backend api response--------------------------->
 
-          "We have emailed your password reset link!":"Wir haben Ihren Link zum Zurücksetzen des Passworts per E-Mail gesendet!",
-          "Email not found":"Email wurde nicht gefunden",
-          "The terms and conditions field is required":"Das Feld Geschäftsbedingungen ist erforderlich",
-          "The email has already been taken.":"Diese E-Mail Adresse ist schon vergeben.",
           "Email already exists": "E-Mail ist bereits vorhanden",
-          "Payment Successfully Done":"Zahlung erfolgreich abgeschlossen",
-          "Image Uploaded":"Bild hochgeladen",
-          "verification mail sent on your email, please verify first":"Bestätigungsmail an Ihre E-Mail gesendet, bitte zuerst bestätigen",
-          "Your Booking has been processed successfully. Redirecting you to the payment":"Ihre Buchung wurde erfolgreich verarbeitet. Sie werden zur Zahlung weitergeleitet",
-          "Your Booking has been processed successfully UPDATED. Redirecting you to the payment":"Ihre Buchung wurde erfolgreich aktualisiert. USie werden zur Zahlung weitergeleitet",
-          "Your Booking has been processed successfully updated. Redirecting you to the payment":"Ihre Buchung wurde erfolgreich aktualisiert. Sie werden zur Zahlung weitergeleitet",
-          "You have already registered for this event":"Sie haben sich bereits für diese Veranstaltung angemeldet",
-          "Booked":"Gebucht",
+          "Payment Successfully Done": "Zahlung erfolgreich abgeschlossen",
+          "verification mail sent on your email, please verify first":
+              "Bestätigungsmail an Ihre E-Mail gesendet, bitte zuerst bestätigen",
+          "Your Booking has been processed successfully. Redirecting you to the payment":
+              "Ihre Buchung wurde erfolgreich verarbeitet.Zur Zahlung umleiten",
+          "Your Booking has been processed successfully UPDATED. Redirecting you to the payment":
+              "Ihre Buchung wurde erfolgreich aktualisiert. USie werden zur Zahlung weitergeleitet",
+          "Your Booking has been processed successfully updated. Redirecting you to the payment":
+              "Ihre Buchung wurde erfolgreich aktualisiert. Sie werden zur Zahlung weitergeleitet",
+          "You have already registered for this event":
+              "Sie haben sich bereits für diese Veranstaltung angemeldet",
+          "Booked": "Gebucht",
           "paid": "bezahlt",
-          "Success!":"Erfolg!",
-          "Error!":"Fehler!",
-          "No changes made":"Keine Änderungen vorgenommen",
-          "Your message has been sent successfully.":"Ihre Nachricht wurde erfolgreich gesendet.",
+          "No changes made": "Keine Änderungen vorgenommen",
+          "Your message has been sent successfully.":
+              "Ihre Nachricht wurde erfolgreich gesendet.",
         }
       };
 }
