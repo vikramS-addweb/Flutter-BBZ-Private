@@ -208,7 +208,7 @@ class BookingFormController extends GetxController {
         code.value = response['code'].toString();
           
         
-        if (paymentMethod.value == 'paypal') {
+        if (paymentMethod.value == 'PayPal') {
           usePaypal();
         } else {
           useStripe();

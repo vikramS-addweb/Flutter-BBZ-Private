@@ -37,14 +37,14 @@ class _ContactUsState extends State<ContactUs> {
     // Icon(Icons.fax_outlined),
      Image.asset(ImageStyle.fax,),
 
-    const Icon(Icons.language),
+    const Icon(Icons.email),
   ];
 
   final arrTitle = [
     'BBZ Altenkirchen GmbH & Co. KG Konrad-Adenauer-Platz 5 57610 Altenkirchen',
     '02681 8797-0',
     '02681 8797-111',
-    'www.bbz-altenkirchen.de'
+    'companysemailaddress@gmail.com'
   ];
 
    @override

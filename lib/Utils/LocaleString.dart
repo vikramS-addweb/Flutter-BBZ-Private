@@ -100,8 +100,8 @@ class LocaleString extends Translations {
           "Address": "Adresse",
           "Select Payment Method": "Gewünschte Zahlungsmethode",
           "PAY NOW": "ZAHLEN SIE JETZT",
-          "I have read and accept the":
-              "Ich habe die und bin mit deren Geltung einverstanden",
+          "I have read and accept the ":
+              "Ich habe die und bin mit deren Geltung einverstanden ",
           "General Terms and Conditions.":
               "Allgemeinen Geschäftsbedingungengelesen",
           "and agree to the storage of the above data.":

@@ -1073,7 +1073,7 @@ class BookingForm extends StatelessWidget {
                                         InkWell(
                                           onTap: () {
                                             controller.paymentMethod.value =
-                                                'paypal';
+                                                'PayPal';
                                           },
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -1082,7 +1082,7 @@ class BookingForm extends StatelessWidget {
                                               children: [
                                                 controller.paymentMethod
                                                             .value ==
-                                                        'paypal'
+                                                        'PayPal'
                                                     ? Icon(
                                                         Icons
                                                             .radio_button_checked,
@@ -1099,7 +1099,7 @@ class BookingForm extends StatelessWidget {
                                                 ),
                                                 Expanded(
                                                     child: Text(
-                                                  'Paypal',
+                                                  'PayPal',
                                                   style: TextStylesCustom
                                                       .textStyles_16
                                                       .apply(

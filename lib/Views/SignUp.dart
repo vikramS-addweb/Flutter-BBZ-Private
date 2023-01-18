@@ -37,8 +37,8 @@ class SignUp extends StatelessWidget {
             color: ColorStyle.primaryColor_1570A5,
           ),
           onPressed: () {
-             final navbarController = Get.find<PersistentNavBarController>();
-              navbarController.isNavBarActive.value = true;
+            final navbarController = Get.find<PersistentNavBarController>();
+            navbarController.isNavBarActive.value = true;
             navigateToBack(context);
           },
         ),
@@ -265,7 +265,7 @@ class SignUp extends StatelessWidget {
                               // style: TextStylesCustom.textStyles_12,
                               children: <TextSpan>[
                                 TextSpan(
-                                    text: 'I have read and accept the'.tr + ' ',
+                                    text: 'I have read and accept the '.tr + ' ',
                                     style: TextStylesCustom.textStyles_15
                                         .apply(color: Colors.black)),
                                 TextSpan(
@@ -275,8 +275,18 @@ class SignUp extends StatelessWidget {
                                     ),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () async => {
-                                            await launchUrl(Uri.parse(
-                                                'https://www.sprachtestcenter.de/page/terms-and-conditions'))
+                                            if (Get.locale
+                                                .toString()
+                                                .contains('de'))
+                                              {
+                                                await launchUrl(Uri.parse(
+                                                    'https://www.sprachtestcenter.de/de/page/terms-and-conditions'))
+                                              }
+                                            else
+                                              {
+                                                await launchUrl(Uri.parse(
+                                                    'https://www.sprachtestcenter.de/page/terms-and-conditions'))
+                                              }
                                           }),
                                 TextSpan(
                                     text: ' ' + 'and'.tr + ' ',
@@ -288,8 +298,18 @@ class SignUp extends StatelessWidget {
                                         color: ColorStyle.primaryColor_1570A5),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () async => {
-                                            await launchUrl(Uri.parse(
-                                                'https://www.sprachtestcenter.de/page/privacy-policy'))
+                                            if (Get.locale
+                                                .toString()
+                                                .contains('de'))
+                                              {
+                                                await launchUrl(Uri.parse(
+                                                    'https://www.sprachtestcenter.de/de/page/privacy-policy'))
+                                              }
+                                            else
+                                              {
+                                                await launchUrl(Uri.parse(
+                                                    'https://www.sprachtestcenter.de/page/privacy-policy'))
+                                              }
                                           }),
                                 // TextSpan(text: ' and agree to the storage of the above data. ', style: TextStylesCustom.textStyles_15.apply(color: Colors.black)),
                               ],
