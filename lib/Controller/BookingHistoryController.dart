@@ -29,7 +29,9 @@ class BookingHistoryController extends GetxController {
         if(response['data'][i]['status'] == 'paid'){
           print('hi');
           upcomingExamHistoryData.add(response['data'][i]);
+         
         }
+         print(upcomingExamHistoryData.length);
       }
       update();
     }
@@ -47,6 +49,7 @@ class BookingHistoryController extends GetxController {
   Future fetchBookingDetail(id) async {
     bookingDetails.clear();
     final response = await API.instance.get(endPoint: 'api/booking-detail/$id');
+    print(response);
     if (response!.isNotEmpty) {
       debugPrint('booking details response count ${response.length}');
       bookingDetails.value = response;

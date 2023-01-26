@@ -185,7 +185,7 @@ class Invoice extends StatelessWidget {
                           },
                           {
                             'item':'Payment Method'.tr,
-                            'value':'${controller.bookingDetails['gateway'] ?? ''}'
+                            'value':controller.bookingDetails['gateway'] == 'paypal' ? 'PayPal' : '${controller.bookingDetails['gateway'] ?? ''}'
                           },
                           {
                             'item':'Exam Name'.tr,

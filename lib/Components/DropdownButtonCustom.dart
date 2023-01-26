@@ -41,9 +41,9 @@ class _DropdownButtonCustomState extends State<DropdownButtonCustom> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,
-      height: widget.height,
-      padding: widget.padding,
+      // width: widget.width,
+      // height: widget.height,
+      // padding: widget.padding,
       child: Row(
         children: [
           // Icon(
@@ -51,15 +51,15 @@ class _DropdownButtonCustomState extends State<DropdownButtonCustom> {
           //   color: ColorStyle.primaryColor_1570A5,
           //   size: 26,
           // ),
-          SizedBox(height:20, width: 26, child: Row(
-            children: [
-              Image(image: widget.icon!,),
-              Expanded(child: SizedBox(width: 6)),
-            ],
-          )),
+         
 
           Expanded(
-              child: DropdownButton<String>(
+              child: DropdownButtonFormField<String>(
+                decoration:  InputDecoration(
+                   enabledBorder: InputBorder.none,
+                   focusedBorder: InputBorder.none,
+                  prefixIcon:  Icon(Icons.location_on, color: ColorStyle.primaryColor_1570A5,),
+                ),
                 icon: Icon(
                   Icons.expand_more,
                   size: 35,
@@ -73,10 +73,6 @@ class _DropdownButtonCustomState extends State<DropdownButtonCustom> {
                   widget.hintText!,
                   style: widget.textStyle!.apply(color: ColorStyle.grey_A8B0B5),
                   // textAlign: TextAlign.center,
-                ),
-                underline: Container(
-                  height: 0,
-                  color: Colors.deepPurpleAccent,
                 ),
                 onChanged: (value){
                   setState(() { dropdownValue = value; });

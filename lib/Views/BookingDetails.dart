@@ -140,7 +140,7 @@ class BookingDetails extends StatelessWidget {
                   ItemsList(items: [
                     {'item': 'Booking Status'.tr, 'value':controller.bookingDetails['status'] != null ? '${controller.bookingDetails['status'].toString().tr}' : ''},
                     {'item': 'Booking Date'.tr, 'value': controller.bookingDetails['created_at'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['created_at']}')):''},
-                    {'item': 'Payment Method'.tr, 'value': '${controller.bookingDetails['gateway'] ?? ''}'},
+                    {'item': 'Payment Method'.tr, 'value': controller.bookingDetails['gateway'] == 'paypal' ? 'PayPal' : '${controller.bookingDetails['gateway'] ?? ''}'},
                     {'item': 'Exam Type'.tr, 'value': '${controller.bookingDetails['examLevel'] ?? ''}'},
                     {'item': 'Exam Date'.tr, 'value': controller.bookingDetails['booked_event']['exam_date'] != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}')):''},
                     {'item': 'Exam Time'.tr, 'value': controller.bookingDetails['booked_event']['exam_time'] != null ? '${DateFormat.jm().format(DateTime.parse('${controller.bookingDetails['booked_event']['exam_date']}T${controller.bookingDetails['booked_event']['exam_time']}'))}':''},
