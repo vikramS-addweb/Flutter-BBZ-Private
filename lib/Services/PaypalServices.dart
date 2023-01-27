@@ -22,7 +22,6 @@ class PaypalServices {
       print("$domain/v1/oauth2/token?grant_type=client_credentials'");
       
       var response = await client.post(Uri.parse('$domain/v1/oauth2/token?grant_type=client_credentials'));
-      print('HIHI');
       print(response.statusCode);
       if (response.statusCode == 200) {
         final body = convert.jsonDecode(response.body);
