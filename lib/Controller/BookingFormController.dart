@@ -1,7 +1,8 @@
 import 'package:bbz/Controller/ExamScreenController.dart';
+import 'package:bbz/Services/PaypalPayment.dart';
 import 'package:bbz/Views/PersistentBottomNavBarCustom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_paypal/flutter_paypal.dart';
+// import 'package:flutter_paypal/flutter_paypal.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import '../Utils/Global.dart';
@@ -73,6 +74,7 @@ class BookingFormController extends GetxController {
   //booking confirmation variables
   RxString amount = ''.obs;
   RxString code = ''.obs;
+  
 
   //------------------------------------------------- Fetch mother toungue-------------------------->
   Future fetchMotherTongue() async {
@@ -206,10 +208,62 @@ class BookingFormController extends GetxController {
         event_id.value = response['event_id'].toString();
         amount.value = response['amount'].toString();
         code.value = response['code'].toString();
-          
+        
+        var paypalTransactions =  [
+          {
+            "amount": {
+              "total": amount.value,
+              "currency": 'EUR',
+              "details": {
+                "subtotal": amount.value,
+                "shipping": '0',
+                "shipping_discount": 0
+              }
+            },
+            "description": "The payment transaction description.",
+            // "payment_options": {
+            //   "allowed_payment_method":
+            //       "INSTANT_FUNDING_SOURCE"
+            // },
+            "item_list": {
+              "items": [
+                {
+                  "name": '${first_name.value.text} ${last_name.value.text}',
+                  "quantity": 1,
+                  "price": amount.value,
+                  "currency": 'EUR'
+                }
+              ],
+
+              // shipping address is not required though
+              // "shipping_address": {
+              //   "recipient_name": "Jane Foster",
+              //   "line1": "Travis County",
+              //   "line2": "",
+              //   "city": "Austin",
+              //   "country_code": "US",
+              //   "postal_code": "73301",
+              //   "phone": "+00000000",
+              //   "state": "Texas"
+              // },
+            }
+          }
+        ]; 
         
         if (paymentMethod.value == 'PayPal') {
-          usePaypal();
+          Get.to(PaypalPayment(
+            onFinish: (id, data)async{
+              print("order id: $id");
+            reset();
+          bookingConfirm();
+          }, onError: (message) async {
+            message.toString().showError();
+          },
+
+          transactions: paypalTransactions,
+          
+          ));
+          // usePaypal();
         } else {
           useStripe();
         }
@@ -391,79 +445,79 @@ class BookingFormController extends GetxController {
     }
   }
 
-  void usePaypal() {
-    Get.to(() => UsePaypal(
-        sandboxMode: true,
-        clientId:
-            "AXEu7yfDuX_iWlKKvD25YLqe-YP5dWUcaEfgQZS-GpwjYPcNfHgxVUxZGOhzy6Uz-wpnkjavMTdrkT1n",
-        secretKey:
-            "EAFFLldjnX0wIQX6oJVIYZ9TZe1MulpmC65RkrBQ99OaNW5vvBmA3EgotzhJzGf3FomfxInoJ0FI79TW",
-        returnURL: "https://samplesite.com/return",
-        cancelURL: "https://samplesite.com/cancel",
-        transactions: [
-          {
-            "amount": {
-              "total": amount.value,
-              "currency": 'EUR',
-              "details": {
-                "subtotal": amount.value,
-                "shipping": '0',
-                "shipping_discount": 0
-              }
-            },
-            "description": "The payment transaction description.",
-            // "payment_options": {
-            //   "allowed_payment_method":
-            //       "INSTANT_FUNDING_SOURCE"
-            // },
-            "item_list": {
-              "items": [
-                {
-                  "name": '${first_name.value.text} ${last_name.value.text}',
-                  "quantity": 1,
-                  "price": amount.value,
-                  "currency": 'EUR'
-                }
-              ],
+  // void usePaypal() {
+  //   Get.to(() => UsePaypal(
+  //       sandboxMode: true,
+  //       clientId:
+  //           "AXEu7yfDuX_iWlKKvD25YLqe-YP5dWUcaEfgQZS-GpwjYPcNfHgxVUxZGOhzy6Uz-wpnkjavMTdrkT1n",
+  //       secretKey:
+  //           "EAFFLldjnX0wIQX6oJVIYZ9TZe1MulpmC65RkrBQ99OaNW5vvBmA3EgotzhJzGf3FomfxInoJ0FI79TW",
+  //       returnURL: "https://samplesite.com/return",
+  //       cancelURL: "https://samplesite.com/cancel",
+  //       transactions: [
+  //         {
+  //           "amount": {
+  //             "total": amount.value,
+  //             "currency": 'EUR',
+  //             "details": {
+  //               "subtotal": amount.value,
+  //               "shipping": '0',
+  //               "shipping_discount": 0
+  //             }
+  //           },
+  //           "description": "The payment transaction description.",
+  //           // "payment_options": {
+  //           //   "allowed_payment_method":
+  //           //       "INSTANT_FUNDING_SOURCE"
+  //           // },
+  //           "item_list": {
+  //             "items": [
+  //               {
+  //                 "name": '${first_name.value.text} ${last_name.value.text}',
+  //                 "quantity": 1,
+  //                 "price": amount.value,
+  //                 "currency": 'EUR'
+  //               }
+  //             ],
 
-              // shipping address is not required though
-              // "shipping_address": {
-              //   "recipient_name": "Jane Foster",
-              //   "line1": "Travis County",
-              //   "line2": "",
-              //   "city": "Austin",
-              //   "country_code": "US",
-              //   "postal_code": "73301",
-              //   "phone": "+00000000",
-              //   "state": "Texas"
-              // },
-            }
-          }
-        ],
-        note: "Contact us for any questions on your order.",
-        onSuccess: (Map params) async {
-          // "Payment Successful".showSuccess();
-          print("onSuccess: $params");
-          reset();
-          bookingConfirm();
-        },
-        onError: (error) {
-          if (error.toString() ==
-              'Unable to proceed, check your internet connection.') {
-            'Unable to proceed, check your internet connection.'.tr.showError();
-          } else if (error.toString() == 'Software caused connection abort') {
-            'Software caused connection abort'.tr.showError();
-          } else {
-            "$error".showError();
-          }
+  //             // shipping address is not required though
+  //             // "shipping_address": {
+  //             //   "recipient_name": "Jane Foster",
+  //             //   "line1": "Travis County",
+  //             //   "line2": "",
+  //             //   "city": "Austin",
+  //             //   "country_code": "US",
+  //             //   "postal_code": "73301",
+  //             //   "phone": "+00000000",
+  //             //   "state": "Texas"
+  //             // },
+  //           }
+  //         }
+  //       ],
+  //       note: "Contact us for any questions on your order.",
+  //       onSuccess: (Map params) async {
+  //         // "Payment Successful".showSuccess();
+  //         print("onSuccess: $params");
+  //         reset();
+  //         bookingConfirm();
+  //       },
+  //       onError: (error) {
+  //         if (error.toString() ==
+  //             'Unable to proceed, check your internet connection.') {
+  //           'Unable to proceed, check your internet connection.'.tr.showError();
+  //         } else if (error.toString() == 'Software caused connection abort') {
+  //           'Software caused connection abort'.tr.showError();
+  //         } else {
+  //           "$error".showError();
+  //         }
 
-          print("onError: $error");
-        },
-        onCancel: (params) {
-          '$params'.showError();
-          print('cancelled: $params');
-        }));
-  }
+  //         print("onError: $error");
+  //       },
+  //       onCancel: (params) {
+  //         '$params'.showError();
+  //         print('cancelled: $params');
+  //       }));
+  // }
 
   void useStripe() async {
     try {
