@@ -10,6 +10,7 @@ class BookingHistoryController extends GetxController {
   RxList pastExamHistoryData = [].obs;
   RxMap bookingDetails = {}.obs;
 
+
   void initMethods() {
     Future.delayed(Duration(microseconds: 100), () {
       fetchUpcomingExamHistory();

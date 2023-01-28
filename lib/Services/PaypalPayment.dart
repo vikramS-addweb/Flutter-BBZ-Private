@@ -2,7 +2,6 @@
 import 'dart:core';
 import 'package:bbz/Services/PaypalServices.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'PaypalPayment.dart';
 
@@ -83,21 +82,6 @@ class PaypalPaymentState extends State<PaypalPayment> {
         "currency": defaultCurrency["currency"]
       }
     ];
-
-
-    // checkout invoice details
-    String totalAmount = '1.99';
-    String subTotalAmount = '1.99';
-    String shippingCost = '0';
-    int shippingDiscountCost = 0;
-    String userFirstName = 'Gulshan';
-    String userLastName = 'Yadav';
-    String addressCity = 'Delhi';
-    String addressStreet = 'Mathura Road';
-    String addressZipCode = '110014';
-    String addressCountry = 'India';
-    String addressState = 'Delhi';
-    String addressPhoneNumber = '+919990119091';
 
     Map<String, dynamic> temp = {
       "intent": "sale",
